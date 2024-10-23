@@ -49405,20 +49405,111 @@ namespace AbhyProject.Controllers
                                     List<abhy_wsp_pgwm_committee_member_24_update> ddetails = new List<abhy_wsp_pgwm_committee_member_24_update>();
                                     if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                                     {
-                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                        //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram).ToList();//total list
+                                        var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                  .Where(x => x.data_year == Year
+                              && x.state_name == State
+                              && x.district_name == District
+                              && x.block_name == Block
+                              && x.gp_name == Gram)
+                  .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                  .ToList();
+
+                                        var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                        var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                        var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                        var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                .Where(member => stateNames.Contains(member.state_name)
+                              && districtNames.Contains(member.district_name)
+                              && blockNames.Contains(member.block_name)
+                              && gpNames.Contains(member.gp_name))
+                .ToList();
                                     }
                                     else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                                     {
-                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                        //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block).ToList();//total list
+                                        var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                  .Where(x => x.data_year == Year
+                              && x.state_name == State
+                              && x.district_name == District
+                              && x.block_name == Block)
+                  .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                  .ToList();
+
+                                        var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                        var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                        var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                        var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                .Where(member => stateNames.Contains(member.state_name)
+                              && districtNames.Contains(member.district_name)
+                              && blockNames.Contains(member.block_name)
+                              && gpNames.Contains(member.gp_name))
+                .ToList();
                                     }
                                     else if (State != "0" && State != null && District != "0" && District != null)
                                     {
-                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                        //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District).ToList();//total list
+                                        //ddetails = (from member in ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                                        //                join meeting in ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                                        //                on new { member.state_name, member.district_name }
+                                        //                equals new { meeting.state_name, meeting.district_name }
+                                        //                where meeting.state_name == State && meeting.district_name == District && meeting.data_year == Year
+                                        //                select member).ToList();
+
+
+                                        var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                  .Where(x => x.data_year == Year
+                              && x.state_name == State
+                              && x.district_name == District)
+                  .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                  .ToList();
+
+                                        var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                        var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                        var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                        var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                .Where(member => stateNames.Contains(member.state_name)
+                              && districtNames.Contains(member.district_name)
+                              && blockNames.Contains(member.block_name)
+                              && gpNames.Contains(member.gp_name))
+                .ToList();
                                     }
                                     else
                                     {
-                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                        //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State).ToList();//total list
+                                        var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                 .Where(x => x.data_year == Year
+                             && x.state_name == State)
+                 .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                 .ToList();
+
+                                        var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                        var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                        var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                        var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                .Where(member => stateNames.Contains(member.state_name)
+                              && districtNames.Contains(member.district_name)
+                              && blockNames.Contains(member.block_name)
+                              && gpNames.Contains(member.gp_name))
+                .ToList();
                                     }
+
 
 
                                     var worksheet = workbookAll.Worksheets.Add("PGWM Committee");
@@ -49488,10 +49579,6 @@ namespace AbhyProject.Controllers
                                         ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
                                     }
 
-                                    var resolutionsFor2024_25 = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
-                             .Where(x => x.data_year == "2024-25")
-                             .ToList();
-
                                     var worksheet = workbookAll.Worksheets.Add("PGWM Meeting");
                                     var currentRow = 1;
                                     worksheet.Cell(currentRow, 1).Value = "State";
@@ -49520,70 +49607,6 @@ namespace AbhyProject.Controllers
                                             var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
                                             if (ddetails1 != null)
                                             {
-
-
-                                                if (ddetails[i].meeting_resolution == null)
-                                                {
-                                                    // Fetching from the database, ensure it is loaded to memory first
-                                                    var resolution = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                  x.district_name == ddetails[i].district_name &&
-                                                                                  x.block_name == ddetails[i].block_name &&
-                                                                                  x.gp_name == ddetails[i].gp_name &&
-                                                                                  x.data_year == "2024-25")
-                                                                      .Select(x => x.meeting_resolution)
-                                                                      .FirstOrDefault();  // This will fetch data to memory
-
-                                                    // Now assign the result back to ddetails[i]
-                                                    ddetails[i].meeting_resolution = resolution;
-                                                }
-
-                                                if (ddetails[i].mom_doc == null)
-                                                {
-                                                    // Fetching from the database, ensure it is loaded to memory first
-                                                    var mom = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                  x.district_name == ddetails[i].district_name &&
-                                                                                  x.block_name == ddetails[i].block_name &&
-                                                                                  x.gp_name == ddetails[i].gp_name &&
-                                                                                  x.data_year == "2024-25")
-                                                                      .Select(x => x.mom_doc)
-                                                                      .FirstOrDefault();  // This will fetch data to memory
-
-                                                    // Now assign the result back to ddetails[i]
-                                                    ddetails[i].mom_doc = mom;
-                                                }
-
-
-                                                if (ddetails[i].meeting_image == null)
-                                                {
-                                                    // Fetching from the database, ensure it is loaded to memory first
-                                                    var meeting_image = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                  x.district_name == ddetails[i].district_name &&
-                                                                                  x.block_name == ddetails[i].block_name &&
-                                                                                  x.gp_name == ddetails[i].gp_name &&
-                                                                                  x.data_year == "2024-25")
-                                                                      .Select(x => x.meeting_image)
-                                                                      .FirstOrDefault();  // This will fetch data to memory
-
-                                                    // Now assign the result back to ddetails[i]
-                                                    ddetails[i].meeting_image = meeting_image;
-                                                }
-                                                if (ddetails[i].attendance_sheet == null)
-                                                {
-                                                    // Fetching from the database, ensure it is loaded to memory first
-                                                    var attendance_sheet = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                  x.district_name == ddetails[i].district_name &&
-                                                                                  x.block_name == ddetails[i].block_name &&
-                                                                                  x.gp_name == ddetails[i].gp_name &&
-                                                                                  x.data_year == "2024-25")
-                                                                      .Select(x => x.attendance_sheet)
-                                                                      .FirstOrDefault();  // This will fetch data to memory
-
-                                                    // Now assign the result back to ddetails[i]
-                                                    ddetails[i].attendance_sheet = attendance_sheet;
-                                                }
-
-
-
                                                 currentRow++;
                                                 worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
                                                 worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
@@ -49598,10 +49621,47 @@ namespace AbhyProject.Controllers
                                                 worksheet.Cell(currentRow, 11).Value = ddetails[i].female_attendees;
                                                 worksheet.Cell(currentRow, 12).Value = ddetails[i].transgender_attendees;
                                                 worksheet.Cell(currentRow, 13).Value = ddetails[i].total_attendees;
-                                                worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
-                                                worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
-                                                worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
-                                                worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                                if (ddetails[i].mom_doc == null)
+                                                {
+
+                                                    worksheet.Cell(currentRow, 14).Value = "New file not uploaded by user";
+                                                }
+                                                else
+                                                {
+                                                    worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
+
+                                                }
+
+                                                if (ddetails[i].meeting_image == null)
+                                                {
+
+                                                    worksheet.Cell(currentRow, 15).Value = "New file not uploaded by user";
+                                                }
+                                                else
+                                                {
+                                                    worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
+                                                }
+
+                                                if (ddetails[i].meeting_resolution == null)
+                                                {
+                                                    worksheet.Cell(currentRow, 16).Value = "New file not uploaded by user";
+                                                }
+                                                else
+                                                {
+                                                    worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
+                                                }
+
+                                                if (ddetails[i].attendance_sheet == null)
+                                                {
+
+                                                    worksheet.Cell(currentRow, 17).Value = "New file not uploaded by user";
+                                                }
+                                                else
+                                                {
+                                                    worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                                }
+
+
                                             }
                                         }
                                     }
@@ -52787,19 +52847,109 @@ namespace AbhyProject.Controllers
                             List<abhy_wsp_pgwm_committee_member_24_update> ddetails = new List<abhy_wsp_pgwm_committee_member_24_update>();
                             if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                             {
-                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram).ToList();//total list
+                                var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+          .Where(x => x.data_year == Year
+                      && x.state_name == State
+                      && x.district_name == District
+                      && x.block_name == Block
+                      && x.gp_name == Gram)
+          .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+          .ToList();
+
+                                var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+        .Where(member => stateNames.Contains(member.state_name)
+                      && districtNames.Contains(member.district_name)
+                      && blockNames.Contains(member.block_name)
+                      && gpNames.Contains(member.gp_name))
+        .ToList();
                             }
                             else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                             {
-                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block).ToList();//total list
+                                var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+          .Where(x => x.data_year == Year
+                      && x.state_name == State
+                      && x.district_name == District
+                      && x.block_name == Block)
+          .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+          .ToList();
+
+                                var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+        .Where(member => stateNames.Contains(member.state_name)
+                      && districtNames.Contains(member.district_name)
+                      && blockNames.Contains(member.block_name)
+                      && gpNames.Contains(member.gp_name))
+        .ToList();
                             }
                             else if (State != "0" && State != null && District != "0" && District != null)
                             {
-                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District).ToList();//total list
+                                //ddetails = (from member in ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                                //                join meeting in ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                                //                on new { member.state_name, member.district_name }
+                                //                equals new { meeting.state_name, meeting.district_name }
+                                //                where meeting.state_name == State && meeting.district_name == District && meeting.data_year == Year
+                                //                select member).ToList();
+
+
+                                var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+          .Where(x => x.data_year == Year
+                      && x.state_name == State
+                      && x.district_name == District)
+          .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+          .ToList();
+
+                                var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+        .Where(member => stateNames.Contains(member.state_name)
+                      && districtNames.Contains(member.district_name)
+                      && blockNames.Contains(member.block_name)
+                      && gpNames.Contains(member.gp_name))
+        .ToList();
                             }
                             else
                             {
-                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State).ToList();//total list
+                                var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+         .Where(x => x.data_year == Year
+                     && x.state_name == State)
+         .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+         .ToList();
+
+                                var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+        .Where(member => stateNames.Contains(member.state_name)
+                      && districtNames.Contains(member.district_name)
+                      && blockNames.Contains(member.block_name)
+                      && gpNames.Contains(member.gp_name))
+        .ToList();
                             }
 
                             using (var workbook = new XLWorkbook())
@@ -52884,10 +53034,7 @@ namespace AbhyProject.Controllers
                                 ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
                             }
 
-                            var resolutionsFor2024_25 = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
-                                .Where(x => x.data_year == "2024-25")
-                                .ToList();
-
+                           
                             using (var workbook = new XLWorkbook())
                             {
                                 var worksheet = workbook.Worksheets.Add("PGWM Meeting");
@@ -52918,69 +53065,6 @@ namespace AbhyProject.Controllers
                                         var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
                                         if (ddetails1 != null)
                                         {
-
-                                            if (ddetails[i].meeting_resolution == null)
-                                            {
-                                                // Fetching from the database, ensure it is loaded to memory first
-                                                var resolution = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                              x.district_name == ddetails[i].district_name &&
-                                                                              x.block_name == ddetails[i].block_name &&
-                                                                              x.gp_name == ddetails[i].gp_name &&
-                                                                              x.data_year == "2024-25")
-                                                                  .Select(x => x.meeting_resolution)
-                                                                  .FirstOrDefault();  // This will fetch data to memory
-
-                                                // Now assign the result back to ddetails[i]
-                                                ddetails[i].meeting_resolution = resolution;
-                                            }
-
-                                            if (ddetails[i].mom_doc == null)
-                                            {
-                                                // Fetching from the database, ensure it is loaded to memory first
-                                                var mom = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                              x.district_name == ddetails[i].district_name &&
-                                                                              x.block_name == ddetails[i].block_name &&
-                                                                              x.gp_name == ddetails[i].gp_name &&
-                                                                              x.data_year == "2024-25")
-                                                                  .Select(x => x.mom_doc)
-                                                                  .FirstOrDefault();  // This will fetch data to memory
-
-                                                // Now assign the result back to ddetails[i]
-                                                ddetails[i].mom_doc = mom;
-                                            }
-
-
-                                            if (ddetails[i].meeting_image == null)
-                                            {
-                                                // Fetching from the database, ensure it is loaded to memory first
-                                                var meeting_image = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                              x.district_name == ddetails[i].district_name &&
-                                                                              x.block_name == ddetails[i].block_name &&
-                                                                              x.gp_name == ddetails[i].gp_name &&
-                                                                              x.data_year == "2024-25")
-                                                                  .Select(x => x.meeting_image)
-                                                                  .FirstOrDefault();  // This will fetch data to memory
-
-                                                // Now assign the result back to ddetails[i]
-                                                ddetails[i].meeting_image = meeting_image;
-                                            }
-                                            if (ddetails[i].attendance_sheet == null)
-                                            {
-                                                // Fetching from the database, ensure it is loaded to memory first
-                                                var attendance_sheet = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                              x.district_name == ddetails[i].district_name &&
-                                                                              x.block_name == ddetails[i].block_name &&
-                                                                              x.gp_name == ddetails[i].gp_name &&
-                                                                              x.data_year == "2024-25")
-                                                                  .Select(x => x.attendance_sheet)
-                                                                  .FirstOrDefault();  // This will fetch data to memory
-
-                                                // Now assign the result back to ddetails[i]
-                                                ddetails[i].attendance_sheet = attendance_sheet;
-                                            }
-
-
-
                                             currentRow++;
                                             worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
                                             worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
@@ -52995,10 +53079,47 @@ namespace AbhyProject.Controllers
                                             worksheet.Cell(currentRow, 11).Value = ddetails[i].female_attendees;
                                             worksheet.Cell(currentRow, 12).Value = ddetails[i].transgender_attendees;
                                             worksheet.Cell(currentRow, 13).Value = ddetails[i].total_attendees;
-                                            worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
-                                            worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
-                                            worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
-                                            worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                            if (ddetails[i].mom_doc == null)
+                                            {
+
+                                                worksheet.Cell(currentRow, 14).Value = "New file not uploaded by user";
+                                            }
+                                            else
+                                            {
+                                                worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
+
+                                            }
+
+                                            if (ddetails[i].meeting_image == null)
+                                            {
+
+                                                worksheet.Cell(currentRow, 15).Value = "New file not uploaded by user";
+                                            }
+                                            else
+                                            {
+                                                worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
+                                            }
+
+                                            if (ddetails[i].meeting_resolution == null)
+                                            {
+                                                worksheet.Cell(currentRow, 16).Value = "New file not uploaded by user";
+                                            }
+                                            else
+                                            {
+                                                worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
+                                            }
+
+                                            if (ddetails[i].attendance_sheet == null)
+                                            {
+
+                                                worksheet.Cell(currentRow, 17).Value = "New file not uploaded by user";
+                                            }
+                                            else
+                                            {
+                                                worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                            }
+
+
                                         }
                                     }
                                 }
@@ -55764,19 +55885,109 @@ namespace AbhyProject.Controllers
                                         List<abhy_wsp_pgwm_committee_member_24_update> ddetails = new List<abhy_wsp_pgwm_committee_member_24_update>();
                                         if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                                         {
-                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                            //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram).ToList();//total list
+                                            var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                      .Where(x => x.data_year == Year
+                                  && x.state_name == State
+                                  && x.district_name == District
+                                  && x.block_name == Block
+                                  && x.gp_name == Gram)
+                      .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                      .ToList();
+
+                                            var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                            var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                            var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                            var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                    .Where(member => stateNames.Contains(member.state_name)
+                                  && districtNames.Contains(member.district_name)
+                                  && blockNames.Contains(member.block_name)
+                                  && gpNames.Contains(member.gp_name))
+                    .ToList();
                                         }
                                         else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                                         {
-                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                            //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block).ToList();//total list
+                                            var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                      .Where(x => x.data_year == Year
+                                  && x.state_name == State
+                                  && x.district_name == District
+                                  && x.block_name == Block)
+                      .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                      .ToList();
+
+                                            var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                            var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                            var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                            var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                    .Where(member => stateNames.Contains(member.state_name)
+                                  && districtNames.Contains(member.district_name)
+                                  && blockNames.Contains(member.block_name)
+                                  && gpNames.Contains(member.gp_name))
+                    .ToList();
                                         }
                                         else if (State != "0" && State != null && District != "0" && District != null)
                                         {
-                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                            //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District).ToList();//total list
+                                            //ddetails = (from member in ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                                            //                join meeting in ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                                            //                on new { member.state_name, member.district_name }
+                                            //                equals new { meeting.state_name, meeting.district_name }
+                                            //                where meeting.state_name == State && meeting.district_name == District && meeting.data_year == Year
+                                            //                select member).ToList();
+
+
+                                            var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                      .Where(x => x.data_year == Year
+                                  && x.state_name == State
+                                  && x.district_name == District)
+                      .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                      .ToList();
+
+                                            var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                            var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                            var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                            var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+                                            
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                    .Where(member => stateNames.Contains(member.state_name)
+                                  && districtNames.Contains(member.district_name) 
+                                  && blockNames.Contains(member.block_name)
+                                  && gpNames.Contains(member.gp_name))
+                    .ToList();
                                         }
                                         else
                                         {
-                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                            //ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State).ToList();//total list
+                                            var meetingRecords = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                     .Where(x => x.data_year == Year
+                                 && x.state_name == State)
+                     .Select(x => new { x.state_name, x.district_name, x.block_name, x.gp_name })  // Only select the primitive types
+                     .ToList();
+
+                                            var stateNames = meetingRecords.Select(x => x.state_name).ToList();
+                                            var districtNames = meetingRecords.Select(x => x.district_name).ToList();
+                                            var blockNames = meetingRecords.Select(x => x.block_name).ToList();
+                                            var gpNames = meetingRecords.Select(x => x.gp_name).ToList();
+
+
+
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update
+                    .Where(member => stateNames.Contains(member.state_name)
+                                  && districtNames.Contains(member.district_name)
+                                  && blockNames.Contains(member.block_name)
+                                  && gpNames.Contains(member.gp_name))
+                    .ToList();
                                         }
 
 
@@ -55847,10 +56058,6 @@ namespace AbhyProject.Controllers
                                             ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
                                         }
 
-                                        var resolutionsFor2024_25 = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
-                                 .Where(x => x.data_year == "2024-25")
-                                 .ToList();
-
                                         var worksheet = workbookAllSub.Worksheets.Add("PGWM Meeting");
                                         var currentRow = 1;
                                         worksheet.Cell(currentRow, 1).Value = "State";
@@ -55876,69 +56083,11 @@ namespace AbhyProject.Controllers
                                             for (int i = 0; i < ddetails.Count; i++)
                                             {
                                                 string gp = ddetails[i].gp_name;
+
                                                 var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+
                                                 if (ddetails1 != null)
                                                 {
-                                                    if (ddetails[i].meeting_resolution == null)
-                                                    {
-                                                        // Fetching from the database, ensure it is loaded to memory first
-                                                        var resolution = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                      x.district_name == ddetails[i].district_name &&
-                                                                                      x.block_name == ddetails[i].block_name &&
-                                                                                      x.gp_name == ddetails[i].gp_name &&
-                                                                                      x.data_year == "2024-25")
-                                                                          .Select(x => x.meeting_resolution)
-                                                                          .FirstOrDefault();  // This will fetch data to memory
-
-                                                        // Now assign the result back to ddetails[i]
-                                                        ddetails[i].meeting_resolution = resolution;
-                                                    }
-
-                                                    if (ddetails[i].mom_doc == null)
-                                                    {
-                                                        // Fetching from the database, ensure it is loaded to memory first
-                                                        var mom = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                      x.district_name == ddetails[i].district_name &&
-                                                                                      x.block_name == ddetails[i].block_name &&
-                                                                                      x.gp_name == ddetails[i].gp_name &&
-                                                                                      x.data_year == "2024-25")
-                                                                          .Select(x => x.mom_doc)
-                                                                          .FirstOrDefault();  // This will fetch data to memory
-
-                                                        // Now assign the result back to ddetails[i]
-                                                        ddetails[i].mom_doc = mom;
-                                                    }
-
-
-                                                    if (ddetails[i].meeting_image == null)
-                                                    {
-                                                        // Fetching from the database, ensure it is loaded to memory first
-                                                        var meeting_image = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                      x.district_name == ddetails[i].district_name &&
-                                                                                      x.block_name == ddetails[i].block_name &&
-                                                                                      x.gp_name == ddetails[i].gp_name &&
-                                                                                      x.data_year == "2024-25")
-                                                                          .Select(x => x.meeting_image)
-                                                                          .FirstOrDefault();  // This will fetch data to memory
-
-                                                        // Now assign the result back to ddetails[i]
-                                                        ddetails[i].meeting_image = meeting_image;
-                                                    }
-                                                    if (ddetails[i].attendance_sheet == null)
-                                                    {
-                                                        // Fetching from the database, ensure it is loaded to memory first
-                                                        var attendance_sheet = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
-                                                                                      x.district_name == ddetails[i].district_name &&
-                                                                                      x.block_name == ddetails[i].block_name &&
-                                                                                      x.gp_name == ddetails[i].gp_name &&
-                                                                                      x.data_year == "2024-25")
-                                                                          .Select(x => x.attendance_sheet)
-                                                                          .FirstOrDefault();  // This will fetch data to memory
-
-                                                        // Now assign the result back to ddetails[i]
-                                                        ddetails[i].attendance_sheet = attendance_sheet;
-                                                    }
-
                                                     currentRow++;
                                                     worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
                                                     worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
@@ -55953,10 +56102,49 @@ namespace AbhyProject.Controllers
                                                     worksheet.Cell(currentRow, 11).Value = ddetails[i].female_attendees;
                                                     worksheet.Cell(currentRow, 12).Value = ddetails[i].transgender_attendees;
                                                     worksheet.Cell(currentRow, 13).Value = ddetails[i].total_attendees;
-                                                    worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
-                                                    worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
-                                                    worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
-                                                    worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+
+                                                    if (ddetails[i].mom_doc == null)
+                                                    {
+                                                        
+                                                        worksheet.Cell(currentRow, 14).Value = "New file not uploaded by user";
+                                                    }
+                                                    else
+                                                    {
+                                                        worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
+
+                                                    }
+
+                                                    if (ddetails[i].meeting_image == null)
+                                                    {
+                                                        
+                                                        worksheet.Cell(currentRow, 15).Value = "New file not uploaded by user";
+                                                    }
+                                                    else
+                                                    {
+                                                        worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
+                                                    }
+
+                                                    if (ddetails[i].meeting_resolution == null)
+                                                    {  
+                                                        worksheet.Cell(currentRow, 16).Value = "New file not uploaded by user";
+                                                    }
+                                                    else
+                                                    {
+                                                        worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
+                                                    }
+
+                                                    if (ddetails[i].attendance_sheet == null)
+                                                    {
+                                                       
+                                                        worksheet.Cell(currentRow, 17).Value = "New file not uploaded by user";
+                                                    }
+                                                    else
+                                                    {
+                                                        worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                                    }
+
+
+                                                    
                                                 }
                                             }
                                         }
