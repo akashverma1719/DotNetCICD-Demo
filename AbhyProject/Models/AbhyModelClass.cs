@@ -14941,6 +14941,7 @@ namespace AbhyProject.Models
         public string gpname { get; set; }
         public string month { get; set; }
         public string year { get; set; }
+        public int month_number { get; set; }
         public string awareness_meetings_ach { get; set; }
         public string awareness_meetings_cum { get; set; }
         public string pamphlets_ach { get; set; }
