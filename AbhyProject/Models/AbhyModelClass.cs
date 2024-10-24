@@ -17572,6 +17572,31 @@ namespace AbhyProject.Models
 
     }
 
+    public class apiviewtender
+    {
+       
+        public string agency_name { get; set; }
+        public string activity_name { get; set; }
+        public string producrment_selection { get; set; }
+        public string category_of_procurement { get; set; }
+        public string description_service { get; set; }
+        public string rfp_date { get; set; }
+        public string email_office { get; set; }
+        public string tender_no { get; set; }
+        public string estimated_cost { get; set; }
+        public string bid_date { get; set; }
+        public string tender_id { get; set; }
+        public string bid_evalution_date { get; set; }
+        public string award_date { get; set; }
+        public string completion_date { get; set; }
+        public string noof_envelopes { get; set; }
+        public string deadline_date { get; set; }
+        public string bid_open_date { get; set; }
+        public string website_url { get; set; }
+        public string filepath { get; set; }
+        public string filename { get; set; }
+    }
+
     [Table("incentive_fund_utilization", Schema = "public")]
     public class incentive_fund_utilization
     {

@@ -904,7 +904,7 @@
                         }
                         var input = registration_no;
                         var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td><td>' + data[i].p_gender + '</td><td> ' + data[i].p_age + '</td ><td>' + data[i].p_occupation + '</td><td>' + data[i].p_qual + '</td><td>' + data[i].p_phoneno + '</td><td>' + data[i].p_emailid + '</td><td>' + data[i].p_address + '</td><td> ' + parti_state + '</td ><td>' + p_other_state_name + '</td><td>' + masked + '</td><td>' + data[i].p_state_name + '</td><td>' + p_district_name + '</td></tr> ';
+                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td><td>' + data[i].p_gender + '</td><td> ' + data[i].p_age + '</td ><td>' + data[i].p_occupation + '</td><td>' + data[i].p_qual + '</td><td>' + data[i].p_phoneno + '</td><td>' + data[i].p_emailid + '</td><td>' + data[i].p_address + '</td><td> ' + parti_state + '</td ><td>' + p_other_state_name + '</td><td>' +  input + '</td><td>' + data[i].p_state_name + '</td><td>' + p_district_name + '</td></tr> ';
                     }
                 }
                 if (tr == '') {
