@@ -334,6 +334,44 @@
 
 </div>
 <script>
+    document.addEventListener('keydown', function (event) {
+        // Disable F12 (DevTools)
+        if (event.keyCode === 123) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+I (DevTools)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+C (Inspect Element)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 67) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+J (DevTools)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 74) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+U (View Source)
+        if (event.ctrlKey && event.keyCode === 85) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+K (Console)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 75) {
+            event.preventDefault();
+            return false;
+        }
+    });
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+    });
+</script>
+
+<script>
 
     function checkmobile() {
         var mobile = $("#mobile").val();
@@ -470,7 +508,6 @@
         MonthName = month[m.getUTCMonth()];
 
     });
-
     function getCurrentFiscalYear() {
         //get current date
         var today = new Date();
@@ -506,7 +543,6 @@
 
         return (fiscalyear);
     }
-
     function refress() {
         $('#C_img1').attr('src', $('#C_img1').attr('src') + '#');
     }

@@ -15,6 +15,7 @@ using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -517,6 +518,14 @@ namespace AbhyProject.Controllers
 				{
 					return Json("Please Enter Mobile Number", JsonRequestBehavior.AllowGet);
 				}
+				else if (mobile.Length!= 10)
+                {
+					return Json("Please Enter Mobile Number", JsonRequestBehavior.AllowGet);
+				}
+			else if (mobile == "0" || mobile == "1" || mobile == "2" || mobile == "3" || mobile == "4" || mobile == "5" || mobile == "5")
+				{
+					return Json("Please Enter Mobile Number", JsonRequestBehavior.AllowGet);
+				}
 				else if (address == "" || address == null)
 				{
 					return Json("Please Enter Address", JsonRequestBehavior.AllowGet);
@@ -527,6 +536,15 @@ namespace AbhyProject.Controllers
 				}
 				else
 				{
+					var mmchecking = mobile;
+					Regex mmchek = new Regex("^[0-9]*$");
+					if (mmchek.IsMatch(mmchecking))
+					{
+					}
+					else
+					{
+						return Json("Please Enter Mobile Number", JsonRequestBehavior.AllowGet);
+					}
 					new_grievance.year = year;
 					new_grievance.month = month;
 					new_grievance.phone = phone;
