@@ -17481,7 +17481,7 @@ namespace AbhyProject.Controllers
                         dataRow["Gender"] = user.gendernew;
                         dataRow["Category"] = user.categorynew;
                         dataRow["Mobile no."] = user.mobilenonew;
-                        dataRow["Registration No"] = maskedRegistrationNo;
+                        dataRow["Registration No"] = registrationNo;
                         dataRow["Feedback Submission Date"] = user.todaydate;
                         dataRow["Structure Of Training Program"] = user.structure_of_training;
                         dataRow["Course Material"] = user.course_material;
@@ -18000,7 +18000,7 @@ namespace AbhyProject.Controllers
                     dataRow["Address of Participant"] = user.p_address;
                     dataRow["Participant State"] = user.parti_state;
                     dataRow["Participant Other(State)"] = user.p_other_state_name;
-                    dataRow["Registration Number"] = maskedRegistrationNo;
+                    dataRow["Registration Number"] = registrationNo;
                     dataRow["State"] = user.p_state_name;
                     if (Dist != "0" && Dist != null)
                     {
@@ -18317,7 +18317,7 @@ namespace AbhyProject.Controllers
                     dataRow["Address of Participant"] = user.p_address;
                     dataRow["Participant State"] = user.parti_state;
                     dataRow["Participant Other(State)"] = user.p_other_state_name;
-                    dataRow["Registration Number"] = maskedRegistrationNo;
+                    dataRow["Registration Number"] = registrationNo;
                     dataRow["State"] = user.p_state_name;
                     dataRow["District"] = user.p_district_name;
                     dataRow["Block"] = user.p_block_name;
@@ -18625,7 +18625,7 @@ namespace AbhyProject.Controllers
                     dataRow["Address of Participant"] = user.p_address;
                     dataRow["Participant State"] = user.parti_state;
                     dataRow["Participant Other(State)"] = user.p_other_state_name;
-                    dataRow["Registration Number"] = maskedRegistrationNo;
+                    dataRow["Registration Number"] = registrationNo;
                     dataRow["State"] = user.p_state_name;
                     dataRow["District"] = user.p_district_name;
                     dataRow["Block"] = user.p_block_name;
@@ -18934,7 +18934,7 @@ namespace AbhyProject.Controllers
                     dataRow["Address of Participant"] = user.p_address;
                     dataRow["Participant State"] = user.parti_state;
                     dataRow["Participant Other(State)"] = user.p_other_state_name;
-                    dataRow["Registration Number"] = maskedRegistrationNo;
+                    dataRow["Registration Number"] = registrationNo;
                     dataRow["State"] = user.p_state_name;
                     dataRow["District"] = user.p_district_name;
                     dataRow["Block"] = user.p_block_name;
@@ -19198,7 +19198,7 @@ namespace AbhyProject.Controllers
                     string maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
 
                     DataRow dataRow = dt.NewRow();
-                    dataRow["Registration No"] = maskedRegistrationNo;
+                    dataRow["Registration No"] = registrationNo;
                     dataRow["Topics"] = user.p_training_name;
                     dataRow["Name of the Participant"] = user.participant_name;
                     dataRow["State"] = user.level_of_event;
@@ -19417,7 +19417,7 @@ namespace AbhyProject.Controllers
 
 
                     DataRow dataRow = dt.NewRow();
-                    dataRow["Registration No"] = maskedRegistrationNo;
+                    dataRow["Registration No"] = registrationNo;
                     dataRow["Topics"] = user.p_training_name;
                     dataRow["Name of the Participant"] = user.participant_name;
                     dataRow["State"] = user.level_of_event;
@@ -19624,7 +19624,7 @@ namespace AbhyProject.Controllers
 
 
                     DataRow dataRow = dt.NewRow();
-                    dataRow["Registration No"] = maskedRegistrationNo;
+                    dataRow["Registration No"] = registrationNo;
                     dataRow["Topics"] = user.p_training_name;
                     dataRow["Name of the Participant"] = user.participant_name;
                     dataRow["State"] = user.level_of_event;
@@ -19831,7 +19831,7 @@ namespace AbhyProject.Controllers
 
 
                     DataRow dataRow = dt.NewRow();
-                    dataRow["Registration No"] = maskedRegistrationNo;
+                    dataRow["Registration No"] = registrationNo;
                     dataRow["Topics"] = user.p_training_name;
                     dataRow["Name of the Participant"] = user.participant_name;
                     dataRow["State"] = user.level_of_event;
@@ -28828,6 +28828,49 @@ namespace AbhyProject.Controllers
                     {
                         var SocID = Convert.ToInt32(result.id);
                         var Data1 = ABE.obj_abhy_training_newregs.Where(x => x.id == SocID).SingleOrDefault();
+                        if (Data1 != null)
+                        {
+
+                            ABE.Entry(Data1).State = EntityState.Deleted;
+                            ABE.SaveChanges();
+                            return Json("Deleted Successfully");
+                        }
+                        else
+                        {
+                            return Json("Error", JsonRequestBehavior.AllowGet);
+                        }
+
+                    }
+                    else
+                    {
+                        return Json("No Data", JsonRequestBehavior.AllowGet);
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+
+        }
+        [HttpPost]
+        public ActionResult Delete_feed(string Data)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    var result = js.Deserialize<abhy_feedback_latest>(Data);
+
+                    if (result.id != 0)
+                    {
+                        var SocID = Convert.ToInt32(result.id);
+                        var Data1 = ABE.obj_abhy_feedback_latest.Where(x => x.id == SocID).SingleOrDefault();
                         if (Data1 != null)
                         {
 

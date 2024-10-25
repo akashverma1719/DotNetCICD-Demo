@@ -890,42 +890,7 @@ namespace AbhyProject.Controllers
                     var Block = result.block_name;
                     var traning = topic_of_event;
                     ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.unic_key == topic_of_event).OrderByDescending(x => x.id).ToList();//total list
-                    //if (State == "All")
-                    //{
-                    //    if (traning != "0" && traning != "" && traning != null)
-                    //    {
-                    //        ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
-
-                    //    }
-                    //}
-                    //else
-                    //{
-
-                        //if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null)
-                        //{
-                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
-
-                        //}
-                        //else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && traning != "0" && traning != "" && traning != null)
-                        //{
-                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
-
-                        //}
-                        //else if (State != "0" && State != "" && State != null && traning != "0" && traning != "" && traning != null)
-                        //{
-                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
-
-                        //}
-                        //else if (traning != "0" && traning != "" && traning != null)
-                        //{
-                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
-
-                        //}
-                    //}
-
-
-
-
+                   
                     //return Json(ddetails, JsonRequestBehavior.AllowGet);
                     var HouseHolddata = ddetails;
                     var jsonresults30 = Json(HouseHolddata, JsonRequestBehavior.AllowGet);
