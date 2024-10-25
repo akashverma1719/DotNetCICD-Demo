@@ -2177,7 +2177,7 @@ namespace AbhyProject.Controllers
                         var event_name = reg_info_1day[i].p_training_name;
                         var name = reg_info_1day[i].p_name;
 
-                        string Grievanceyes = "https://ataljal.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
+                        string Grievanceyes = "https://ataljal-mis.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
 
                         string Mail_Subject = "Request for Feedback on the Attended Event:" + event_name;
                         StringBuilder sb = new StringBuilder();
@@ -2267,7 +2267,7 @@ namespace AbhyProject.Controllers
                         var email = reg_info_2day[i].p_emailid;
                         var event_name = reg_info_2day[i].p_training_name;
                         var name = reg_info_2day[i].p_name;
-                        string Grievanceyes = "https://ataljal.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
+                        string Grievanceyes = "https://ataljal-mis.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
 
                         string Mail_Subject = "Request for Feedback on the Attended Event:" + event_name;
                         StringBuilder sb = new StringBuilder();
