@@ -1250,7 +1250,7 @@ function Data_get() {
                                 }
                             }
                             if (State == "Haryana_6") {
-                                $('.hidebutton').show();
+                                $('.hidebutton').hide();
                             }
                             else {
                                 $('.hidebutton').hide();
@@ -1323,7 +1323,7 @@ function Data_get() {
                 $('#tbl_details').html(tr);
                 $('.disable').attr("disabled", "disabled");
                 if (State == "Haryana_6") {
-                    $('.hidebutton').show();
+                    $('.hidebutton').hide();
                 }
                 else {
                     $('.hidebutton').hide();
@@ -1653,9 +1653,9 @@ function data_show_phase1(id) {
                                
                                 $('#phase1submittospmu').hide();
                                 if (State == "Haryana_6") {
-                                    $('#phase1submittoapprove').show();
-                                    $('#txtrejectremark').show();
-                                    $('#phase1reject').show();
+                                    $('#phase1submittoapprove').hide();
+                                    $('#txtrejectremark').hide();
+                                    $('#phase1reject').hide();
                                 }
                                 else {
                                     $('#phase1submittoapprove').hide();
@@ -1911,9 +1911,9 @@ function data_show_phase1(id) {
 
                                 }
                                 if (State == "Haryana_6") {
-                                    $('#phase1submittospmu').show();
+                                    $('#phase1submittospmu').hide();
 
-                                    $('.hidebutton').show();
+                                    $('.hidebutton').hide();
                                 }
                                 else {
                                     $('#phase1submittospmu').hide();
@@ -1992,9 +1992,9 @@ function data_show_phase1(id) {
 
                                 }
                                 if (State == "Haryana_6") {
-                                    $('#phase1submittospmu').show();
+                                    $('#phase1submittospmu').hide();
                                     
-                                    $('.hidebutton').show();
+                                    $('.hidebutton').hide();
                                 }
                                 else {
                                     $('#phase1submittospmu').hide();
@@ -2193,7 +2193,7 @@ function data_show_phase1(id) {
                 $('.disable').attr("disabled", "disabled");
                 $('.disable').hide();
                 if (State == "Haryana_6") {
-                    $('.hidebutton').show();
+                    $('.hidebutton').hide();
                 }
                 else {
                     $('.hidebutton').hide();
@@ -7335,7 +7335,7 @@ function Data_get_supply() {
                 $('.disable').attr("disabled", "disabled");
                 
                 if (State == "Haryana_6") {
-                    $('.hidebutton').show();
+                    $('.hidebutton').hide();
                 }
                 else {
                     $('.hidebutton').hide();}
@@ -7765,9 +7765,9 @@ function data_show_supplyside1phase(id) {
 
                                 }
                                 if (State == "Haryana_6") {
-                                    $('#ssphase1submittoapprove').show();
-                                    $('#sstxtreject1remark').show();
-                                    $('#ssphase1reject').show();
+                                    $('#ssphase1submittoapprove').hide();
+                                    $('#sstxtreject1remark').hide();
+                                    $('#ssphase1reject').hide();
                                 }
                                 else {
                                     $('#ssphase1submittoapprove').hide();
@@ -7937,8 +7937,8 @@ function data_show_supplyside1phase(id) {
 
                                 }
                                 if (State == "Haryana_6") {
-                                    $('#ssphase1submittospmu').show();
-                                    $('.hidebutton').show();
+                                    $('#ssphase1submittospmu').hide();
+                                    $('.hidebutton').hide();
                                 }
                                 else {
                                     $('#ssphase1submittospmu').hide();
@@ -7985,8 +7985,8 @@ function data_show_supplyside1phase(id) {
 
                                 }
                                 if (State == "Haryana_6") {
-                                    $('#ssphase1submittospmu').show();
-                                    $('.hidebutton').show();
+                                    $('#ssphase1submittospmu').hide();
+                                    $('.hidebutton').hide();
                                 }
                                 else {
                                     $('#ssphase1submittospmu').hide();
@@ -8167,7 +8167,7 @@ function data_show_supplyside1phase(id) {
                 $('#phase1_data_supplyside').html(Tbodyhtml);
                 $('.disable').attr("disabled", "disabled");
                 if (State == "Haryana_6") {
-                    $('.hidebutton').show();
+                    $('.hidebutton').hide();
                 }
                 else {
                     $('.hidebutton').hide();
