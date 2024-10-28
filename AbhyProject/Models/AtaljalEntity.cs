@@ -29,11 +29,12 @@ namespace AbhyProject.Models
 
         public virtual DbSet<pv_quality_meta> obj_pv_quality_meta { get; set; }
         public virtual DbSet<vw_bs_pv_quality_meta_data> obj_vw_bs_pv_quality_meta_data { get; set; }
-    
+        public virtual DbSet<vw_dwlr_meta_data> obj_vw_dwlr_meta_data { get; set; }
+
         //Map Export Water Quality Stastics Ends
 
         //MADB start
-       
+
         public virtual DbSet<WaterFlow> obj_WaterFlow { get; set; }
         public virtual DbSet<vw_waterflow_all> obj_vw_waterflow_all { get; set; }
         public virtual DbSet<waterflow_meta> obj_waterflow_meta { get; set; }

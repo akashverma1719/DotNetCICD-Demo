@@ -28520,6 +28520,317 @@ function enforceNumberValidation_geo(i, ele) {
 }
 /*geotagging page end*/
 
+/*dwlr page start*/
+var PageNumber_dwlr = 1;
+var sno_dwlr = 0;
+var count_dwlr = 0;
+var click_dwlr = 0;
+var totaldwlrs = 0;
+var close_length_dwlr = 0;
+var click_button_dwlr = 0;
+function totaldwlr() {
+    $('.loader').show();
+
+    var year = $('#year').val();
+    var month = $('#month').val();
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    obj.PageNumber = PageNumber_dwlr;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/GplevelMobileData/totalFetch_dwlr',
+        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == 'Logout') {
+                window.location = "/Home/LogOut";
+            }
+            var data = data.split(',');
+            $('#dwlr_total').text(data[0]);
+            $('#totaldwlr').text(data[1]);
+            $('#total_gp_dwlr').text(data[2]);
+            totaldwlrs = data[1];
+            var asgfahgsf = data[0];
+            if (totaldwlr == PageNumber_dwlr || totaldwlrs == 0) {
+                $('#btnnextdwlr').hide();
+            }
+            else {
+                $('#btnnextdwlr').show();
+            }
+            if (asgfahgsf == 0) {
+                $('#btnnextdwlr').hide();
+                $('#pdf1_dwlr').prop('disabled', true);
+            }
+            else {
+                $('#btnnextdwlr').show();
+                $('#pdf1_dwlr').prop('disabled', false);
+            }
+            if (totaldwlrs == 1) {
+                PageNumber_dwlr = 1;
+
+            }
+            if (PageNumber_dwlr == 1) {
+                sno_dwlr = 0;
+                count_dwlr = 0;
+            }
+            var total = parseInt(exetotal) + parseInt(newsstotal);
+            $('#total_gwm').text(total);
+            $('#btnsubmit_dwlr').prop('disabled', false);
+
+            dwlr();
+        },
+        error: function () {
+
+        }
+    });
+}
+function dwlr() {
+    var year = $('#year').val();
+    var month = $('#month').val();
+
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    obj.PageNumber = PageNumber_dwlr;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/GplevelMobileData/data_dwlr',
+        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+            close_length_dwlr = data.length;
+            debugger;
+            var Tbodyhtml = '';
+            if (data == 'No Data') {
+                Tbodyhtml = '<tr colspan="19"><td colspan="10" style="text-align: center;">No Data</td></tr>';
+                $('#tblmain_dwlr').html(Tbodyhtml);
+                $('.loader').hide();
+            }
+            else {
+
+                for (var i = 0; i < data.length; i++) {
+                    sno_dwlr += 1;
+                    Tbodyhtml += '<tr id="AWP1_TR_well' + i + '"><td id="srNo">' + (sno_dwlr) + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].state + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].district + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].block + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].gp + '</td>';
+                    Tbodyhtml += '<td id="lati1">' + data[i].latitude + '</td>';
+                    Tbodyhtml += '<td id="longi1">' + data[i].longitude + '</td>';
+                    Tbodyhtml += '<td id="dat1">' + data[i].Well_ID + '</td>';
+                    Tbodyhtml += '<td id="wno1">' + data[i].type + '</td>';
+                    Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_dwlr" onclick="find_dwlr_data(' + data[i].data_id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td></tr>';
+
+                }
+
+                $('#tblmain_dwlr').html(Tbodyhtml);
+            }
+            $('#currentpagenodwlr').text(PageNumber_dwlr);
+            $('.loader').hide();
+
+            if (totaldwlrs == PageNumber_dwlr || totaldwlrs == 0) {
+                $('#btnnextdwlr').hide();
+            }
+            else {
+                $('#btnnextdwlr').show();
+            }
+            //totalexe();
+        },
+        error: function () {
+
+        }
+    });
+}
+function buttonnextdwlr() {
+    $('.loader').show();
+    click_button_dwlr = 0;
+    PageNumber_dwlr++;
+    if (PageNumber_dwlr == 1) {
+        $('#btnnextdwlr').hide();
+    }
+    else {
+        $('#btnpredwlr').show();
+    }
+
+    if (totaldwlrs == PageNumber_dwlr || totaldwlrs == 0) {
+        $('#btnnextdwlr').hide();
+    }
+    else {
+        $('#btnnextdwlr').show();
+    }
+
+    var year = $('#year').val();
+    var month = $('#month').val();
+
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    obj.PageNumber = PageNumber_dwlr;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/GplevelMobileData/data_dwlr',
+        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+            close_length_dwlr = data.length;
+
+            var Tbodyhtml = '';
+            for (var i = 0; i < data.length; i++) {
+                sno_dwlr += 1;
+                Tbodyhtml += '<tr id="AWP1_TR_well' + i + '"><td id="srNo">' + (sno_dwlr) + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].state + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].district + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].block + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].gp + '</td>';
+                Tbodyhtml += '<td id="lati1">' + data[i].latitude + '</td>';
+                Tbodyhtml += '<td id="longi1">' + data[i].longitude + '</td>';
+                Tbodyhtml += '<td id="dat1">' + data[i].Well_ID + '</td>';
+                Tbodyhtml += '<td id="wno1">' + data[i].type + '</td>';
+                Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_dwlr" onclick="find_dwlr_data(' + data[i].data_id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td></tr>';
+
+            }
+            count_dwlr = i + 100;
+
+            $('#tblmain_dwlr').html(Tbodyhtml);
+            $('#currentpagenodwlr').text(PageNumber_dwlr);
+            $('.loader').hide();
+        },
+        error: function () {
+            $('.loader').hide();
+        }
+    });
+
+}
+function buttonpredwlr() {
+    $('.loader').show();
+    PageNumber_dwlr--;
+    if (PageNumber_dwlr == 1) {
+        $('#btnpredwlr').hide();
+    }
+    else {
+        $('#btnpredwlr').show();
+    }
+
+    if (totaldwlrs == PageNumber_dwlr || totaldwlrs == 0) {
+        $('#btnnextdwlr').hide();
+    }
+    else {
+        $('#btnnextdwlr').show();
+    }
+    var year = $('#year').val();
+    var month = $('#month').val();
+
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    obj.PageNumber = PageNumber_dwlr;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/GplevelMobileData/data_dwlr',
+        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+            close_length_dwlr = data.length;
+            if (PageNumber_dwlr == 1) {
+                sno_dwlr = 0;
+            } else {
+                var ssd = (PageNumber_dwlr - 1);
+                var sdsd = ssd * 100;
+                sno_dwlr = sdsd;
+
+                click_button_dwlr = 0;
+            }
+
+            /* swater -= countwater;*/
+            var Tbodyhtml = '';
+            for (var i = 0; i < data.length; i++) {
+                sno_dwlr += 1;
+                Tbodyhtml += '<tr id="AWP1_TR_well' + i + '"><td id="srNo">' + (sno_dwlr) + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].state + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].district + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].block + '</td>';
+                Tbodyhtml += '<td id="vill">' + data[i].gp + '</td>';
+                Tbodyhtml += '<td id="lati1">' + data[i].latitude + '</td>';
+                Tbodyhtml += '<td id="longi1">' + data[i].longitude + '</td>';
+                Tbodyhtml += '<td id="dat1">' + data[i].Well_ID + '</td>';
+                Tbodyhtml += '<td id="wno1">' + data[i].type + '</td>';
+                Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_dwlr" onclick="find_dwlr_data(' + data[i].data_id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td></tr>';
+
+            }
+            count_dwlr = i + 100;
+
+            $('#tblmain_dwlr').html(Tbodyhtml);
+            $('#currentpagenodwlr').text(PageNumber_dwlr);
+            $('.loader').hide();
+        },
+        error: function () {
+            $('.loader').hide();
+        }
+    });
+
+}
+var idddwlr = "0";
+var sndwlr = "0";
+function find_dwlr_data(data_id) {
+    debugger;
+    $('.loader').show();
+    idddwlr = data_id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/GplevelMobileData/dwlr_data',
+        data: "{'id':'" + idddwlr + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var data = data;
+
+            var Tbodyhtml = '';
+            if (data == 'No Data') {
+                Tbodyhtml = '<tr colspan="5"><td colspan="16" style="text-align: center;">No Data</td></tr>';
+                $('#dwlr_data').html(Tbodyhtml);
+                $('.loader').hide();
+            }
+            else {
+                for (var i = 0; i < data.length; i++) {
+                    sndwlr = i + 1;
+
+                    Tbodyhtml += '<tr id="AWP1_TR_data_quality' + i + '"><td id="srNo">' + (sndwlr) + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].date + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].datavalue + '</td></tr >';
+                }
+                $('#dwlr_data').html(Tbodyhtml);
+                $('.loader').hide();
+            }
+        }
+    });
+
+}
+    /*dwlr page end*/
+
+
 function allowDecimal(event) {
     // Get the current value of the input field
     var value = event.target.value;

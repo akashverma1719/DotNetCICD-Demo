@@ -20462,6 +20462,29 @@ namespace AbhyProject.Models
 
     }
 
+    [Table("vw_dwlr_meta_data", Schema = "public")]
+    public class vw_dwlr_meta_data
+    {
+        [Key]
+        public int data_id { get; set; }
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string type { get; set; }
+        public string Well_ID { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+
+        public string stationcode { get; set; }
+        public string datatypecode { get; set; }
+        public string date { get; set; }
+        public string datavalue { get; set; }
+        public string fyyear { get; set; }
+        public string fymonth { get; set; }
+
+    }
     // New table  
 
 
