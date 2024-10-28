@@ -31,6 +31,10 @@ namespace AbhyProject.Controllers
         string totalwell = "";
 
         // GET: GplevelMobileData
+        public ActionResult dwlr_report()
+        {
+            return View();
+        }
         public ActionResult MobileData()
         {
 
@@ -17297,6 +17301,678 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
+
+
+        [HttpPost]
+        public ActionResult totalFetch_dwlr(string Data)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    var result = js.Deserialize<Pagenum>(Data);
+
+
+                    var State = result.statename == "0" ? null : result.statename;
+                    var Dist = result.districtname == "0" ? null : result.districtname;
+                    var Block = result.blockname == "0" ? null : result.blockname;
+                    var Gram = result.gpname == "0" ? null : result.gpname;
+                    var year = result.year == "0" ? null : result.year;
+                    var month = result.month == "0" ? null : result.month;
+                    var PageNumber = result.PageNumber;
+
+                    int gp_count = 0;
+                    List<vw_dwlr_meta_data> Final_meta_data = new List<vw_dwlr_meta_data>();
+
+                    if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+                    else if (State != "0" && State != "" && State != null)
+                    {
+                        Final_meta_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.id).ToList();
+                        gp_count = Final_meta_data.GroupBy(c => c.gp).ToList().Count();
+                    }
+
+                    if (Final_meta_data.Count != 0)
+                    {
+                        var uniqueGpNames = Final_meta_data.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        var updatedMetaData = new List<vw_dwlr_meta_data>();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+                            if (matchedData != null)
+                            {
+                                updatedMetaData.Add(matchedData);
+                            }
+                        }
+
+                        var exetotal = updatedMetaData.Count();
+                        var Totalpages = Math.Ceiling(updatedMetaData.Count() / 100.0);
+                        var jsonresult = Json(exetotal + "," + Totalpages + "," + gp_count, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+                    }
+                    else
+                    {
+                        var jsonresult = Json(0 + "," + 0 + "," + 0, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        [HttpPost]
+        public ActionResult data_dwlr(string Data)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    var result = js.Deserialize<Pagenum>(Data);
+
+                    var State = result.statename == "0" ? null : result.statename;
+                    var Dist = result.districtname == "0" ? null : result.districtname;
+                    var Block = result.blockname == "0" ? null : result.blockname;
+                    var Gram = result.gpname == "0" ? null : result.gpname;
+                    var year = result.year == "0" ? null : result.year;
+                    var month = result.month == "0" ? null : result.month;
+                    var PageNumber = result.PageNumber;
+                    var StateOfficer = Session["Officer"].ToString();
+
+                    List<vw_dwlr_meta_data> ddetails = new List<vw_dwlr_meta_data>();
+                    List<vw_dwlr_meta_data> ddetails_meta_data = new List<vw_dwlr_meta_data>();
+                    List<vw_dwlr_meta_data> gp_count = new List<vw_dwlr_meta_data>();
+                    List<dynamic> ddetails_new = new List<dynamic>();
+
+                    if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    else if (State != "0" && State != "" && State != null)
+                    {
+                        gp_count = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.id).ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.Well_ID).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.FirstOrDefault(x => x.Well_ID == gpName);
+
+                            if (matchedData != null)
+                            {
+                                ddetails_meta_data.Add(matchedData);
+                            }
+                        }
+                    }
+                    if (ddetails_meta_data.Count != 0)
+                    {
+                        ViewBag.Totalpages = Math.Ceiling(ddetails_meta_data.Count() / 100.0);
+                        Session["PageNumber"] = PageNumber;
+                        ddetails_meta_data = ddetails_meta_data.Skip((PageNumber - 1) * 100).Take(100).OrderByDescending(x => x.id).ToList();
+
+                        var jsonresult = Json(ddetails_meta_data, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+
+
+                    }
+                    else
+                    {
+                        return Json("No Data", JsonRequestBehavior.AllowGet);
+                    }
+                }
+
+                catch (Exception Ex)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult dwlr_data(string id)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    int idd = Convert.ToInt32(id);
+                    var getwellid = AJE.obj_vw_dwlr_meta_data.Where(x => x.data_id == idd).FirstOrDefault();
+                    if (getwellid != null)
+                    {
+                        var well = getwellid.Well_ID;
+                        var Final_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.Well_ID == well).OrderByDescending(x => x.date).ToList();
+                        var jsonresult = Json(Final_data, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+                    }
+                    else
+                    {
+                        return Json("No Data", JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+
+        public ActionResult dwlr_getting()
+        {
+
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+
+                    var userid = Convert.ToInt32(Session["UserId"]);
+                    var State = "";
+                    var Dist = "";
+                    var Block = "";
+                    var Gram = "";
+                    var year = "";
+                    var month = "";
+                    if (Session["gstate"] != null)
+                    {
+                        State = Session["gstate"].ToString();
+                    }
+                    if (Session["gdist"] != null)
+                    {
+                        Dist = Session["gdist"].ToString();
+                    }
+                    if (Session["gblock"] != null)
+                    {
+                        Block = Session["gblock"].ToString();
+                    }
+                    if (Session["ggram"] != null)
+                    {
+                        Gram = Session["ggram"].ToString();
+                    }
+                    if (Session["year"] != null)
+                    {
+                        year = Session["year"].ToString();
+                    }
+                    if (Session["month"] != null)
+                    {
+                        month = Session["month"].ToString();
+                    }
+
+                    List<vw_dwlr_meta_data> Final_data_data = new List<vw_dwlr_meta_data>();
+
+                    if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+                    else if (!string.IsNullOrEmpty(State))
+                    {
+                        Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ToList();
+                    }
+
+                    if (Final_data_data.Count != 0)
+                    {
+                        var jsonresult = Json(Final_data_data, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+                    }
+                    else
+                    {
+                        return Json("No Data", JsonRequestBehavior.AllowGet);
+                    }
+
+
+
+                }
+                catch (Exception Ex)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+        public ActionResult dwlrexcel(string state1, string district1, string block01, string gp1, string year1, string month1)
+        {
+            try
+            {
+                var State = state1 == "0" ? null : state1;
+                var Dist = district1 == "0" ? null : district1;
+                var Block = block01 == "0" ? null : block01;
+                var Gram = gp1 == "0" ? null : gp1;
+                var year = year1 == "0" ? null : year1;
+                var month = month1 == "0" ? null : month1;
+                //var State = state1;
+                //var Dist = district1;
+                //var Block = block01;
+                //var Gram = gp1;
+                //var year = year1;
+                //var month = month1;
+
+                List<vw_dwlr_meta_data> Final_data_data = new List<vw_dwlr_meta_data>();
+
+                if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ToList();
+                }
+
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("State Name", typeof(string));
+                dt.Columns.Add("District Name", typeof(string));
+                dt.Columns.Add("Block Name", typeof(string));
+                dt.Columns.Add("GramPanchayat Name", typeof(string));
+                dt.Columns.Add("Latitude", typeof(string));
+                dt.Columns.Add("Longitude", typeof(string));
+                dt.Columns.Add("Well Id", typeof(string));
+                dt.Columns.Add("Type of well", typeof(string));
+                dt.Columns.Add("Date", typeof(string));
+                dt.Columns.Add("Data type code", typeof(string));
+                dt.Columns.Add("Data value(mbgl)", typeof(string));
+
+                var a = Final_data_data.Count;
+
+                int sr_no = 0;
+                if (a != 0)
+                {
+                    foreach (var itema in Final_data_data)
+                    {
+                        DataRow dataRow = dt.NewRow();
+                        dataRow["State Name"] = itema.state;
+                        dataRow["District Name"] = itema.district;
+                        dataRow["Block Name"] = itema.block;
+                        dataRow["GramPanchayat Name"] = itema.gp;
+                        dataRow["Latitude"] = itema.latitude;
+                        dataRow["Longitude"] = itema.longitude;
+                        dataRow["Well Id"] = itema.Well_ID;
+                        dataRow["Type of well"] = itema.type;
+                        dataRow["Date"] = itema.date;
+                        dataRow["Data type code"] = itema.datatypecode;
+                        dataRow["Data value(mbgl)"] = itema.datavalue;
+
+                        dt.Rows.Add(dataRow);
+
+                    }
+
+
+                }
+
+                if (a == 0)
+                {
+                    DataRow dataRow = dt.NewRow();
+                    dataRow["State Name"] = "";
+                    dataRow["District Name"] = "";
+                    dataRow["Block Name"] = "";
+                    dataRow["GramPanchayat Name"] = "";
+                    dataRow["Latitude"] = "";
+                    dataRow["Longitude"] = "";
+                    dataRow["Well Id"] = "";
+                    dataRow["Type of well"] = "";
+                    dataRow["Date"] = "";
+                    dataRow["Data type code"] = "";
+                    dataRow["Data value(mbgl)"] = "";
+                    dt.Rows.Add(dataRow);
+                }
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    System.Web.HttpContext.Current.Response.Clear();
+                    System.Web.HttpContext.Current.Response.ClearContent();
+                    System.Web.HttpContext.Current.Response.ClearHeaders();
+                    System.Web.HttpContext.Current.Response.Buffer = true;
+                    System.Web.HttpContext.Current.Response.ContentType = "text/csv";
+                    System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=Dwlr.csv");
+                    System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("windows-1250");
+
+                    // Write the CSV header
+                    for (int j = 0; j < dt.Columns.Count; j++)
+                    {
+                        System.Web.HttpContext.Current.Response.Write("\"" + dt.Columns[j].ToString() + "\"");
+                        if (j < dt.Columns.Count - 1)
+                            System.Web.HttpContext.Current.Response.Write(",");
+                    }
+                    System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+
+                    // Write the CSV data
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        for (int i = 0; i < dt.Columns.Count; i++)
+                        {
+                            string fieldValue = row[i].ToString();
+
+                            // Enclose the field in double quotes and escape existing double quotes
+                            System.Web.HttpContext.Current.Response.Write("\"" + fieldValue.Replace("\"", "\"\"") + "\"");
+
+                            if (i < dt.Columns.Count - 1)
+                                System.Web.HttpContext.Current.Response.Write(",");
+                        }
+
+                        System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+                    }
+                    System.Web.HttpContext.Current.Response.Flush();
+                    System.Web.HttpContext.Current.Response.End();
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception Ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
 
 
