@@ -13,7 +13,7 @@ using System.Web.Script.Serialization;
 namespace AbhyProject.Areas.api.Controllers
 {
     //[APIAuthorization]
-    public class WaterFlowMeterController : ApiController
+    public class tenderapiController : ApiController
     {
         AbhyEntity AJE = new AbhyEntity();
 
