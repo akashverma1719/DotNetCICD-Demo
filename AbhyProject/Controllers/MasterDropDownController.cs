@@ -8081,7 +8081,7 @@ namespace AbhyProject.Controllers
 
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && topic != "0" && topic != "" && topic != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
-                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x =>x.nodal_officer== "Block Level Nodal Officer" && x.level_of_event == state && x.dist == district && x.block == block && x.unic_key == topic && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "Block Level Nodal Officer" && x.level_of_event == state && x.dist == district && x.block == block && x.unic_key == topic && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
                         }
                         else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && topic != "0" && topic != "" && topic != null && year != "0" && year != "" && year != null)
@@ -10014,7 +10014,7 @@ namespace AbhyProject.Controllers
 
                 if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null && date != "0" && date != "" && date != null)
                 {
-                    dd = ABE.obj_vw_current_events.Where(x=>x.yearname == year && x.monthname == month && x.day== datt).OrderByDescending(x => x.id).ToList();
+                    dd = ABE.obj_vw_current_events.Where(x => x.yearname == year && x.monthname == month && x.day == datt).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -11935,7 +11935,8 @@ namespace AbhyProject.Controllers
                                     ABE.SaveChanges();
                                 }
                                 var feedback = ABE.obj_feedback_gp.Where(x => x.feedid == idddddd).FirstOrDefault();
-                                if (feedback != null) {
+                                if (feedback != null)
+                                {
                                     ABE.Entry(feedback).State = EntityState.Deleted;
                                     ABE.SaveChanges();
                                 }
@@ -15069,7 +15070,7 @@ namespace AbhyProject.Controllers
                         {
                             Nodal_officer = "Gram Panchayat Nodal Officer";
                         }
-                        
+
                         dataRow["Topic of Event"] = user.p_training_name;
                         dataRow["Type of Event"] = user.type_of_event;
                         dataRow["Location of Exposure Visit"] = user.location_expo;
@@ -15216,7 +15217,7 @@ namespace AbhyProject.Controllers
                     }
                     else
                     {
-                        TDetails = ABE.obj_current_events.Where(x=> x.Nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
 
                     }
                 }
@@ -15224,7 +15225,7 @@ namespace AbhyProject.Controllers
                 {
                     if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0" && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x =>x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0" && Year != "0" && Year != "" && Year != null)
@@ -15814,17 +15815,17 @@ namespace AbhyProject.Controllers
                 {
                     if (Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (Year != "0" && Year != "" && Year != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.year == Year).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.year == Year).OrderByDescending(x => x.id).ToList();
 
                     }
                     else
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer")).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer")).OrderByDescending(x => x.id).ToList();
 
                     }
                 }
@@ -15832,62 +15833,62 @@ namespace AbhyProject.Controllers
                 {
                     if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0" && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0" && Year != "0" && Year != "" && Year != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0")
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.block == Block).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.year == Year).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist && x.year == Year).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.district == Dist).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.year == Year).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State && x.year == Year).OrderByDescending(x => x.id).ToList();
 
                     }
                     else if (State != "0" && State != "" && State != null)
                     {
-                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer"|| x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State).OrderByDescending(x => x.id).ToList();
+                        TDetails = ABE.obj_current_events.Where(x => (x.Nodal_officer == "Gram Panchyat Nodal Officer" || x.Nodal_officer == "Block Level Nodal Officer" || x.Nodal_officer == "District Level Nodal Officer") && x.level_event == State).OrderByDescending(x => x.id).ToList();
 
                     }
                 }
@@ -17429,7 +17430,7 @@ namespace AbhyProject.Controllers
                         {
                             maskedRegistrationNo = registrationNo; // No masking if registrationNo has less than 4 characters
                         }
-                        
+
                         //if (registrationNo!= null) {
                         //    maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
                         //}
@@ -18410,7 +18411,7 @@ namespace AbhyProject.Controllers
                 {
                     if (State == "All" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x =>x.nodal == "Block Level Nodal Officer" && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => x.nodal == "Block Level Nodal Officer" && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
@@ -18422,7 +18423,7 @@ namespace AbhyProject.Controllers
                     }
                     else if (State == "All")
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x=> x.nodal == "Block Level Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => x.nodal == "Block Level Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
 
                     }
 
@@ -18719,19 +18720,19 @@ namespace AbhyProject.Controllers
                 {
                     if (State == "All" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State == "All" && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State == "All")
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer")).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer")).OrderByDescending(x => x.id).ToList();//total list
 
                     }
 
@@ -18741,19 +18742,19 @@ namespace AbhyProject.Controllers
                 {
                     if (State == "All" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State == "All" && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State == "All")
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name).OrderByDescending(x => x.id).ToList();//total list
 
                     }
                 }
@@ -18764,36 +18765,36 @@ namespace AbhyProject.Controllers
                 {
                     if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
                     }
                     else if (State != "0" && State != "" && State != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
                     }
                 }
                 else
                 {
                     if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
 
                     }
                 }
@@ -18818,37 +18819,37 @@ namespace AbhyProject.Controllers
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.p_district_name == Dist && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.p_district_name == Dist && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.p_district_name == Dist && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.p_district_name == Dist && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.p_district_name == Dist).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.p_district_name == Dist).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
 
                     }
                     else if (State != "0" && State != "" && State != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
 
                     }
                 }
@@ -18870,27 +18871,27 @@ namespace AbhyProject.Controllers
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.p_district_name == Dist && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.p_district_name == Dist && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.p_district_name == Dist && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.p_district_name == Dist && x.year == year).OrderByDescending(x => x.id).ToList();//total list
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.p_district_name == Dist).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.p_district_name == Dist).OrderByDescending(x => x.id).ToList();//total list
                     }
                     else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
                     }
                     else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
                     }
                     else if (State != "0" && State != "" && State != null)
                     {
-                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer"|| x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_abhy_training_newregs.Where(x => (x.nodal == "Block Level Nodal Officer" || x.nodal == "District Level Nodal Officer") && x.typeofevent == event_name && x.p_state_name == State).OrderByDescending(x => x.id).ToList();//total list
 
                     }
                 }
@@ -19540,7 +19541,7 @@ namespace AbhyProject.Controllers
                 }
                 else
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x=> x.nodal_officer == "Block Level Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "Block Level Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
                 }
             }
             else
@@ -27095,9 +27096,27 @@ namespace AbhyProject.Controllers
 
             try
             {
-                var ddetails = ABE.obj_vw_current_events.Where(x => x.id == id).OrderByDescending(x => x.id).ToList();
+                DateTime currentDate = DateTime.Now;
+                DateTime fixedDate = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day);
 
-                return Json(ddetails, JsonRequestBehavior.AllowGet);
+                var ddetails = ABE.obj_vw_current_events.Where(x => x.id == id).OrderByDescending(x => x.id).ToList();
+                DateTime registration = Convert.ToDateTime(ddetails[0].reg_close_date).AddDays(3);
+                if (fixedDate <= registration)
+                {
+                    if (ddetails[0].approve_status == "" || ddetails[0].approve_status == null || ddetails[0].approve_status == "Reject by SPMU" || ddetails[0].approve_status == "Reject by DPMU" || ddetails[0].approve_status == "Reject")
+                    {
+                        return Json(ddetails, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json("This training session has concluded. Registration is now closed. Thank you for your Interest", JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json("This training session has concluded. Registration is now closed. Thank you for your Interest", JsonRequestBehavior.AllowGet);
+                }
+
             }
             catch (Exception Ex)
             {
@@ -29502,7 +29521,8 @@ namespace AbhyProject.Controllers
                         {
                             nameofpart = "";
                         }
-                        if (nameofpart == "") {
+                        if (nameofpart == "")
+                        {
                             var Gram = Data1.gp;
 
                             Data1.atten_sheet_filename = null;
@@ -30408,7 +30428,7 @@ namespace AbhyProject.Controllers
                         var Gram = gram;
                         if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
-                            
+
                             ddetails_phy = ABE.obj_abhy_physicalmonitoring_insertdata_view.Where(x => x.state_name == State && x.support_year == year && x.support_month == month && x.support_item_code == "A5.1.04").OrderByDescending(x => x.id).ToList();//total list
                             dd = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == year && x.month == month && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                             dd_newa = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == year && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
@@ -30459,13 +30479,13 @@ namespace AbhyProject.Controllers
                         }
                         else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
-                            
+
                             dd_newa = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                             dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.month == month && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                         }
                         else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
                         {
-                            target = ABE.obj_state_awp_target.Where(x => x.state == State  && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                            target = ABE.obj_state_awp_target.Where(x => x.state == State && x.year == year).OrderByDescending(x => x.id).ToList();//total list
                             dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
 
                         }
@@ -30941,23 +30961,23 @@ namespace AbhyProject.Controllers
                         var Dist = dist;
                         var Block = block;
                         var Gram = gram;
-                       
-                            if (Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
-                            {
-                                dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+
+                        if (Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
                             current_dd = ABE.obj_current_events.Where(x => x.gp == Gram && x.year == year && x.month == month && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
-                            }
-                            else if (Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
-                            {
-                                dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                        }
+                        else if (Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
                             current_dd = ABE.obj_current_events.Where(x => x.gp == Gram && x.year == year && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                         }
-                            else if (Gram != "0" && Gram != "" && Gram != null)
-                            {
-                                dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
-                            current_dd = ABE.obj_current_events.Where(x => x.gp == Gram  && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                        else if (Gram != "0" && Gram != "" && Gram != null)
+                        {
+                            dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            current_dd = ABE.obj_current_events.Where(x => x.gp == Gram && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                         }
-                        
+
                         string[] topics = { "Structure Of Training Program", "Course Material", "Interaction With Trainer", "Hands on Practice/practical Session", "Usefullness Of Contents", "Information presented was clearly explained", "Participant questions were clearly answered", "Food Quality/Lodging Facilities (If Applicable)", "Overall Impression" };
 
                         for (int j = 0; j < topics.Length; j++)
@@ -31142,12 +31162,12 @@ namespace AbhyProject.Controllers
                             else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
                             {
                                 dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.year == year && x.nodal_officer == "National Level Nodal Officer").OrderByDescending(x => x.id).ToList();
-                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year  && x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                             }
                             else if (State != "0" && State != "" && State != null)
                             {
                                 dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.nodal_officer == "National Level Nodal Officer").OrderByDescending(x => x.id).ToList();
-                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State  && x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                             }
                         }
                         else
@@ -31198,7 +31218,7 @@ namespace AbhyProject.Controllers
                                 current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.Nodal_officer == "State Level Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
                             }
                         }
-                        string[] topics = { "Structure Of Training Program", "Course Material", "Interaction With Trainer", "Hands on Practice/practical Session", "Usefullness Of Contents", "Information presented was clearly explained", "Participant questions were clearly answered", "Food Quality/Lodging Facilities (If Applicable)" , "Overall Impression" };
+                        string[] topics = { "Structure Of Training Program", "Course Material", "Interaction With Trainer", "Hands on Practice/practical Session", "Usefullness Of Contents", "Information presented was clearly explained", "Participant questions were clearly answered", "Food Quality/Lodging Facilities (If Applicable)", "Overall Impression" };
 
                         for (int j = 0; j < topics.Length; j++)
                         {
@@ -39330,7 +39350,8 @@ namespace AbhyProject.Controllers
                 var feedid = Data1.feedid;
                 var SocID = Convert.ToInt32(feedid);
                 var feedlist = ABE.obj_feedback_gp.Where(x => x.feedid == feedid).SingleOrDefault();
-                if (feedlist == null ) {
+                if (feedlist == null)
+                {
                     var currlist = ABE.obj_current_events.Where(x => x.id == SocID).SingleOrDefault();
                     Data[0].year = currlist.year;
                     Data[0].month = currlist.month;

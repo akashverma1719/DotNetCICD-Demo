@@ -1389,7 +1389,7 @@
                 $('#lblyear').hide();
                 $('#lblmonth').hide();
                 $('#btn1').prop('disabled', true);
-
+                $('#btn1').show();
                 $('#StateLabel_block_excel').hide();
                 $('#StateDropdownLabel_excel').hide();
                 $('#DistLabel_block_excel').hide();
@@ -1562,6 +1562,7 @@
 
     function validate_month() {
         debugger;
+        $('#btn1').show();
         $('#btn1').prop('disabled', false);
         var select_month = $('#month').val();
         $("#month_state").val(select_month);
@@ -1570,8 +1571,6 @@
         $("#month2").val(select_month);
         var select_month_num = Get_Month_Number(select_month)
         var select_Year = $("#year").val();
-
-
 
         if (select_month_num == mm && select_Year == fiscalyear) {
             $('#btn1').prop('disabled', false);
@@ -1586,6 +1585,7 @@
                 if ("20240406" <= formattedDateaa) {
                     $('#year').prop('disabled', true);
                     $('#btn1').prop('disabled', true);
+                    $('#btn1').hide();
                 }
                 else {
                     $('#year').prop('disabled', false);
@@ -1598,16 +1598,19 @@
                 $('#btn1').prop('disabled', false);
                 if ("20240406" <= formattedDateaa) {
                     $('#year').prop('disabled', true);
-                    //$('#btn1').prop('disabled', true);
+                    $('#btn1').prop('disabled', true);
+                    $('#btn1').hide();
                 }
                 else {
                     $('#year').prop('disabled', false);
-                    //$('#btn1').prop('disabled', true);
+                    $('#btn1').prop('disabled', true);
+                    $('#btn1').hide();
                 }
             }
             else {
                 $('#year').prop('disabled', false);
                 $('#btn1').prop('disabled', true);
+                $('#btn1').hide();
             }
         }
 
@@ -4230,7 +4233,6 @@
 
 
     }
-
     function check_state_dist_PDF() {
 
         var state = $('#spnstate_state').val();
@@ -4265,7 +4267,6 @@
 
 
     }
-
     function Create_PDF_dist() {
 
         var year = $('#year_dist').val();
@@ -4319,7 +4320,6 @@
 
 
     }
-
     function check_state_dist_gram_PDF() {
 
         var state = $('#spnstate').val();
@@ -4378,7 +4378,6 @@
 
 
     }
-
     function Create_PDF_gram() {
 
 
