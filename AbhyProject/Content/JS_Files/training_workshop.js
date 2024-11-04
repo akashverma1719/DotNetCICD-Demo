@@ -93,10 +93,10 @@ function Save_Training_Working_Info() {
                     window.location = "/Error/DefaultError";
                 }
                 else if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 $('#p_training_name').val('');
                 $('#from_date').val('');
@@ -133,7 +133,7 @@ function NewReg_State_Chnage() {    //latest abhi
         $('#parti_state').show();
 
     }
-    
+
 
     $.ajax({
         type: 'POST',
@@ -141,7 +141,7 @@ function NewReg_State_Chnage() {    //latest abhi
         url: '/Vendors/Bind_Event',
         data: { STATE: state_name },
         success: function (data) {
-            
+
             /*alert(data);*/
 
 
@@ -175,7 +175,7 @@ function NewReg_State_Chnage() {    //latest abhi
 
 var XX1 = "";
 function Save_NewRegs_Training_Info() {
-    
+
     var i = 0;
     var p_name = $('#p_name').val();
     var p_gender = $('#p_gender').val();
@@ -257,12 +257,20 @@ function Save_NewRegs_Training_Info() {
         alert("Enter Address");
         return;
     }
-    
-    //else if (state_name == "0") {
-    //    i = 1;
-    //    alert("Please Select state_name");
-    //    return;
-    //}
+
+    else if (parti_state == "0") {
+        i = 1;
+        alert("Select Participant State");
+        return;
+    }
+    else if (parti_state == "Other") {
+        if (parti_state_other == "") {
+            i = 1;
+            alert("Enter Participant State Other");
+            return;
+        }
+    }
+
     //else if (p_training_name == "0") {
     //    i = 1;
     //    alert("Please Select Name of Training");
@@ -274,9 +282,9 @@ function Save_NewRegs_Training_Info() {
         i = 1;
         $('#status').text("Please Enter Captcha");
     }
-    
+
     var mm = $("#month_new").val();
-    
+
     if (i == 0) {
         var obj = {};
         obj.p_name = $('#p_name').val();
@@ -318,13 +326,19 @@ function Save_NewRegs_Training_Info() {
                     window.location = "/Error/DefaultError";
                 }
                 else if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response == "Captcha is Not Matched" || response == "Your Captcha is Expired") {
                     $('#clientCaptcha').val("");
                     refress1();
                     $(".loader").hide();
-                } else {
+                }
+                else if (response == "Empty name of training") {
+                    $('#clientCaptcha').val("");
+                    refress1();
+                    $(".loader").hide();
+                }
+                else {
                     $('#p_name').val("");
                     $('#p_gender').val("0");
                     $('#p_age ').val("");
@@ -345,6 +359,7 @@ function Save_NewRegs_Training_Info() {
                     $('#drpdistrict').val("");
                     $('#drpblock').val("");
                     $('#p_other_state_name').hide();
+                    $('#ddlother').hide();
                     $('#parti_state').show();
                     $('#status').text("");
                     $('#clientCaptcha').val("");
@@ -362,7 +377,7 @@ function Save_NewRegs_Training_Info() {
 
     }
     else {
-       // Event_Date_Checking();
+        // Event_Date_Checking();
     }
 }
 
@@ -395,9 +410,9 @@ function Get_Training_Working_Events_Info() {        //for sorted topic of event
         data: '',
         dataType: 'JSON',
         success: function (response) {
-            
+
             if (response == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             var option = '<option value="0">Select Training</option>';
             var ddlst = {};
@@ -448,9 +463,9 @@ function Get_Training_Working_Events_Info_fetch() {
         data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'event_name':'" + event + "', 'year':'" + year + "', 'month':'" + month + "'}",
         dataType: 'JSON',
         success: function (response) {
-            
+
             if (response == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             var option = '<option value="0">Select Training</option>';
             var ddlst = {};
@@ -498,7 +513,7 @@ function Get_Newregs_Training_Info11() {
             var tr = '';
 
             if (response == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             if (response.length != 0) {
                 for (var j = 0; j < response.length; j++) {
@@ -527,7 +542,7 @@ function Get_Newregs_Training_Info11() {
 
 function Event_Date_Checking() {
     /*alert('ok');*/
-    
+
     var p_training_name = $('#p_training_name').val();
 
     if (p_training_name != "0") {

@@ -80,15 +80,14 @@
         width: 118%;
     }
 
-    @@media (max-width: 767px) {
-        .container, .wrapper.boxed-layout, .wrapper.box-layout {
-            width: 350px;
+    @@media (max-width: 992px) {
+        #registration_no {
+            min-width: 100px;
+            width: fit-content;
         }
     }
 
     .loader > img {
-        top: 45%;
-        left: 45%;
         position: fixed;
         height: 150px;
         width: 150px;
@@ -100,7 +99,9 @@
         top: 0;
         left: 0;
         position: fixed;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         opacity: 0.95;
         visibility: visible;
         background-color: #fff;
@@ -118,25 +119,28 @@
         .cust_center h6 {
             font-size: 15px;
         }
+
     .feedback_table tbody tr td {
         padding: 10px 0px;
         padding: 3px 10px;
         font-size: 14px;
-       
     }
+
     th {
         border: unset;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding-bottom:3px;
+        padding-bottom: 3px;
     }
+
     .check-font {
         font-weight: 500;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
     .btn {
         padding: 0.270rem 0.75rem .375rem;
     }
@@ -175,14 +179,13 @@
 
                 </ul>
             </div>
-
             <div class="content">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="hpanel">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 ">
-                                    <div class="table-responsive" >
+                                    <div class="table-responsive">
                                         <table class="feedback_table">
                                             <tbody>
 
@@ -195,15 +198,15 @@
                                                         </div>
                                                     </td>
                                                     @*<td>
-                                                       
-                                                    </td>*@
+
+                                                        </td>*@
                                                 </tr>
 
 
                                                 <tr>
                                                     <td class="text_span" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Topic Of Training : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="p_training_name" name="p_training_name" class="form-control alpha" readonly /></td>
-                                                    <td class="text_span" style=" white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" >Name of the Participant : </td>
+                                                    <td class="text_span" style=" white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Name of the Participant : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="participant_name" name="participant_name" class="form-control alpha" readonly /></td>
 
                                                 </tr>
@@ -429,7 +432,7 @@
 
 
                                                 <tr>
-                                                    <th colspan="5" class="text_span font-16">9. What was the most interesting thing you learned? </th>
+                                                    <th colspan="5" class="text_span font-16">9. What was the most interesting thing you learned?</th>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="5">
@@ -440,7 +443,7 @@
                                                     <th class="font-16" colspan="5">10.Overall Impression:<span class="requrid_star">*</span> </th>
                                                 </tr>
                                                 <tr class="text_span chkAll">
-                                                   @* <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>*@
+                                                    @* <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" disabled id="Very Beneficial_27-34" name="overall_impression" value="" class="chk8" /><span class="check-font"> Very Beneficial(<label style="color:red">27-34</label>)</span>
                                                     </td>
@@ -596,13 +599,29 @@
             i = 1;
             return;
         }
-        var abc = ($('input[class="chk8"]:checked').length > 0);
-        if (abc == false) {
-            alert('Choose Overall Impression Feedback');
-            $(".loader").hide();
-            i = 1;
-            return;
-        }
+
+        //var MIT = $('#most_interesting_thing').val();
+        //if (MIT == "") {
+        //    alert('Enter most interesting thing you learned ');
+        //    $(".loader").hide();
+        //    i = 1;
+        //    return;
+        //}
+        //var abc = ($('input[class="chk8"]:checked').length > 0);
+        //if (abc == false) {
+        //    alert('Choose Overall Impression Feedback');
+        //    $(".loader").hide();
+        //    i = 1;
+        //    return;
+        //}
+        //var YS = $('#your_suggestions').val();
+        //if (YS == "") {
+        //    alert('Enter Your suggestions /Comments ');
+        //    $(".loader").hide();
+        //    i = 1;
+        //    return;
+        //}
+
         var client_cap = $('#clientCaptcha').val();
         if (client_cap == "") {
             alert('Enter Capcha');
@@ -631,11 +650,11 @@
                     $('#btnSubmit').prop('disabled', false);
 
                     if (data == 0) {
-
                         CapchaInfo = "Not Matched";
                         $("#status").html('<font color="red"> Not Matched</font>');
                         $("#clientCaptcha").val("");
                         refress();
+                        return;
                     }
                     else {
 
@@ -714,7 +733,7 @@
         });
         let total = structure_of_training + course_material + interaction_with_trainer + hands_on_practice + usefulness_of_contents + information_presented + participant_questions + food_quality;
         debugger;
-       
+
         if (total >= 27 && total <= 34) {
             document.getElementById('Very Beneficial_27-34').checked = true;
         }
@@ -849,12 +868,38 @@
                         debugger;
                         if (selectedDate > currentDate) {
                             alert("You cannot access the submitted feedback because training is currently running .");
+                            $("#registration_no").val("");
+                            $('#todaydate').val("");
+                            $('#p_training_name').val("");
+                            $('#participant_name').val("");
+                            $('#level_event').val("");
+                            $('#level_event_dist').val("");
+                            $('#level_event_block').val("");
+                            $('#event_platform').val("");
+                            $('#gender').val("");
+                            $('#unic_key').val("");
+                            $('#from_date').val("");
+                            $('#to_date').val("");
+                            $('#total_days').val("");
                             $("#btnSubmit").hide();
                             $(".loader").hide();
                             return;
                         }
                         else if (selectedDate_10days <= currentDate) {
                             alert("You cannot access the submitted feedback because the registration date has passed.");
+                            $("#registration_no").val("");
+                            $('#todaydate').val("");
+                            $('#p_training_name').val("");
+                            $('#participant_name').val("");
+                            $('#level_event').val("");
+                            $('#level_event_dist').val("");
+                            $('#level_event_block').val("");
+                            $('#event_platform').val("");
+                            $('#gender').val("");
+                            $('#unic_key').val("");
+                            $('#from_date').val("");
+                            $('#to_date').val("");
+                            $('#total_days').val("");
                             $("#btnSubmit").hide();
                             $(".loader").hide();
                             return;
@@ -864,7 +909,20 @@
                     }
                     else {
                         $("#btnSubmit").show();
-                        alert("Please Enter Correct Registration No.")
+                        alert("Please Enter Correct Registration No.");
+                        $("#registration_no").val("");
+                        $('#todaydate').val("");
+                        $('#p_training_name').val("");
+                        $('#participant_name').val("");
+                        $('#level_event').val("");
+                        $('#level_event_dist').val("");
+                        $('#level_event_block').val("");
+                        $('#event_platform').val("");
+                        $('#gender').val("");
+                        $('#unic_key').val("");
+                        $('#from_date').val("");
+                        $('#to_date').val("");
+                        $('#total_days').val("");
                         $(".loader").hide();
                     }
                 }
@@ -963,27 +1021,27 @@
                 return;
             }
 
-            var MIT = $('#most_interesting_thing').val();
-            if (MIT == "") {
-                alert('Enter most interesting thing you learned ');
-                $(".loader").hide();
-                i = 1;
-                return;
-            }
-            var abc = ($('input[class="chk8"]:checked').length > 0);
-            if (abc == false) {
-                alert('Choose Overall Impression Feedback');
-                $(".loader").hide();
-                i = 1;
-                return;
-            }
-            var YS = $('#your_suggestions').val();
-            if (YS == "") {
-                alert('Enter Your suggestions /Comments ');
-                $(".loader").hide();
-                i = 1;
-                return;
-            }
+            //var MIT = $('#most_interesting_thing').val();
+            //if (MIT == "") {
+            //    alert('Enter most interesting thing you learned ');
+            //    $(".loader").hide();
+            //    i = 1;
+            //    return;
+            //}
+            //var abc = ($('input[class="chk8"]:checked').length > 0);
+            //if (abc == false) {
+            //    alert('Choose Overall Impression Feedback');
+            //    $(".loader").hide();
+            //    i = 1;
+            //    return;
+            //}
+            //var YS = $('#your_suggestions').val();
+            //if (YS == "") {
+            //    alert('Enter Your suggestions /Comments ');
+            //    $(".loader").hide();
+            //    i = 1;
+            //    return;
+            //}
 
             var client_cap = $('#clientCaptcha').val();
             if (client_cap == "") {

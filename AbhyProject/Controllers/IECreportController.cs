@@ -149,27 +149,28 @@ namespace AbhyProject.Controllers
                     {
                         var activity = iec_achive[k].activity;
                         var sub_activity = iec_achive[k].sub_activity;
+                        var number = iec_achive[k].number;
                         if (activity == "No. of IEC material prepared")
                         {
                             if (sub_activity == "Pamphlets")
                             {
-                                a_Pamphlets += 1;
+                                a_Pamphlets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Magazine")
                             {
-                                a_Magazine += 1;
+                                a_Magazine += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Leaflets")
                             {
-                                a_Leaflets += 1;
+                                a_Leaflets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Brochures")
                             {
-                                a_Brochures += 1;
+                                a_Brochures += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Others")
                             {
-                                a_Others += 1;
+                                a_Others += Convert.ToInt32(number);
                             }
 
                         }
@@ -177,23 +178,23 @@ namespace AbhyProject.Controllers
                         {
                             if (sub_activity == "Wall Paintings")
                             {
-                                b_Pamphlets += 1;
+                                b_Pamphlets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Hoardings")
                             {
-                                b_Magazine += 1;
+                                b_Magazine += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Posters")
                             {
-                                b_Leaflets += 1;
+                                b_Leaflets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Signages")
                             {
-                                b_Brochures += 1;
+                                b_Brochures += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Others")
                             {
-                                b_Others += 1;
+                                b_Others += Convert.ToInt32(number);
                             }
 
                         }
@@ -201,23 +202,23 @@ namespace AbhyProject.Controllers
                         {
                             if (sub_activity == "Facebook")
                             {
-                                c_Facebook += 1;
+                                c_Facebook += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Twitter")
                             {
-                                c_Twitter += 1;
+                                c_Twitter += Convert.ToInt32(number);
                             }
                             if (sub_activity == "YouTube")
                             {
-                                c_YouTube += 1;
+                                c_YouTube += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Instagram")
                             {
-                                c_Instagram += 1;
+                                c_Instagram += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Others")
                             {
-                                c_Others += 1;
+                                c_Others += Convert.ToInt32(number);
                             }
 
                         }
@@ -225,49 +226,51 @@ namespace AbhyProject.Controllers
                         {
                             if (sub_activity == "Audio")
                             {
-                                d_Audio += 1;
+                                d_Audio += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Video")
                             {
-                                d_Video += 1;
+                                d_Video += Convert.ToInt32(number);
                             }
 
 
                         }
                         if (activity == "Others")
                         {
-                            d_Others += 1;
+                            d_Others += Convert.ToInt32(number);
 
                         }
                     }
                     for (int j = 0; j < iec_cum.Count; j++)
                     {
                         int monnn = Convert.ToInt32(iec_cum[j].order_by_month);
+
                         if (monnn < mmm)
                         {
                             var activity = iec_cum[j].activity;
                             var sub_activity = iec_cum[j].sub_activity;
+                            var number = iec_cum[j].number;
                             if (activity == "No. of IEC material prepared")
                             {
                                 if (sub_activity == "Pamphlets")
                                 {
-                                    ba_Pamphlets += 1;
+                                    ba_Pamphlets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Magazine")
                                 {
-                                    ba_Magazine += 1;
+                                    ba_Magazine += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Leaflets")
                                 {
-                                    ba_Leaflets += 1;
+                                    ba_Leaflets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Brochures")
                                 {
-                                    ba_Brochures += 1;
+                                    ba_Brochures += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Others")
                                 {
-                                    ba_Others += 1;
+                                    ba_Others += Convert.ToInt32(number);
                                 }
 
                             }
@@ -275,23 +278,23 @@ namespace AbhyProject.Controllers
                             {
                                 if (sub_activity == "Wall Paintings")
                                 {
-                                    bb_Pamphlets += 1;
+                                    bb_Pamphlets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Hoardings")
                                 {
-                                    bb_Magazine += 1;
+                                    bb_Magazine += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Posters")
                                 {
-                                    bb_Leaflets += 1;
+                                    bb_Leaflets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Signages")
                                 {
-                                    bb_Brochures += 1;
+                                    bb_Brochures += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Others")
                                 {
-                                    bb_Others += 1;
+                                    bb_Others += Convert.ToInt32(number);
                                 }
 
                             }
@@ -299,23 +302,23 @@ namespace AbhyProject.Controllers
                             {
                                 if (sub_activity == "Facebook")
                                 {
-                                    bc_Facebook += 1;
+                                    bc_Facebook += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Twitter")
                                 {
-                                    bc_Twitter += 1;
+                                    bc_Twitter += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "YouTube")
                                 {
-                                    bc_YouTube += 1;
+                                    bc_YouTube += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Instagram")
                                 {
-                                    bc_Instagram += 1;
+                                    bc_Instagram += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Others")
                                 {
-                                    bc_Others += 1;
+                                    bc_Others += Convert.ToInt32(number);
                                 }
 
                             }
@@ -323,18 +326,18 @@ namespace AbhyProject.Controllers
                             {
                                 if (sub_activity == "Audio")
                                 {
-                                    bd_Audio += 1;
+                                    bd_Audio += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Video")
                                 {
-                                    bd_Video += 1;
+                                    bd_Video += Convert.ToInt32(number);
                                 }
 
 
                             }
                             if (activity == "Others")
                             {
-                                bd_Others += 1;
+                                bd_Others += Convert.ToInt32(number);
 
                             }
                         }
@@ -565,31 +568,32 @@ namespace AbhyProject.Controllers
                     {
                         var activity = iec_achive[k].activity;
                         var sub_activity = iec_achive[k].sub_activity;
+                        var number = iec_achive[k].number;
                         if (activity == "No. of Awareness meetings conducted")
                         {
-                            a_Awareness_meetings += 1;
+                            a_Awareness_meetings += Convert.ToInt32(number);
                         }
                         if (activity == "No. of IEC material prepared")
                         {
                             if (sub_activity == "Pamphlets")
                             {
-                                a_Pamphlets += 1;
+                                a_Pamphlets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Magazine")
                             {
-                                a_Magazine += 1;
+                                a_Magazine += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Leaflets")
                             {
-                                a_Leaflets += 1;
+                                a_Leaflets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Brochures")
                             {
-                                a_Brochures += 1;
+                                a_Brochures += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Others")
                             {
-                                a_Others += 1;
+                                a_Others += Convert.ToInt32(number);
                             }
 
                         }
@@ -597,23 +601,23 @@ namespace AbhyProject.Controllers
                         {
                             if (sub_activity == "Wall Paintings")
                             {
-                                b_Pamphlets += 1;
+                                b_Pamphlets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Hoardings")
                             {
-                                b_Magazine += 1;
+                                b_Magazine += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Posters")
                             {
-                                b_Leaflets += 1;
+                                b_Leaflets += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Signages")
                             {
-                                b_Brochures += 1;
+                                b_Brochures += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Others")
                             {
-                                b_Others += 1;
+                                b_Others += Convert.ToInt32(number);
                             }
 
                         }
@@ -621,38 +625,38 @@ namespace AbhyProject.Controllers
                         {
                             if (sub_activity == "Road Shows")
                             {
-                                a_Road_Shows += 1;
+                                a_Road_Shows += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Street Plays")
                             {
-                                a_Street_Plays += 1;
+                                a_Street_Plays += Convert.ToInt32(number);
                             }
                         }
                         if (activity == "No.of Households covered under Door to Door Campaign")
                         {
-                            a_household += 1;
+                            a_household += Convert.ToInt32(number);
                         }
                         if (activity == "No. of Posts in social Media")
                         {
                             if (sub_activity == "Facebook")
                             {
-                                c_Facebook += 1;
+                                c_Facebook += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Twitter")
                             {
-                                c_Twitter += 1;
+                                c_Twitter += Convert.ToInt32(number);
                             }
                             if (sub_activity == "YouTube")
                             {
-                                c_YouTube += 1;
+                                c_YouTube += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Instagram")
                             {
-                                c_Instagram += 1;
+                                c_Instagram += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Others")
                             {
-                                c_Others += 1;
+                                c_Others += Convert.ToInt32(number);
                             }
 
                         }
@@ -660,20 +664,20 @@ namespace AbhyProject.Controllers
                         {
                             if (sub_activity == "Exhibitions")
                             {
-                                a_Exhibitions += 1;
+                                a_Exhibitions += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Seminars")
                             {
-                                a_Seminars += 1;
+                                a_Seminars += Convert.ToInt32(number);
                             }
                             if (sub_activity == "Fair ")
                             {
-                                a_Fair += 1;
+                                a_Fair += Convert.ToInt32(number);
                             }
                         }
                         if (activity == "Others")
                         {
-                            d_Others += 1;
+                            d_Others += Convert.ToInt32(number);
 
                         }
                     }
@@ -684,31 +688,32 @@ namespace AbhyProject.Controllers
                         {
                             var activity = iec_cum[j].activity;
                             var sub_activity = iec_cum[j].sub_activity;
+                            var number = iec_cum[j].number;
                             if (activity == "No. of Awareness meetings conducted")
                             {
-                                b_Awareness_meetings += 1;
+                                b_Awareness_meetings += Convert.ToInt32(number);
                             }
                             if (activity == "No. of IEC material prepared")
                             {
                                 if (sub_activity == "Pamphlets")
                                 {
-                                    ba_Pamphlets += 1;
+                                    ba_Pamphlets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Magazine")
                                 {
-                                    ba_Magazine += 1;
+                                    ba_Magazine += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Leaflets")
                                 {
-                                    ba_Leaflets += 1;
+                                    ba_Leaflets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Brochures")
                                 {
-                                    ba_Brochures += 1;
+                                    ba_Brochures += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Others")
                                 {
-                                    ba_Others += 1;
+                                    ba_Others += Convert.ToInt32(number);
                                 }
 
                             }
@@ -716,23 +721,23 @@ namespace AbhyProject.Controllers
                             {
                                 if (sub_activity == "Wall Paintings")
                                 {
-                                    bb_Pamphlets += 1;
+                                    bb_Pamphlets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Hoardings")
                                 {
-                                    bb_Magazine += 1;
+                                    bb_Magazine += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Posters")
                                 {
-                                    bb_Leaflets += 1;
+                                    bb_Leaflets += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Signages")
                                 {
-                                    bb_Brochures += 1;
+                                    bb_Brochures += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Others")
                                 {
-                                    bb_Others += 1;
+                                    bb_Others += Convert.ToInt32(number);
                                 }
 
                             }
@@ -740,39 +745,39 @@ namespace AbhyProject.Controllers
                             {
                                 if (sub_activity == "Road Shows")
                                 {
-                                    b_Road_Shows += 1;
+                                    b_Road_Shows += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Street Plays")
                                 {
-                                    b_Street_Plays += 1;
+                                    b_Street_Plays += Convert.ToInt32(number);
                                 }
 
                             }
                             if (activity == "No.of Households covered under Door to Door Campaign")
                             {
-                                b_household += 1;
+                                b_household += Convert.ToInt32(number);
                             }
                             if (activity == "No. of Posts in social Media")
                             {
                                 if (sub_activity == "Facebook")
                                 {
-                                    bc_Facebook += 1;
+                                    bc_Facebook += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Twitter")
                                 {
-                                    bc_Twitter += 1;
+                                    bc_Twitter += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "YouTube")
                                 {
-                                    bc_YouTube += 1;
+                                    bc_YouTube += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Instagram")
                                 {
-                                    bc_Instagram += 1;
+                                    bc_Instagram += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Others")
                                 {
-                                    bc_Others += 1;
+                                    bc_Others += Convert.ToInt32(number);
                                 }
 
                             }
@@ -780,20 +785,20 @@ namespace AbhyProject.Controllers
                             {
                                 if (sub_activity == "Exhibitions")
                                 {
-                                    b_Exhibitions += 1;
+                                    b_Exhibitions += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Seminars")
                                 {
-                                    b_Seminars += 1;
+                                    b_Seminars += Convert.ToInt32(number);
                                 }
                                 if (sub_activity == "Fair ")
                                 {
-                                    b_Fair += 1;
+                                    b_Fair += Convert.ToInt32(number);
                                 }
                             }
                             if (activity == "Others")
                             {
-                                bd_Others += 1;
+                                bd_Others += Convert.ToInt32(number);
 
                             }
                         }
@@ -1073,31 +1078,32 @@ namespace AbhyProject.Controllers
                 // Logic for aggregating the iecAchive data
                 var activity = itema.activity;
                 var sub_activity = itema.sub_activity;
+                var number = itema.number;
                 if (activity == "No. of Awareness meetings conducted")
                 {
-                    a_Awareness_meetings += 1;
+                    a_Awareness_meetings += Convert.ToInt32(number);
                 }
                 if (activity == "No. of IEC material prepared")
                 {
                     if (sub_activity == "Pamphlets")
                     {
-                        a_Pamphlets += 1;
+                        a_Pamphlets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Magazine")
                     {
-                        a_Magazine += 1;
+                        a_Magazine += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Leaflets")
                     {
-                        a_Leaflets += 1;
+                        a_Leaflets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Brochures")
                     {
-                        a_Brochures += 1;
+                        a_Brochures += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Others")
                     {
-                        a_Others += 1;
+                        a_Others += Convert.ToInt32(number);
                     }
 
                 }
@@ -1105,23 +1111,23 @@ namespace AbhyProject.Controllers
                 {
                     if (sub_activity == "Wall Paintings")
                     {
-                        b_Pamphlets += 1;
+                        b_Pamphlets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Hoardings")
                     {
-                        b_Magazine += 1;
+                        b_Magazine += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Posters")
                     {
-                        b_Leaflets += 1;
+                        b_Leaflets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Signages")
                     {
-                        b_Brochures += 1;
+                        b_Brochures += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Others")
                     {
-                        b_Others += 1;
+                        b_Others += Convert.ToInt32(number);
                     }
 
                 }
@@ -1129,38 +1135,38 @@ namespace AbhyProject.Controllers
                 {
                     if (sub_activity == "Road Shows")
                     {
-                        a_Road_Shows += 1;
+                        a_Road_Shows += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Street Plays")
                     {
-                        a_Street_Plays += 1;
+                        a_Street_Plays += Convert.ToInt32(number);
                     }
                 }
                 if (activity == "No.of Households covered under Door to Door Campaign")
                 {
-                    a_household += 1;
+                    a_household += Convert.ToInt32(number);
                 }
                 if (activity == "No. of Posts in social Media")
                 {
                     if (sub_activity == "Facebook")
                     {
-                        c_Facebook += 1;
+                        c_Facebook += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Twitter")
                     {
-                        c_Twitter += 1;
+                        c_Twitter += Convert.ToInt32(number);
                     }
                     if (sub_activity == "YouTube")
                     {
-                        c_YouTube += 1;
+                        c_YouTube += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Instagram")
                     {
-                        c_Instagram += 1;
+                        c_Instagram += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Others")
                     {
-                        c_Others += 1;
+                        c_Others += Convert.ToInt32(number);
                     }
 
                 }
@@ -1168,20 +1174,20 @@ namespace AbhyProject.Controllers
                 {
                     if (sub_activity == "Exhibitions")
                     {
-                        a_Exhibitions += 1;
+                        a_Exhibitions += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Seminars")
                     {
-                        a_Seminars += 1;
+                        a_Seminars += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Fair ")
                     {
-                        a_Fair += 1;
+                        a_Fair += Convert.ToInt32(number);
                     }
                 }
                 if (activity == "Others")
                 {
-                    d_Others += 1;
+                    d_Others += Convert.ToInt32(number);
 
                 }
             }
@@ -1191,31 +1197,32 @@ namespace AbhyProject.Controllers
             {
                 var activity = item.activity;
                 var sub_activity = item.sub_activity;
+                var number = item.number;
                 if (activity == "No. of Awareness meetings conducted")
                 {
-                    b_Awareness_meetings += 1;
+                    b_Awareness_meetings += Convert.ToInt32(number);
                 }
                 if (activity == "No. of IEC material prepared")
                 {
                     if (sub_activity == "Pamphlets")
                     {
-                        ba_Pamphlets += 1;
+                        ba_Pamphlets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Magazine")
                     {
-                        ba_Magazine += 1;
+                        ba_Magazine += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Leaflets")
                     {
-                        ba_Leaflets += 1;
+                        ba_Leaflets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Brochures")
                     {
-                        ba_Brochures += 1;
+                        ba_Brochures += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Others")
                     {
-                        ba_Others += 1;
+                        ba_Others += Convert.ToInt32(number);
                     }
 
                 }
@@ -1223,23 +1230,23 @@ namespace AbhyProject.Controllers
                 {
                     if (sub_activity == "Wall Paintings")
                     {
-                        bb_Pamphlets += 1;
+                        bb_Pamphlets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Hoardings")
                     {
-                        bb_Magazine += 1;
+                        bb_Magazine += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Posters")
                     {
-                        bb_Leaflets += 1;
+                        bb_Leaflets += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Signages")
                     {
-                        bb_Brochures += 1;
+                        bb_Brochures += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Others")
                     {
-                        bb_Others += 1;
+                        bb_Others += Convert.ToInt32(number);
                     }
 
                 }
@@ -1247,39 +1254,39 @@ namespace AbhyProject.Controllers
                 {
                     if (sub_activity == "Road Shows")
                     {
-                        b_Road_Shows += 1;
+                        b_Road_Shows += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Street Plays")
                     {
-                        b_Street_Plays += 1;
+                        b_Street_Plays += Convert.ToInt32(number);
                     }
 
                 }
                 if (activity == "No.of Households covered under Door to Door Campaign")
                 {
-                    b_household += 1;
+                    b_household += Convert.ToInt32(number);
                 }
                 if (activity == "No. of Posts in social Media")
                 {
                     if (sub_activity == "Facebook")
                     {
-                        bc_Facebook += 1;
+                        bc_Facebook += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Twitter")
                     {
-                        bc_Twitter += 1;
+                        bc_Twitter += Convert.ToInt32(number);
                     }
                     if (sub_activity == "YouTube")
                     {
-                        bc_YouTube += 1;
+                        bc_YouTube += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Instagram")
                     {
-                        bc_Instagram += 1;
+                        bc_Instagram += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Others")
                     {
-                        bc_Others += 1;
+                        bc_Others += Convert.ToInt32(number);
                     }
 
                 }
@@ -1287,20 +1294,20 @@ namespace AbhyProject.Controllers
                 {
                     if (sub_activity == "Exhibitions")
                     {
-                        b_Exhibitions += 1;
+                        b_Exhibitions += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Seminars")
                     {
-                        b_Seminars += 1;
+                        b_Seminars += Convert.ToInt32(number);
                     }
                     if (sub_activity == "Fair ")
                     {
-                        b_Fair += 1;
+                        b_Fair += Convert.ToInt32(number);
                     }
                 }
                 if (activity == "Others")
                 {
-                    bd_Others += 1;
+                    bd_Others += Convert.ToInt32(number);
 
                 }
                 // Logic for aggregating the iecCum data
