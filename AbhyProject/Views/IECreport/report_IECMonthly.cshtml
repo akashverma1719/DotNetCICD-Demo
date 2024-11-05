@@ -372,7 +372,7 @@
                                         </li>*@
                                     <li>
                                         <label>Year:</label>
-                                        <select class="form-control" id="year" onclick="yearchange()" style="border-radius:5px;">
+                                        <select class="form-control" id="year"  style="border-radius:5px;">
                                             <option value="0">Select  Year</option>
                                             <option value="All">All</option>
                                             <option value="2020-21">2020-21</option>
@@ -1680,7 +1680,10 @@
                     var sumtotachivements_esf = 0;
                     var sumtotcummulative_esf = 0;
 
-
+                    let state_ = $("#spnstate").val();
+                    let year_ = $("#year").val();
+                    let month_ = $("#month").val();
+                    
 
                     for (var i = 0; i < data.length; i++) {
 
@@ -1808,29 +1811,29 @@
 
                         Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].statename + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].e_Publicity + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13"  ? "NA" : data[i].e_Publicity)  + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].be_Publicity + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_ieca) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_ieca + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Magazine + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Leaflets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Pamphlets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Brochures + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_audiovideo + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_audiovideo) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_audiovideo + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_road + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_road) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_street + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].g_HHS + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : data[i].g_HHS) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bg_HHS + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_social + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_social) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_social + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_esf + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_esf) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_esf + '</label></td>';
                         //Tbodyhtml += '<td id="rainfall"><label>' + data[i].activity_other + '</label></td>';
 
                         Tbodyhtml += '<td id="rainfall"><label>' + (data[i].activity_other ? data[i].activity_other : 'No activity') + '</label></td>';
 
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : data[i].d_Others) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Others + '</label></td></tr>';
 
 
@@ -1878,26 +1881,26 @@
 
 
                         Tbodyhtml += '<tr><td colspan="2" id="srNo"><label>' + "Total" + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + e_Publicity + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : e_Publicity) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + be_Publicity + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_ieca) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_ieca + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Magazine + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Leaflets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Pamphlets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Brochures + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_audiovideo + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_audiovideo) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_audiovideo + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_road + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_road) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_street + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + g_HHS + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : g_HHS) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bg_HHS + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_social + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_social) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_social + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_esf + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_esf) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_esf + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label></label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : d_Others) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bd_Others + '</label></td></tr>';
 
 
