@@ -1505,66 +1505,66 @@ namespace AbhyProject.Controllers
                 {
                     if (Year != "0" && Year != "" && Year != null && Month != 0)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (Year != "0" && Year != "" && Year != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.year == Year).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.year == Year).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else
                     {
-                        data = ABE.obj_vw_iec_report.OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                 }
                 else
                 {
                     if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != "" && Year != null && Month != 0)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year && x.month_number == Month).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year && x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != "" && Year != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null && Month != 0)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year && x.month_number == Month).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year && x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null && Month != 0)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year && x.month_number == Month).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year && x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null && Month != 0)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.year == Year && x.month_number == Month).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.year == Year && x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.year == Year).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.year == Year).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                     else if (State != "0" && State != "" && State != null)
                     {
-                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State).OrderBy(c => c.id).ToList();
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                     }
                 }
 
