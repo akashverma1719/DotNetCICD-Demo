@@ -654,6 +654,9 @@
                         $("#status").html('<font color="red"> Not Matched</font>');
                         $("#clientCaptcha").val("");
                         refress();
+                        setTimeout(function () {
+                            $("#status").html("");
+                        }, 5000);
                         return;
                     }
                     else {
