@@ -8773,5 +8773,15 @@ namespace AbhyProject.Controllers
         }
 
         //training manual END
+
+        //Video list
+        public ActionResult ModuleVideoList()
+        {
+
+            return View();
+
+        }
+
+
     }
 }
