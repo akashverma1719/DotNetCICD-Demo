@@ -1585,13 +1585,13 @@
             xx = 1;
             alert("Please Select Month");
         }
-       else if (month != "13") {
-            if (year == "All") {
-                xx = 1;
-                alert("Select Year");
-                return;
-            }
-        }
+       //else if (month != "13") {
+       //     if (year == "All") {
+       //         xx = 1;
+       //         alert("Select Year");
+       //         return;
+       //     }
+       // }
         if (xx == 0) {
             $.ajax({
                 type: 'POST',
@@ -2931,13 +2931,7 @@
             alert("Please Select Month");
             return;
         }
-        if (month != "13") {
-            if (year == "All") {
-                xx = 1;
-                alert("Select Year");
-                return;
-            }
-        }
+        
          {
             window.location.href = "/IECreport/demandside_excel_phase1?state1=" + StateName + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&month1=" + month;
         }

@@ -331,6 +331,9 @@ function Save_NewRegs_Training_Info() {
                 else if (response == "Captcha is Not Matched" || response == "Your Captcha is Expired") {
                     $('#clientCaptcha').val("");
                     refress1();
+                    setTimeout(function () {
+                        $("#status").html("");
+                    }, 5000);
                     $(".loader").hide();
                 }
                 else if (response == "Empty name of training") {
