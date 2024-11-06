@@ -38,6 +38,99 @@
         color: #fff;
         text-align: center;
     }
+
+    .btn-div {
+        padding: 20px;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #050b30ed;
+    }
+
+    .videoPlayButton {
+        /*top: 50px;*/
+    }
+
+    .play-btn {
+        width: 65px;
+        height: 65px;
+        background: radial-gradient(#004590 63%,#fff 69%);
+        border-radius: 50%;
+        position: relative;
+        display: block;
+        box-shadow: 0 0 25px 3px #00458f
+    }
+
+        .play-btn::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translateX(-40%) translateY(-50%);
+            transform: translateX(-40%) translateY(-50%);
+            transform-origin: center center;
+            width: 0;
+            height: 0;
+            border-top: 12px solid #fff0;
+            border-bottom: 12px solid #fff0;
+            border-left: 20px solid #fff;
+            z-index: 100;
+            -webkit-transition: .4s cubic-bezier(.55,.055,.675,.19);
+            transition: .4s cubic-bezier(.55,.055,.675,.19)
+        }
+
+        .play-btn:before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            -webkit-animation: 2s steps(1) infinite pulsate1;
+            animation: 2s steps(1) infinite pulsate1;
+            animation-fill-mode: forwards;
+            -webkit-animation-fill-mode: forwards;
+            opacity: 1;
+            border-radius: 50%;
+            border: 5px solid;
+            top: -25%;
+            left: -25%;
+            background: #fff0
+        }
+
+    @@-webkit-keyframes pulsate1 {
+        0% {
+            -webkit-transform: scale(.6);
+            transform: scale(.6);
+            opacity: 1;
+            box-shadow: inset 0 0 25px 3px rgb(255 255 255 / .75),0 0 25px 10px rgb(255 255 255 / .75)
+        }
+
+        100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 0;
+            box-shadow: none
+        }
+    }
+
+    @@keyframes pulsate1 {
+        0% {
+            -webkit-transform: scale(.6);
+            transform: scale(.6);
+            opacity: 1;
+            box-shadow: inset 0 0 25px 3px rgb(255 255 255 / .75),0 0 25px 10px rgb(255 255 255 / .75)
+        }
+
+        100% {
+            -webkit-transform: scale(1,1);
+            transform: scale(1);
+            opacity: 0;
+            box-shadow: none
+        }
+    }
 </style>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <style>
@@ -138,32 +231,60 @@
                                     <!-- Video Card 1 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/17_Dashboard_final.mp4" controls width="360" title="Dashboard" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/17_Dashboard_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <video src="/Content/VideosRecording/17_Dashboard_final.mp4" controls width="360" title="Dashboard" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/17_Dashboard_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                            </div>
                                             <div class="video-title">Dashboard</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 2 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/5_DLI3_final.mp4" controls width="360" title="DLI3" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/5_DLI3_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                                <video src="/Content/VideosRecording/5_DLI3_final.mp4" controls width="360" title="DLI3" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/5_DLI3_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+                                            </div>
+
                                             <div class="video-title">DLI3</div>
+
                                         </div>
                                     </div>
                                     <!-- Video Card 3 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/6_DLI4_final.mp4" controls width="360" title="DLI4" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/6_DLI4_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <video src="/Content/VideosRecording/6_DLI4_final.mp4" controls width="360" title="DLI4" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/6_DLI4_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                            </div>
                                             <div class="video-title">DLI4</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 4 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/2_Training_and_workshop_GP_level_final.mp4" controls width="360" title="Training and workshop GP level" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/2_Training_and_workshop_GP_level_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <video src="/Content/VideosRecording/2_Training_and_workshop_GP_level_final.mp4" controls width="360" title="Training and workshop GP level" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/2_Training_and_workshop_GP_level_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                            </div>
                                             <div class="video-title">Training and workshop GP level</div>
                                         </div>
                                     </div>
@@ -171,110 +292,195 @@
                                     <!-- Video Card 5 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/3_training_and_workshop_at_state_level_final.mp4" controls width="360" title="Training and workshop at state level" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/3_training_and_workshop_at_state_level_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                                <video src="/Content/VideosRecording/3_training_and_workshop_at_state_level_final.mp4" controls width="360" title="Training and workshop at state level" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/3_training_and_workshop_at_state_level_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            </div>
                                             <div class="video-title">Training and workshop at state level</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 6 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/1_Water_Budget_final.mp4" controls width="360" title="Water Budget" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/1_Water_Budget_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <video src="/Content/VideosRecording/1_Water_Budget_final.mp4" controls width="360" title="Water Budget" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/1_Water_Budget_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                            </div>
                                             <div class="video-title">Water Budget</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 7 -->
                                     @*<div class="col-md-4">
-                                        <div class="video-card">
-                                            <iframe src="/Content/VideosRecording/*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
-                                            <div class="video-title">GPDCI</div>
-                                        </div>
-                                    </div>*@
+                                                                                    <div class="video-card">
+                                                                                        <iframe src="/Content/VideosRecording/*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
+                                                                                        <div class="video-title">GPDCI</div>
+                                                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                            <span class="play-btn" style="font-size: 14px;"></span>
+                                        </span>
+                                                                                    </div>
+                                                                                </div>*@
                                     <!-- Video Card 8 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/8_IEC_final.mp4" controls width="360" title="IEC" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/8_IEC_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                                <video src="/Content/VideosRecording/8_IEC_final.mp4" controls width="360" title="IEC" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/8_IEC_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            </div>
                                             <div class="video-title">IEC</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 9 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/9_wsp_gp_level_final.mp4" controls width="360" title="WSP GP Level" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/9_wsp_gp_level_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                                <video src="/Content/VideosRecording/9_wsp_gp_level_final.mp4" controls width="360" title="WSP GP Level" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/9_wsp_gp_level_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+                                            </div>
                                             <div class="video-title">WSP GP Level</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 9.2 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/9_wsp_district_and_state_level_approval_final.mp4" controls width="360" title="WSP District and State" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/9_wsp_district_and_state_level_approval_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+
+                                                </span>
+                                                <video src="/Content/VideosRecording/9_wsp_district_and_state_level_approval_final.mp4" controls width="360" title="WSP District and State" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/9_wsp_district_and_state_level_approval_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            </div>
                                             <div class="video-title">WSP District and State</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 10 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/10_social_management_final.mp4" controls width="360" title="Social Management" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/10_social_management_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                                <video src="/Content/VideosRecording/10_social_management_final.mp4" controls width="360" title="Social Management" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/10_social_management_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            </div>
                                             <div class="video-title">Social Management</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 11 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/11_madb_final.mp4" controls width="360" title="MADB" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/11_madb_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                                <video src="/Content/VideosRecording/11_madb_final.mp4" controls width="360" title="MADB" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/11_madb_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            </div>
                                             <div class="video-title">MADB</div>
                                         </div>
                                     </div>
 
                                     <!-- Video Card 12 -->
                                     @*<div class="col-md-4">
-                                        <div class="video-card">
-                                            <iframe src="/Content/VideosRecording/12_*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
-                                            <div class="video-title">V 12</div>
-                                        </div>
-                                    </div>*@
+                                                                                    <div class="video-card">
+                                                                                        <iframe src="/Content/VideosRecording/12_*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
+                                                                                        <div class="video-title">V 12</div>
+                                                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                            <span class="play-btn" style="font-size: 14px;"></span>
+                                        </span>
+                                                                                    </div>
+                                                                                </div>*@
                                     <!-- Video Card 13 -->
                                     @*<div class="col-md-4">
-                                        <div class="video-card">
-                                            <iframe src="/Content/VideosRecording/13_*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
-                                            <div class="video-title">V 12</div>
-                                        </div>
-                                    </div>*@
+                                                                                    <div class="video-card">
+                                                                                        <iframe src="/Content/VideosRecording/13_*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
+                                                                                        <div class="video-title">V 12</div>
+                                                                            <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                            <span class="play-btn" style="font-size: 14px;"></span>
+                                        </span>
+                                                                                    </div>
+                                                                                </div>*@
                                     <!-- Video Card 14 -->
                                     @*<div class="col-md-4">
-                                        <div class="video-card">
-                                            <iframe src="/Content/VideosRecording/14_*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
-                                            <div class="video-title">V 12</div>
-                                        </div>
-                                    </div>*@
+                                                                                    <div class="video-card">
+                                                                                        <iframe src="/Content/VideosRecording/14_*.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>
+                                                                                        <div class="video-title">V 12</div>
+                                                                                    <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                            <span class="play-btn" style="font-size: 14px;"></span>
+                                        </span>
+                                                                                    </div>
+                                                                                </div>*@
 
                                     <!-- Video Card 15 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/15_Incentive_fund_utilisation_final.mp4" controls width="360" title="Incentive fund utilisation" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/15_Incentive_fund_utilisation_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+
+                                                </span>
+                                                <video src="/Content/VideosRecording/15_Incentive_fund_utilisation_final.mp4" controls width="360" title="Incentive fund utilisation" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/15_Incentive_fund_utilisation_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+
+                                            </div>
                                             <div class="video-title">Incentive fund utilisation</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 16 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/16_homepage_basics_final.mp4" controls width="360" title="Homepage basics" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/16_homepage_basics_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+                                                </span>
+                                                <video src="/Content/VideosRecording/16_homepage_basics_final.mp4" controls width="360" title="Homepage basics" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/16_homepage_basics_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            </div>
                                             <div class="video-title">Homepage basics</div>
                                         </div>
                                     </div>
                                     <!-- Video Card 18 -->
                                     <div class="col-md-4">
                                         <div class="video-card">
-                                            <video src="/Content/VideosRecording/18_Mobile_App_final.mp4" controls width="350" title="Mobile App" allowfullscreen></video>
-                                            @*<iframe src="/Content/VideosRecording/18_Mobile_App_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            <div class="video-wrapper position-relative">
+                                                <span class="btn-div videoPlayButton position-absolute" style="font-size: 14px;">
+                                                    <span class="play-btn" style="font-size: 14px;"></span>
+
+                                                </span>
+                                                <video src="/Content/VideosRecording/18_Mobile_App_final.mp4" controls width="350" title="Mobile App" allowfullscreen></video>
+                                                @*<iframe src="/Content/VideosRecording/18_Mobile_App_final.mp4?autoplay=0" title="Video 1" allowfullscreen></iframe>*@
+
+                                            </div>
+
                                             <div class="video-title">Mobile App</div>
                                         </div>
                                     </div>
@@ -290,9 +496,25 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    let videoWrapper = document.querySelectorAll(".video-wrapper");
+    let videos = document.querySelectorAll("video");
+    let videoPlayButtonAll = document.querySelectorAll(".videoPlayButton");
 
+    videoWrapper.forEach(wrapper => {
+        let selectedVideo = wrapper.querySelector("video");
+        wrapper.querySelector(".play-btn").addEventListener("click", () => {
+            videos.forEach(video => {
+                video.pause();
+                video.currentTime = 0;
+            });
+            selectedVideo.play();
+            videoPlayButtonAll.forEach(overlay => {
+                overlay.style.display = "flex"; 
+            });
+            wrapper.querySelector(".videoPlayButton").style.display = "none"; 
+        });
     });
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
