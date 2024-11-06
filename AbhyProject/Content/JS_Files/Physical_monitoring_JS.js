@@ -840,12 +840,13 @@ function get_sub_support2() {
 var SupportTypeName = "";
 
 function Support_Service_onchange() {
-
+    $('#physical_savebtn').show();
     var dd = $("#Support_Service").val();
     if ($('#Support_Service').val() == "Public Awareness/Publicity") {
         $('#Support_Item_Procured').prop('disabled', false);
         //  $('#Support_Cumulative_Total').prop('disabled', false);
         $('#Support_Remark').prop('disabled', false);  //new
+        $('#physical_savebtn').hide();
     }
     if ($('#Support_Service').val() == "Workshops at State, District and GP level (Numbers)") {
         $('#Support_Item_Procured').prop('disabled', false);
