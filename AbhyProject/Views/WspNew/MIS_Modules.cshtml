@@ -192,7 +192,9 @@
     }
 </script>
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
+        window.location.href = "../../Home/under_maintainance";
+        return;
             var currentUrl = window.location.href;
             const myArray = currentUrl.split("/");
             let coun = myArray.length - 1;
@@ -202,7 +204,9 @@
             }
         });
 
-        function GetCunCurrentUser() {
+    function GetCunCurrentUser() {
+        window.location.href = "../../Home/under_maintainance";
+        return;
             $.ajax({
                 type: 'get',
                 url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
