@@ -523,6 +523,7 @@ function sixth_pie_chart(sixth_pie_chart, B1, B2, B3, B4, B5, total_b) {
 }
 
 function first_bar_chart(first_bar_chart, FInalData_achive, FInalData) {
+    debugger;
     var max = 0;
     for (i = 0; i < FInalData.length; i++) {
         var ValCheck = parseFloat(FInalData[i].DigitalWater_Target)
@@ -1288,7 +1289,7 @@ function fivth_bar_chart(fivth_bar_chart, FInalData_achive, FInalData) {
         }
     }
 
-    max = parseFloat(max) + 500;
+    max = parseFloat(max) + 1200;
     am4core.useTheme(am4themes_animated);
     var chart = am4core.create(fivth_bar_chart, am4charts.XYChart)
     chart.colors.step = 2;

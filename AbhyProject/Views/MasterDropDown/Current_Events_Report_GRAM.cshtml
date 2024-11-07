@@ -957,7 +957,7 @@
                             tr += '<td>' + (data[i].gendernew ?? '') + '</td>';
                             tr += '<td>' + (data[i].categorynew ?? '') + '</td>';
                             tr += '<td>' + (data[i].mobilenonew ?? '') + '</td>';
-                            tr += '<td>' + (masked ?? '') + '</td>';
+                            tr += '<td>' + (input ?? '') + '</td>';
                             tr += '<td>' + (data[i].todaydate ?? '') + '</td>';
                             tr += '<td>' + (data[i].structure_of_training ?? '') + '</td>';
                             tr += '<td>' + (data[i].course_material ?? '') + '</td>';
@@ -1038,7 +1038,14 @@
 
         if (Auth == "GP-Training") {
             window.location = "/MasterDropDown/current_event_gp_auth";
-        } else {
+        }
+        else if (Auth == "block-Training") {
+            window.location = "/MasterDropDown/current_event_block_authpage";
+        }
+        else if (Auth == "dist-Training") {
+            window.location = "/MasterDropDown/current_event_distgp_authpage";
+        }
+        else {
             window.location = "/MasterDropDown/current_event_gp";
         }
     }

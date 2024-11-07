@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "WSPgram";
-    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+    Layout = "~/Views/Shared/training_block_auth.cshtml";
 }
 <title>Training</title>
 <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
@@ -543,88 +543,7 @@
         <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
     </div>
 </div>
-<main>
-    <header class="header hederImage">
-        <div class="clearfix">
-            <div class="clearfix">
-                <div class="col-lg-9">
-                    <div class="header-top-info">
-                        <ul class="clearfix">
-                            <li>
-                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
-                            </li>
 
-                            <li>
-                                <span>
-                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
-                                </span>
-                                <span>
-                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
-                                        Ministry of Jal Shakti
-                                    </a>
-                                </span>
-                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
-                                <span style="text-align:center;">
-                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
-                                       style="text-transform:none; font-size:14px;">
-                                        River Development & Ganga Rejuvenation
-                                    </a>
-                                </span>
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <ul class="imgHome clearfix">
-
-                        <li>
-                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
-                            @if (Session["UserName"] != null)
-                            {
-                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
-                            }
-
-                        </li>
-                        <li>
-                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
-                    <ul class="imgHome clearfix">
-                        <li>
-                            <a href="~/Home/index">
-                                <span>
-                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
-                                </span>
-                                <label>MIS Users <i class="fa fa-angle-double-right"></i></label>
-                            </a>
-                        </li>
-                        <li>
-                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
-                            <label>Training & Workshop </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-2 pull-right">
-
-                    <a href="~/Home/LogOut" class="btn btn-danger" style="margin-bottom:10px;">
-                        Back To Login
-                    </a>
-
-
-                </div>
-            </div>
-        </div>
-    </header>
-</main>
-<div class="loading-container">
-    <div class="loader">
-        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
-    </div>
-</div>
 <main class="main-wrapper">
     <div class="row" id="">
         <div class="container-fluid " style="padding:10px;padding-top:0;">
@@ -906,6 +825,8 @@
                                                 <th>Data Validation</th>
                                                 <th>Rejected By</th>
                                                 <th>Reject Remark</th>
+                                                <th>Registration QR code</th>
+                                                <th>Feedback QR code</th>
                                             </tr>
                                         </thead>
                                         <tbody id="Training_Workshop_New1" class="table-formControl" style="font-size: 13px;border: transparent;"></tbody>
@@ -1320,7 +1241,7 @@
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         var lastMonthMonth = String(mm - 1).padStart(2, '0');
-        var lastMonthDay = "05";
+        var lastMonthDay = "06";
         var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
 
         var finmm = "";
@@ -1806,6 +1727,14 @@
             return false;
         }
     }
+    function registrationqr(Id) {
+        var linka = "https://ataljal-mis.mowr.gov.in//Vendors/Add_info_Training?id=" + Id;
+        window.location.href = "/QRCode/DownloadQRCode?link=" + encodeURIComponent(linka);
+    }
+    function feedqr() {
+        var linka = "https://ataljal-mis.mowr.gov.in//Contact/FeedBack";
+        window.location.href = "/QRCode/feedQRCode?link=" + encodeURIComponent(linka);
+    }
     function abhy_Curr_Training_Info_Search_4() {
         
         $('.loader').show();
@@ -1920,7 +1849,7 @@
                             }
                             else if (approve_status == "Reject") {
                                 ++rt;
-                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td><td><label style="color: red;">Rejected</label></td><td><label>' + reject_status + '</label></td>' +
+                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td><td><label style="color: red;">Rejected</label></td><td><label>' + reject_status + '</label></td><td><button class="btn btn-primary " type="button" onclick="registrationqr(' + data[i].id + ')">Registration QR </button></td><td><button class="btn btn-primary " type="button" onclick="feedqr()">Feedback QR</button></td>' +
                                     '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td></td>' +
 
                                     '<td> <input type="text" onkeypress="return /[a-zA-Z0-9\s ]/i.test(event.key)" class="form-control" id="topic_event1' + i + '" value="' + data[i].p_training_name + '" /></td>' +
@@ -1946,7 +1875,7 @@
                             }
                             else {
                                 ++pt;
-                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td>' +
+                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td><td></td><td></td><td><button class="btn btn-primary " type="button" onclick="registrationqr(' + data[i].id + ')">Registration QR </button></td><td><button class="btn btn-primary " type="button" onclick="feedqr()">Feedback QR</button></td>' +
                                     '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td></td>' +
 
                                     '<td> <input type="text" onkeypress="return /[a-zA-Z0-9\s ]/i.test(event.key)" class="form-control" id="topic_event1' + i + '" value="' + data[i].p_training_name + '" /></td>' +
@@ -2030,7 +1959,7 @@
                                     }
                                     else if (approve_status == "Reject") {
                                         ++rt;
-                                        tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td><td><label style="color: red;">Rejected</label></td><td><label>' + reject_status + '</label></td>' +
+                                        tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td><td><label style="color: red;">Rejected</label></td><td><label>' + reject_status + '</label></td><td><button class="btn btn-primary " type="button" onclick="registrationqr(' + data[i].id + ')">Registration QR </button></td><td><button class="btn btn-primary " type="button" onclick="feedqr()">Feedback QR</button></td>' +
                                             '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td></td>' +
 
                                             '<td> <input type="text" onkeypress="return /[a-zA-Z0-9\s ]/i.test(event.key)" class="form-control" id="topic_event1' + i + '" value="' + data[i].p_training_name + '" /></td>' +
@@ -2056,7 +1985,7 @@
                                     }
                                     else {
                                         ++pt;
-                                        tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td>' +
+                                        tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td>' + reg_open_date + '</td><td>' + reg_close_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_upload" onclick="getunickey(' + data[i].id + ')"> <i class="fa fa-upload"></i></button></td><td><ul id="Support_UL">' + Li + '</ul></td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary " type="button" onclick="npmusubmit(' + data[i].id + ')">Submit</button></td><td></td><td></td><td><button class="btn btn-primary " type="button" onclick="registrationqr(' + data[i].id + ')">Registration QR </button></td><td><button class="btn btn-primary " type="button" onclick="feedqr()">Feedback QR</button></td>' +
                                             '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td></td>' +
 
                                             '<td> <input type="text" onkeypress="return /[a-zA-Z0-9\s ]/i.test(event.key)" class="form-control" id="topic_event1' + i + '" value="' + data[i].p_training_name + '" /></td>' +
@@ -2331,7 +2260,7 @@
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         var lastMonthMonth = String(mm - 1).padStart(2, '0');
-        var lastMonthDay = "05";
+        var lastMonthDay = "06";
         var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
 
         var finmm = "";

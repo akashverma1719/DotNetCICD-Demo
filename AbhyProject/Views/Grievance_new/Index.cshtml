@@ -334,6 +334,64 @@
 
 </div>
 <script>
+    document.addEventListener('keydown', function (event) {
+        // Disable F12 (DevTools)
+        if (event.keyCode === 123) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+I (DevTools)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+C (Inspect Element)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 67) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+J (DevTools)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 74) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+U (View Source)
+        if (event.ctrlKey && event.keyCode === 85) {
+            event.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+K (Console)
+        if (event.ctrlKey && event.shiftKey && event.keyCode === 75) {
+            event.preventDefault();
+            return false;
+        }
+        // Additional shortcuts can be added here
+    });
+
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+    });
+
+    let devtoolsOpen = false;
+    const threshold = 160; // threshold for height or width difference
+
+    setInterval(() => {
+        const heightDiff = window.outerHeight - window.innerHeight;
+        const widthDiff = window.outerWidth - window.innerWidth;
+
+        if (heightDiff > threshold || widthDiff > threshold) {
+            devtoolsOpen = true;
+            // Optionally, hide sensitive content or redirect
+            //alert("Developer tools are open. Please close them.");
+            window.location.reload(); // Reload the page
+        } else {
+            devtoolsOpen = false;
+        }
+    }, 1000);
+</script>
+
+<script>
 
     function checkmobile() {
         var mobile = $("#mobile").val();
@@ -446,6 +504,8 @@
     var year = "";
     let MonthName = "";
     $(document).ready(function () {
+        window.location = "/Home/under_maintainance";
+        return;
         district();
         $(".loader").hide();
         $('#ddlstatte').hide();
@@ -470,7 +530,6 @@
         MonthName = month[m.getUTCMonth()];
 
     });
-
     function getCurrentFiscalYear() {
         //get current date
         var today = new Date();
@@ -506,7 +565,6 @@
 
         return (fiscalyear);
     }
-
     function refress() {
         $('#C_img1').attr('src', $('#C_img1').attr('src') + '#');
     }

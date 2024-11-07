@@ -14929,6 +14929,68 @@ namespace AbhyProject.Models
         public int? month_order_by { get; set; }
         public string entry_by { get; set; }
     }
+
+    [Table("vw_iec_report", Schema = "public")]    //abhi
+    public class vw_iec_report
+    {
+        [Key]
+        public int id { get; set; }
+        public string state_name { get; set; }
+        public string district_name { get; set; }
+        public string block_name { get; set; }
+        public string gpname { get; set; }
+        public string month { get; set; }
+        public string year { get; set; }
+        public int month_number { get; set; }
+        public string awareness_meetings_ach { get; set; }
+        public string awareness_meetings_cum { get; set; }
+        public string pamphlets_ach { get; set; }
+        public string pamphlets_cum { get; set; }
+        public string leaflets_ach { get; set; }
+        public string leaflets_cum { get; set; }
+        public string magazine_ach { get; set; }
+        public string magazine_cum { get; set; }
+        public string brochures_ach { get; set; }
+        public string brochures_cum { get; set; }
+        public string other_iec_mat_ach { get; set; }
+        public string other_iec_mat_cum { get; set; }
+        public string wall_paintings_ach { get; set; }
+        public string wall_paintings_cum { get; set; }
+        public string hoardings_ach { get; set; }
+        public string hoardings_cum { get; set; }
+        public string posters_ach { get; set; }
+        public string posters_cum { get; set; }
+        public string signages_ach { get; set; }
+        public string signages_cum { get; set; }
+        public string iec_disp_others_ach { get; set; }
+        public string iec_disp_others_cum { get; set; }
+        public string road_shows_ach { get; set; }
+        public string road_shows_cum { get; set; }
+        public string street_plays_ach { get; set; }
+        public string street_plays_cum { get; set; }
+        public string households_ach { get; set; }
+        public string households_cum { get; set; }
+        public string facebook_ach { get; set; }
+        public string facebook_cum { get; set; }
+        public string twitter_ach { get; set; }
+        public string twitter_cum { get; set; }
+        public string youtube_ach { get; set; }
+        public string youtube_cum { get; set; }
+        public string instagram_ach { get; set; }
+        public string instagram_cum { get; set; }
+        public string socialmedia_others_ach { get; set; }
+        public string socialmedia_others_cum { get; set; }
+        public string exhibitions_ach { get; set; }
+        public string exhibitions_cum { get; set; }
+        public string seminars_ach { get; set; }
+        public string seminars_cum { get; set; }
+        public string fair_ach { get; set; }
+        public string fair_cum { get; set; }
+        public string others_ach { get; set; }
+        public string others_cum { get; set; }
+
+    }
+
     [Table("vw_orderwise_state_district_block_gp_area_info", Schema = "public")]
     public class vw_orderwise_state_district_block_gp_area_info
     {
@@ -17390,6 +17452,19 @@ namespace AbhyProject.Models
         public string material_type { get; set; }
 
     }
+    [Table("state_awp_target", Schema = "public")]
+    public class state_awp_target
+    {
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string year { get; set; }
+        public string awp_target { get; set; }
+        public string nodal { get; set; }
+        
+    }
 
     [Table("abhy_physicalmonitoring_insertdata_vw", Schema = "public")]
     public class abhy_physicalmonitoring_insertdata_view
@@ -17495,6 +17570,31 @@ namespace AbhyProject.Models
         public string nomination_rec_date { get; set; }
         public string accepted_nomination_amt { get; set; }
 
+    }
+
+    public class apiviewtender
+    {
+       
+        public string agency_name { get; set; }
+        public string activity_name { get; set; }
+        public string producrment_selection { get; set; }
+        public string category_of_procurement { get; set; }
+        public string description_service { get; set; }
+        public string rfp_date { get; set; }
+        public string email_office { get; set; }
+        public string tender_no { get; set; }
+        public string estimated_cost { get; set; }
+        public string bid_date { get; set; }
+        public string tender_id { get; set; }
+        public string bid_evalution_date { get; set; }
+        public string award_date { get; set; }
+        public string completion_date { get; set; }
+        public string noof_envelopes { get; set; }
+        public string deadline_date { get; set; }
+        public string bid_open_date { get; set; }
+        public string website_url { get; set; }
+        public string filepath { get; set; }
+        public string filename { get; set; }
     }
 
     [Table("incentive_fund_utilization", Schema = "public")]
@@ -20362,6 +20462,29 @@ namespace AbhyProject.Models
 
     }
 
+    [Table("vw_dwlr_meta_data", Schema = "public")]
+    public class vw_dwlr_meta_data
+    {
+        [Key]
+        public int data_id { get; set; }
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string type { get; set; }
+        public string Well_ID { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+
+        public string stationcode { get; set; }
+        public string datatypecode { get; set; }
+        public string date { get; set; }
+        public string datavalue { get; set; }
+        public string fyyear { get; set; }
+        public string fymonth { get; set; }
+
+    }
     // New table  
 
 

@@ -2177,7 +2177,7 @@ namespace AbhyProject.Controllers
                         var event_name = reg_info_1day[i].p_training_name;
                         var name = reg_info_1day[i].p_name;
 
-                        string Grievanceyes = "https://ataljal.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
+                        string Grievanceyes = "https://ataljal-mis.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
 
                         string Mail_Subject = "Request for Feedback on the Attended Event:" + event_name;
                         StringBuilder sb = new StringBuilder();
@@ -2267,7 +2267,7 @@ namespace AbhyProject.Controllers
                         var email = reg_info_2day[i].p_emailid;
                         var event_name = reg_info_2day[i].p_training_name;
                         var name = reg_info_2day[i].p_name;
-                        string Grievanceyes = "https://ataljal.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
+                        string Grievanceyes = "https://ataljal-mis.mowr.gov.in/Contact/FeedBack?rr=" + nogen;
 
                         string Mail_Subject = "Request for Feedback on the Attended Event:" + event_name;
                         StringBuilder sb = new StringBuilder();
@@ -4797,9 +4797,10 @@ namespace AbhyProject.Controllers
                         else
                         {
                             login_datetime logindata = new login_datetime();
+                            string url = "";
                             if (Session["Access_Auth"].ToString() == "GP-Training")
                             {
-                                string url = string.Format("/MasterDropDown/current_event_gp_auth?userid={0}", id);
+                                 url = string.Format("/MasterDropDown/current_event_gp_auth?userid={0}", id);
 
                                 logindata.name = Session["UserName"].ToString();
                                 logindata.email = Email;
@@ -4813,7 +4814,7 @@ namespace AbhyProject.Controllers
                             }
                             else if (Session["Access_Auth"].ToString() == "dist-Training")
                             {
-                                string url = string.Format("/MasterDropDown/current_event_dist_auth?userid={0}", id);
+                                 url = string.Format("/MasterDropDown/current_event_dist_auth?userid={0}", id);
 
                                 logindata.name = Session["UserName"].ToString();
                                 logindata.email = Email;
@@ -4827,7 +4828,7 @@ namespace AbhyProject.Controllers
                             }
                             else if (Session["Access_Auth"].ToString() == "block-Training")
                             {
-                                string url = string.Format("/MasterDropDown/current_event_current_event_block_auth?userid={0}", id);
+                                url = string.Format("/MasterDropDown/current_event_block_auth?userid={0}", id);
                                 logindata.name = Session["UserName"].ToString();
                                 logindata.email = Email;
                                 logindata.loginlogout = "Login";
@@ -4840,7 +4841,7 @@ namespace AbhyProject.Controllers
                             }
                             else if (users[0].access_auth == "dli3")
                             {
-                                string url = string.Format("/WSPHome/Monitoring_evaluation?userid={0}", id);
+                                 url = string.Format("/WSPHome/Monitoring_evaluation?userid={0}", id);
                                 logindata.name = Session["UserName"].ToString();
                                 logindata.email = Email;
                                 logindata.loginlogout = "Login";
@@ -4853,7 +4854,7 @@ namespace AbhyProject.Controllers
                             }
                             else if (users[0].access_auth == "StateTraining")
                             {
-                                string url = string.Format("/MasterDropDown/Training_evaluation?userid={0}", id);
+                                 url = string.Format("/MasterDropDown/Training_evaluation?userid={0}", id);
                                 logindata.name = Session["UserName"].ToString();
                                 logindata.email = Email;
                                 logindata.loginlogout = "Login";

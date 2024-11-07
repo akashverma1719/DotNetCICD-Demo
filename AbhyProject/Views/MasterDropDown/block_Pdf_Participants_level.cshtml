@@ -429,7 +429,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/reg_block" class="btn btn-dark button"> Back</a>
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -560,7 +560,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/reg_block" class="btn btn-dark button"> Back</a>
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -684,9 +684,9 @@
     var event_name = "0";
     var year = "0";
     var month = "0";
-
+    var Auth = "";
     $(document).ready(function () {
-
+        debugger;
         var StateOfficer = '@Session["Officer"]';
         State = '@Session["gstate"]';
         state_name1 = '@Session["state_name"]';
@@ -700,6 +700,7 @@
         event_name = '@Session["event_name"]';
         year = '@Session["year"]';
         month = '@Session["month"]';
+         Auth = '@Session["Access_Auth"]'
         if (year == '0' || year == 0 || year == null) {
             $('#spnyear').text("");
             $('#year').text("");
@@ -914,7 +915,7 @@
                         }
                         var input = registration_no;
                         var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td><td>' + data[i].p_gender + '</td><td> ' + data[i].p_age + '</td ><td>' + data[i].p_occupation + '</td><td>' + data[i].p_qual + '</td><td>' + data[i].p_phoneno + '</td><td>' + data[i].p_emailid + '</td><td>' + data[i].p_address + '</td><td> ' + parti_state + '</td ><td>' + p_other_state_name + '</td><td>' + masked + '</td><td>' + data[i].p_state_name + '</td><td>' + p_district_name + '</td><td>' + p_block_name + '</td></tr> ';
+                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td><td>' + data[i].p_gender + '</td><td> ' + data[i].p_age + '</td ><td>' + data[i].p_occupation + '</td><td>' + data[i].p_qual + '</td><td>' + data[i].p_phoneno + '</td><td>' + data[i].p_emailid + '</td><td>' + data[i].p_address + '</td><td> ' + parti_state + '</td ><td>' + p_other_state_name + '</td><td>' +  input + '</td><td>' + data[i].p_state_name + '</td><td>' + p_district_name + '</td><td>' + p_block_name + '</td></tr> ';
                     }
                 }
                 if (tr == '') {
@@ -927,6 +928,20 @@
 
             }
         });
+    }
+
+
+    function GoToBackCurr() {
+        debugger;
+        if (Auth == "dist-Training") {
+            window.location = "/MasterDropDown/reg_block_distauth";
+        }
+       else if (Auth == "block-Training") {
+            window.location = "/MasterDropDown/reg_block_blockauth";
+        }
+        else {
+            window.location = "/MasterDropDown/reg_block";
+        }
     }
 
 

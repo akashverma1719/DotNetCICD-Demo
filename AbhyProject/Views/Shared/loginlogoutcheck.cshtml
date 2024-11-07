@@ -52,6 +52,8 @@
     $(".loader").show();
     $(document).ready(function () {
         debugger;
+        window.location.href = "../../Home/under_maintainance";
+        return;
             var currentUrl = window.location.href;
             const myArray = currentUrl.split("/");
             let coun = myArray.length - 1;
@@ -61,7 +63,10 @@
             }
     });
 
-        function GetCunCurrentUser() {
+    function GetCunCurrentUser() {
+        debugger;
+        window.location.href = "../../Home/under_maintainance";
+        return;
             $.ajax({
                 type: 'get',
                 url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
@@ -77,7 +82,7 @@
         }
 </script>
 
-
+@*return RedirectToAction("under_maintainance", "Home");*@
 
 
 

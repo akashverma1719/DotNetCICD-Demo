@@ -1,0 +1,1037 @@
+﻿
+@{
+    ViewBag.Title = "current_Training_npmu";
+    Layout = "~/Views/Shared/training_block_auth.cshtml";
+}
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+<title>Current_Trainings</title>
+<style>
+    .table-formControl .form-control {
+        width: fit-content;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .col-md-12 {
+        padding: 0
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    .section1 {
+        padding: 0
+    }
+
+        .section1 > .row > .col-md-12 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            padding: 10px 10px 5px 10px;
+            column-gap: 30px;
+        }
+
+        .section1 > .row > .col-sm-12 > h4 {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .section1 > .row > .col-sm-12 > div.col-md-12 {
+            color: black;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+            .section1 > .row > .col-sm-12 > div.col-md-12 > p {
+                margin: 0;
+                width: fit-content;
+                padding: 10px 5px;
+                border: 1px solid #337ab7;
+                background-color: #d4e5f1;
+            }
+
+        .section1 > .row > .col-sm-12 > div.col-sm-12 {
+            padding: 0;
+        }
+
+    .table-gap {
+        height: 350px;
+        margin-bottom: 30px;
+        overflow: scroll;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .font-bold {
+        font-weight: bold;
+    }
+
+    .second_heading {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+        .second_heading.tbd > th {
+            font-size: 14px;
+            text-align: center;
+        }
+
+    .table-responsive {
+        width: 100%;
+    }
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0 !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    tbody > tr > td > a {
+        word-break: break-all;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    .selectdistshowoption select {
+        border-radius: 25px;
+        width: 192px;
+        text-align: left;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    .headings_border {
+        position: relative;
+        color: #fff;
+        font-size: 35px;
+        text-align: center;
+        font-weight: 900;
+        display: inline-block;
+    }
+
+    ul.Select_option {
+        padding-left: 0;
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .cust_center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .cust_center h6 {
+            font-size: 15px;
+        }
+
+    .main-wrapper {
+        padding: 0 20px;
+    }
+
+    #NPMU_Level_Credentials .nav-item.dropdown {
+        height: 80px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: 202px;
+        padding: 0px;
+        margin-left: 8px;
+    }
+
+        #NPMU_Level_Credentials .nav-item.dropdown a {
+            text-align: center;
+        }
+
+    .nav-item dropdown.show a {
+        color: #fff !important;
+    }
+
+
+    .Select_option_div {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        /* border-radius: 10px; */
+        padding: 12px;
+    }
+
+    .text_form_new {
+        margin-bottom: 0px;
+    }
+
+    .selectdistshowoption {
+        margin-bottom: 20px;
+    }
+</style>
+@*<div class="loading-container">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+        </div>
+    </div>*@
+
+
+<main class="main-wrapper">
+    <div class="row" id="entry_form">
+        <div class="container-fluid " style="padding:10px;padding-top:0;">
+
+            <div class="content">
+                <div class="col-md-12" style="background-color:#fff;">
+                    <div id="border">
+                        <center>
+                            <div class="ss">
+                                <div class="row">
+
+                                    <div class="col-md-12 text-center">
+                                        <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600;">Export All Data</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div id="border" style="margin-bottom:100px">
+                        <div class="row container-fluid main_div Select_option_div" style="padding:20px 10px">
+                            <div class="col-md-12 selectdistshowoption">
+                                <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
+                                <ul class="Select_option selectbackhome" style="display:flex;justify-content:center;align-items:center;column-gap:20px;flex-wrap:wrap;row-gap:10px;">
+                                    <li id="StateLabel">
+                                        <label id="lblstate">State:</label>
+                                        <span id="spnstate1">@Session["gstate"]</span>
+                                    </li>
+                                    <li id="StateDropdownLabel">
+
+                                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:25px;">
+                                        </select>
+                                    </li>
+                                    <li id="DistLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label id="lbldistrict">District:</label>
+                                        <span id="spndistrict">@Session["gdist"]</span>
+                                    </li>
+                                    <li id="DistDropdownLabel">
+
+                                        <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:25px;">
+                                        </select>
+                                    </li>
+                                    <li id="BlockLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Block:</label>
+                                        <span>@Session["gblock"] </span>
+                                    </li>
+                                    <li id="BlockDropdownLabel">
+
+                                        <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:25px;">
+                                        </select>
+                                    </li>
+                                    <li id="GramLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>GramPanchayat:</label>
+                                        <span id="spngram">@Session["ggram"]</span>
+                                    </li>
+
+                                    <li id="GramDropdownLabel">
+
+                                        <select class="form-control" id="gram1" onchange="Gram_change()"></select>
+                                    </li>
+                                    <li>
+                                        <select class="form-control" id="year_npmu">
+                                            <option value="0">Select Financial Year</option>
+                                            <option value="2021-22">2021-22</option>
+                                            <option value="2022-23">2022-23</option>
+                                            <option value="2023-24">2023-24</option>
+                                            <option value="2024-25">2024-25</option>
+
+                                        </select>
+                                    </li>
+                                    <li id="MonthDropdownLabel">
+
+                                        <select class="form-control" id="month_npmu" onchange="">
+                                            <option value="0">Select Month</option>
+                                            <option value="April">April</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="August">August</option>
+                                            <option value="September">September</option>
+                                            <option value="October">October</option>
+                                            <option value="November">November</option>
+                                            <option value="December">December</option>
+                                            <option value="January">January</option>
+                                            <option value="February">February</option>
+                                            <option value="March">March</option>
+                                        </select>
+                                    </li>
+
+                                    <li style="float:right;">
+                                        <a class="btn btn_export" id="btnsubmit" style="background: #fff;" onclick="Create_Excel_All()">
+                                            <img src="/Content/WspImages/csv_icon.png" /><span>CSV</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</main>
+
+<script>
+    var Jsondata = "";
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var access = "";
+    var StateOfficer_new = "";
+    var StateOfficer = "";
+    var email = "";
+    var statename_new = "";
+    var yyear = "";
+    var ymonth = "";
+    $(document).ready(function () {
+        $('.loader').show();
+
+        StateOfficer = '@Session["Officer"]';
+        email = '@Session["email"]';
+        var auth = '@Session["Access_Auth"]';
+
+
+        var fin_year = getCurrentFiscalYear();
+
+        var year = "";
+        var year = "";
+        if (fin_year == "2021-22") {
+            year = "2021-22"
+        } else if (fin_year == "2022-23") {
+            year = "2022-23";
+        } else if (fin_year == "2023-24") {
+            year = "2023-24"
+        } else if (fin_year == "2024-25") {
+            year = "2024-25"
+        }
+
+
+        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const m = new Date()
+        let MonthName = month[m.getUTCMonth()];
+
+        yyear = year;
+        ymonth = MonthName;
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+
+
+        DropDownInfo();
+
+
+    });
+
+</script>
+<script>
+    function getCurrentFiscalYear() {
+        //get current date
+        var today = new Date();
+        if ((today.getMonth() + 1) <= 3) {
+            fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+        } else {
+            fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+        }
+
+        if (fiscalyear == "2020-2021") {
+            fincalyear = 2020;
+        } else if (fiscalyear == "2021-2022") {
+            fincalyear = 2021;
+        } else if (fiscalyear == "2022-2023") {
+            fincalyear = 2022;
+        } else if (fiscalyear == "2023-2024") {
+            fincalyear = 2023;
+        } else if (fiscalyear == "2024-2025") {
+            fincalyear = 2024;
+        }
+
+        if (fiscalyear == "2020-2021") {
+            fiscalyear = "2020-21";
+        } else if (fiscalyear == "2021-2022") {
+            fiscalyear = "2021-22";
+        } else if (fiscalyear == "2022-2023") {
+            fiscalyear = "2022-23";
+        } else if (fiscalyear == "2023-2024") {
+            fiscalyear = "2023-24";
+        } else if (fiscalyear == "2024-2025") {
+            fiscalyear = "2024-25";
+        }
+
+        return (fiscalyear);
+    }
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                    $(".loader").hide();
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+                    $(".loader").hide();
+
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $(".StateLabel_entry").hide();
+                        State_Dropdown_Function();
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $(".StateLabel_entry").hide();
+                        Dist_fun();
+                        $(".loader").hide();
+
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $(".StateLabel_entry").hide();
+                        Block_fun();
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+                        $(".StateLabel_entry").show();
+                        $(".loader").hide();
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function DropDownInfo() {
+        $(".loader").show();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/MasterDropDown/DropdownInfo_Gpdist",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select State</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram1").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram1").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select State</option>';
+                        optionState += '<option value="All">ALL</option>';
+                        optionState += '<option value="NPMU (Delhi)">NPMU (Delhi)</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != "Delhi_7") {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                }
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function NPMU() {
+        var npmu = State;
+        if (npmu == 'NPMU (Delhi)' || npmu == 'All') {
+            $("#DistDropdownLabel").hide();
+            $("#BlockDropdownLabel").hide();
+            $("#GramDropdownLabel").hide();
+        }
+        else {
+            $("#DistDropdownLabel").show();
+            $("#BlockDropdownLabel").show();
+            $("#GramDropdownLabel").show();
+        }
+
+    }
+    function State_Dropdown_Function() {
+
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram1").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram1").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+        NPMU();
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+            Dist = '0';
+            Block = '0';
+            Gram = '0';
+            clickbutton = "";
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram1").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram1").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                //if (Jsondata[i].district_name == 'Kaithal' ) {
+                //    alert(dist);
+
+                //    return;
+                //}
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+            Block = '0';
+            Gram = '0';
+            clickbutton = "";
+
+        }
+    }
+    function Block_fun() {
+
+        $("#gram1").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram1").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram1").append(optionDist);
+            Gram = '0';
+            clickbutton = "";
+        }
+    }
+    function Gram_change() {
+        Gram = $('#gram1').val();
+        clickbutton = "";
+
+
+    }
+
+    function Create_Excel_All() {
+
+        var year = $('#year_npmu').val();
+        var month = $('#month_npmu').val();
+        if (month != "0") {
+            if (year == "0") {
+                alert("select Financial Year");
+                $('#month_all').val("0");
+                return;
+            }
+        }
+
+
+            {
+            window.location.href = "/MasterDropDown/Excel_all_data_current_event_blockauth?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gram01=" + Gram + "&year1=" + year + "&month1=" + month;
+            }
+
+
+    }
+
+</script>

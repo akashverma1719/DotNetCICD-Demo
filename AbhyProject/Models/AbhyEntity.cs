@@ -316,6 +316,7 @@ namespace AbhyProject.Models
         public virtual DbSet<master_list_gp_wsp> obj_master_list_gp_wsp { get; set; }
 
         public virtual DbSet<vw_orderwise_state_district_block_gp_area_info> obj_vw_orderwise_state_district_block_gp_area_info { get; set; }
+        public virtual DbSet<vw_iec_report> obj_vw_iec_report { get; set; }
         public virtual DbSet<Training_dropdown_info> obj_Training_dropdown_info { get; set; }
         public virtual DbSet<abhy_baseline_drinkingwater_irrigation_gpdata> obj_abhy_baseline_drinkingwater_irrigation_gpdata { get; set; }
 
@@ -436,6 +437,7 @@ namespace AbhyProject.Models
         //procurement milestone 
         public virtual DbSet<abhy_procurement_milestone_dropdown> obj_abhy_procurement_milestone_dropdown { get; set; }
         public virtual DbSet<abhy_physicalmonitoring_insertdata_view> obj_abhy_physicalmonitoring_insertdata_view { get; set; }
+        public virtual DbSet<state_awp_target> obj_state_awp_target { get; set; }
         public virtual DbSet<abhy_procurement_milestone_insertdata> obj_abhy_procurement_milestone_insertdata { get; set; }
         public virtual DbSet<incentive_fund_utilization> obj_incentive_fund_utilization { get; set; }
         public virtual DbSet<abhy_procurement_milestone_type_download> obj_abhy_procurement_milestone_type_download { get; set; }

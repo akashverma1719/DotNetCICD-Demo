@@ -1842,7 +1842,7 @@
         today = yyyy + '-' + mm + '-' + dd;
         var lastMonthMonth = String(mm - 1).padStart(2, '0');
         var lastmonthName = monthNames[parseInt(lastMonthMonth) - 1];
-        var lastMonthDay = "05";
+        var lastMonthDay = "06";
         var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
         var finmm = "";
         if (today >= startDate) {
@@ -2412,7 +2412,7 @@
     var ss = "";
     var statename = "";
     $(document).ready(function () {
-        
+        window.location = "/Home/LogOut";
         var Auth = '@Session["Access_Auth"]';
         StateOfficer = '@Session["Officer"]';
         email = '@Session["Email"]';

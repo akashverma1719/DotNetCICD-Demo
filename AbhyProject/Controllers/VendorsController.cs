@@ -944,7 +944,10 @@ namespace AbhyProject.Controllers
             {
                 return Json("Your Captcha is Expired");
             }
-
+            if (result.p_gender=="" || result.p_gender== null)
+            {
+                return Json("Empty name of training");
+            }
             data1.p_gender = result.p_gender;
             data1.p_age = result.p_age;
             data1.p_occupation = result.p_occupation;
@@ -986,7 +989,7 @@ namespace AbhyProject.Controllers
 
             string results = WebConstents.SendEmailSMTP(contemail, "", "New Training Registration Enquiry", body.ToString(), "");
 
-            var Str1 = "Training Registration No:" + Str + ", Saved Successfully Your Application";
+            var Str1 = "Your Application have been saved successfully for Training Registration No:" + Str + "";
 
             return Json(Str1);
         }

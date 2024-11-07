@@ -429,7 +429,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/feed_block" class="btn btn-dark button"> Back</a>
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -570,7 +570,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/feed_block" class="btn btn-dark button"> Back</a>
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -729,7 +729,7 @@
     var Block = "0";
     var year = "0";
     var month = "0";
-
+    var Auth = "";
     $(document).ready(function () {
         var StateOfficer = '@Session["Officer"]';
         State = '@Session["gstate"]';
@@ -743,6 +743,7 @@
         topic_of_event1 = '@Session["topic_of_event"]';
         year = '@Session["year"]';
         month = '@Session["month"]';
+         Auth = '@Session["Access_Auth"]'
         if (year == '0' || year == 0 || year == null) {
             $('#spnyear').text("");
             $('#year').text("");
@@ -958,7 +959,7 @@
                         }
                         var input = registration_no;
                         var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + masked + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].participant_name + '</td><td> ' + level_of_event + '</td ><td>' + dist + '</td><td>' + block + '</td><td>' + event_platform + '</td><td>' + data[i].from_date + '</td><td>' + data[i].to_date + '</td><td>' + data[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + data[i].course_material + '</td><td>' + data[i].interaction_with_trainer + '</td><td>' + data[i].hands_on_practice + '</td><td>' + data[i].usefulness_of_contents + '</td><td>' + data[i].information_presented + '</td><td>' + data[i].participant_questions + '</td><td>' + food + '</td><td>' + data[i].most_interesting_thing + '</td><td>' + data[i].overall_impression + '</td><td>' + data[i].your_suggestions + '</td><td>' + data[i].DateTime + '</td></tr > ';
+                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' +  input + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].participant_name + '</td><td> ' + level_of_event + '</td ><td>' + dist + '</td><td>' + block + '</td><td>' + event_platform + '</td><td>' + data[i].from_date + '</td><td>' + data[i].to_date + '</td><td>' + data[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + data[i].course_material + '</td><td>' + data[i].interaction_with_trainer + '</td><td>' + data[i].hands_on_practice + '</td><td>' + data[i].usefulness_of_contents + '</td><td>' + data[i].information_presented + '</td><td>' + data[i].participant_questions + '</td><td>' + food + '</td><td>' + data[i].most_interesting_thing + '</td><td>' + data[i].overall_impression + '</td><td>' + data[i].your_suggestions + '</td><td>' + data[i].DateTime + '</td></tr > ';
 
                     }
                 }
@@ -974,6 +975,17 @@
         });
     }
 
-
+    function GoToBackCurr() {
+        debugger;
+        if (Auth == "dist-Training") {
+            window.location = "/MasterDropDown/feed_block_distauth";
+        }
+        else if (Auth == "block-Training") {
+            window.location = "/MasterDropDown/feed_block_blockauth";
+        }
+        else {
+            window.location = "/MasterDropDown/feed_block";
+        }
+    }
 
 </script>

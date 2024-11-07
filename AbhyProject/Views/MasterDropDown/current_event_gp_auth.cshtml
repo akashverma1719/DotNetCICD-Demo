@@ -1667,7 +1667,7 @@
 
 
                         <tr>
-                            <th colspan="20" class="text_span font-16">9. What was the most interesting thing you learned? <span class="requrid_star">*</span></th>
+                            <th colspan="20" class="text_span font-16">9. What was the most interesting thing you learned? </th>
                         </tr>
                         <tr>
                             <td colspan="20">
@@ -1697,7 +1697,7 @@
 
 
                         <tr>
-                            <th colspan="20" class="text_span font-16">Your suggestions /Comments for further improvements<span class="requrid_star">*</span></th>
+                            <th colspan="20" class="text_span font-16">Your suggestions /Comments for further improvements</th>
                         </tr>
                         <tr>
                             <td colspan="20">
@@ -1976,9 +1976,9 @@
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         var lastMonthMonth = String(mm - 1).padStart(2, '0');
-        var lastMonthDay = "05";
+        var lastMonthDay = "06";
         var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
-
+        debugger;
         var finmm = "";
         if (today >= startDate) {
             finmm = mm;
@@ -2252,13 +2252,13 @@
             return;
         }
 
-        var MIT = $('#most_interesting_thing').val();
-        if (MIT == "") {
-            alert('Enter most interesting thing you learned ');
-            $(".loader").hide();
-            i = 1;
-            return;
-        }
+        //var MIT = $('#most_interesting_thing').val();
+        //if (MIT == "") {
+        //    alert('Enter most interesting thing you learned ');
+        //    $(".loader").hide();
+        //    i = 1;
+        //    return;
+        //}
         var abc = ($('input[class="chk8"]:checked').length > 0);
         if (abc == false) {
             alert('Choose Overall Impression Feedback');
@@ -2266,13 +2266,13 @@
             i = 1;
             return;
         }
-        var YS = $('#your_suggestions').val();
-        if (YS == "") {
-            alert('Enter Your suggestions /Comments ');
-            $(".loader").hide();
-            i = 1;
-            return;
-        }
+        //var YS = $('#your_suggestions').val();
+        //if (YS == "") {
+        //    alert('Enter Your suggestions /Comments ');
+        //    $(".loader").hide();
+        //    i = 1;
+        //    return;
+        //}
 
         var client_cap = $('#clientCaptcha').val();
         if (client_cap == "") {
@@ -2425,11 +2425,11 @@
                         var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
 
                         if (email == "akash.verma@kreatetechnologies.com") {
-                            tr += '<tr id="AWP1_TR_Meeting_new' + i + '" style="text-align:center"><td>' + (++h) + '</td><td>' + masked + '</td><td>' + data[i].topictraining ?? '' + '</td> <td>' + data[i].gp_training ?? '' + '</td>  <td>' + data[i].participant_name ?? '' + '</td> <td>' + data[i].male ?? '' + '</td> <td>' + data[i].female ?? '' + '</td> <td>' + data[i].transgender ?? '' + '</td><td>' + data[i].event_platform ?? '' + '</td><td>' + data[i].todaydate ?? '' + '</td><td>' + data[i].from_date_feed ?? '' + '</td> <td> ' + data[i].to_date_feed ?? '' + '</td ><td> ' + data[i].total_days ?? '' + '</td ><td> ' + data[i].structure_of_training ?? '' + '</td ><td> ' + data[i].course_material ?? '' + '</td ><td> ' + data[i].interaction_with_trainer ?? '' + '</td ><td> ' + data[i].hands_on_practice ?? '' + '</td ><td> ' + data[i].usefulness_of_contents ?? '' + '</td ><td> ' + data[i].information_presented ?? '' + '</td ><td> ' + data[i].participant_questions ?? '' + '</td ><td> ' + data[i].food_quality ?? '' + '</td ><td> ' + data[i].most_interesting_thing ?? '' + '</td ><td> ' + data[i].overall_impression ?? '' + '</td ><td> ' + data[i].your_suggestions ?? '' + '</td ><td> <button type="button" class="btn btn-danger" onclick="Delete_Curr_Evt_feed(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td ></tr > ';
+                            tr += '<tr id="AWP1_TR_Meeting_new' + i + '" style="text-align:center"><td>' + (++h) + '</td><td>' +  input + '</td><td>' + data[i].topictraining ?? '' + '</td> <td>' + data[i].gp_training ?? '' + '</td>  <td>' + data[i].participant_name ?? '' + '</td> <td>' + data[i].male ?? '' + '</td> <td>' + data[i].female ?? '' + '</td> <td>' + data[i].transgender ?? '' + '</td><td>' + data[i].event_platform ?? '' + '</td><td>' + data[i].todaydate ?? '' + '</td><td>' + data[i].from_date_feed ?? '' + '</td> <td> ' + data[i].to_date_feed ?? '' + '</td ><td> ' + data[i].total_days ?? '' + '</td ><td> ' + data[i].structure_of_training ?? '' + '</td ><td> ' + data[i].course_material ?? '' + '</td ><td> ' + data[i].interaction_with_trainer ?? '' + '</td ><td> ' + data[i].hands_on_practice ?? '' + '</td ><td> ' + data[i].usefulness_of_contents ?? '' + '</td ><td> ' + data[i].information_presented ?? '' + '</td ><td> ' + data[i].participant_questions ?? '' + '</td ><td> ' + data[i].food_quality ?? '' + '</td ><td> ' + data[i].most_interesting_thing ?? '' + '</td ><td> ' + data[i].overall_impression ?? '' + '</td ><td> ' + data[i].your_suggestions ?? '' + '</td ><td> <button type="button" class="btn btn-danger" onclick="Delete_Curr_Evt_feed(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td ></tr > ';
 
                         }
                         else {
-                            tr += '<tr id="AWP1_TR_Meeting_new' + i + '" style="text-align:center"><td>' + (++h) + '</td><td>' + masked + '</td><td>' + data[i].topictraining ?? '' + '</td> <td>' + data[i].gp_training ?? '' + '</td>  <td>' + data[i].participant_name ?? '' + '</td> <td>' + data[i].male ?? '' + '</td> <td>' + data[i].female ?? '' + '</td> <td>' + data[i].transgender ?? '' + '</td><td>' + data[i].event_platform ?? '' + '</td><td>' + data[i].todaydate ?? '' + '</td><td>' + data[i].from_date_feed ?? '' + '</td> <td> ' + data[i].to_date_feed ?? '' + '</td ><td> ' + data[i].total_days ?? '' + '</td ><td> ' + data[i].structure_of_training ?? '' + '</td ><td> ' + data[i].course_material ?? '' + '</td ><td> ' + data[i].interaction_with_trainer ?? '' + '</td ><td> ' + data[i].hands_on_practice ?? '' + '</td ><td> ' + data[i].usefulness_of_contents ?? '' + '</td ><td> ' + data[i].information_presented ?? '' + '</td ><td> ' + data[i].participant_questions ?? '' + '</td ><td> ' + data[i].food_quality ?? '' + '</td ><td> ' + data[i].most_interesting_thing ?? '' + '</td ><td> ' + data[i].overall_impression ?? '' + '</td ><td> ' + data[i].your_suggestions ?? '' + '</td ><td><label style="color: black;">Not Applicable</label></td ></tr > ';
+                            tr += '<tr id="AWP1_TR_Meeting_new' + i + '" style="text-align:center"><td>' + (++h) + '</td><td>' +  input + '</td><td>' + data[i].topictraining ?? '' + '</td> <td>' + data[i].gp_training ?? '' + '</td>  <td>' + data[i].participant_name ?? '' + '</td> <td>' + data[i].male ?? '' + '</td> <td>' + data[i].female ?? '' + '</td> <td>' + data[i].transgender ?? '' + '</td><td>' + data[i].event_platform ?? '' + '</td><td>' + data[i].todaydate ?? '' + '</td><td>' + data[i].from_date_feed ?? '' + '</td> <td> ' + data[i].to_date_feed ?? '' + '</td ><td> ' + data[i].total_days ?? '' + '</td ><td> ' + data[i].structure_of_training ?? '' + '</td ><td> ' + data[i].course_material ?? '' + '</td ><td> ' + data[i].interaction_with_trainer ?? '' + '</td ><td> ' + data[i].hands_on_practice ?? '' + '</td ><td> ' + data[i].usefulness_of_contents ?? '' + '</td ><td> ' + data[i].information_presented ?? '' + '</td ><td> ' + data[i].participant_questions ?? '' + '</td ><td> ' + data[i].food_quality ?? '' + '</td ><td> ' + data[i].most_interesting_thing ?? '' + '</td ><td> ' + data[i].overall_impression ?? '' + '</td ><td> ' + data[i].your_suggestions ?? '' + '</td ><td><label style="color: black;">Not Applicable</label></td ></tr > ';
 
                         }
                     }
@@ -3024,12 +3024,12 @@
                         if (reject_status == null) {
                             reject_status = ""
                         }
-                        var male_population = data[i].male_population;
+                        var male_population = data[i].total_participants;
                         if (male_population == null) {
                             male_population = "";
                         }
                         else {
-                            male_population = data[i].male_population.toString();
+                            male_population = data[i].total_participants.toString();
                         }
                         var Li = '';
                         var Lia = '';
@@ -3057,7 +3057,7 @@
 
                         var p_training_name = data[i].p_training_name;
                         if (email == "akash.verma@kreatetechnologies.com") {
-                            if (male_population != "") {
+                            if (male_population != "" && male_population != "0") {
                                 if (data[i].nameofparticipent != null && data[i].nameofparticipent != "") {
                                     if (data[i].feedbackentry == "Yes") {
                                         if (approve_status == "Approved") {
@@ -3248,7 +3248,6 @@
                                     }
                                 }
                             }
-
                             else {
                                 if (approve_status == "Approved") {
                                     ++at;
@@ -3318,7 +3317,7 @@
 
                             if (StateOfficer == "District Level Nodal Officer") {
                                 if (isWithinRange(new Date(to_date))) {
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0"){
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3372,7 +3371,7 @@
                                             }
                                             else {
                                                 ++pt;
-                                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + location_expo + '</td> <td>' + particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_viewdata" onclick="abhy_Curr_Training_Info_Search_viewdata(' + data[i].id + ')">View Data</button></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">At GramPanchayat</label></td></tr>';
+                                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + location_expo + '</td> <td>' + particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_viewdata" onclick="abhy_Curr_Training_Info_Search_viewdata(' + data[i].id + ')">View Data</button></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">At GramPanchayat</label></td></tr>';
                                             }
                                         }
                                     }
@@ -3402,7 +3401,7 @@
                                 }
                                 else {
 
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3456,7 +3455,7 @@
                                             }
                                             else {
                                                 ++pt;
-                                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + location_expo + '</td> <td>' + particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_viewdata" onclick="abhy_Curr_Training_Info_Search_viewdata(' + data[i].id + ')">View Data</button></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">At GramPanchayat</label></td></tr>';
+                                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + location_expo + '</td> <td>' + particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_viewdata" onclick="abhy_Curr_Training_Info_Search_viewdata(' + data[i].id + ')">View Data</button></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">At GramPanchayat</label></td></tr>';
                                             }
                                         }
                                     }
@@ -3487,7 +3486,7 @@
                             else if (StateOfficer == "Gram Panchyat Nodal Officer") {
                                 if (isWithinRange(new Date(to_date))) {
 
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3742,7 +3741,7 @@
                                     $('#event1' + i).val(data[i].event_platform);
                                 }
                                 else {
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -4000,7 +3999,7 @@
                                 }
                             }
                             else {
-                                if (male_population != "") {
+                                if (male_population != "" && male_population != "0") {
                                     if (data[i].feedbackentry == "Yes") {
                                         if (approve_status == "Approved") {
                                             ++at;
@@ -4677,7 +4676,7 @@
                         var p_training_name = data[i].p_training_name;
                         if (email == "akash.verma@kreatetechnologies.com") {
                             if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
-                                tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
+                                tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
                             }
                             else {
                                 if (data[i].from_table == "main") {
@@ -4695,7 +4694,7 @@
                                         '<td> </td>' +
                                         '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
                                         '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                        '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                        '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                         '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                         '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -4712,7 +4711,7 @@
                                         '<td> </td>' +
                                         '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
                                         '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
-                                        '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
+                                        '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td>' +
                                         '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
                                         '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
                                 }
@@ -4731,7 +4730,7 @@
                                         '<td> </td>' +
                                         '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
                                         '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                        '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                        '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                         '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                         '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -4766,7 +4765,7 @@
                                 }
                                 else if (approve_status == "Reject") {
                                     if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
-                                        tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
+                                        tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
                                     }
                                     else {
                                         if (data[i].from_table == "main") {
@@ -4784,7 +4783,7 @@
                                                 '<td> </td>' +
                                                 '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
                                                 '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                                 '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -4801,7 +4800,7 @@
                                                 '<td> </td>' +
                                                 '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
                                                 '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
-                                                '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
+                                                '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
                                                 '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
                                         }
@@ -4820,7 +4819,7 @@
                                                 '<td> </td>' +
                                                 '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
                                                 '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                                 '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -4832,7 +4831,7 @@
                                 }
                                 else {
                                     if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
-                                        tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
+                                        tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
                                     }
                                     else {
                                         if (data[i].from_table == "main") {
@@ -4850,7 +4849,7 @@
                                                 '<td> </td>' +
                                                 '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
                                                 '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                                 '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -4867,7 +4866,7 @@
                                                 '<td> </td>' +
                                                 '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
                                                 '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
-                                                '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
+                                                '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
                                                 '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
                                         }
@@ -4886,7 +4885,7 @@
                                                 '<td> </td>' +
                                                 '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
                                                 '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                                 '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -4898,7 +4897,7 @@
                             }
                             else {
                                 if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
-                                    tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td></td></tr>';
+                                    tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td></td></tr>';
                                 }
                                 else {
                                     if (data[i].from_table == "main") {
@@ -4916,7 +4915,7 @@
                                             '<td> </td>' +
                                             '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
                                             '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                            '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                            '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                             '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                             '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -4933,7 +4932,7 @@
                                             '<td> </td>' +
                                             '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
                                             '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
-                                            '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
+                                            '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option><option value="Not Disclosed"> Not Disclosed </option> </select></td>' +
                                             '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
                                             '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
                                     }
@@ -4952,7 +4951,7 @@
                                             '<td> </td>' +
                                             '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
                                             '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                            '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                            '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option><option value="Not Disclosed" ' + (data[i].categorynew === 'Not Disclosed' ? ' selected' : '') + '>Not Disclosed</option></select></td>' +
                                             '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
                                             '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
@@ -5507,7 +5506,7 @@
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         var lastMonthMonth = String(mm - 1).padStart(2, '0');
-        var lastMonthDay = "05";
+        var lastMonthDay = "06";
         var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
 
         var finmm = "";

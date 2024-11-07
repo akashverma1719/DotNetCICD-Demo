@@ -25,8 +25,8 @@
 <link href="~/Content/css/abhycss.css" rel="stylesheet" />
 <link href="~/Content/wsp_formcss.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
-<script src="~/Content/JS_Files/IdealState.js"></script>
-<script src="~/Content/JS_Files/mobileappNew.js"></script>
+@*<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/mobileappNew.js"></script>*@
 
 <!-- jQuery library -->
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -44,7 +44,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 <script src="~/Content/JS_Files/IdealState.js"></script>
 
-<script src="~/Content/JS_Files/mobileappNew.js?v=1.1"></script>
+<script src="~/Content/JS_Files/mobileappNew.js?v=1.2"></script>
 
 <style>
     .color_database {
@@ -281,7 +281,7 @@
                                 <img src="~/Content/WspImages/user-silhouette.png" title="User" />
                                 @if (Session["UserName"] != null)
                                 {
-                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>}
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>}
 
                             </li>
                             <li>
@@ -306,7 +306,7 @@
                                     <span>
                                         <img src="~/Content/WspImages/home-icon-silhouette.png" title="WSP & GWM" />
                                     </span>
-                                    <label>Mobile Application DataBase (MADB) <i class="fa fa-angle-double-right"></i></label>
+                                    <label>Atal Jal Database <i class="fa fa-angle-double-right"></i></label>
                                 </a>
                             </li>
                             <li>
@@ -373,7 +373,11 @@
                                         <label onclick="well_click()" style="height:90px;border: 2px solid black; padding: 36px; border-radius: 25px;">Well Inventory</label>
                                     </a>
                                 </li>
-
+                                <li class="tab-link subtab5 new_wd" data-tab="menu-17">
+                                    <a href="javascript:;">
+                                        <label onclick="dwlr_click()" style="height:90px;border: 2px solid black; padding: 36px; border-radius: 25px;">DWLR</label>
+                                    </a>
+                                </li>
 
                             </ul>
 
@@ -901,13 +905,13 @@
                                     <div class="form-div">
 
                                         @*<div class="marquee">
-            <div class="marquee-content">
-                <label class="marquee_link" style="text-align:center;color:red;">
-                    The daily rainfall readings to be updated by last day of every month through mobile app only. The blank values will automatically be converted to zero and auto approved on the last day of that month.
-                </label>
+                                                <div class="marquee-content">
+                                                    <label class="marquee_link" style="text-align:center;color:red;">
+                                                        The daily rainfall readings to be updated by last day of every month through mobile app only. The blank values will automatically be converted to zero and auto approved on the last day of that month.
+                                                    </label>
 
-            </div>
-        </div>*@
+                                                </div>
+                                            </div>*@
 
                                         <div class="blinker">
                                             <p>
@@ -1358,7 +1362,123 @@
                             </div>
                         </div>
                     </div>
+                    <div class="hair-info" id="menu-17">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+                                        <div class="container-fluid">
+                                            <div class="row justify-content-between">
+                                                <div class="col-md-6 col-lg-6 text-left">
+                                                    <label class="display_flex">
+                                                        Total Number of Stations : <label id="dwlr_total">0</label>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6 text-right">
+                                                    <label class="display_flex">
+                                                        Total Pages :
+                                                        <label id="totaldwlr">
 
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-between">
+                                                <div class="col-md-6 col-lg-6 text-left">
+                                                    <label class="display_flex">
+                                                        Total Number of Gram Panchayat : <label id="total_gp_dwlr"></label>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6 text-right">
+                                                    <label class="display_flex">
+                                                        Current Page No :
+                                                        <label id="currentpagenodwlr">
+
+                                                        </label>
+                                                    </label>
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+                                            <div class="row table_head_strip" style="margin: 0px; padding-top: 5px">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h4 class="" style="font-size:13px;">
+                                                            @*Total No Of GWQM Report Filled through FTK : <label id="GWQM_total"></label>*@
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="col-md-12 bg-light text-right d-flex" style="margin-top: 5px; padding-bottom: 15px; display: flex; justify-content: end; padding-right: 0px;">
+                                                        <div class="bg-light text-right display_flex">
+                                                            <button class="btn btn-success btn_export btn-sm" id="btnsubmit_dwlr" onclick="Excel_dwlr()">
+                                                                Export (CSV)
+                                                            </button>
+                                                        </div>
+                                                        <div style="margin-left:8px">
+                                                            <button type="button" id="pdf1_dwlr" onclick="Report_PDF_dwlr()" class="btn btn-success btn-sm"> Export (PDF)</button>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="tbl-responsive" id="style-1" style="overflow: auto; height: 500px; box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px; background: #f2f2f2; ">
+                                                    <table id="mainTable" class="table table-boarderd comn_table">
+
+                                                        <thead>
+                                                            <tr style="text-align: center; background-color: #337ab7; color:#fff;">
+
+                                                                <th>Sr.No.</th>
+                                                                <th style="padding: 50px; padding-bottom: 10px;">State Name</th>
+                                                                <th style="padding: 50px; padding-bottom: 10px;">District Name</th>
+                                                                <th style="padding: 50px; padding-bottom: 10px;">Block Name</th>
+                                                                <th style="padding: 50px; padding-bottom: 10px;">GramPanchayat Name</th>
+                                                                <th style="padding: 50px; padding-bottom: 10px;">Latitude</th>
+                                                                <th style="padding: 50px; padding-bottom: 10px;">Longitude</th>
+                                                                <th style="padding: 80px; padding-bottom: 10px;">Well Id</th>
+                                                                <th style="padding: 50px; padding-bottom: 10px;">Type of well</th>
+                                                                <th>View Data</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tblmain_dwlr"></tbody>
+                                                    </table>
+
+                                                </div>
+                                                <br />
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12 text-right">
+                                                        <button class="btn btn-success btn_export btn-sm" id="btnpredwlr" onclick="buttonpredwlr()">Prev page</button>
+
+                                                        <button type="button" id="btnnextdwlr" onclick="buttonnextdwlr()" class="btn btn-success btn-sm">  Next page</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="bg-light text-right display_flex">
+
+
+                                                </div>
+                                                <br />
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -1544,24 +1664,68 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModal_dwlr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 135%;">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <h3 style="text-align:center">
+                                <label for="recipient-name" class="col-form-label">
+                                    DWLR Data
+                                </label>
+                            </h3>
+                            <br />
+                            <div class="tbl-responsive" id="style-1" style="overflow:auto; height:300px;">
+                                <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                    <thead>
+                                        <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                            <th>Sr.No.</th>
+                                            <th style="padding: 40px; padding-bottom: 10px; text-align:center;">Date</th>
+                                            <th style="padding: 30px; padding-bottom: 10px; text-align:center;">Data value(mbgl)</th>
 
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dwlr_data" class="text-center"></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="close_btn_quality()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="progress" style="text-align:center;">
         <center>
             <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px;justify-content:center;display:flex">
 
                 <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
-                    <span class="progress-group-label" data-target="#music" data-toggle="tab">Mobile Application DataBase (MADB)</span>
+                    <span class="progress-group-label" data-target="#music" data-toggle="tab">Atal Jal Database</span>
                     <div class="progress-node answering active now tab-link subtab1" data-tab="menu-11">
-                        <div class="progress-label">Mobile Application DataBase (MADB)<span class="pointer"></span></div>
+                        <div class="progress-label">Ground water level monitoring<span class="pointer"></span></div>
                     </div>
                     <div class="progress-node tab-link subtab2" data-tab="menu-12">
-                        <div class="progress-label">PGWM<span class="pointer"></span></div>
+                        <div class="progress-label">Ground water Quality monitoring<span class="pointer"></span></div>
                     </div>
                     <div class="progress-node tab-link subtab3" data-tab="menu-13">
-                        <div class="progress-label">Image Upload<span class="pointer"></span></div>
+                        <div class="progress-label">Geo Tagging<span class="pointer"></span></div>
                     </div>
                     <div class="progress-node tab-link subtab4" data-tab="menu-14">
-                        <div class="progress-label">Location<span class="pointer"></span></div>
+                        <div class="progress-label">Rainfall<span class="pointer"></span></div>
+                    </div>
+                    <div class="progress-node tab-link subtab4" data-tab="menu-15">
+                        <div class="progress-label">Water flow Meter<span class="pointer"></span></div>
+                    </div>
+                    <div class="progress-node tab-link subtab4" data-tab="menu-16">
+                        <div class="progress-label">Well inventory<span class="pointer"></span></div>
+                    </div>
+                    <div class="progress-node tab-link subtab4" data-tab="menu-17">
+                        <div class="progress-label">DWLR<span class="pointer"></span></div>
                     </div>
 
                     <div class="tri shadow"></div>
@@ -1689,6 +1853,22 @@
         }
         {
            // watertotal();
+
+        }
+
+    }
+    function dwlr_click() {
+        find_name = "dwlr";
+        if (State == "0") {
+            //alert("Please Select State");
+            //return false;
+        }
+        else if (button_click == "0") {
+            //alert("Please Click Search Button");
+            //return false;
+        }
+        {
+            // watertotal();
 
         }
 
@@ -1933,6 +2113,42 @@
             window.location.href = "/GplevelMobileData/Waterflow_excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&month1=" + month;
         }
     }
+    function Excel_dwlr() {
+        var year = $('#year').val();
+        var month = $('#month').val();
+
+        if (State == "0") {
+            alert("Please Select State");
+            return false;
+        }
+        else if (year == '0' && month != '0') {
+            alert("Please Select Year");
+            return false;
+        }
+        else if (year != '0' || month != '0') {
+            if (find_name == "gwl" || find_name == "gwq" || find_name == "rainfall" || find_name == "waterflow" || find_name == "dwlr") {
+                alert("The data being Export belongs to the readings from selected period only");
+
+            }
+            else {
+
+                alert("The data being Export belongs to only selected period of data entry");
+
+
+            }
+        } {
+            window.location.href = "/GplevelMobileData/dwlrexcel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&month1=" + month;
+        }
+    }
+    function Report_PDF_dwlr() {
+        if (State == "0") {
+            alert("Please Select State");
+            return false;
+        } {
+            window.location = "/GplevelMobileData/dwlr_report";
+        }
+    }
+
 </script>
 
 
@@ -2191,6 +2407,8 @@
         $('#DropdownSearch_btn').hide();
         $('#btnprewell').hide();
         $('#btnprequality').hide();
+        $('#btnnextdwlr').hide();
+        $('#btnpredwlr').hide();
         $('#btnpregeo').hide();
         $('#btnpreexe').hide();
         $('#btnprenew').hide();
@@ -2211,7 +2429,7 @@
         $('#button_hide_dpmu_waterflow').hide();
         $('#button_hide_quality').hide();
         $('#button_hide_dpmu_quality').hide();
-
+        $('#pdf1_dwlr').prop('disabled', true);
         $('#btnsubmit_well').prop('disabled', false);
         $('#pdf1_well').prop('disabled', true);
         $('#btnsubmit_exesiting').prop('disabled', false);
@@ -2244,7 +2462,11 @@
         sno = 0;
         countwell = 0;
         click_well = 0;
-
+        sno_dwlr = 0;
+        count_dwlr = 0;
+        click_dwlr = 0;
+        close_length_dwlr = 0;
+        click_button_dwlr = 0;
         DropDownInfo();
 
 
@@ -5878,7 +6100,7 @@
             alert("Please Select Year")
         }
         else if (year != '0' || month != '0') {
-            if (find_name == "gwl" || find_name == "gwq" || find_name == "rainfall" || find_name == "waterflow") {
+            if (find_name == "gwl" || find_name == "gwq" || find_name == "rainfall" || find_name == "waterflow" || find_name == "dwlr") {
                 alert("The data being displayed belongs to the readings from selected period only");
             }
             else {
@@ -5904,6 +6126,7 @@
                         PageNumberwater = 1;
                         PageNumber_rain = 1;
                         PageNumber_waterflow = 1;
+                        PageNumber_dwlr = 1;
                         totalWellinventory();
                     }
                     else if (find_name == "gwl") {
@@ -5913,6 +6136,7 @@
                         PageNumberwater = 1;
                         PageNumber_rain = 1;
                         PageNumber_waterflow = 1;
+                        PageNumber_dwlr = 1;
                         totalexe();
                     }
                     else if (find_name == "gwq") {
@@ -5922,6 +6146,7 @@
                         PageNumberwater = 1;
                         PageNumber_rain = 1;
                         PageNumber_waterflow = 1;
+                        PageNumber_dwlr = 1;
                         totalwater();
                     }
                     else if (find_name == "geo") {
@@ -5931,6 +6156,7 @@
                         PageNumberwater = 1;
                         PageNumber_rain = 1;
                         PageNumber_waterflow = 1;
+                        PageNumber_dwlr = 1;
                         totalgeo();
                     }
                     else if (find_name == "rainfall") {
@@ -5940,6 +6166,7 @@
                         PageNumberwater = 1;
                         PageNumber_rain = 1;
                         PageNumber_waterflow = 1;
+                        PageNumber_dwlr = 1;
 
                         raintotal();
                     }
@@ -5950,8 +6177,18 @@
                         PageNumberwater = 1;
                         PageNumber_rain = 1;
                         PageNumber_waterflow = 1;
-
+                        PageNumber_dwlr = 1;
                         watertotal();
+                    }
+                    else if (find_name == "dwlr") {
+                        PageNumber = 1;
+                        PageNumberexe = 1;
+                        PageNumbergeo = 1;
+                        PageNumberwater = 1;
+                        PageNumber_rain = 1;
+                        PageNumber_waterflow = 1;
+                        PageNumber_dwlr = 1;
+                        totaldwlr();
                     }
 
                 }

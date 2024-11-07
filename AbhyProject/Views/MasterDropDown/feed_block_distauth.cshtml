@@ -1,0 +1,1882 @@
+﻿
+
+@{
+    ViewBag.Title = "current_Training_npmu";
+    Layout = "~/Views/Shared/training_district_auth.cshtml";
+}
+
+<meta name="viewport" content="width=device-width" />
+<title>Admin Feedback</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/Master_DRP.js"></script>
+
+
+<style>
+    tbody > tr > td > a {
+        word-break: break-all;
+    }
+
+    .table-formControl .form-control {
+        width: fit-content;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .col-md-12 {
+        padding: 0
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    .section1 {
+        padding: 0
+    }
+
+        .section1 > .row > .col-md-12 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            padding: 10px 10px 5px 10px;
+            column-gap: 30px;
+        }
+
+        .section1 > .row > .col-sm-12 > h4 {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .section1 > .row > .col-sm-12 > div.col-md-12 {
+            color: black;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+            .section1 > .row > .col-sm-12 > div.col-md-12 > p {
+                margin: 0;
+                width: fit-content;
+                padding: 10px 5px;
+                border: 1px solid #337ab7;
+                background-color: #d4e5f1;
+            }
+
+        .section1 > .row > .col-sm-12 > div.col-sm-12 {
+            padding: 0;
+        }
+
+    .table-gap {
+        height: 350px;
+        margin-bottom: 30px;
+        overflow: scroll;
+    }
+
+    .table-responsive {
+        width: 100%;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .font-bold {
+        font-weight: bold;
+    }
+
+    /*ends here*/
+    .second_heading {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+        .second_heading.tbd > th {
+            font-size: 14px;
+            text-align: center;
+        }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /**/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0 !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    .selectdistshowoption select {
+        border-radius: 25px;
+        width: 192px;
+        text-align: left;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    /* .card {
+            margin-top: 25px;
+        }*/
+
+    /*.card-body {
+            border: 1px solid#ccc;*/
+    /*padding: 5px;*/
+    /*}*/
+
+    .headings_border {
+        position: relative;
+        color: #fff;
+        font-size: 35px;
+        text-align: center;
+        font-weight: 900;
+        display: inline-block;
+    }
+
+    ul.Select_option {
+        padding-left: 0;
+        /*   text-align: initial;
+            padding-top: 24px;*/
+    }
+
+    .Select_option_div select {
+        border-radius: 25px;
+        width: 200px;
+        text-align: left;
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .cust_center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .cust_center h6 {
+            font-size: 15px;
+        }
+
+    #NPMU_Level_Credentials .nav-item.dropdown {
+        height: 80px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: 202px;
+        padding: 0px;
+        margin-left: 8px;
+    }
+
+        #NPMU_Level_Credentials .nav-item.dropdown a {
+            text-align: center;
+        }
+
+    .nav-item dropdown.show a {
+        color: #fff !important;
+    }
+</style>
+
+
+<main>
+    <div class="row container-fluid" style="padding:10px;padding-bottom:0;">
+        <div class="col-md-12 text-center">
+
+            <h4 id="text_form_new" style="background-color: #337ab7;font-weight:600; color: #fff; padding: 10px; ">Participants Feedback</h4>
+        </div>
+
+
+        <div class="container-fluid" style="padding:0;">
+            <div class="clearfix">
+
+
+
+
+                <div class="col-md-12 Select_option_div">
+
+                    <ul class="Select_option col-md-12 col-sm-8 " style="display:flex;justify-content:flex-start;align-items:center;column-gap:20px;flex-wrap:wrap;row-gap:10px; padding-left:12px;">
+                        <li id="StateLabel">
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate1">@Session["gstate"]</span>
+                        </li>
+                        <li id="StateDropdownLabel">
+
+                            <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
+                            </select>
+                        </li>
+
+                        <li id="DistLabel">
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                        </li>
+
+                        <li id="DistDropdownLabel">
+
+                            <select class="form-control" id="dist11" onchange="Dist_fun()">
+                            </select>
+                        </li>
+
+                        <li id="BlockLabel">
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label>Block:</label>
+                            <span>@Session["gblock"] </span>
+                        </li>
+
+                        <li id="BlockDropdownLabel">
+
+                            <select class="form-control" id="block1" onchange="Block_fun()">
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control" id="year">
+                                <option value="0">Select Financial Year</option>
+                                <option value="2021-22">2021-22</option>
+                                <option value="2022-23">2022-23</option>
+                                <option value="2023-24">2023-24</option>
+                                <option value="2024-25">2024-25</option>
+                                @* <option value="2025">2025-2026</option>*@
+                            </select>
+                        </li>
+                        <li id="MonthDropdownLabel">
+
+                            <select class="form-control" id="month" onchange="Month_change()">
+                                <option value="0">Select Month</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                            </select>
+                        </li>
+                        <li id="DropdownSearch_btn">
+                            <a class="btn btn-success" onclick="Dropdown_Search_new()">Search</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <br />
+                <div style="width:100%;display:flex;align-items:center;justify-content:flex-end;margin:10px 0;column-gap:20px;padding-top:10px">
+                    <a class="btn btn_export" style="width:100px;" id="btnsubmit1" onclick="PDF()"><img src="/Content/WspImages/pdf_icon.png" /><span>PDF</span></a>
+                    <a class="btn btn_export" style="width:100px;" id="btnsubmit" onclick="Excel()"><img src="/Content/WspImages/csv_icon.png" /><span>CSV</span></a>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-12">
+        <div class="">
+            <div class="col-md-12 text-center">
+                <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600;">Participants Feedback at the Block Levels</h4>
+            </div>
+            <div>
+
+                <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                    <p style=" margin: 0; width: fit-content; padding-left:10px; ">Note: - The below table will show the statistics after clicking on the "Search" button</p>
+                </div>
+            </div>
+            <div>
+                <table id="" class="GWL_deviation_table table table-bordered  table-__web-inspector-hide-shortcut__">
+
+                    <tbody id="">
+
+                        <tr class="second_heading" style="font-size:14px;background-color: #337ab7; color: #fff; font-weight: bold;">
+                            <td id="state_a" colspan="1" class="font-bold">Completed Total No. of Trainings: </td>
+                            <td id="" colspan="1" class="font-bold">Total No. of Recived Feedback for Block Level Trainings: </td>
+
+                        </tr>
+                        <tr style="font-size: 13px;border: transparent;">
+
+                            <td id="state_b">
+                                <label id="total"></label>
+                            </td>
+                            <td>
+                                <label>Total   : <label id="blocktotal"></label> </label>
+                                <br />
+                                <label>Male   : <label id="blockmale"></label> </label>
+                                <br />
+                                <label>Female   : <label id="blockfemale"></label> </label>
+                                <br />
+                                <label>Transgender   : <label id="blocktrangender"></label> </label>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div>
+
+                <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                    <p style=" margin: 0; width: fit-content; "> Note:- Selecting "All" in the above dropdown would not have enabled the "Select Training" selection dropdown below. Selecting “Select Training” from the dropdown below and selecting NPMU/State/District/Block above will show the subject-wise breakdown of the event.</p>
+                </div>
+                <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                    <tbody id="">
+
+                        <tr class="second_heading" style="background-color: #337ab7; color: #fff; font-weight: bold;">
+                            <td colspan="1" class="font-bold">Topic of Training: </td>
+                            <td colspan="1" class="font-bold">Total Feedback for That Training: </td>
+
+                        </tr>
+
+                        <tr style="font-size: 13px;border: transparent;">
+                            <td>
+                                <select name="Topic Of Event" id="p_training_name" class="form-control" onchange="search_feedback()">
+                                    <option value="0">Select Training</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label>Total   : <label id="search_total"></label> </label>
+                                <br />
+                                <label>Male   : <label id="male_count"></label> </label>
+                                <br />
+                                <label>Female   : <label id="female_count"></label> </label>
+                                <br />
+                                <label>Transgender   : <label id="trans_count"></label> </label>
+                            </td>
+                            @*<td>
+                                    <label> <label id="search_total"></label> </label>
+                                    <br />
+                                </td>*@
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</main>
+<div class="col-md-12" style=" color: red; font-weight: 500; font-size: 14px; padding: 0 10px;">
+    <p style=" margin: 0; font-weight:600; ">Note:- Feedback details will be visible in the below table as per selection of "Dropdown" above and only after selecting "Topics" from the dropdown.</p>
+</div>
+<div class="col-md-12 text-center" style="margin-top:30px;padding:0 10px ">
+    <h4 style="background-color: #337ab7; color: #fff; padding: 10px;margin-top:0px; font-weight:600;">Feedback</h4>
+</div>
+<div id="style-1" class="table-responsive table-gap" style="padding:10px;margin-bottom:50px;">
+    <table id="TBL_11" class="table  FrameWork_Matrix_table  table-hover row-border order-column table-striped table-bordered  no-footer" style="font-size: 13px;">
+        <thead>
+            <tr class="tableheader1">
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">S.No</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Registration No.</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Topics</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Name of the Participant</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">State</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">District</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Block</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Trainings Platform</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center;padding:0 30px;">From Date</th>
+                <th style="background-color: #337ab7; color: #fff; font-weight: bold; text-align: center; padding: 0 30px;">To Date</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Total Days</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Structure Of Training</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Course Material</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Interaction With Trainer</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Hands On Practice</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Usefulness Of Course</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Information Presented Was</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Participant Questions Were</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Food Quality/Logging Facilities</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Most Interesting Thing You Learn</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Overall Impression</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Your Suggestions</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Feedback Submission Date</th>
+
+
+            </tr>
+        </thead>
+        <tbody id="FeedBack_TBL_Info"></tbody>
+    </table>
+</div>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="~/Content/JS_Files/jquery.fixedheadertable.js"></script>
+    <script src="~/Content/JS_Files/fixedheadertable.js"></script>*@
+
+<script type="text/javascript">
+
+    var StateOfficer = "";
+    var State = "";
+    var Dist = "";
+    var Block = "";
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+
+
+    });
+    var Main_Statename = "";
+    function DropDownInfo1() {
+
+        $('#StateWiseDropdown').hide();
+        $('#StateWise').hide();
+
+        Main_Statename = "";
+
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/AgencyDashBoard/State_SessionInfo',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (data == "Admin") {
+                    $('#StateWiseDropdown').show();
+                    $('#StateWise').hide();
+
+                    States_Info();
+
+                }
+                else {
+                    $('#StateWiseDropdown').hide();
+                    $('#StateWise').show();
+
+                    Main_Statename = data;
+                    $('#spnstate').val(data);
+
+                }
+            }
+
+        });
+
+    }
+    function States_Info() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/AgencyDashBoard/PIP_Agency_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                var slection_options = '<option value="0">Select State</option>';
+
+                if (data.length != 0) {
+                    slection_options += '<option value="ALL">ALL</option>';
+                    slection_options += '<option value="NPMU">NPMU</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].observation_type == "pip") {
+
+                            slection_options += '<option value="' + data[i].state_name + '"> ' + data[i].state_name + ' </option>';
+                        }
+
+                    }
+                    slection_options += '<option value="Other">Other</option>';
+
+                    $('#States').html(slection_options);
+
+                }
+            }
+
+        });
+    }
+    function StateWiseInfo() {
+        var State = $('#States').val();
+        if (State != "0") {
+            Main_Statename = State;
+            FeedBack_Info();
+
+        } else {
+            alert("Select StateName")
+        }
+    }
+    function FeedBack_Info() {
+
+        var obj = {};
+        obj.state_name = State;
+        obj.district_name = Dist;
+        obj.block_name = Block;
+        var male = 0;
+        var female = 0;
+        var transgender = 0;
+        var total = 0;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Contact/FeedBackInforamtion',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                total = response.length;
+
+                if (response == "LogOut") {
+                      window.location = "/Home/LogOut";
+                }
+                var Z = 0;
+                var tr = '';
+                $('#FeedBack_TBL_Info').html(tr);
+
+                if (response.length != 0) {
+                    Z = 0;
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        if (response[i].gender == "Male") {
+                            male++;
+
+                        }
+                        if (response[i].gender == "Female") {
+                            female++;
+
+                        }
+                        if (response[i].gender == "Transgender") {
+                            transgender++;
+
+                        }
+
+                            var StateName = response[i].level_of_event;
+                            if (StateName == null) {
+                                StateName = "";
+                            } else {
+                                StateName = response[i].level_of_event;
+                            }
+                            var dist = response[i].dist;
+                            if (dist == null) {
+                                dist = "";
+                            }
+                            else {
+                                dist = response[i].dist;
+                            }
+                            var block = response[i].block;
+                            if (block == null) {
+                                block = "";
+                            }
+                            else {
+                                block = response[i].block;
+
+                            }
+                        var food = response[i].food_quality;
+                        if (food == null) {
+                            food = "";
+                        }
+                        else {
+                            food = response[i].food_quality;
+                        }
+                            Z += 1;
+                            tr += '<tr><td>' + Z + '</td><td>' + response[i].registration_no + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + block + '</td><td>' + response[i].event_platform + '</td><td>' + response[i].from_date + '</td>' +
+                                '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + response[i].structure_of_training + '</td><td>' + response[i].course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
+                                '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td></tr>';
+
+                    }
+                }
+
+                if (tr == '') {
+                    tr += '<tr style="text-align: center;"><td colspan="21"> No Data</td></tr>';
+                    $('#search_total').text("");
+                    $('#male_count').text("");
+                    $('#female_count').text("");
+                    $('#trans_count').text("");
+                    $('#FeedBack_TBL_Info').html(tr);
+                }
+                else {
+                    $('#search_total').text(total);
+                    $('#male_count').text(male);
+                    $('#female_count').text(female);
+                    $('#trans_count').text(transgender);
+                    $('#FeedBack_TBL_Info').html(tr);
+                }
+
+            }
+
+        });
+    }
+    function Totalfeedback() {
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var obj = {};
+        obj.state_name = State;
+        obj.district_name = Dist;
+        obj.block_name = Block;
+        obj.year = year;
+        obj.month = month;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Contact/FeedBackInforamtion_total',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+
+                $('#feedback_total').text(response.length);
+            }
+
+        });
+    }
+    function search_feedback() {
+
+        var topic_of_event = $("#p_training_name").val();
+        var tr = '';
+        $('#FeedBack_TBL_Info').html(tr);
+        var obj = {};
+        obj.state_name = State;
+        obj.district_name = Dist;
+        obj.block_name = Block;
+        var male = 0;
+        var female = 0;
+        var transgender = 0;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Contact/FeedBackInforamtion_search',
+            data: "{'Data': '" + JSON.stringify(obj) + "', 'topic_of_event':'" + topic_of_event + "' }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                $('#search_total').text("");
+                $('#male_count').text("");
+                $('#female_count').text("");
+                $('#trans_count').text("");
+                $('#search_total').text(response.length);
+                if (response == "LogOut") {
+                      window.location = "/Home/LogOut";
+                }
+                var Z = 0;
+                var tr = '';
+                $('#FeedBack_TBL_Info').html(tr);
+
+                if (response.length != 0) {
+                    Z = 0;
+
+                    for (var i = 0; i < response.length; i++) {
+                        if (response[i].gender == "Male") {
+                            male++;
+
+                        }
+                        if (response[i].gender == "Female") {
+                            female++;
+
+                        }
+                        if (response[i].gender == "Transgender") {
+                            transgender++;
+
+                        }
+
+                        var StateName = response[i].level_of_event;
+                        if (StateName == null) {
+                            StateName = "";
+                        } else {
+                            StateName = response[i].level_of_event;
+                        }
+                        var dist = response[i].dist;
+                        if (dist == null) {
+                            dist = "";
+                        }
+                        else {
+                            dist = response[i].dist;
+                        }
+                        var block = response[i].block;
+                        if (block == null) {
+                            block = "";
+                        }
+                        else {
+                            block = response[i].block;
+                        }
+                        var food = response[i].food_quality;
+                        if (food == null) {
+                            food = "";
+                        }
+                        else {
+                            food = response[i].food_quality;
+                        }
+                        var event_platform = response[i].event_platform;
+                        if (event_platform == null) {
+                            event_platform = "";
+                        }
+                        var structure_of_training = response[i].structure_of_training;
+                        if (structure_of_training == null) {
+                            structure_of_training = "";
+                        }
+                        var course_material = response[i].course_material;
+                        if (course_material == null) {
+                            course_material = "";
+                        }
+                        var registration_no = response[i].registration_no;
+                        if (registration_no == null) {
+                            registration_no = "";
+                        }
+                        var input = registration_no;
+                        var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
+                        Z += 1;
+                        tr += '<tr><td>' + Z + '</td><td>' +  input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + block + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
+                            '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
+                            '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td></tr>';
+
+
+                    }
+                }
+                $('#male_count').text(male);
+                $('#female_count').text(female);
+                $('#trans_count').text(transgender);
+                if (tr == '') {
+                    tr += '<tr style="text-align: center;"><td colspan="21"> No Data</td></tr>';
+                }
+
+                $('#FeedBack_TBL_Info').html(tr);
+
+
+            }
+
+        });
+    }
+
+    function Get_Training_Working_Events_Info_all() {
+        $(".loader").show();
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var event = "All";
+        var year = $('#year').val();
+        var month = $('#month').val();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Vendors/Get_Training_Working_Info_fetch',
+            data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'event_name':'" + event + "', 'year':'" + year + "', 'month':'" + month + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                var option = '<option value="0">Select Training</option>';
+                var ddlst = {};
+                var ddlst_array = [];
+                var ddlst_unic = [];
+                if (response.length != 0) {
+                    Full_Info_Events_Fetch = response;
+                    for (var j = 0; j < response.length; j++) {
+
+                        if (!ddlst[response[j].p_training_name]) {
+                            ddlst_array.push(response[j].p_training_name);
+                            ddlst_unic.push(response[j].unic_key);
+                            ddlst[response[j].p_training_name] = response[j].p_training_name;
+
+                        }
+
+                    }
+
+                }
+
+                if (ddlst_array.length != 0) {
+                    for (var i = 0; i < ddlst_array.length; i++) {
+                        option += '<option value="' + ddlst_unic[i] + '">' + ddlst_array[i] + '</option>';
+                    }
+                }
+
+                $('#p_training_name').html(option);
+                $(".loader").hide();
+                /*Participant_reg_info_total();*/
+
+            }
+        });
+    }
+
+    function Excel() {
+        var topic_of_event = $('#p_training_name').val();
+        var year = $('#year').val();
+        var month = $('#month').val();
+        if (State == "0") {
+            alert("Select State");
+            return false;
+        }
+        if (month != "0") {
+            if (year == "0") {
+                alert("select Financial Year");
+                $('#month_state').val("0");
+                $(".loader").hide();
+                return;
+            }
+        }
+        {
+            window.location = "/MasterDropDown/Excel_feedback_level?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&traning1=" + topic_of_event + "&year1=" + year + "&month1=" + month;
+        }
+    }
+
+    function PDF() {
+
+        var topic_of_event = $("#p_training_name").val();
+        var year = $('#year').val();
+        var month = $('#month').val();
+        if (month != "0") {
+            if (year == "0") {
+                alert("select Financial Year");
+                $('#month_state').val("0");
+                $(".loader").hide();
+                return;
+            }
+        }
+        if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+            var state_name = $('#spnstate').val();
+            var dist_name = $('#dist11').val();
+            var block_name = $('#block1').val();
+
+            if (state_name == "0") {
+                alert("Select State");
+                return false;
+            }
+            {
+                if (state_name == "NPMU (Delhi)") {
+                    window.location.href = "/MasterDropDown/block_Pdf_feedback?topic_of_event=" + topic_of_event + "&state_name=" + state_name + "&year=" + year + "&month=" + month;
+                }
+                else {
+                    window.location.href = "/MasterDropDown/block_Pdf_feedback?topic_of_event=" + topic_of_event + "&state_name=" + state_name + "&dist_name=" + dist_name + "&block_name=" + block_name + "&year=" + year + "&month=" + month;
+                }
+            }
+        }
+        else if (StateOfficer == "State Level Nodal Officer") {
+            var dist_name = $('#dist11').val();
+            var block_name = $('#block1').val();
+
+            {
+                window.location.href = "/MasterDropDown/block_Pdf_feedback?topic_of_event=" + topic_of_event + "&state1=" + State + "&dist_name=" + dist_name + "&block_name=" + block_name + "&year=" + year + "&month=" + month;
+            }
+        }
+        else if (StateOfficer == "District Level Nodal Officer") {
+            var block_name = $('#block1').val();
+            {
+                window.location.href = "/MasterDropDown/block_Pdf_feedback?topic_of_event=" + topic_of_event + "&state1=" + State + "&district1=" + Dist + "&block_name=" + block_name + "&year=" + year + "&month=" + month;
+            }
+        }
+        else if (StateOfficer == "Block Level Nodal Officer") {
+            {
+                window.location.href = "/MasterDropDown/block_Pdf_feedback?topic_of_event=" + topic_of_event + "&state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&year=" + year + "&month=" + month;
+            }
+        }
+    }
+
+</script>
+<script>
+
+   var Jsondata = "";
+
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    $(document).ready(function () {
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "") {
+              window.location = "/Home/LogOut";
+        }
+
+        if (StateOfficer == "State Level Nodal Officer") {
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').show();
+            $('#labledistr').hide();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').show();
+            $('#2labledistr').hide();
+            $('#2lableblock').hide();
+
+        }
+        if (StateOfficer == "District Level Nodal Officer") {
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').hide();
+            $('#labledistr').show();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').hide();
+            $('#2labledistr').show();
+            $('#2lableblock').hide();
+        }
+        if (StateOfficer == "Block Level Nodal Officer") {
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').hide();
+            $('#labledistr').hide();
+            $('#lableblock').show();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').hide();
+            $('#2labledistr').hide();
+            $('#2lableblock').show();
+        }
+        else if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin"  ){
+            $('#labletotal').show();
+            $('#lablenpmu').show();
+            $('#lablestate').show();
+            $('#labledistr').show();
+            $('#lableblock').show();
+            $('#2labletotal').show();
+            $('#2lablenpmu').show();
+            $('#2lablestate').show();
+            $('#2labledistr').show();
+            $('#2lableblock').show();
+
+        }
+
+
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        //$('#GramLabel').hide();
+        //$('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $('#all_a').hide();
+        $('#all_b').hide();
+        $('#state_a').show();
+        $('#state_b').show();
+
+        DropDownInfo();
+
+
+
+    });
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+    }
+
+</script>
+
+<script>
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Contact/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        // Get_Training_Working_Events_Info_all();
+
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        State_Dropdown_Function();
+                        DropDownInfo1();
+                        //Get_Training_Working_Events_Info_all();
+                        //Totalfeedback();
+
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Dist_fun();
+                        DropDownInfo1();
+                        //Get_Training_Working_Events_Info_all();
+                        //Totalfeedback();
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Block_fun();
+                        DropDownInfo1();
+                        //Get_Training_Working_Events_Info_all();
+                        //Totalfeedback();
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+
+
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+                        DropDownInfo1();
+                        //Get_Training_Working_Events_Info_all();
+                        //Totalfeedback();
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function DropDownInfo() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select StateName</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (Jsondata[i].state_name != "Delhi_7") {
+                                if (!ddlst[Jsondata[i].state_name]) {
+                                    all_dists.push(Jsondata[i].state_name);
+                                    ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                                }
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select StateName</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function NPMU() {
+
+        var npmu = $("#spnstate").val();
+        if (npmu == 'NPMU (Delhi)') {
+            $("#dist11").hide();
+            $("#block1").hide();
+        }
+        else {
+            $("#dist11").show();
+            $("#block1").show();
+        }
+
+    }
+
+    function State_Dropdown_Function() {
+
+        NPMU();
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+
+        if (StateName == "All") {
+            $('#all_a').show();
+            $('#all_b').show();
+            $('#state_a').hide();
+            $('#state_b').hide();
+            $("#btnpdf").hide();
+            $('#labletotal').show();
+            $('#lablenpmu').show();
+            $('#lablestate').show();
+            $('#labledistr').show();
+            $('#lableblock').show();
+            $('#2labletotal').show();
+            $('#2lablenpmu').show();
+            $('#2lablestate').show();
+            $('#2labledistr').show();
+            $('#2lableblock').show();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+
+        }
+        else if (StateName == "NPMU (Delhi)") {
+            $('#all_a').hide();
+            $('#all_b').hide();
+            $('#state_a').show();
+            $('#state_b').show();
+            $("#btnpdf").show();
+            $('#labletotal').hide();
+            $('#lablenpmu').show();
+            $('#lablestate').hide();
+            $('#labledistr').hide();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').show();
+            $('#2lablestate').hide();
+            $('#2labledistr').hide();
+            $('#2lableblock').hide();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+
+        }
+        else if (StateName == "NPMU (Delhi)") {
+            $('#all_a').hide();
+            $('#all_b').hide();
+            $('#state_a').show();
+            $('#state_b').show();
+            $("#btnpdf").show();
+            $('#labletotal').hide();
+            $('#lablenpmu').show();
+            $('#lablestate').hide();
+            $('#labledistr').hide();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').show();
+            $('#2lablestate').hide();
+            $('#2labledistr').hide();
+            $('#2lableblock').hide();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+
+        }
+        else {
+            $('#all_a').hide();
+            $('#all_b').hide();
+            $('#state_a').show();
+            $('#state_b').show();
+            $("#btnpdf").show();
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').show();
+            $('#labledistr').hide();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').show();
+            $('#2labledistr').hide();
+            $('#2lableblock').hide();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+
+        }
+
+
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        if (dist == "0") {
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').show();
+            $('#labledistr').hide();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').show();
+            $('#2labledistr').hide();
+            $('#2lableblock').hide();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+        }
+        else {
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').hide();
+            $('#labledistr').show();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').hide();
+            $('#2labledistr').show();
+            $('#2lableblock').hide();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+        }
+
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                //if (Jsondata[i].district_name == 'Kaithal' ) {
+                //    alert(dist);
+
+                //    return;
+                //}
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+        if (block == "0") {
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').hide();
+            $('#labledistr').show();
+            $('#lableblock').hide();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').hide();
+            $('#2labledistr').show();
+            $('#2lableblock').hide();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+        }
+        else {
+            $('#labletotal').hide();
+            $('#lablenpmu').hide();
+            $('#lablestate').hide();
+            $('#labledistr').hide();
+            $('#lableblock').show();
+            $('#2labletotal').hide();
+            $('#2lablenpmu').hide();
+            $('#2lablestate').hide();
+            $('#2labledistr').hide();
+            $('#2lableblock').show();
+            $('#2labletotal').val("");
+            $('#2lablenpmu').val("");
+            $('#2lablestate').val("");
+            $('#2labledistr').val("");
+            $('#2lableblock').val("");
+        }
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+    function Gram_change() {
+        var Gram1 = $("#gram").val();
+        if (Gram1 == "0") {
+            alert("Select Grampanchayat");
+        } else {
+            Gram = $('#gram').val();
+        }
+    }
+    function Dropdown_Search_new() {
+        $(".loader").show();
+        $('#alert_waiting').show();
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Select StateName");
+            $(".loader").hide();
+            return;
+        }
+        if (Dist == "0") {
+            xx = 1;
+            alert("Select District Name");
+            $(".loader").hide();
+            return;
+        }
+        if (Block == "0") {
+            xx = 1;
+            alert("Select Block Name");
+            $(".loader").hide();
+            return;
+        }
+        var year = $('#year').val();
+        var month = $('#month').val();
+        if (month != "0") {
+            if (year == "0") {
+                alert("select Financial Year");
+                $('#month_state').val("0");
+                $(".loader").hide();
+                return;
+            }
+        }
+
+        if (xx == 0) {
+            $.ajax({
+
+                type: "Post",
+                url: "/Home/StateLevel_Dropdown",
+                contentType: "application/json;charset=utf-8",
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+                dataType: "json",
+                success: function (results) {
+                    var tr = '';
+                    $('#FeedBack_TBL_Info').html(tr);
+                    $('#search_total').text("");
+                    $('#male_count').text("");
+                    $('#female_count').text("");
+                    $('#trans_count').text("");
+                    DropDownInfo1();
+                    npmu_total();
+                }
+            });
+        }
+    }
+
+    function npmu_total() {
+        $(".loader").show();
+        var option = '<option value="0">Select Training</option>';
+        $('#p_training_name').html(option);
+
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        if (month != "0") {
+            if (year == "0") {
+                alert("select Financial Year");
+                $('#month_state').val("0");
+                $(".loader").hide();
+                return;
+            }
+        }
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/MasterDropDown/feedbacknpmu_total',
+            data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'year':'" + year + "', 'month':'" + month + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+
+                $('#all_state').text(data.sta);
+                $('#all_dist').text(data.dis);
+                $('#all_block').text(data.blo);
+                $('#all_npmu').text(data.npmu);
+
+                $('#total').text(data.count);
+
+                $('#blocktotal').text(data.blockcount);
+                $('#blockmale').text(data.blockcount_male);
+                $('#blockfemale').text(data.blockcount_female);
+                $('#blocktrangender').text(data.blockcount_trangender);
+
+                $(".loader").hide();
+                if (state != "All") {
+                    Get_Training_Working_Events_Info_all();
+                }
+            }
+        });
+
+    }
+</script>
+
+<script>
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>
