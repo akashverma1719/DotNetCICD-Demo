@@ -44994,8 +44994,13 @@ namespace AbhyProject.Controllers
                                 }
 
                             }
-                            return Json(robj, JsonRequestBehavior.AllowGet);
-
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
                         }
 
 
@@ -46277,8 +46282,13 @@ namespace AbhyProject.Controllers
                                 }
 
                             }
-                            return Json(robj, JsonRequestBehavior.AllowGet);
-
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
                         }
 
 
@@ -46486,7 +46496,13 @@ namespace AbhyProject.Controllers
                                 }
 
                             }
-                            return Json(robj, JsonRequestBehavior.AllowGet);
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
 
                         }
 
@@ -46669,8 +46685,13 @@ namespace AbhyProject.Controllers
                                 }
 
                             }
-                            return Json(robj, JsonRequestBehavior.AllowGet);
-
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
                         }
 
 
@@ -49835,8 +49856,13 @@ namespace AbhyProject.Controllers
                                 robj = bytesdata;
                             }
                         }
-                        return Json(robj, JsonRequestBehavior.AllowGet);
-
+                        //return Json(robj, JsonRequestBehavior.AllowGet);
+                        return new JsonResult
+                        {
+                            Data = new { robj },
+                            MaxJsonLength = int.MaxValue,
+                            JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                        };
                     }
 
                     else
@@ -54372,8 +54398,13 @@ namespace AbhyProject.Controllers
                                 }
 
                             }
-                            return Json(robj, JsonRequestBehavior.AllowGet);
-
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
                         }
 
 
@@ -55655,10 +55686,14 @@ namespace AbhyProject.Controllers
                                 }
 
                             }
-                            return Json(robj, JsonRequestBehavior.AllowGet);
-
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
                         }
-
 
                     }
 
@@ -55864,8 +55899,13 @@ namespace AbhyProject.Controllers
                                 }
 
                             }
-                            return Json(robj, JsonRequestBehavior.AllowGet);
-
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
                         }
 
 
@@ -56209,5 +56249,7 @@ namespace AbhyProject.Controllers
             }
 
         }
+
+       
     }
 }
