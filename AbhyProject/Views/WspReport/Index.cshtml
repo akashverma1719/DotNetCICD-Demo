@@ -64,11 +64,11 @@
         text-decoration: none;
     }
 
-    
 
-    
 
-    .loader > img {
+
+
+    #loader_excel > img {
         top: 45%;
         left: 45%;
         position: fixed;
@@ -76,7 +76,7 @@
         width: 150px;
     }
 
-    .loader {
+    #loader_excel {
         width: 100%;
         height: 100%;
         top: 0;
@@ -361,7 +361,7 @@
 
 
 <div class="loading-container">
-    <div class="loader">
+    <div id="loader_excel">
         <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
     </div>
 </div>
@@ -393,7 +393,7 @@
     $('#GramLabel').hide();
     $('#GramDropdownLabel').hide();
     $('#DropdownSearch_btn').hide();
-        $('.loader').hide();
+        $('#loader_excel').hide();
 
 
     });
@@ -941,7 +941,7 @@
             }
             else {
                 
-                $('.loader').show();
+                $('#loader_excel').show();
                 let url;
                 if (Year == "2023-24") {
                     if (Sub_Module_Name == "-2") {
@@ -1013,7 +1013,7 @@
                                 link.download = Rdata.robj.FileDownloadName;
                                 link.click();
 
-                                $('.loader').hide();
+                                $('#loader_excel').hide();
                                 //$('#myModal').attr('data-backdrop', 'false');
                                 $('.modal-backdrop').remove();
                                 $("#myModal").modal('hide');
@@ -1034,7 +1034,7 @@
                             link.href = window.URL.createObjectURL(blob);
                             link.download = Rdata.FileDownloadName;
                             link.click();
-                            $('.loader').hide();                           
+                            $('#loader_excel').hide();
                             $("#Module_Name").val("0");
                             $("#Sub_Module_Name").val("0");
                                 $("#spnstate").val("0");
@@ -1045,7 +1045,7 @@
 
                             }
                         } else {
-                            $('.loader').show();
+                            $('#loader_excel').show();
                         }
 
                     },
@@ -1119,14 +1119,14 @@
 
     });
     $("#confirm-button").click(function () {
-        $('.loader').show();
+        $('#loader_excel').show();
         $("#myModal").modal('hide');
         var Module_Name = $("#Module_Name").val();
         var Sub_Module_Name = $("#Sub_Module_Name").val();
         var Year = $("#Year").val()
         if (State == "0") {
             alert("Please Select State");
-            $('.loader').hide();
+            $('#loader_excel').hide();
             return false;
 
         } else if (Module_Name == "0") {
@@ -1203,7 +1203,7 @@
                             link.download = Rdata.FileDownloadName;
                             link.click();
 
-                            $('.loader').hide();
+                        $('#loader_excel').hide();
                             //$('#myModal').attr('data-backdrop', 'false');
                             $('.modal-backdrop').remove();
                         $("#myModal").modal('hide');
