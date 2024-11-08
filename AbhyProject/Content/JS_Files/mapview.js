@@ -2004,7 +2004,7 @@ require([
 
 
     const GPLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Hosted/DistrictBlockGP/FeatureServer/0",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2036,7 +2036,7 @@ require([
 
 
     const BlockLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/1",
         definitionExpression: "state <> 'Delhi_7'",
         labelingInfo: [labelClassB],
         content: blockChange,
@@ -2062,7 +2062,7 @@ require([
     });
 
     const DistrictLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/2",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/0",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Districts",
         labelingInfo: [labelClassD],
@@ -2317,7 +2317,7 @@ require([
     });
 
 
-    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/2/query";
+    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/0/query";
     countryDDL.addEventListener("change", function () {
         var stateName = countryDDL.value;
 
@@ -2391,7 +2391,7 @@ require([
             f: "json"
         }
     }
-    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/3/query";
+    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/1/query";
 
     DistrictDDL.addEventListener("change", function () {
         var districtname = DistrictDDL.value;
@@ -2470,7 +2470,7 @@ require([
 
     //GP Query
 
-    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/1/query";
+    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/1/query";
     BlockDDL.addEventListener("change", function () {
         var blockname = BlockDDL.value;
         if (blockname === '0') {
