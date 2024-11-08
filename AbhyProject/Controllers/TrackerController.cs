@@ -72,7 +72,7 @@ namespace AbhyProject.Controllers
                         StateName = "Haryana_6";
                         DistrinctCount = 14;
                         BlockCount = 36;
-                        GpCount = 1656;
+                        GpCount = 1647;
                     }
                     else if (state == "Karnataka_29")
                     {
@@ -107,7 +107,7 @@ namespace AbhyProject.Controllers
                         StateName = "Uttar Pradesh_9";
                         DistrinctCount = 10;
                         BlockCount = 26;
-                        GpCount = 550;
+                        GpCount = 549;
                     }
                     List<GpTracker> AllData = new List<GpTracker>();
                     GpTracker obj = new GpTracker();
@@ -293,7 +293,7 @@ namespace AbhyProject.Controllers
                                 StateName = "Haryana_6";
                                 DistrinctCount = 14;
                                 BlockCount = 36;
-                                GpCount = 1656;
+                                GpCount = 1647;
                             }
                             else if (item == "Karnataka_29")
                             {
@@ -328,7 +328,7 @@ namespace AbhyProject.Controllers
                                 StateName = "Uttar Pradesh_9";
                                 DistrinctCount = 10;
                                 BlockCount = 26;
-                                GpCount = 550;
+                                GpCount = 549;
                             }
 
                             var stateData = ABE.obj_vw_gpdcidata_tracker_count_statewise.FirstOrDefault(x => x.state_name == item && x.year == year);
@@ -696,7 +696,7 @@ namespace AbhyProject.Controllers
                         StateName = "Haryana_6";
                         DistrinctCount = 14;
                         BlockCount = 36;
-                        GpCount = 1656;
+                        GpCount = 1647;
                     }
                     else if (state == "Karnataka_29")
                     {
@@ -731,7 +731,7 @@ namespace AbhyProject.Controllers
                         StateName = "Uttar Pradesh_9";
                         DistrinctCount = 10;
                         BlockCount = 26;
-                        GpCount = 550;
+                        GpCount = 549;
                     }
                     List<GpTracker> AllData = new List<GpTracker>();
                     GpTracker obj = new GpTracker();
@@ -833,7 +833,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Haryana_6";
                                     DistrinctCount = 14;
                                     BlockCount = 36;
-                                    GpCount = 1656;
+                                    GpCount = 1647;
                                 }
                                 else if (item == "Karnataka_29")
                                 {
@@ -868,7 +868,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Uttar Pradesh_9";
                                     DistrinctCount = 10;
                                     BlockCount = 26;
-                                    GpCount = 550;
+                                    GpCount = 549;
                                 }
                                 GpTracker obj2 = new GpTracker();
                                 int SavedGP = ABE.obj_abhy_wsp_gpdata_new.Where(x => x.state_name == item && x.year == year).ToList().Count();//total list
@@ -989,7 +989,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Haryana_6";
                                     DistrinctCount = 14;
                                     BlockCount = 36;
-                                    GpCount = 1656;
+                                    GpCount = 1647;
                                 }
                                 else if (item == "Karnataka_29")
                                 {
@@ -1024,7 +1024,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Uttar Pradesh_9";
                                     DistrinctCount = 10;
                                     BlockCount = 26;
-                                    GpCount = 550;
+                                    GpCount = 549;
                                 }
                                 GpTracker obj2 = new GpTracker();
                                 int SavedGP = ABE.obj_abhy_wsp_gpdata_new_23.Where(x => x.state_name == item && x.year == year).ToList().Count();//total list
@@ -1147,7 +1147,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Haryana_6";
                                     DistrinctCount = 14;
                                     BlockCount = 36;
-                                    GpCount = 1656;
+                                    GpCount = 1647;
                                 }
                                 else if (item == "Karnataka_29")
                                 {
@@ -1182,7 +1182,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Uttar Pradesh_9";
                                     DistrinctCount = 10;
                                     BlockCount = 26;
-                                    GpCount = 550;
+                                    GpCount = 549;
                                 }
                                 GpTracker obj2 = new GpTracker();
                                 int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24.Where(x => x.state_name == item && x.year == year).ToList().Count();//total list
@@ -1305,7 +1305,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Haryana_6";
                                     DistrinctCount = 14;
                                     BlockCount = 36;
-                                    GpCount = 1656;
+                                    GpCount = 1647;
                                 }
                                 else if (item == "Karnataka_29")
                                 {
@@ -1340,7 +1340,7 @@ namespace AbhyProject.Controllers
                                     StateName = "Uttar Pradesh_9";
                                     DistrinctCount = 10;
                                     BlockCount = 26;
-                                    GpCount = 550;
+                                    GpCount = 549;
                                 }
                                 GpTracker obj2 = new GpTracker();
                                 int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == item && x.year == year).ToList().Count();//total list
@@ -1468,7 +1468,7 @@ namespace AbhyProject.Controllers
                         StateName = "Haryana_6";
                         DistrinctCount = 14;
                         BlockCount = 36;
-                        GpCount = 1656;
+                        GpCount = 1647;
                     }
                     else if (state == "Karnataka_29")
                     {
@@ -1503,7 +1503,7 @@ namespace AbhyProject.Controllers
                         StateName = "Uttar Pradesh_9";
                         DistrinctCount = 10;
                         BlockCount = 26;
-                        GpCount = 550;
+                        GpCount = 549;
                     }
                     List<GpTracker> AllData = new List<GpTracker>();
                     GpTracker obj = new GpTracker();
@@ -1614,7 +1614,7 @@ namespace AbhyProject.Controllers
                                 StateName = "Haryana_6";
                                 DistrinctCount = 14;
                                 BlockCount = 36;
-                                GpCount = 1656;
+                                GpCount = 1647;
                             }
                             else if (item == "Karnataka_29")
                             {
@@ -1649,7 +1649,7 @@ namespace AbhyProject.Controllers
                                 StateName = "Uttar Pradesh_9";
                                 DistrinctCount = 10;
                                 BlockCount = 26;
-                                GpCount = 550;
+                                GpCount = 549;
                             }
                             GpTracker obj2 = new GpTracker();
                             int SavedGP = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == item && x.year == year).GroupBy(x => x.gpname).ToList().Count();//total list
