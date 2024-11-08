@@ -682,7 +682,7 @@
     var State = "0";
     var StateOfficer = "0";
     $(document).ready(function () {
-        
+        debugger;
         StateOfficer = '@Session["Officer"]';
         State = '@Session["gstate"]';
         Dist = '@Session["gdist"]';
@@ -699,7 +699,7 @@
 
         if (StateOfficer == "Admin" && StateOfficer == "National Level Nodal Officer") {
             
-             $('#state_name').text("@Session["state_name"]");
+             $('#state_name').text('@Session["state_name"]');
             $('#spnstate').text("@Session["state_name"]");
             $('#dist_name').text("@Session["dist_name"]");
             $('#spndist').text("@Session["dist_name"]");

@@ -1308,7 +1308,11 @@
                     window.location = "/Home/LogOut";
                 }
                 var Tbodyhtml = '';
-                if (results.length != 0) {
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr style="text-align:center;"><td colspan="11"><label>No Data</label></td></tr>';
+                    $('#tbldata_block').html(Tbodyhtml);
+                }
+               else if (results.length != 0) {
                     $("#exportBtn").removeAttr("disabled");
                     $("#exportBtn_dist").removeAttr("disabled");
                     $("#exportBtn_block").removeAttr("disabled");
