@@ -1192,29 +1192,83 @@
                     "Module_name": `${Module_Name}`,//'1.1',
                     "Year": `${Year}`//'2023-24 Update'
                 },
-                success: function (Rdata) {
-                    //console.log(Rdata)
+                //success: function (Rdata) {
+                //    //console.log(Rdata)
                    
+                //    if (Rdata !== null) {
+                //            var bytes = new Uint8Array(Rdata.FileContents);
+                //            var blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                //            var link = document.createElement('a');
+                //            link.href = window.URL.createObjectURL(blob);
+                //            link.download = Rdata.FileDownloadName;
+                //            link.click();
+
+                //        $('#loader_excel').hide();
+                //            //$('#myModal').attr('data-backdrop', 'false');
+                //            $('.modal-backdrop').remove();
+                //        $("#myModal").modal('hide');
+                //        $("#spnstate").val("0");
+                //        $("#dist11").val("0");
+                //        $("#block1").val("0");
+                //        $("#gram").val("0");
+                        
+                //    }
+                    
+                //},
+
+
+                success: function (Rdata) {
+                    console.log(Rdata);
+                    console.log('success');
                     if (Rdata !== null) {
-                            var bytes = new Uint8Array(Rdata.FileContents);
+                        console.log('robj');
+                        if (Rdata.hasOwnProperty('robj')) {
+                            console.log('ds');
+                            console.log(Rdata.robj.FileContents)
+                            var bytes = new Uint8Array(Rdata.robj.FileContents);
                             var blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = Rdata.robj.FileDownloadName;
+                            link.click();
+
+                            $('#loader_excel').hide();
+                            //$('#myModal').attr('data-backdrop', 'false');
+                            $('.modal-backdrop').remove();
+                            $("#myModal").modal('hide');
+                            $("#Module_Name").val("0");
+                            $("#Sub_Module_Name").val("0");
+                            $("#spnstate").val("0");
+                            $("#dist11").val("0");
+                            $("#block1").val("0");
+                            $("#gram").val("0");
+
+                        }
+                        else {
+                            var bytes = new Uint8Array(Rdata.FileContents);
+                            var blob = new Blob([bytes], {
+                                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            });
                             var link = document.createElement('a');
                             link.href = window.URL.createObjectURL(blob);
                             link.download = Rdata.FileDownloadName;
                             link.click();
+                            $('#loader_excel').hide();
+                            $("#Module_Name").val("0");
+                            $("#Sub_Module_Name").val("0");
+                            $("#spnstate").val("0");
+                            $("#dist11").val("0");
+                            $("#block1").val("0");
+                            $("#gram").val("0");
 
-                        $('#loader_excel').hide();
-                            //$('#myModal').attr('data-backdrop', 'false');
-                            $('.modal-backdrop').remove();
-                        $("#myModal").modal('hide');
-                        $("#spnstate").val("0");
-                        $("#dist11").val("0");
-                        $("#block1").val("0");
-                        $("#gram").val("0");
-                        
+
+                        }
+                    } else {
+                        $('#loader_excel').show();
                     }
-                    
+
                 },
+
                 error: function (err) {
 
                 }
