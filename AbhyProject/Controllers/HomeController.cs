@@ -3662,7 +3662,6 @@ namespace AbhyProject.Controllers
         public ActionResult Sign_Up_DropdownInfo()
         {
             //string state = string.Empty;
-
             try
             {
                 var slist = ABE.obj_abhy_block_gp_area_info.ToList();
