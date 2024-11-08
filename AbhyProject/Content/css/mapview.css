@@ -591,7 +591,7 @@ body {
 
     /*----------------toggeled sidebar----------------*/
 
-    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
+    .page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
         left: 0px;
         top: 8vw;
     }
@@ -657,7 +657,7 @@ body {
         padding-right: 90px !important;
     }*/
 
-    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
+    .page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
         left: 0px;
         top: calc(8vw + 12px);
         z-index: 2;
@@ -3642,30 +3642,30 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     display: none;
 }
 
-#popupModal {
+.modal.queryModal {
     width: 27%;
     background-color: transparent;
     padding: 0px;
 }
 
 
-    #popupModal .modal-content {
+    .modal.queryModal .modal-content {
         margin: 0;
         margin-top: auto;
         height: 78vh;
         padding: 0px
     }
 
-    #popupModal .modal-header {
+    .modal.queryModal .modal-header {
         background-color: #004592 !important;
         color: #fff;
     }
 
-    #popupModal .modal-body {
+    .modal.queryModal .modal-body {
         overflow: scroll;
     }
 
-    #popupModal .form-group label {
+    .modal.queryModal .form-group label {
         width: 100%;
     }
 
@@ -3674,12 +3674,20 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     color: #fff !important;
 }
 
-.closePopupModal {
+.closePopupModal, .closePopupModal2 {
     color: #fff !important;
 }
 
 .popUpZoom {
     cursor: pointer;
+}
+
+.WellWrap {
+    row-gap: 5px;
+}
+
+.water-quality-analysis-report {
+    display: none;
 }
 
 .popUpText {
@@ -3829,7 +3837,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         margin: 0px;
     }
 
-    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
+    .page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
         top: 100px;
         width: 100%;
         z-index: 999;
@@ -3923,7 +3931,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         width: 45%;
     }
 
-    #popupModal {
+    .modal.queryModal {
         width: 45%;
     }
 
@@ -4070,7 +4078,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         font-size: 13px;
     }
 
-    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
+    .page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
         top: calc(8vw + 24px) !important;
     }
 }
@@ -4773,6 +4781,66 @@ table .rainguage_icon1 {
         cursor: pointer;
     }
 
+.queryDiv {
+    position: relative;
+}
+
+.query-dropdown {
+    display: none;
+    position: absolute;
+    bottom: -68px;
+    left: 0px;
+    width: 140px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: aliceblue;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.queryDiv:hover .query-dropdown {
+    display: flex;
+}
+
+/*.query-dropdown.show {
+    display: flex;
+}
+*/
+.query-dropdown a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: #000;
+    text-decoration: none;
+    transition: all ease-in-out 0.3s;
+    padding: 5px;
+}
+
+    .query-dropdown a:hover {
+        background-color: #ddd;
+        text-decoration: none;
+    }
+
+#waterLevelForm .queryExportBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #004592;
+    border-radius: 8px;
+    color: #fff;
+    border: 1px solid #004592;
+    height: calc(1.5em + .75rem + 2px);
+    width: 40px;
+    transition: all ease-in-out 0.2s;
+}
+
+    #waterLevelForm .queryExportBtn:hover {
+        background-color: #fff;
+        color: #004592;
+        border: 1px solid #004592;
+    }
+
 @media only screen and (max-width: 430px) {
     #mapInfo, #popupfeed {
         left: 0px;
@@ -4793,6 +4861,316 @@ table .rainguage_icon1 {
         top: 122px !important;
     }
 }
-.openPopupBtn {
-    display: none; /* This hides the button by default */
+
+
+/* for the Water Level Button and Water Quality download */
+
+#downloadExcelWL, #downloadExcel {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    line-height: 1;
+    position: relative;
 }
+
+
+    #downloadExcelWL i, #downloadExcel i {
+        background-color: #004592;
+        color: white;
+        padding: 8px;
+        border-radius: 10px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+
+    #downloadExcelWL:hover i, #downloadExcel:hover i {
+        background-color: #fff;
+        color: #004592;
+        border: 1px solid #004592;
+    }
+
+
+    #downloadExcelWL::after, #downloadExcel::after {
+        content: '';
+        visibility: hidden;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 3px 8px;
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 10px;
+        text-transform: none;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
+
+    #downloadExcelWL:hover::after {
+        content: 'Download';
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #downloadExcel:hover::after {
+        content: 'Download';
+        visibility: visible;
+        opacity: 1;
+    }
+
+.waterwell {
+    display: none;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .waterwell .badge-primary {
+        color: #fff;
+        background-color: #094080;
+    }
+
+.filter-container .badge {
+    color: #fff;
+    background-color: #094080;
+}
+
+.filter-container p span:first-child {
+    font-weight: 500;
+}
+/* for the Filter Button */
+.filter-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.queryModal h5 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #004592;
+}
+
+.filter-form .form-group-inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.filter-form label {
+    flex-grow: 1;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.filter-form input[type="number"] {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+    .filter-form input[type="number"]:focus {
+        border-color: #004592;
+        outline: none;
+    }
+
+/* Submit and Download Button  */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Small Submit Button */
+.submit-button {
+    padding: 5px 12px;
+    background-color: #004592;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+    .submit-button:hover {
+        background-color: #003366;
+    }
+
+/* Download Button */
+.download-button {
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    line-height: 1;
+    position: relative;
+}
+
+    .download-button i {
+        background-color: #004592;
+        color: white;
+        padding: 8px;
+        border-radius: 10px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .download-button:hover i {
+        background-color: #fff;
+        color: #004592;
+        border: 1px solid #004592;
+    }
+
+    .download-button::after {
+        content: 'Download';
+        visibility: hidden;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 3px 8px;
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 10px;
+        text-transform: none;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
+    .download-button:hover::after {
+        visibility: visible;
+        opacity: 1;
+    }
+
+
+#wellCountResult, #wellCountResultWQ {
+    display: none;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #e9ecef;
+}
+
+@media (max-width: 600px) {
+    .form-group-inline {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    label {
+        margin-bottom: 5px;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .submit-button, .download-button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+.count-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.count-textbox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    min-width: 50px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+
+.count-container p {
+    margin: 0;
+}
+
+.well-count-container {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Styling the location list */
+
+.location-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 5px;
+}
+
+    .location-list li {
+        background-color: #e7f3ff;
+        border: 1px solid #004592;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #004592;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: block;
+        text-align: center;
+    }
+
+        .location-list li:hover {
+            background-color: #b3e0ff;
+            cursor: pointer;
+        }

@@ -27,6 +27,7 @@ using System.Web.Hosting;
 using Microsoft.Ajax.Utilities;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Web.Razor.Parser.SyntaxTree;
 
 namespace AbhyProject.Controllers
 {
@@ -489,6 +490,8 @@ namespace AbhyProject.Controllers
 
 
         //
+
+
         public ActionResult exesitingwellexcel(string state1, string district1, string block01, string gp1)
         {
             var State = state1;
@@ -824,7 +827,7 @@ namespace AbhyProject.Controllers
             {
                 var worksheet = workbook.Worksheets.Add("Existing Well");
                 var currentRow = 1;
-
+                worksheet.Cell(currentRow, 1).Value = "Well Id";
                 worksheet.Cell(currentRow, 2).Value = "State";
                 worksheet.Cell(currentRow, 3).Value = "District";
                 worksheet.Cell(currentRow, 4).Value = "Block";
@@ -851,12 +854,12 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow, 25).Value = "Chloride mg/L";
                 worksheet.Cell(currentRow, 26).Value = "Fluoride mg/L";
                 worksheet.Cell(currentRow, 27).Value = "Nitrate mg/L";
-                worksheet.Cell(currentRow, 28).Value = "Well ID";
+                worksheet.Cell(currentRow, 28).Value = "Data ID";
 
                 foreach (var item in abc)
                 {
-                    currentRow++;
-
+                    currentRow++; 
+                    worksheet.Cell(currentRow, 1).Value = item.pv_data_well_id;
                     worksheet.Cell(currentRow, 2).Value = item.state_name;
                     worksheet.Cell(currentRow, 3).Value = item.district_name;
                     worksheet.Cell(currentRow, 4).Value = item.block_name;
@@ -883,7 +886,7 @@ namespace AbhyProject.Controllers
                     worksheet.Cell(currentRow, 25).Value = item.chloride;
                     worksheet.Cell(currentRow, 26).Value = item.fluoride;
                     worksheet.Cell(currentRow, 27).Value = item.nitrate;
-                    worksheet.Cell(currentRow, 28).Value = item.pv_data_well_id;
+                    worksheet.Cell(currentRow, 28).Value = item.pv_meta_id;
                 }
 
                 using (var stream = new MemoryStream())
@@ -3093,539 +3096,6 @@ namespace AbhyProject.Controllers
             return View();
         }
 
-        // for waterlevel
-
-
-        [HttpGet]
-        public JsonResult FetchLocationOptionsWL(string state = null, string district = null, string block = null, string grampanchayat = null)
-        {
-            try
-            {
-                // If no parameter is provided, fetch states
-                if (string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
-                {
-                    // Get the distinct states
-                    var distinctStates = AJE.obj_gwl_meta
-                                            .Where(x => !string.IsNullOrEmpty(x.state)) // Exclude null/empty states
-                                            .Select(x => x.state)
-                                            .Distinct()
-                                            .ToList();
-
-                    var totalStatesCount = AJE.obj_gwl_meta.Count(x => !string.IsNullOrEmpty(x.state));
-
-                    if (!distinctStates.Any())
-                    {
-                        return Json(new { success = false, message = "No Data Available" }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = distinctStates, totalCount = totalStatesCount }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If only the state is provided, fetch districts
-                if (!string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
-                {
-                    var districtOptions = AJE.obj_gwl_meta
-                                                .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
-                                                .Select(x => new { name = x.district })
-                                                .Distinct()
-                                                .ToList();
-
-                    var sourceOptions = AJE.obj_gwl_meta
-                                              .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
-                                              .Select(x => x.source_Ownership)
-                                              .Distinct()
-                                              .ToList();
-
-                    if (!districtOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No districts found for this state." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = districtOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If both state and district are provided, fetch blocks
-                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
-                {
-                    var blockOptions = AJE.obj_gwl_meta
-                                           .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
-                                           .Select(x => new { name = x.block })
-                                           .Distinct()
-                                           .ToList();
-                    var sourceOptions = AJE.obj_gwl_meta
-                                          .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
-                                         .Select(x => x.source_Ownership)
-                                          .Distinct()
-                                          .ToList();
-
-                    if (!blockOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No blocks available for this district." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = blockOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If state, district, and block are provided, fetch gram panchayats
-                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
-                {
-                    var gpOptions = AJE.obj_gwl_meta
-                                       .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.grampanchayat)) // Exclude null/empty GPs
-                                       .Select(x => x.grampanchayat)
-                                       .Distinct()
-                                       .ToList();
-                    var sourceOptions = AJE.obj_gwl_meta
-                                      .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.grampanchayat)) // Exclude null/empty GPs
-                                     .Select(x => x.source_Ownership)
-                                      .Distinct()
-                                      .ToList();
-
-                    if (!gpOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No GPs available for this block." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = gpOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If state, district, block, and gp are provided, fetch sources
-                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && !string.IsNullOrEmpty(grampanchayat))
-                {
-                    var sourceOptions = AJE.obj_gwl_meta
-                                          .Where(x => x.state == state && x.district == district && x.block == block && x.grampanchayat == grampanchayat && !string.IsNullOrEmpty(x.source_Ownership)) // Exclude null/empty sources
-                                          .Select(x => x.source_Ownership)
-                                          .Distinct()
-                                          .ToList();
-
-                    if (!sourceOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No sources available for this GP." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Return an error if some parameter is invalid
-                return Json(new { success = false, message = "Invalid parameters." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error fetching location options: " + ex.Message);
-                return Json(new { success = false, message = "Error occurred while fetching data" }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-
-        [HttpGet]
-        public JsonResult FetchSourceAndWellTypeOptionsWL(string state, string district, string block, string grampanchayat, string source_Ownership)
-        {
-            try
-            {
-                // Check if required parameters are provided
-                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
-                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(grampanchayat) || string.IsNullOrEmpty(source_Ownership))
-                {
-                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Fetch sources from your data source (for demonstration)
-                var sources = new List<string> { "SGWD", "PHED", "SGWB", "CGWB" };
-
-                // Fetch count of well types based on selected filters
-                var wellTypeCounts = AJE.obj_gwl_meta
-                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
-                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
-                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
-                                x.grampanchayat.Trim().ToLower() == grampanchayat.Trim().ToLower() &&
-                                x.source_Ownership.Trim().ToLower() == source_Ownership.Trim().ToLower()) // Filter by source
-                    .GroupBy(x => x.typeofwell) // Group by well_type
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
-                        Count = g.Count() // Count of each well_type
-                    })
-                    .ToList();
-
-                return wellTypeCounts.Any()
-                    ? Json(new { success = true, sources, wellTypeCounts }, JsonRequestBehavior.AllowGet)
-                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-
-        [HttpGet]
-        public JsonResult FetchSourceOptionsWL(string state, string district, string block, string grampanchayat)
-        {
-            try
-            {
-                // Validate parameters
-                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
-                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(grampanchayat))
-                {
-                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Fetch sources based on the selected filters
-                var sources = AJE.obj_gwl_meta
-                                  .Where(x => x.state == state &&
-                                              x.district == district &&
-                                              x.block == block &&
-                                              x.grampanchayat == grampanchayat) // Filter by parameters
-                                  .Select(x => x.source_Ownership) // Assuming 'source' is the column you want
-                                  .Distinct() // Ensure distinct sources
-                                  .ToList();
-
-                return sources.Any()
-                    ? Json(new { success = true, options = sources }, JsonRequestBehavior.AllowGet)
-                    : Json(new { success = false, message = "No sources available for the selected criteria." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception and return error response
-                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-
-
-        [HttpGet]
-        public JsonResult FetchWellTypeCountBySourceWL(string state = null, string district = null, string block = null, string grampanchayat = null, string source_Ownership = null)
-        {
-            try
-            {
-                // Fetch counts of well types based on selected parameters
-                var wellTypeCounts = AJE.obj_gwl_meta
-                    .Where(x =>
-                        (string.IsNullOrEmpty(state) || x.state == state) &&
-                        (string.IsNullOrEmpty(district) || x.district == district) &&
-                        (string.IsNullOrEmpty(block) || x.block == block) &&
-                        (string.IsNullOrEmpty(grampanchayat) || x.grampanchayat == grampanchayat) &&
-                        (string.IsNullOrEmpty(source_Ownership) || x.source_Ownership == source_Ownership))
-                    .GroupBy(x => x.typeofwell) // Group by well_type
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
-                        Count = g.Count() // Count occurrences of each well_type
-                    })
-                    .ToList();
-
-                return Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error fetching well type count by source: " + ex.Message);
-                return Json(new { success = false, message = "Error occurred while fetching well type count" }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [HttpGet]
-        public JsonResult FetchWellTypeCountWL(string state, string district, string block, string grampanchayat, string source_Ownership)
-        {
-            try
-            {
-                // Check if required parameters are provided
-                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
-                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(grampanchayat) || string.IsNullOrEmpty(source_Ownership))
-                {
-                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Fetch count of well types based on selected filters
-                var wellTypeCounts = AJE.obj_gwl_meta
-                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
-                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
-                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
-                                x.grampanchayat.Trim().ToLower() == grampanchayat.Trim().ToLower() &&
-                                x.source_Ownership.Trim().ToLower() == source_Ownership.Trim().ToLower()) // Filter by source
-                    .GroupBy(x => x.typeofwell) // Group by well_type
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
-                        Count = g.Count() // Count of each well_type
-                    })
-                    .ToList();
-
-                return wellTypeCounts.Any()
-                    ? Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet)
-                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-        //  for waterquality
-
-
-        [HttpGet]
-        public JsonResult FetchLocationOptions(string state = null, string district = null, string block = null, string gp = null)
-        {
-            try
-            {
-                // If no parameter is provided, fetch states
-                if (string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
-                {
-                    // Get the distinct states
-                    var distinctStates = AJE.obj_pv_quality_meta
-                                            .Where(x => !string.IsNullOrEmpty(x.state)) // Exclude null/empty states
-                                            .Select(x => x.state)
-                                            .Distinct()
-                                            .ToList();
-
-                    var totalStatesCount = AJE.obj_pv_quality_meta.Count(x => !string.IsNullOrEmpty(x.state));
-
-                    if (!distinctStates.Any())
-                    {
-                        return Json(new { success = false, message = "No Data Available" }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = distinctStates, totalCount = totalStatesCount }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If only the state is provided, fetch districts
-                if (!string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
-                {
-                    var districtOptions = AJE.obj_pv_quality_meta
-                                                .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
-                                                .Select(x => new { name = x.district })
-                                                .Distinct()
-                                                .ToList();
-
-                    var sourceOptions = AJE.obj_pv_quality_meta
-                                             .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
-                                             .Select(x => x.source)
-                                             .Distinct()
-                                             .ToList();
-
-                    if (!districtOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No districts found for this state." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = districtOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If both state and district are provided, fetch blocks
-                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
-                {
-                    var blockOptions = AJE.obj_pv_quality_meta
-                                           .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
-                                           .Select(x => new { name = x.block })
-                                           .Distinct()
-                                           .ToList();
-
-
-
-                    var sourceOptions = AJE.obj_pv_quality_meta
-                                          .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
-                                         .Select(x => x.source)
-                                          .Distinct()
-                                          .ToList();
-
-                    if (!blockOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No blocks available for this district." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = blockOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If state, district, and block are provided, fetch gram panchayats
-                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
-                {
-                    var gpOptions = AJE.obj_pv_quality_meta
-                                       .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.gp)) // Exclude null/empty GPs
-                                       .Select(x => x.gp)
-                                       .Distinct()
-                                       .ToList();
-
-                    var sourceOptions = AJE.obj_pv_quality_meta
-                                      .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.gp)) // Exclude null/empty GPs
-                                     .Select(x => x.source)
-                                      .Distinct()
-                                      .ToList();
-
-                    if (!gpOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No GPs available for this block." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = gpOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // If state, district, block, and gp are provided, fetch sources
-                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && !string.IsNullOrEmpty(gp))
-                {
-                    var sourceOptions = AJE.obj_pv_quality_meta
-                                          .Where(x => x.state == state && x.district == district && x.block == block && x.gp == gp && !string.IsNullOrEmpty(x.source)) // Exclude null/empty sources
-                                          .Select(x => x.source)
-                                          .Distinct()
-                                          .ToList();
-
-                    if (!sourceOptions.Any())
-                    {
-                        return Json(new { success = false, message = "No sources available for this GP." }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    return Json(new { success = true, options = sourceOptions }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Return an error if some parameter is invalid
-                return Json(new { success = false, message = "Invalid parameters." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error fetching location options: " + ex.Message);
-                return Json(new { success = false, message = "Error occurred while fetching data" }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [HttpGet]
-        public JsonResult FetchWellTypeCountBySource(string state = null, string district = null, string block = null, string gp = null, string source = null)
-        {
-            try
-            {
-                // Fetch counts of well types based on selected parameters
-                var wellTypeCounts = AJE.obj_pv_quality_meta
-                    .Where(x =>
-                        (string.IsNullOrEmpty(state) || x.state == state) &&
-                        (string.IsNullOrEmpty(district) || x.district == district) &&
-                        (string.IsNullOrEmpty(block) || x.block == block) &&
-                        (string.IsNullOrEmpty(gp) || x.gp == gp) &&
-                        (string.IsNullOrEmpty(source) || x.source == source))
-                    .GroupBy(x => x.well_type) // Group by well_type
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
-                        Count = g.Count()
-                    })
-                    .ToList();
-
-                return Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error fetching well type count by source: " + ex.Message);
-                return Json(new { success = false, message = "Error occurred while fetching well type count" }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-
-        [HttpGet]
-        public JsonResult FetchSourceAndWellTypeOptions(string state, string district, string block, string gp, string source)
-        {
-            try
-            {
-                // Check if required parameters are provided
-                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
-                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(gp) || string.IsNullOrEmpty(source))
-                {
-                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Fetch sources from your data source (for demonstration)
-                var sources = new List<string> { "SGWD", "PHED", "SGWB", "CGWB" };
-
-                // Fetch count of well types based on selected filters
-                var wellTypeCounts = AJE.obj_pv_quality_meta
-                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
-                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
-                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
-                                x.gp.Trim().ToLower() == gp.Trim().ToLower() &&
-                                x.source.Trim().ToLower() == source.Trim().ToLower()) // Filter by source
-                    .GroupBy(x => x.well_type) // Group by well_type
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
-                        Count = g.Count() // Count of each well_type
-                    })
-                    .ToList();
-
-                return wellTypeCounts.Any()
-                    ? Json(new { success = true, sources, wellTypeCounts }, JsonRequestBehavior.AllowGet)
-                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [HttpGet]
-        public JsonResult FetchWellTypeCount(string state, string district, string block, string gp, string source)
-        {
-            try
-            {
-                // Check if required parameters are provided
-                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
-                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(gp) || string.IsNullOrEmpty(source))
-                {
-                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Fetch count of well types based on selected filters
-                var wellTypeCounts = AJE.obj_pv_quality_meta
-                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
-                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
-                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
-                                x.gp.Trim().ToLower() == gp.Trim().ToLower() &&
-                                x.source.Trim().ToLower() == source.Trim().ToLower()) // Filter by source
-                    .GroupBy(x => x.well_type) // Group by well_type
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
-                        Count = g.Count() // Count of each well_type
-                    })
-                    .ToList();
-
-                return wellTypeCounts.Any()
-                    ? Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet)
-                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [HttpGet]
-        public JsonResult FetchSourceOptions(string state, string district, string block, string gp)
-        {
-            try
-            {
-                // Validate parameters
-                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
-                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(gp))
-                {
-                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
-                }
-
-                // Fetch sources based on the selected filters
-                var sources = AJE.obj_pv_quality_meta
-                                  .Where(x => x.state == state &&
-                                              x.district == district &&
-                                              x.block == block &&
-                                              x.gp == gp) // Filter by parameters
-                                  .Select(x => x.source) // Assuming 'source' is the column you want
-                                  .Distinct() // Ensure distinct sources
-                                  .ToList();
-
-                return sources.Any()
-                    ? Json(new { success = true, options = sources }, JsonRequestBehavior.AllowGet)
-                    : Json(new { success = false, message = "No sources available for the selected criteria." }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception and return error response
-                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-
         // for zooming to map selected
 
         // statewaterlevel
@@ -3770,19 +3240,19 @@ namespace AbhyProject.Controllers
         }
         //
 
-        public JsonResult Query_WLSource(string state, string district, string block, string grampanchayat, string source_Ownership)
+        public JsonResult Query_WLSource(string state, string district, string block, string grampanchayat, string source_ownership_type)
         {
             var coordinates = new List<object>();
 
             try
             {
                 // Fetch all records from the database that match the selected parameters
-                var allDetails = AJE.obj_gwl_meta
+                var allDetails = AJE.obj_vw_bs_waterlevel_pv_meta_data
      .Where(x => (string.IsNullOrEmpty(state) || x.state == state) &&
                   (string.IsNullOrEmpty(district) || x.district == district) &&
                   (string.IsNullOrEmpty(block) || x.block == block) &&
                   (string.IsNullOrEmpty(grampanchayat) || x.grampanchayat == grampanchayat) &&
-                  (string.IsNullOrEmpty(source_Ownership) || x.source_Ownership == source_Ownership))
+                  (string.IsNullOrEmpty(source_ownership_type) || x.source_ownership_type == source_ownership_type))
      .ToList();
 
                 // Log the count of records found
@@ -3996,12 +3466,11 @@ namespace AbhyProject.Controllers
                 foreach (var detail in allDetails)
                 {
                     // Handle potential null values for latitude and longitude
-                    var latitude = detail.latitude ?? "0"; // Default to "0" if null
-                    var longitude = detail.longitude ?? "0"; // Default to "0" if null
-                                                             //var sourcev = "MW";
-                                                             //if (sourcev == detail.source)
-                                                             //{
-                                                             // Log the coordinates for debugging
+                    var latitude = detail.latitude ?? "0";
+                    var longitude = detail.longitude ?? "0";
+
+
+
                     System.Diagnostics.Debug.WriteLine($"Latitude: {latitude}, Longitude: {longitude}");
 
                     // Add the coordinates to the list
@@ -4027,14 +3496,897 @@ namespace AbhyProject.Controllers
             }
         }
 
+        // for downloading source dropdown values of water quality Query
+        public ActionResult Waterquality_excelS(string state, string district, string block, string gp, string source)
+        {
+
+            var abc = AJE.obj_vw_bs_pv_quality_meta_data
+                        .Where(x => (string.IsNullOrEmpty(state) || x.state == state) &&
+                                    (string.IsNullOrEmpty(district) || x.district == district) &&
+                        (string.IsNullOrEmpty(block) || x.block == block) &&
+                                    (string.IsNullOrEmpty(gp) || x.gp == gp) &&
+                                    (string.IsNullOrEmpty(source) || x.source == source))
+                        .ToList();
+
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Existing Well");
+                var currentRow = 1;
+                worksheet.Cell(currentRow, 1).Value = "State";
+                worksheet.Cell(currentRow, 2).Value = "District";
+                worksheet.Cell(currentRow, 3).Value = "Block";
+                worksheet.Cell(currentRow, 4).Value = "Grampanchayat";
+                worksheet.Cell(currentRow, 5).Value = "Village";
+                worksheet.Cell(currentRow, 6).Value = "Site Name";
+                worksheet.Cell(currentRow, 7).Value = "Well Type";
+                worksheet.Cell(currentRow, 8).Value = "Source";
+                worksheet.Cell(currentRow, 9).Value = "Year";
+                worksheet.Cell(currentRow, 10).Value = "Well Depth";
+                worksheet.Cell(currentRow, 11).Value = "Aquifer";
+                worksheet.Cell(currentRow, 12).Value = "PV Data Year";
+                worksheet.Cell(currentRow, 13).Value = "PH";
+                worksheet.Cell(currentRow, 14).Value = "EC(µs/cm)";
+                worksheet.Cell(currentRow, 15).Value = "TDS";
+                worksheet.Cell(currentRow, 16).Value = "TH(mg/L)";
+                worksheet.Cell(currentRow, 17).Value = "Calcium(mg/L)";
+                worksheet.Cell(currentRow, 18).Value = "Magnesium mg/L";
+                worksheet.Cell(currentRow, 19).Value = "Sodium mg/L";
+                worksheet.Cell(currentRow, 20).Value = "Potassium mg/L";
+                worksheet.Cell(currentRow, 21).Value = "Carbonate mg/L";
+                worksheet.Cell(currentRow, 22).Value = "Bicarbonate mg/L";
+                worksheet.Cell(currentRow, 23).Value = "Sulphate mg/L";
+                worksheet.Cell(currentRow, 24).Value = "Chloride mg/L";
+                worksheet.Cell(currentRow, 25).Value = "Fluoride mg/L";
+                worksheet.Cell(currentRow, 26).Value = "Nitrate mg/L";
+                worksheet.Cell(currentRow, 27).Value = "Well ID";
+
+                foreach (var item in abc)
+                {
+                    currentRow++;
+
+                    worksheet.Cell(currentRow, 1).Value = item.state_name;
+                    worksheet.Cell(currentRow, 2).Value = item.district_name;
+                    worksheet.Cell(currentRow, 3).Value = item.block_name;
+                    worksheet.Cell(currentRow, 4).Value = item.gp_name;
+                    worksheet.Cell(currentRow, 5).Value = item.village;
+                    worksheet.Cell(currentRow, 6).Value = item.site_name;
+                    worksheet.Cell(currentRow, 7).Value = item.well_type;
+                    worksheet.Cell(currentRow, 8).Value = item.source;
+                    worksheet.Cell(currentRow, 9).Value = item.year;
+                    worksheet.Cell(currentRow, 10).Value = item.well_depth;
+                    worksheet.Cell(currentRow, 11).Value = item.aquifer;
+                    worksheet.Cell(currentRow, 12).Value = item.pv_data_year;
+                    worksheet.Cell(currentRow, 13).Value = item.ph;
+                    worksheet.Cell(currentRow, 14).Value = item.ec;
+                    worksheet.Cell(currentRow, 15).Value = item.tds;
+                    worksheet.Cell(currentRow, 16).Value = item.th;
+                    worksheet.Cell(currentRow, 17).Value = item.calcium;
+                    worksheet.Cell(currentRow, 18).Value = item.magnesium;
+                    worksheet.Cell(currentRow, 19).Value = item.sodium;
+                    worksheet.Cell(currentRow, 20).Value = item.potassium;
+                    worksheet.Cell(currentRow, 21).Value = item.carbonate;
+                    worksheet.Cell(currentRow, 22).Value = item.bicarbonate;
+                    worksheet.Cell(currentRow, 23).Value = item.sulphate;
+                    worksheet.Cell(currentRow, 24).Value = item.chloride;
+                    worksheet.Cell(currentRow, 25).Value = item.fluoride;
+                    worksheet.Cell(currentRow, 26).Value = item.nitrate;
+                    worksheet.Cell(currentRow, 27).Value = item.pv_data_well_id;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Ground Water Quality.xlsx");
+                }
+            }
+        }
 
 
 
+        // for downloading source dropdown values of water leve; Query
+        public ActionResult Waterlevel_excelS(string state, string district, string block, string grampanchayat, string source_ownership)
+        {
 
+            var data = AJE.obj_vw_bs_waterlevel_pv_meta_data
+                        .Where(x => (string.IsNullOrEmpty(state) || x.state == state) &&
+                                    (string.IsNullOrEmpty(district) || x.district == district) &&
+                                    (string.IsNullOrEmpty(block) || x.block == block) &&
+                                    (string.IsNullOrEmpty(grampanchayat) || x.grampanchayat == grampanchayat) &&
+                                    (string.IsNullOrEmpty(source_ownership) || x.source_ownership == source_ownership))
+                        .ToList();
+
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Water Level Data");
+                var currentRow = 1;
+
+                worksheet.Cell(currentRow, 1).Value = "Well ID";
+                worksheet.Cell(currentRow, 2).Value = "State";
+                worksheet.Cell(currentRow, 3).Value = "District";
+                worksheet.Cell(currentRow, 4).Value = "Block";
+                worksheet.Cell(currentRow, 5).Value = "Grampanchayat";
+                worksheet.Cell(currentRow, 6).Value = "Village Name";
+                worksheet.Cell(currentRow, 7).Value = "Location Details";
+                worksheet.Cell(currentRow, 8).Value = "Latitude";
+                worksheet.Cell(currentRow, 9).Value = "Longitude";
+                worksheet.Cell(currentRow, 10).Value = "Date";
+                worksheet.Cell(currentRow, 11).Value = "Type of Well";
+                worksheet.Cell(currentRow, 12).Value = "Other Well Type";
+                worksheet.Cell(currentRow, 13).Value = "OwnerShip Type";
+                worksheet.Cell(currentRow, 14).Value = "Government Source";
+                worksheet.Cell(currentRow, 15).Value = "Depth of Well(mbmp)";
+                worksheet.Cell(currentRow, 16).Value = "Ground Water Level(mbgl)";
+                worksheet.Cell(currentRow, 17).Value = "Ground Water Level Date";
+                worksheet.Cell(currentRow, 18).Value = "Diameter of Well";
+                worksheet.Cell(currentRow, 19).Value = "Height of Measuring Point";
+
+                foreach (var item in data)
+                {
+                    currentRow++;
+
+                    worksheet.Cell(currentRow, 1).Value = item.wellid;
+                    worksheet.Cell(currentRow, 2).Value = item.state_name;
+                    worksheet.Cell(currentRow, 3).Value = item.district_name;
+                    worksheet.Cell(currentRow, 4).Value = item.block_name;
+                    worksheet.Cell(currentRow, 5).Value = item.gp_name;
+                    worksheet.Cell(currentRow, 6).Value = item.sitename;
+                    worksheet.Cell(currentRow, 7).Value = item.locationdetails;
+                    worksheet.Cell(currentRow, 8).Value = item.latitude;
+                    worksheet.Cell(currentRow, 9).Value = item.longitude;
+                    worksheet.Cell(currentRow, 10).Value = item.datetime;
+                    worksheet.Cell(currentRow, 11).Value = item.typeofwell;
+                    worksheet.Cell(currentRow, 12).Value = item.other_well_type;
+                    worksheet.Cell(currentRow, 13).Value = item.source_ownership_type;
+                    worksheet.Cell(currentRow, 14).Value = item.source_ownership;
+
+                    worksheet.Cell(currentRow, 15).Value = item.welldepth;
+
+                    worksheet.Cell(currentRow, 16).Value = item.gwl_reading;
+                    worksheet.Cell(currentRow, 17).Value = item.gwl_date;
+                    worksheet.Cell(currentRow, 18).Value = item.diameter_of_well;
+                    worksheet.Cell(currentRow, 19).Value = item.height_of_measuring_point;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Ground Water Level.xlsx");
+                }
+            }
+        }
+
+
+        // for well depthnfilter water level
+        public ActionResult GetWellCountByDepthRange(int minDepth, int maxDepth, string selectedState, string selectedDistrict, string selectedBlock, string selectedGP)
+        {
+            using (MAPEntity context = new MAPEntity())
+            {
+                try
+                {
+                    // Fetch well data that matches the selected filters (state, district, block, gp) and is within the specified depth range
+                    var wellData = context.obj_vw_bs_waterlevel_pv_meta_data
+                        .Where(w => w.welldepth >= minDepth
+                                    && w.welldepth <= maxDepth
+                                    && w.state == selectedState
+                                    && (string.IsNullOrEmpty(selectedDistrict) || w.district == selectedDistrict)
+                                    && (string.IsNullOrEmpty(selectedBlock) || w.block == selectedBlock)
+                                    && (string.IsNullOrEmpty(selectedGP) || w.grampanchayat == selectedGP));
+
+                    // Total count of records matching the criteria
+                    var totalWellCount = wellData.Count();
+
+                    // Count of unique gwl_meta_id values
+                    var uniqueWellCount = wellData
+                        .Select(w => w.gwl_meta_id)  // Select the unique gwl_meta_id
+                        .Distinct()                  // Ensure the IDs are unique
+                        .Count();                    // Get the count of distinct gwl_meta_id
+
+                    // Return both counts in the JSON response
+                    return Json(new { totalWellCount, uniqueWellCount }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception (consider using a logging framework)
+                    return Json(new { error = "An error occurred while fetching well count.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+
+        // for welldepth export water level
+        public ActionResult DownloadSelectedWellData(int? minDepth, int? maxDepth, string state, string district, string block, string grampanchayat)
+        {
+            // Fetch data based on the filters provided
+            var data = AJE.obj_vw_bs_waterlevel_pv_meta_data
+                        .Where(x => (string.IsNullOrEmpty(state) || x.state == state) &&
+                                    (string.IsNullOrEmpty(district) || x.district == district) &&
+                                    (string.IsNullOrEmpty(block) || x.block == block) &&
+                                    (string.IsNullOrEmpty(grampanchayat) || x.grampanchayat == grampanchayat) &&
+                                    (!minDepth.HasValue || x.welldepth >= minDepth.Value) &&
+                                    (!maxDepth.HasValue || x.welldepth <= maxDepth.Value))
+                        .ToList();
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Selected Well Data");
+                var currentRow = 1;
+
+                // Define the headers
+                worksheet.Cell(currentRow, 1).Value = "Well ID";
+                worksheet.Cell(currentRow, 2).Value = "State";
+                worksheet.Cell(currentRow, 3).Value = "District";
+                worksheet.Cell(currentRow, 4).Value = "Block";
+                worksheet.Cell(currentRow, 5).Value = "Grampanchayat";
+                worksheet.Cell(currentRow, 6).Value = "Village Name";
+                worksheet.Cell(currentRow, 7).Value = "Location Details";
+                worksheet.Cell(currentRow, 8).Value = "Latitude";
+                worksheet.Cell(currentRow, 9).Value = "Longitude";
+                worksheet.Cell(currentRow, 10).Value = "Date";
+                worksheet.Cell(currentRow, 11).Value = "Type of Well";
+                worksheet.Cell(currentRow, 12).Value = "Other Well Type";
+                worksheet.Cell(currentRow, 13).Value = "OwnerShip Type";
+                worksheet.Cell(currentRow, 14).Value = "Government Source";
+                worksheet.Cell(currentRow, 15).Value = "Depth of Well(mbmp)";
+                worksheet.Cell(currentRow, 16).Value = "Ground Water Level(mbgl)";
+                worksheet.Cell(currentRow, 17).Value = "Ground Water Level Date";
+                worksheet.Cell(currentRow, 18).Value = "Diameter of Well";
+                worksheet.Cell(currentRow, 19).Value = "Height of Measuring Point";
+                // Populate the worksheet with data
+                foreach (var item in data)
+                {
+                    currentRow++;
+
+
+                    worksheet.Cell(currentRow, 1).Value = item.wellid;
+                    worksheet.Cell(currentRow, 2).Value = item.state_name;
+                    worksheet.Cell(currentRow, 3).Value = item.district_name;
+                    worksheet.Cell(currentRow, 4).Value = item.block_name;
+                    worksheet.Cell(currentRow, 5).Value = item.gp_name;
+                    worksheet.Cell(currentRow, 6).Value = item.sitename;
+                    worksheet.Cell(currentRow, 7).Value = item.locationdetails;
+                    worksheet.Cell(currentRow, 8).Value = item.latitude;
+                    worksheet.Cell(currentRow, 9).Value = item.longitude;
+                    worksheet.Cell(currentRow, 10).Value = item.datetime;
+                    worksheet.Cell(currentRow, 11).Value = item.typeofwell;
+                    worksheet.Cell(currentRow, 12).Value = item.other_well_type;
+                    worksheet.Cell(currentRow, 13).Value = item.source_ownership_type;
+                    worksheet.Cell(currentRow, 14).Value = item.source_ownership;
+
+                    worksheet.Cell(currentRow, 15).Value = item.welldepth;
+
+                    worksheet.Cell(currentRow, 16).Value = item.gwl_reading;
+                    worksheet.Cell(currentRow, 17).Value = item.gwl_date;
+                    worksheet.Cell(currentRow, 18).Value = item.diameter_of_well;
+                    worksheet.Cell(currentRow, 19).Value = item.height_of_measuring_point;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Selected_Well_Data.xlsx");
+                }
+            }
+        }
+
+        // for well depthnfilter water quality
+
+        public ActionResult GetWellCountByDepthRangeWQ(int minDepth, int maxDepth, string selectedState, string selectedDistrict, string selectedBlock, string selectedGP)
+        {
+            using (MAPEntity context = new MAPEntity())
+            {
+                try
+                {
+
+                    var wellData = context.obj_vw_bs_pv_quality_meta_data
+                        .Where(w => w.well_depth >= minDepth
+                                    && w.well_depth <= maxDepth
+                                    && w.state == selectedState
+                                    && (string.IsNullOrEmpty(selectedDistrict) || w.district == selectedDistrict)
+                                    && (string.IsNullOrEmpty(selectedBlock) || w.block == selectedBlock)
+                                    && (string.IsNullOrEmpty(selectedGP) || w.gp == selectedGP));
+
+
+                    var totalWellCountWQ = wellData.Count();
+
+
+                    var uniqueWellCountWQ = wellData
+                        .Select(w => w.pv_meta_id)
+                        .Distinct()
+                        .Count();
+
+                    return Json(new { totalWellCountWQ, uniqueWellCountWQ }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception (consider using a logging framework)
+                    return Json(new { error = "An error occurred while fetching well count.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+        public ActionResult DownloadSelectedWellDataWQ(int? minDepth, int? maxDepth, string state, string district, string block, string grampanchayat)
+        {
+
+            var data = AJE.obj_vw_bs_pv_quality_meta_data
+                        .Where(x => (string.IsNullOrEmpty(state) || x.state == state) &&
+                                    (string.IsNullOrEmpty(district) || x.district == district) &&
+                                    (string.IsNullOrEmpty(block) || x.block == block) &&
+                                    (string.IsNullOrEmpty(grampanchayat) || x.gp == grampanchayat) &&
+                                    (!minDepth.HasValue || x.well_depth >= minDepth.Value) &&
+                                    (!maxDepth.HasValue || x.well_depth <= maxDepth.Value))
+                        .ToList();
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Selected Well Data");
+                var currentRow = 1;
+                worksheet.Cell(currentRow, 1).Value = "State";
+                worksheet.Cell(currentRow, 2).Value = "District";
+                worksheet.Cell(currentRow, 3).Value = "Block";
+                worksheet.Cell(currentRow, 4).Value = "Grampanchayat";
+                worksheet.Cell(currentRow, 5).Value = "Village";
+                worksheet.Cell(currentRow, 6).Value = "Site Name";
+                worksheet.Cell(currentRow, 7).Value = "Well Type";
+                worksheet.Cell(currentRow, 8).Value = "Source";
+                worksheet.Cell(currentRow, 9).Value = "Year";
+                worksheet.Cell(currentRow, 10).Value = "Well Depth";
+                worksheet.Cell(currentRow, 11).Value = "Aquifer";
+                worksheet.Cell(currentRow, 12).Value = "PV Data Year";
+                worksheet.Cell(currentRow, 13).Value = "PH";
+                worksheet.Cell(currentRow, 14).Value = "EC(µs/cm)";
+                worksheet.Cell(currentRow, 15).Value = "TDS";
+                worksheet.Cell(currentRow, 16).Value = "TH(mg/L)";
+                worksheet.Cell(currentRow, 17).Value = "Calcium(mg/L)";
+                worksheet.Cell(currentRow, 18).Value = "Magnesium mg/L";
+                worksheet.Cell(currentRow, 19).Value = "Sodium mg/L";
+                worksheet.Cell(currentRow, 20).Value = "Potassium mg/L";
+                worksheet.Cell(currentRow, 21).Value = "Carbonate mg/L";
+                worksheet.Cell(currentRow, 22).Value = "Bicarbonate mg/L";
+                worksheet.Cell(currentRow, 23).Value = "Sulphate mg/L";
+                worksheet.Cell(currentRow, 24).Value = "Chloride mg/L";
+                worksheet.Cell(currentRow, 25).Value = "Fluoride mg/L";
+                worksheet.Cell(currentRow, 26).Value = "Nitrate mg/L";
+                worksheet.Cell(currentRow, 27).Value = "Well ID";
+                foreach (var item in data)
+                {
+                    currentRow++;
+
+                    worksheet.Cell(currentRow, 1).Value = item.state_name;
+                    worksheet.Cell(currentRow, 2).Value = item.district_name;
+                    worksheet.Cell(currentRow, 3).Value = item.block_name;
+                    worksheet.Cell(currentRow, 4).Value = item.gp_name;
+                    worksheet.Cell(currentRow, 5).Value = item.village;
+                    worksheet.Cell(currentRow, 6).Value = item.site_name;
+                    worksheet.Cell(currentRow, 7).Value = item.well_type;
+                    worksheet.Cell(currentRow, 8).Value = item.source;
+                    worksheet.Cell(currentRow, 9).Value = item.year;
+                    worksheet.Cell(currentRow, 10).Value = item.well_depth;
+                    worksheet.Cell(currentRow, 11).Value = item.aquifer;
+                    worksheet.Cell(currentRow, 12).Value = item.pv_data_year;
+                    worksheet.Cell(currentRow, 13).Value = item.ph;
+                    worksheet.Cell(currentRow, 14).Value = item.ec;
+                    worksheet.Cell(currentRow, 15).Value = item.tds;
+                    worksheet.Cell(currentRow, 16).Value = item.th;
+                    worksheet.Cell(currentRow, 17).Value = item.calcium;
+                    worksheet.Cell(currentRow, 18).Value = item.magnesium;
+                    worksheet.Cell(currentRow, 19).Value = item.sodium;
+                    worksheet.Cell(currentRow, 20).Value = item.potassium;
+                    worksheet.Cell(currentRow, 21).Value = item.carbonate;
+                    worksheet.Cell(currentRow, 22).Value = item.bicarbonate;
+                    worksheet.Cell(currentRow, 23).Value = item.sulphate;
+                    worksheet.Cell(currentRow, 24).Value = item.chloride;
+                    worksheet.Cell(currentRow, 25).Value = item.fluoride;
+                    worksheet.Cell(currentRow, 26).Value = item.nitrate;
+                    worksheet.Cell(currentRow, 27).Value = item.pv_data_well_id;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Selected_Well_Data.xlsx");
+                }
+            }
+        }
+
+
+        //
+
+        //// GET: Water Level Form
+
+        //[HttpGet]
+        //public JsonResult GetWaterLevelForm()
+        //{
+        //    try
+        //    {
+        //        // Create a list of years from 2021 to 2024
+        //        var distinctYears = Enumerable.Range(2021, 4).ToList(); // 2021, 2022, 2023, 2024
+
+        //        // Prepare the response data
+        //        var response = new
+        //        {
+        //            Years = distinctYears
+        //        };
+
+        //        return Json(response, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+        //[HttpGet]
+        //public JsonResult FetchMonthsByYear(int selectedYear)
+        //{
+        //    using (MAPEntity context = new MAPEntity())
+        //    {
+        //        try
+        //        {
+        //            var months = context.obj_vw_bs_gwl_meta_data
+        //                .Where(w => w.fyyear == selectedYear)
+        //                .Select(w => w.fymonth)
+        //                .Distinct()
+        //                .OrderBy(m => m)
+        //                .ToList();
+
+        //            return Json(months, JsonRequestBehavior.AllowGet);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return Json(new { error = "An error occurred while fetching months.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //}
+        //[HttpGet]
+        //public JsonResult GetWellCountByDepthRange(int selectedYear, int selectedMonth)
+        //{
+        //    using (MAPEntity context = new MAPEntity())
+        //    {
+        //        try
+        //        {
+        //            // Fetch current year data for the selected month
+        //            var currentYearData = context.obj_vw_bs_gwl_meta_data
+        //                .Where(w => w.fyyear == selectedYear && w.fymonth == selectedMonth)
+        //                .ToList();
+
+        //            // Fetch previous years' data for the same month
+        //            var previousYearsData = context.obj_vw_bs_gwl_meta_data
+        //                .Where(w => w.fyyear < selectedYear && w.fymonth == selectedMonth)
+        //                .GroupBy(w => w.gwl_meta_id) // Group by well_id to calculate average per well
+        //                .Select(g => new
+        //                {
+        //                    WellId = g.Key,
+        //                    AvgWaterLevel = g.Average(w => w.welldepth)
+        //                })
+        //                .ToList();
+
+        //            // Initialize counters for rise and fall
+        //            int riseCount = 0;
+        //            int fallCount = 0;
+
+        //            // Compare the current year water level with the average of previous years for each well
+        //            foreach (var currentWell in currentYearData)
+        //            {
+        //                var previousWell = previousYearsData.FirstOrDefault(p => p.WellId == currentWell.gwl_meta_id);
+
+        //                if (previousWell != null)
+        //                {
+        //                    // Calculate difference
+        //                    var difference = currentWell.welldepth - previousWell.AvgWaterLevel;
+
+        //                    if (difference > 0)
+        //                    {
+        //                        riseCount++; // Well has shown rise
+        //                    }
+        //                    else if (difference < 0)
+        //                    {
+        //                        fallCount++; // Well has shown fall
+        //                    }
+        //                }
+        //            }
+
+        //            // Return both rise and fall counts
+        //            return Json(new { riseCount = riseCount, fallCount = fallCount });
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message });
+        //        }
+        //    }
+        //}
+        // for water quality ph and other permissible limits
+        public ActionResult GetWaterQualityAnalysis(string selectedState, string selectedDistrict, string selectedBlock, string selectedGP, string fyyear_str)
+        {
+            using (MAPEntity context = new MAPEntity())
+            {
+                try
+                {
+                    double nitrateLimit = 45;
+                    double fluorideLimit = 1.5;
+                    double ecLimit = 3000;
+
+                    var wellData = context.obj_vw_bs_pv_quality_meta_data
+                        .Where(w => w.state == selectedState
+                                    && (string.IsNullOrEmpty(selectedDistrict) || w.district == selectedDistrict)
+                                    && (string.IsNullOrEmpty(selectedBlock) || w.block == selectedBlock)
+                                    && (string.IsNullOrEmpty(selectedGP) || w.gp == selectedGP)
+                                    && (string.IsNullOrEmpty(fyyear_str) || w.pv_data_year_str == fyyear_str)); // Filter by year if provided
+
+                    var samplesAbovePermissible = wellData
+                        .Count(w => w.nitrate > nitrateLimit || w.fluoride > fluorideLimit);
+
+                    var nitrateAboveLimit = wellData
+                        .Count(w => w.nitrate > nitrateLimit);
+
+                    var fluorideAboveLimit = wellData
+                        .Count(w => w.fluoride > fluorideLimit);
+
+                    var ecAboveLimit = wellData
+                        .Count(w => w.ec > ecLimit);
+
+                    return Json(new
+                    {
+                        samplesAbovePermissible,
+                        nitrateAboveLimit,
+                        fluorideAboveLimit,
+                        ecAboveLimit
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { error = "An error occurred while fetching water quality data.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+
+
+        // For Waterlevel Query 
+
+
+        [HttpGet]
+        public JsonResult FetchYears()
+        {
+            try
+            {
+                var years = AJE.obj_vw_bs_waterlevel_pv_meta_data
+                    .Select(w => w.fyyear_str)
+                    .Distinct()
+                    .OrderBy(y => y)
+                    .ToList();
+
+                years.Insert(0, "All"); // Add "All" option at the top
+
+                return Json(years, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error fetching years: " + ex.Message);
+                return Json(new { error = "An error occurred while fetching years." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // Method to fetch states, districts, blocks, gram panchayats, and source ownership types
+        [HttpGet]
+        public JsonResult FetchLocationOptionsWL(string state = null, string district = null, string block = null, string gp = null, string year = null)
+        {
+            try
+            {
+                var states = AJE.obj_vw_bs_waterlevel_pv_meta_data
+                    .Select(w => w.state)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+                var districts = string.IsNullOrEmpty(state) ? new List<string>() : AJE.obj_vw_bs_waterlevel_pv_meta_data
+                    .Where(w => w.state == state)
+                    .Select(w => w.district)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+                var blocks = string.IsNullOrEmpty(district) ? new List<string>() : AJE.obj_vw_bs_waterlevel_pv_meta_data
+                    .Where(w => w.district == district && w.block != null)
+                    .Select(w => w.block)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+
+                var grampanchayats = string.IsNullOrEmpty(block) ? new List<string>() : AJE.obj_vw_bs_waterlevel_pv_meta_data
+                    .Where(w => w.block == block && w.grampanchayat != null)
+                    .Select(w => w.grampanchayat)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+                var sourceOwnershipTypes = AJE.obj_vw_bs_waterlevel_pv_meta_data
+         .Where(w => (string.IsNullOrEmpty(state) || w.state == state) &&
+                     (string.IsNullOrEmpty(district) || w.district == district) &&
+                     (string.IsNullOrEmpty(block) || w.block == block) &&
+                      (string.IsNullOrEmpty(gp) || w.grampanchayat == gp) &&
+                     (string.IsNullOrEmpty(year) || w.fyyear_str == year))
+         .Select(w => w.source_ownership_type)
+         .Distinct()
+          .OrderBy(w => w)
+         .ToList();
+
+
+                return Json(new
+                {
+                    States = states,
+                    Districts = districts,
+                    Blocks = blocks,
+                    GramPanchayats = grampanchayats, // Return GP options based on the block
+                    SourceOwnershipTypes = sourceOwnershipTypes
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching location options: " + ex.Message);
+                return Json(new { error = "An error occurred while fetching location options." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // Method to fetch well counts based on selected values
+        //[HttpGet]
+        //public JsonResult FetchWellCountsWL(string state, string district, string block, string grampanchayat, string fyyear_str, string sourceOwnershipType)
+        //{
+        //    try
+        //    {
+        //        var query = AJE.obj_vw_bs_waterlevel_pv_meta_data.AsQueryable();
+
+        //        if (!string.IsNullOrEmpty(state) && state != "All")
+        //            query = query.Where(w => w.state == state);
+        //        if (!string.IsNullOrEmpty(district) && district != "All")
+        //            query = query.Where(w => w.district == district);
+        //        if (!string.IsNullOrEmpty(block) && block != "All")
+        //            query = query.Where(w => w.block == block);
+        //        if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
+        //            query = query.Where(w => w.grampanchayat == grampanchayat);
+
+        //        // Only filter fyyear_str if it’s not "All"
+        //        if (!string.IsNullOrEmpty(fyyear_str) && fyyear_str != "All")
+        //            query = query.Where(w => w.fyyear_str == fyyear_str);
+
+        //        if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
+        //            query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
+
+        //        var wellCounts = query
+        //            .GroupBy(w => w.typeofwell)
+        //            .Select(g => new
+        //            {
+        //                TypeOfWell = g.Key,
+        //                Count = g.Count(),
+        //                DistinctGwlMetaIdCount = g.Select(w => w.gwl_meta_id).Distinct().Count()
+        //            })
+        //            .ToList();
+
+        //        return Json(wellCounts, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error fetching well counts: " + ex.Message);
+        //        return Json(new { error = "An error occurred while fetching well counts." }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+
+        // For water quality query
+
+        [HttpGet]
+        public JsonResult FetchYearsWQ()
+        {
+            try
+            {
+                var years = AJE.obj_vw_bs_pv_quality_meta_data
+                    .Select(w => w.pv_data_year_str)
+                    .Distinct()
+                    .OrderBy(y => y)
+                    .ToList();
+
+                years.Insert(0, "All");
+
+                return Json(years, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Console.WriteLine("Error fetching years: " + ex.Message);
+                return Json(new { error = "An error occurred while fetching years." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // Method to fetch states, districts, blocks, gram panchayats, and source ownership types
+        [HttpGet]
+        public JsonResult FetchLocationOptionsWQ(string state = null, string district = null, string block = null, string gp = null, string year = null)
+        {
+            try
+            {
+                var states = AJE.obj_vw_bs_pv_quality_meta_data
+                    .Select(w => w.state)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+                var districts = string.IsNullOrEmpty(state) ? new List<string>() : AJE.obj_vw_bs_pv_quality_meta_data
+                    .Where(w => w.state == state)
+                    .Select(w => w.district)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+                var blocks = string.IsNullOrEmpty(district) ? new List<string>() : AJE.obj_vw_bs_pv_quality_meta_data
+                    .Where(w => w.district == district && w.block != null)
+                    .Select(w => w.block)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+
+                var grampanchayats = string.IsNullOrEmpty(block) ? new List<string>() : AJE.obj_vw_bs_pv_quality_meta_data
+                    .Where(w => w.block == block && w.gp != null)
+                    .Select(w => w.gp)
+                    .Distinct()
+                     .OrderBy(w => w)
+                    .ToList();
+
+                var sourceOwnershipTypes = AJE.obj_vw_bs_pv_quality_meta_data
+         .Where(w => (string.IsNullOrEmpty(state) || w.state == state) &&
+                     (string.IsNullOrEmpty(district) || w.district == district) &&
+                     (string.IsNullOrEmpty(block) || w.block == block) &&
+                      (string.IsNullOrEmpty(gp) || w.gp == gp) &&
+                     (string.IsNullOrEmpty(year) || w.year == year))
+                       .Select(w => w.source)
+                       .Distinct()
+                       .OrderBy(w => w)
+                       .ToList();
+
+
+                return Json(new
+                {
+                    States = states,
+                    Districts = districts,
+                    Blocks = blocks,
+                    GramPanchayats = grampanchayats, // Return GP options based on the block
+                    SourceOwnershipTypes = sourceOwnershipTypes
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching location options: " + ex.Message);
+                return Json(new { error = "An error occurred while fetching location options." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // Method to fetch well counts based on selected values
+        [HttpGet]
+        public JsonResult FetchWellCountsWQ(string state, string district, string block, string grampanchayat, string fyyear_str, string sourceOwnershipType)
+        {
+            try
+            {
+                var query = AJE.obj_vw_bs_pv_quality_meta_data.AsQueryable();
+
+                if (!string.IsNullOrEmpty(state))
+                    query = query.Where(w => w.state == state);
+                if (!string.IsNullOrEmpty(district))
+                    query = query.Where(w => w.district == district);
+                if (!string.IsNullOrEmpty(block))
+                    query = query.Where(w => w.block == block);
+                if (!string.IsNullOrEmpty(grampanchayat))
+                    query = query.Where(w => w.gp == grampanchayat);
+                if (!string.IsNullOrEmpty(fyyear_str) && fyyear_str != "All")
+                    query = query.Where(w => w.pv_data_year_str == fyyear_str);
+                if (!string.IsNullOrEmpty(sourceOwnershipType))
+                    query = query.Where(w => w.source == sourceOwnershipType); // New filter
+                var wellCounts = query
+    .GroupBy(w => w.well_type) // Adjust the property name as per your model
+    .Select(g => new
+    {
+        TypeOfWell = g.Key,
+        Count = g.Count(),
+        DistinctPvMetaIdCount = g.Select(w => w.pv_meta_id).Distinct().Count()
+    })
+    .ToList();
+
+
+                return Json(wellCounts, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error fetching well counts: " + ex.Message);
+                return Json(new { error = "An error occurred while fetching well counts." }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        [HttpGet]
+        public JsonResult FetchWellCountsWL(
+      string state = "All",
+      string district = "All",
+      string block = "All",
+      string grampanchayat = "All",
+      string sourceOwnershipType = "All",
+      string fyyear_str = "All") // Accept fiscal year as parameter
+        {
+            try
+            {
+                var query = AJE.obj_vw_bs_count_waterlevel_pv_meta_data.AsQueryable();
+                if (!string.IsNullOrEmpty(state) && state != "All")
+                    query = query.Where(w => w.state == state);
+                if (!string.IsNullOrEmpty(district) && district != "All")
+                    query = query.Where(w => w.district == district);
+                if (!string.IsNullOrEmpty(block) && block != "All")
+                    query = query.Where(w => w.block == block);
+                if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
+                    query = query.Where(w => w.grampanchayat == grampanchayat);
+                if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
+                    query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
+                query = query.Where(w => w.typeofwell != null);              
+                var wellCounts = query
+                    .GroupBy(w => w.typeofwell)
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+
+                        // Use Count_All column directly
+                        Count_All = g.Sum(w => w.Count_All ?? 0),
+
+                        // Calculate CountYear based on fyyear_str using if-else conditions
+                        CountYear = fyyear_str == "2015" ? g.Sum(w => w.Count_2015 ?? 0) :
+                                    fyyear_str == "2016" ? g.Sum(w => w.Count_2016 ?? 0) :
+                                    fyyear_str == "2017" ? g.Sum(w => w.Count_2017 ?? 0) :
+                                    fyyear_str == "2018" ? g.Sum(w => w.Count_2018 ?? 0) :
+                                    fyyear_str == "2019" ? g.Sum(w => w.Count_2019 ?? 0) :
+                                    fyyear_str == "2020" ? g.Sum(w => w.Count_2020 ?? 0) :
+                                    fyyear_str == "2021" ? g.Sum(w => w.Count_2021 ?? 0) :
+                                    fyyear_str == "2022" ? g.Sum(w => w.Count_2022 ?? 0) :
+                                    fyyear_str == "2023" ? g.Sum(w => w.Count_2023 ?? 0) :
+                                    fyyear_str == "2024" ? g.Sum(w => w.Count_2024 ?? 0) : 0
+                    })
+                    .ToList();
+
+                // Log output to verify counts if needed
+                Console.WriteLine("Fetched wellCounts:");
+                wellCounts.ForEach(wc => Console.WriteLine($"TypeOfWell: {wc.TypeOfWell}, Count_All: {wc.Count_All}, CountYear: {wc.CountYear}"));
+
+                return Json(wellCounts, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching well counts: " + ex.Message);
+                Console.WriteLine("Stack Trace: " + ex.StackTrace);
+
+                return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
     }
-
 }
 
