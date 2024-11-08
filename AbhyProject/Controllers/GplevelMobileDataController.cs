@@ -78,7 +78,7 @@ namespace AbhyProject.Controllers
             try
             {
                 string[] states = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
-                int[] gps_count = { 1873, 1656, 1199, 670, 1133, 1139, 550 };
+                int[] gps_count = { 1873, 1647, 1199, 670, 1133, 1132, 549 };
 
                 List<summery_report_mobile_app> all_data = new List<summery_report_mobile_app>();
 
