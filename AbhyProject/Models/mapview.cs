@@ -28,7 +28,7 @@ namespace AbhyProject.Models
         public virtual DbSet<gwl_meta> obj_gwl_meta { get; set; }
         public virtual DbSet<master_list_gp> obj_master_list_gp { get; set; }
         public virtual DbSet<pv_quality_meta> obj_pv_quality_meta { get; set; }
-
+        public virtual DbSet<vw_bs_count_waterlevel_pv_meta_data> obj_vw_bs_count_waterlevel_pv_meta_data { get; set; }
     }
 
 }

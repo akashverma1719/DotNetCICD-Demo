@@ -3290,7 +3290,7 @@ namespace AbhyProject.Models
         public string latitude { get; set; }
         public string longitude { get; set; }
         public string wellid { get; set; }
-        public string welldepth { get; set; }
+        public int welldepth { get; set; }
         public string well { get; set; }
         public string datetime { get; set; }
         public string email { get; set; }
@@ -3301,8 +3301,8 @@ namespace AbhyProject.Models
         public string diameter_of_well { get; set; }
         public string height_of_measuring_point { get; set; }
         public string source_ownership_type { get; set; }
-
-
+        public string fyyear_str { get; set; }
+        public int? fyyear { get; set; }
         public string status { get; set; }
         public long gwl_meta_id { get; set; }
         public string gwl_reading { get; set; }
@@ -3315,7 +3315,6 @@ namespace AbhyProject.Models
 
 
     }
-
     //Waterlevel ends
     [Table("vw_gwl_meta", Schema = "public")]
     public class vw_gwl
@@ -19580,7 +19579,8 @@ namespace AbhyProject.Models
         public string source { get; set; }
         public string latitude { get; set; }
         public string longitude { get; set; }
-        public string well_depth { get; set; }
+        public int? well_depth { get; set; }
+
         public string aquifer { get; set; }
 
         public int pv_data_id { get; set; }
@@ -19589,24 +19589,27 @@ namespace AbhyProject.Models
         public string pv_data_aquifer { get; set; }
         public string formation { get; set; }
         public string pv_data_year { get; set; }
-        public string ph { get; set; }
-        public string ec { get; set; }
-        public string tds { get; set; }
-        public string sodium { get; set; }
-        public string th { get; set; }
-        public string calcium { get; set; }
-        public string magnesium { get; set; }
-        public string potassium { get; set; }
-        public string carbonate { get; set; }
-        public string bicarbonate { get; set; }
-        public string sulphate { get; set; }
-        public string chloride { get; set; }
-        public string fluoride { get; set; }
-        public string nitrate { get; set; }
+        public int? ph { get; set; }
+
+        public int? ec { get; set; }
+        public int? tds { get; set; }
+        public int? sodium { get; set; }
+        public int? th { get; set; }
+        public int? calcium { get; set; }
+        public int? magnesium { get; set; }
+        public int? potassium { get; set; }
+        public int? carbonate { get; set; }
+        public int? bicarbonate { get; set; }
+        public int? sulphate { get; set; }
+        public int? chloride { get; set; }
+        public int? fluoride { get; set; }
+        public int? nitrate { get; set; }
+        public int? Turbidity { get; set; }
         public string state_name { get; set; }
         public string district_name { get; set; }
         public string block_name { get; set; }
         public string gp_name { get; set; }
+        public string pv_data_year_str { get; set; }
         public string remark { get; set; }
     }
 
@@ -19635,6 +19638,47 @@ namespace AbhyProject.Models
 
 
     }
+
+
+    [Table("vw_bs_count_waterlevel_pv_meta_data", Schema = "public")]
+    public class vw_bs_count_waterlevel_pv_meta_data
+    {
+        [Key]
+        public int rw_id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string grampanchayat { get; set; }
+        public string typeofwell { get; set; }
+        public string source_ownership_type { get; set; }
+        public int? Count_2015 { get; set; }
+        public int? Count_2016 { get; set; }
+        public int? Count_2017 { get; set; }
+        public int? Count_2018 { get; set; }
+        public int? Count_2019 { get; set; }
+        public int? Count_2020 { get; set; }
+        public int? Count_2021 { get; set; }
+        public int? Count_2022 { get; set; }
+        public int? Count_2023 { get; set; }
+        public int? Count_2024 { get; set; }
+        public int? Count_All { get; set; }
+
+        public string Count_2015_str { get; set; }
+        public string Count_2016_str { get; set; }
+        public string Count_2017_str { get; set; }
+        public string Count_2018_str { get; set; }
+        public string Count_2019_str { get; set; }
+        public string Count_2020_str { get; set; }
+        public string Count_2021_str { get; set; }
+        public string Count_2022_str { get; set; }
+        public string Count_2023_str { get; set; }
+        public string Count_2024_str { get; set; }
+        public string Count_All_str { get; set; }
+    }
+
+
+
+
     [Table("feedback_map", Schema = "public")]
     public class feedback_map
     {

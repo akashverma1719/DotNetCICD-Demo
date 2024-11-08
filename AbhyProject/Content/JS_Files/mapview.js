@@ -229,7 +229,7 @@ require([
 
 
     const India = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/4",
         maxScale: 9244649,
 
         title: "India",
@@ -2004,7 +2004,7 @@ require([
 
 
     const GPLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/1",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2036,7 +2036,7 @@ require([
 
 
     const BlockLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/3",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/0",
         definitionExpression: "state <> 'Delhi_7'",
         labelingInfo: [labelClassB],
         content: blockChange,
@@ -2062,7 +2062,7 @@ require([
     });
 
     const DistrictLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/2",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/2",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Districts",
         labelingInfo: [labelClassD],
@@ -2117,7 +2117,7 @@ require([
 
     //
     const GPLayerse = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/1",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2928,7 +2928,6 @@ require([
 
 
     // for dropdown
-
     $(document).ready(function () {
         // Hide district and gram panchayat initially
         $("#District, #Block, #Gram").hide();
@@ -2966,10 +2965,14 @@ require([
             var selectedDistrict = $(this).val();
 
             // If "--Select District--" is selected, hide gram panchayat
-            if (selectedDistrict === "--Select Block--") {
+            if (selectedDistrict === "--Select Block--" || selectedDistrict == " Select Blocks ") {
                 $("#Gram").hide();
-            } else {
+                console.log("hidden")
+            }
+
+            else {
                 // Show gram panchayat
+                console.log("hidden2222")
                 $("#Gram").show();
                 // You can populate the gram panchayat select box based on the selected district here
             }
@@ -4190,6 +4193,7 @@ require([
             // queryOpts.query.where = "1=1"; //To Return an empty list, so that the city list is empty
 
         } else {
+            document.getElementById("Gram").style.display = "block";
             BlockLayer.definitionExpression = `block  = '${this.value}'`; //Querying the layer
             queryOpts.query.where = `block  = '${this.value}'`; //Querying the server
         }
@@ -5614,7 +5618,61 @@ require([
                     zoom: initialZoom
                 });
             });
+
+            function clickButtonTwiceQ(buttonId) {
+                $("#" + buttonId).click();
+                setTimeout(function () {
+                    $("#" + buttonId).click();
+                }, 1000);
+            }
+            document.getElementById('show-sidebar').addEventListener('click', function () {
+                const stateDropdownQuality = document.getElementById('stateDropdownQuality');
+                const stateDropdown = document.getElementById('stateDropdown');
+
+                // Check if either of the dropdowns has a value
+                if (stateDropdownQuality.value !== '' || stateDropdown.value !== '') {
+                    // Trigger double click on the show-sidebar button if dropdowns have values
+                    clickButtonTwiceQ('show-sidebar');
+                }
+
+                // Proceed with clearing logic
+                if (stateDropdownQuality.value !== '') {
+                    stateDropdownQuality.value = '';
+                }
+                if (stateDropdown.value !== '') {
+                    stateDropdown.value = '';
+                }
+
+                graphicsLayer.removeAll();
+                clearFields();
+            });
+
+            function clearFields() {
+                $('#districtDropdownQuality').val('');
+                $('#blockDropdownQuality').val('');
+                $('#gpDropdownQuality').val('');
+                $('#sourceDropdownQuality').val('');
+                $('#wellCountsContainer').html('');
+                $('#wellCountResultWQ').html('');
+                $('#samplesAbovePermissible').text('');
+                $('#nitrateAboveLimit').text('');
+                $('#fluorideAboveLimit').text('');
+                $('#ecAboveLimit').text('');
+                $('#minDepthWQ').val('');
+                $('#maxDepthWQ').val('');
+
+                // Clear fields related to water level
+                $('#districtDropdown').val('');
+                $('#blockDropdown').val('');
+                $('#gpDropdown').val('');
+                $('#sourceDropdown').val('');
+                $('#waterwell').html('');
+                $('#wellCountResult').html('');
+                $('#minDepth').val('');
+                $('#maxDepth').val('');
+            }
         });
+
     });
 
     $(document).ready(function () {
@@ -12747,738 +12805,523 @@ ${additionalContent}
     });
 
 
-    // for Querying waterlevel
+    //  for water level queryr
+    function resetOtherDropdowns() {
+        $('#districtDropdown').empty().append(new Option("Select District", ""));
+        $('#blockDropdown').empty().append(new Option("Select Block", ""));
+        $('#gpDropdown').empty().append(new Option("Select Gram Panchayat", ""));
+        $('#sourceDropdown').empty().append(new Option("Select Ownership Type", ""));
+        $("#districtDropdownField, #blockDropdownField, #gpDropdownField").hide();
+    }
+
+    function resetBlockAndGP() {
+        $('#blockDropdown').empty().append(new Option("Select Block", ""));
+        $('#gpDropdown').empty().append(new Option("Select Gram Panchayat", ""));
+        $('#sourceDropdown').empty().append(new Option("Select Ownership Type", "")); // Reset source
+        $("#blockDropdownField, #gpDropdownField").hide();
+    }
+    function resetGP() {
+        $('#gpDropdown').empty().append(new Option("Select Gram Panchayat", ""));
+        $("#gpDropdownField").hide();
+    }
 
 
+    function resetOtherDropdownsWQ() {
+        $('#districtDropdownQuality').empty().append(new Option("Select District", ""));
+        $('#blockDropdownQuality').empty().append(new Option("Select Block", ""));
+        $('#gpDropdownQuality').empty().append(new Option("Select Gram Panchayat", ""));
+        $('#sourceDropdownQuality').empty().append(new Option("Select Ownership Type", ""));
+        $("#districtDropdownQualityField, #blockDropdownQualityField, #gpDropdownQualityField").hide();
+    }
 
-    $(document).ready(function () {
-        console.log("Document is ready");
-        $('#stateDropdown, #districtDropdown, #blockDropdown, #gpDropdown, #sourceDropdown').on('change', function () {
-            // Get selected values
-            var selectedState = $('#stateDropdown').val();
-            var selectedDistrict = $('#districtDropdown').val();
-            var selectedBlock = $('#blockDropdown').val();
-            var selectedGp = $('#gpDropdown').val();
-            var selectedSource = $('#sourceDropdown').val();
+    function resetBlockAndGPWQ() {
+        $('#blockDropdownQuality').empty().append(new Option("Select Block", ""));
+        $('#gpDropdownQuality').empty().append(new Option("Select Gram Panchayat", ""));
+        $('#sourceDropdownQuality').empty().append(new Option("Select Ownership Type", "")); // Reset source
+        $("#blockDropdownQualityField, #gpDropdownQualityField").hide();
+    }
+    function resetGPWQ() {
+        $('#gpDropdownQuality').empty().append(new Option("Select Gram Panchayat", ""));
+        $("#gpDropdownQualityField").hide();
+    }
 
-            // Call the function to fetch well type count
-            fetchWellTypeCountWL(selectedState, selectedDistrict, selectedBlock, selectedGp, selectedSource);
-        });
-        // Fetch states when the page loads
-        FetchLocationOptionsWL();
-        //$('#sourceDropdownQuality').change(function () {
-        //    // Fetch the selected values from other dropdowns (state, district, etc.)
-        //    let state = $('#stateDropdown').val(); // Example: assuming you have a state dropdown
-        //    let district = $('#districtDropdown').val(); // Example: district dropdown
-        //    let block = $('#blockDropdown').val(); // Example: block dropdown
-        //    let gp = $('#gpDropdown').val(); // Example: gp dropdown
-
-        //    fetchSourceAndWellTypeOptions(state, district, block, gp);
-        //});
-        // Function to fetch source and well_type counts based on selected parameters
-
-
-
-        function fetchSourceAndWellTypeOptionsWL(state, district, block, grampanchayat) {
-            let url = '/mapview/FetchLocationOptionsWL';  // Adjust endpoint if needed
-
-            // Append query parameters based on input
-            if (state) url += `?state=${encodeURIComponent(state)}`;
-            if (district) url += `&district=${encodeURIComponent(district)}`;
-            if (block) url += `&block=${encodeURIComponent(block)}`;
-            if (grampanchayat) url += `&grampanchayat=${encodeURIComponent(grampanchayat)}`;
-
-            console.log("Fetching source and well type URL:", url); // Log the URL
-
-            // Fetch data from the server for sources and well types
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-                    console.log("Source and well type data received:", data); // Log the response
-
-                    if (data.success) {
-                        // Populate the source dropdown (assuming the ID is 'sourceDropdownQuality')
-                        populateDropdown('sourceDropdown', data.options, 'Source');
-
-                        // You can also handle well type options similarly if needed
-                        // populateDropdown('wellTypeDropdownQuality', data.wellTypeOptions, 'Well Type');
-                    } else {
-                        alert(data.message);  // Notify if there's no data
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error fetching source and well type options:", error);
-                    alert("An error occurred while fetching source and well type options.");
-                }
-            });
-        }
-
-        // Function to fetch data based on parameters
-        function FetchLocationOptionsWL(state = null, district = null, block = null, grampanchayat = null) {
-
-            let url = '/mapview/FetchLocationOptionsWL';
-
-            // Append query parameters based on input
-            if (state) url += `?state=${encodeURIComponent(state)}`;
-            if (district) url += `&district=${encodeURIComponent(district)}`;
-            if (block) url += `&block=${encodeURIComponent(block)}`;
-            if (grampanchayat) url += `&grampanchayat=${encodeURIComponent(grampanchayat)}`;
-
-            console.log("Fetching URL:", url); // Log the URL being fetched
-
-            // Fetch data from the server
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-
-                    console.log("Data received:", data); // Log the response
-                    if (data.success) {
-                        if (!state && !district && !block && !grampanchayat) {
-                            // Populate the state dropdown
-                            populateDropdown('stateDropdown', data.options, 'State');
-
-                        } else if (state && !district && !block && !grampanchayat) {
-                            // Populate the district dropdown
-                            populateDropdown('districtDropdown', data.options, 'District');
-                            populatesource('sourceDropdown', data.sourceoption, 'source');
-
-                        } else if (state && district && !block && !grampanchayat) {
-                            // Populate the block dropdown
-                            populateDropdown('blockDropdown', data.options, 'Block');
-                            populatesource('sourceDropdown', data.sourceoption, 'source');
-                        } else if (state && district && block && !grampanchayat) {
-                            // Populate the Gram Panchayat dropdown
-                            populateDropdown('gpDropdown', data.options, 'Gram Panchayat');
-                            populatesource('sourceDropdown', data.sourceoption, 'source');
-                        } else if (state && district && block && grampanchayat) {
-                            // Fetch and update source and well_type counts after GP is selected
-                            fetchSourceAndWellTypeOptionsWL(state, district, block, grampanchayat);
-                        }
-                    } else {
-                        alert(data.message); // Alert the user if no data found
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error fetching data:", error);
-                    alert("An error occurred while fetching data.");
-                }
-            });
-        }
-
-
-
-
-        function fetchSourceOptions(state, district, block, grampanchayat) {
-            if (!state || !district || !block || !grampanchayat) {
-                console.log("All parameters must be provided.");
-                return;
-            }
-
-            let url = `/mapview/FetchSourceOptionsWL?state=${encodeURIComponent(state)}&district=${encodeURIComponent(district)}&block=${encodeURIComponent(block)}&grampanchayat=${encodeURIComponent(grampanchayat)}`;
-            console.log("Fetching Source Options URL:", url); // Log the URL being fetched
-
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-                    console.log("Source Options Data received:", data); // Log the response
-                    if (data.success) {
-                        $('#sourceDropdown').empty();
-                        $('#sourceDropdown').append(new Option("Select Source", ""));
-                        $.each(data.options, function (index, source_Ownership) {
-                            $('#sourceDropdown').append(new Option(source_Ownership, source_Ownership));
-                        });
-                    } else {
-                        alert(data.message);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error fetching source options:", error);
-                    alert("An error occurred while fetching source options.");
-                }
-            });
-        }
-
-
-        // Call this function when the page loads or when relevant selections change
-        $(document).ready(function () {
-            fetchSourceOptions(); // Fetch sources on page load or when a selection is made
-        });
-        // Function to populate a dropdown with options and display only the part before '_'
-        function populateDropdown(dropdownId, options, placeholderName) {
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.innerHTML = ''; // Clear existing options
-
-            // Add default 'Select' option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = `Select ${placeholderName}`;
-            dropdown.appendChild(defaultOption);
-
-            // Populate dropdown with fetched options
-            options.forEach(option => {
-                const opt = document.createElement('option');
-                const value = option.name || option;
-                if (value === 'Delhi_7') {
-                    return;
-                }
-                const displayText = value.split('_')[0]; // Show only the part before '_'
-
-                opt.value = value; // Keep the full value for submission
-                opt.textContent = displayText; // Show only the first part before the underscore
-                dropdown.appendChild(opt);
-            });
-        }
-
-        //  for dropdown being seen one by one
-
-
-        $(document).ready(function () {
-            $("#districtDropdown, #blockDropdown, #gpDropdown").hide();
-            $("#stateDropdown").change(function () {
-                var selectedState = $(this).val();
-                if (selectedState === "Select State") {
-                    $("#districtDropdown, #blockDropdown, #gpDropdown").hide();
-                } else {
-                    $("#districtDropdown").show();
-                }
-            });
-            $("#districtDropdown").change(function () {
-                var selectedDistrict = $(this).val();
-                if (selectedDistrict === "Select District") {
-                    $("#blockDropdown").hide();
-                } else {
-                    $("#blockDropdown").show();
-                }
-            });
-            $("#blockDropdown").change(function () {
-                var selectedDistrict = $(this).val();
-
-                if (selectedDistrict === "Select Block") {
-                    $("#gpDropdown").hide();
-                } else {
-                    $("#gpDropdown").show();
-                }
-            });
-        });
-
-        $(document).ready(function () {
-            $("#districtDropdownQuality, #blockDropdownQuality, #gpDropdownQuality").hide();
-            $("#stateDropdownQuality").change(function () {
-                var selectedState = $(this).val();
-                if (selectedState === "Select State") {
-                    $("#districtDropdownQuality, #blockDropdownQuality, #gpDropdownQuality").hide();
-                } else {
-                    $("#districtDropdownQuality").show();
-                }
-            });
-            $("#districtDropdownQuality").change(function () {
-                var selectedDistrict = $(this).val();
-                if (selectedDistrict === "Select District") {
-                    $("#blockDropdownQuality").hide();
-                } else {
-                    $("#blockDropdownQuality").show();
-                }
-            });
-            $("#blockDropdownQuality").change(function () {
-                var selectedDistrict = $(this).val();
-
-                if (selectedDistrict === "Select Block") {
-                    $("#gpDropdownQuality").hide();
-                } else {
-                    $("#gpDropdownQuality").show();
-                }
-            });
-        });
-        //
-
-        $(document).ready(function () {
-            // Change event for districtDropdownQuality
-            $('#districtDropdownQuality').change(function () {
-                var selectedDistrict = $(this).val();
-
-                // If the district is "Select District", reset the block and GP dropdowns
-                if (selectedDistrict === "Select District") {
-                    $('#blockDropdownQuality').html('<option value="">Select Block</option>'); // Reset Block
-                    $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>'); // Reset GP
-                } else {
-                    // When a district is selected, reset and show the block and GP dropdowns
-                    $('#blockDropdownQuality').html('<option value="">Select Block</option>').show(); // Ensure Block dropdown shows
-                    $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>').hide(); // Reset GP but hide it until block is selected
-                }
-            });
-
-            // Change event for blockDropdownQuality
-            $('#blockDropdownQuality').change(function () {
-                var selectedBlock = $(this).val();
-
-                // If block is "Select Block", reset the GP dropdown
-                if (selectedBlock === "Select Block") {
-                    $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>'); // Reset GP
-                } else {
-                    // When a block is selected, show the GP dropdown
-                    $('#gpDropdownQuality').show();
-                }
-            });
-
-        //    // Change event for stateDropdownQuality
-        //    $('#stateDropdownQuality').change(function () {
-        //        var selectedState = $(this).val();
-
-        //        // If state is "Select State", reset the district, block, and GP dropdowns
-        //        if (selectedState === "Select State") {
-        //            $('#districtDropdownQuality').html('<option value="">Select District</option>'); // Reset District
-        //            $('#blockDropdownQuality').html('<option value="">Select Block</option>'); // Reset Block
-        //            $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>'); // Reset GP
-        //        } else {
-        //            // State is selected, show district dropdown and reset others
-        //            $('#districtDropdownQuality').html('<option value="">Select District</option>').show(); // Ensure District dropdown shows
-        //            $('#blockDropdownQuality').html('<option value="">Select Block</option>').hide(); // Reset and hide Block
-        //            $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>').hide(); // Reset and hide GP
-        //        }
-        //    });
-        });
-
-
-
-
-
-        //
-        function populatesource(dropdownId, sourceoption, placeholderName) {
-
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.innerHTML = ''; // Clear existing options
-
-            // Add default 'Select' option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = `Select ${placeholderName}`;
-            dropdown.appendChild(defaultOption);
-            // Populate dropdown with fetched options
-            sourceoption.forEach(option => {
-                const opt = document.createElement('option');
-                opt.value = option.name || option; // Use the name property or the direct string if available
-                opt.textContent = option.name || option; // Use the name property or the direct string if available
-                dropdown.appendChild(opt);
-            });
-
-        }
-
-        // Event listeners for dropdown changes
-        $('#stateDropdown').change(function () {
-            const state = this.value;
-            FetchLocationOptionsWL(state); // Fetch districts based on the selected state
-        });
-
-        $('#districtDropdown').change(function () {
-            const state = $('#stateDropdown').val();
-            const district = this.value;
-            FetchLocationOptionsWL(state, district); // Fetch blocks based on the selected district
-        });
-
-        $('#blockDropdown').change(function () {
-            const state = $('#stateDropdown').val();
-            const district = $('#districtDropdown').val();
-            const block = this.value;
-            FetchLocationOptionsWL(state, district, block); // Fetch GPs based on the selected block
-        });
-
-        $('#gpDropdown').change(function () {
-            const state = $('#stateDropdown').val();
-            const district = $('#districtDropdown').val();
-            const block = $('#blockDropdown').val();
-            const grampanchayat = this.value;
-            FetchLocationOptionsWL(state, district, block, grampanchayat); // Fetch source and well type data based on GP
-        });
-
-        $('#sourceDropdown').change(function () {
-            const state = $('#stateDropdown').val();
-            const district = $('#districtDropdown').val();
-            const block = $('#blockDropdown').val();
-            const grampanchayat = $('#gpDropdown').val();
-            const source_Ownership = this.value;
-
-            // Fetch the unique well types based on the selected source
-            // fetchWellTypeCountBySource(state, district, block, grampanchayat, source_Ownership);
-        });
-        function fetchWellTypeCountWL(state, district, block, grampanchayat, source_Ownership) {
-            let url = `/mapview/FetchWellTypeCountBySourceWL?state=${encodeURIComponent(state)}&district=${encodeURIComponent(district)}&block=${encodeURIComponent(block)}&grampanchayat=${encodeURIComponent(grampanchayat)}&source_Ownership=${encodeURIComponent(source_Ownership)}`;
-
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-                    let container = $('#wellTypeCountsContainer');
-                    let messageContainer = $('#messageContainer');  // Add a div to display messages
-                    container.empty();  // Clear any previous results
-                    messageContainer.empty();  // Clear previous messages
-
-                    if (data.success) {
-                        console.log("Well Type Counts:", data.wellTypeCounts);
-
-                        // Check if there are no wellTypeCounts and show a message in the div
-                        if (data.wellTypeCounts.length === 0) {
-                            messageContainer.html('<div class="alert alert-info">Please update the dropdown</div>');
-                        } else {
-                            // If data exists, clear any message and display the results
-                            data.wellTypeCounts.forEach(function (wellTypeCount, index) {
-                                var wellTypeHtml = `
-                        <div id="wellTypeContainer1_${index}" class="wellTypeContainer d-flex justify-content-between align-items-center mb-2">
-                            <span id="wellType1_${index}" class="popUpText">${wellTypeCount.TypeOfWell}:</span>
-                            <span id="wellCount1_${index}" class="popUpText2 badge badge-primary">${wellTypeCount.Count}</span>
-                        </div>
-                        `;
-                                container.append(wellTypeHtml);
-                            });
-                        }
-                    } else {
-                        messageContainer.html(`<div class="alert alert-danger">${data.message}</div>`);  // Show the error message in a div
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error fetching well type count:", error);
-                    $('#messageContainer').html('<div class="alert alert-danger">An error occurred while fetching well type counts.</div>');  // Show error in a div
-                }
-            });
-        }
-
+    $('#yearDropdownWL, #stateDropdown, #districtDropdown, #blockDropdown, #gpDropdown, #sourceDropdown').change(function () {
+        fetchWellCountsWL();
     });
-    //
 
-
-
-
-
-
-
-
-    //  // Function to waterlevel query ends
-    // Function to waterquality query start
-
-    $(document).ready(function () {
-        console.log("Document is ready");
-
-        // Event listener for dropdown changes
-        $('#stateDropdownQuality, #districtDropdownQuality, #blockDropdownQuality, #gpDropdownQuality, #sourceDropdownQuality').on('change', function () {
-            // Get selected values
-            var selectedState = $('#stateDropdownQuality').val();
-            var selectedDistrict = $('#districtDropdownQuality').val();
-            var selectedBlock = $('#blockDropdownQuality').val();
-            var selectedGp = $('#gpDropdownQuality').val();
-            var selectedSource = $('#sourceDropdownQuality').val();
-
-            // Call the function to fetch well type count
-            fetchWellTypeCount(selectedState, selectedDistrict, selectedBlock, selectedGp, selectedSource);
-        });
-
-        // Fetch states when the page loads
-        fetchLocationOptions();
-
-        // Function to fetch location options for states, districts, blocks, and GPs
-        function fetchLocationOptions(state = null, district = null, block = null, gp = null) {
-            let url = '/mapview/FetchLocationOptions';
-
-            // Append query parameters based on input
-            if (state) url += `?state=${encodeURIComponent(state)}`;
-            if (district) url += `&district=${encodeURIComponent(district)}`;
-            if (block) url += `&block=${encodeURIComponent(block)}`;
-            if (gp) url += `&gp=${encodeURIComponent(gp)}`;
-
-            console.log("Fetching URL:", url); // Log the URL being fetched
-
-            // Fetch data from the server
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-                    console.log("Data received:", data); // Log the response
-                    if (data.success) {
-                        // Populate the dropdowns based on the state of other selections
-                        if (!state && !district && !block && !gp) {
-                            populateDropdown('stateDropdownQuality', data.options, 'State');
-                        } else if (state && !district) {
-                            populateDropdown('districtDropdownQuality', data.options, 'District');
-                            fetchSourceAndWellTypeOptions(state);
-                        } else if (state && district && !block) {
-                            populateDropdown('blockDropdownQuality', data.options, 'Block');
-                            fetchSourceAndWellTypeOptions(state, district);
-                        } else if (state && district && block && !gp) {
-                            populateDropdown('gpDropdownQuality', data.options, 'Gram Panchayat');
-                            fetchSourceAndWellTypeOptions(state, district, block);
-                        } else if (state && district && block && gp) {
-                            fetchSourceAndWellTypeOptions(state, district, block, gp);
-                        }
-                    } else {
-                        alert(data.message); // Alert the user if no data found
+    function fetchYears() {
+        $.get('/mapview/FetchYears')
+            .done(function (data) {
+                console.log("Years fetched:", data);
+                $('#yearDropdownWL').empty().append(new Option("Select Year", ""));
+                $.each(data, function (index, year) {
+                    $('#yearDropdownWL').append(new Option(year, year));
+                });
+            })
+            .fail(handleAjaxError);
+    }
+    function fetchStateOptions() {
+        $.get('/mapview/FetchLocationOptionsWL')
+            .done(function (data) {
+                console.log("State options fetched:", data);
+                $('#stateDropdown').empty().append(new Option("Select State", ""));
+                $.each(data.States || [], function (index, state) {
+                    if (state === "Delhi_7") {
+                        return;
                     }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error fetching data:", error);
-                    alert("An error occurred while fetching data.");
-                }
+                    const displayText = state.split('_')[0];
+                    $('#stateDropdown').append(new Option(displayText, state));
+                });
+                populateSources(data.SourceOwnershipTypes || []);
+                resetOtherDropdowns();
+            })
+            .fail(handleAjaxError);
+    }
+
+    function populateSources(sourceOwnershipTypes) {
+        console.log("Source ownership types:", sourceOwnershipTypes);
+        $('#sourceDropdown').empty().append(new Option("Select Ownership Type", ""));
+        if (sourceOwnershipTypes) {
+            $.each(sourceOwnershipTypes, function (index, source) {
+                $('#sourceDropdown').append(new Option(source, source));
             });
         }
+        $('#sourceDropdown').val($('#sourceDropdown option:first').val());
+    }
 
-        // Function to fetch source and well_type counts based on selected parameters
-        function fetchSourceAndWellTypeOptions(state, district, block, gp) {
-            let url = '/mapview/FetchLocationOptions';
-
-            // Add parameters to the array only if they have a value
-            if (state) {
-                url += `?state=${encodeURIComponent(state)}`;
-                if (district) url += `&district=${encodeURIComponent(district)}`;
-                if (block) url += `&block=${encodeURIComponent(block)}`;
-                if (gp) url += `&grampanchayat=${encodeURIComponent(gp)}`;
-            } else if (district) {
-                url += `?district=${encodeURIComponent(district)}`;
-                if (block) url += `&block=${encodeURIComponent(block)}`;
-                if (gp) url += `&grampanchayat=${encodeURIComponent(gp)}`;
-            } else if (block) {
-                url += `?block=${encodeURIComponent(block)}`;
-                if (gp) url += `&grampanchayat=${encodeURIComponent(gp)}`;
-            } else if (gp) {
-                url += `?grampanchayat=${encodeURIComponent(gp)}`;
-            }
-
-            console.log("Fetching source and well type URL:", url); // Log the final URL
-
-            // Fetch data from the server for sources and well types
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-                    console.log("Source and well type data received:", data); // Log the response
-                    if (data.success) {
-                        // Populate the source dropdown
-                        populatesource('sourceDropdownQuality', data.sourceoption, 'Source');
-                    } else {
-                        alert(data.message);  // Notify if there's no data
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error fetching source and well type options:", error);
-                    alert("An error occurred while fetching source and well type options.");
-                }
-            });
-        }
-
-        // Function to populate a dropdown with options and display only the part before '_'
-        function populateDropdown(dropdownId, options, placeholderName) {
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.innerHTML = ''; // Clear existing options
-
-            // Add default 'Select' option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = `Select ${placeholderName}`;
-            dropdown.appendChild(defaultOption);
-
-            // Populate dropdown with fetched options
-            options.forEach(option => {
-                const opt = document.createElement('option');
-                const value = option.name || option; // Use the name property or the direct string if available
-                const displayText = value.split('_')[0]; // Show only the part before '_'
-
-                opt.value = value; // Keep the full value for submission
-                opt.textContent = displayText; // Show only the first part before the underscore
-                dropdown.appendChild(opt);
-            });
-        }
-
-        function populatesource(dropdownId, sourceoption, placeholderName) {
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.innerHTML = ''; // Clear existing options
-
-            // Add default 'Select' option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = `Select ${placeholderName}`;
-            dropdown.appendChild(defaultOption);
-
-            // Populate dropdown with fetched options
-            sourceoption.forEach(option => {
-                const opt = document.createElement('option');
-                opt.value = option.name || option;
-                opt.textContent = option.name || option;
-                dropdown.appendChild(opt);
-            });
-        }
-
-        // Event listeners for dropdown changes
-        $('#stateDropdownQuality').change(function () {
-            const state = this.value;
-            fetchLocationOptions(state); // Fetch districts based on the selected state
-        });
-
-        $('#districtDropdownQuality').change(function () {
-            const state = $('#stateDropdownQuality').val();
-            const district = this.value;
-            fetchLocationOptions(state, district); // Fetch blocks based on the selected district
-        });
-
-        $('#blockDropdownQuality').change(function () {
-            const state = $('#stateDropdownQuality').val();
-            const district = $('#districtDropdownQuality').val();
-            const block = this.value;
-            fetchLocationOptions(state, district, block); // Fetch GPs based on the selected block
-        });
-
-        $('#gpDropdownQuality').change(function () {
-            const state = $('#stateDropdownQuality').val();
-            const district = $('#districtDropdownQuality').val();
-            const block = $('#blockDropdownQuality').val();
-            const gp = this.value;
-            fetchLocationOptions(state, district, block, gp); // Fetch source and well type data based on GP
-        });
-
-        $('#sourceDropdownQuality').change(function () {
-            const state = $('#stateDropdownQuality').val();
-            const district = $('#districtDropdownQuality').val();
-            const block = $('#blockDropdownQuality').val();
-            const gp = $('#gpDropdownQuality').val();
-            const source = this.value;
-
-            // Fetch the unique well types based on the selected source
-            fetchWellTypeCount(state, district, block, gp, source);
-        });
-        function fetchWellTypeCount(state, district, block, gp, source) {
-            let url = `/mapview/FetchWellTypeCountBySource?state=${encodeURIComponent(state)}&district=${encodeURIComponent(district)}&block=${encodeURIComponent(block)}&gp=${encodeURIComponent(gp)}&source=${encodeURIComponent(source)}`;
-
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-                    let container = $('#wellCountsContainer');
-                    let messageContainerQ = $('#messageContainerQ');  // Add a div to display messages
-                    container.empty();  // Clear any previous results
-                    messageContainerQ.empty();  // Clear previous messages
-
-                    if (data.success) {
-                        console.log("Well Type Counts WQ:", data.wellTypeCounts);
-
-                        // Check if there are no wellTypeCounts and show a message in the div
-                        if (data.wellTypeCounts.length === 0) {
-                            messageContainerQ.html('<div class="alert alert-info">No well type data found for the selected filters. Please update the dropdown.</div>');
-                        } else {
-                            // If data exists, clear any message and display the results
-                            data.wellTypeCounts.forEach(function (wellTypeCount, index) {
-                                var wellTypeHtml = `
-                        <div id="wellTypeContainer_${index}" class="wellTypeContainer d-flex justify-content-between align-items-center mb-2">
-                            <span id="wellType_${index}" class="popUpText">${wellTypeCount.TypeOfWell}:</span>
-                            <span id="wellCount_${index}" class="popUpText2 badge badge-primary">${wellTypeCount.Count}</span>
-                        </div>
-                        `;
-                                container.append(wellTypeHtml);
-                            });
-                        }
-                    } else {
-                        messageContainerQ.html(`<div class="alert alert-danger">${data.message}</div>`);  // Show the error message in a div
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error fetching well type counts:", error);
-                    $('#messageContainerQ').html('<div class="alert alert-danger">An error occurred while fetching well type counts.</div>');  // Show error in a div
-                }
-            });
+    $('#stateDropdown').change(function () {
+        var state = $(this).val();
+        console.log("State selected:", state);
+        resetOtherDropdowns();
+        if (state) {
+            $.get('/mapview/FetchLocationOptionsWL', { state: state })
+                .done(function (data) {
+                    console.log("District options fetched for state:", data);
+                    populateDistricts(data);
+                    populateSources(data.SourceOwnershipTypes || []);
+                })
+                .fail(handleAjaxError);
         }
     });
-    //
-    // Close the modal when the 'x' is clicked
-    document.querySelector('.close').onclick = function () {
-        document.getElementById('popupModal').style.display = 'none';
-    };
 
-    // Close the modal when clicking outside of the modal
-    window.onclick = function (event) {
-        const modal = document.getElementById('popupModal');
-        if (event.target == modal) {
-            modal.style.display = 'none';
+    function populateDistricts(data) {
+        $('#districtDropdown').empty().append(new Option("Select District", ""));
+        if (data.Districts) {
+            $.each(data.Districts, function (index, district) {
+                if (district != null) {
+                    const displayText = district.split('_')[0];
+                    $('#districtDropdown').append(new Option(displayText, district));
+                }
+            });
         }
-    };
+        resetBlockAndGP();
+    }
 
-    // Toggle forms
-    document.getElementById('waterLevelBtn').onclick = function () {
-        document.getElementById('waterLevelForm').style.display = 'none';
-        document.getElementById('waterQualityForm').style.display = 'block';
-    };
+    $('#districtDropdown').change(function () {
+        var district = $(this).val();
+        console.log("District selected:", district);
+        resetBlockAndGP();
+        if (district) {
+            $.get('/mapview/FetchLocationOptionsWL', { district: district })
+                .done(function (data) {
+                    console.log("Block options fetched for district:", data);
+                    populateBlocks(data);
+                    populateSources(data.SourceOwnershipTypes || []);
+                })
+                .fail(handleAjaxError);
+        }
+    });
 
-    document.getElementById('waterQualityBtn').onclick = function () {
-        document.getElementById('waterQualityForm').style.display = 'none';
-        document.getElementById('waterLevelForm').style.display = 'block';
-    };
+    function populateBlocks(data) {
+        $('#blockDropdown').empty().append(new Option("Select Block", ""));
+        if (data.Blocks) {
+            $.each(data.Blocks, function (index, block) {
+                if (block != null) {
+                    const displayText = block.split('_')[0];
+                    $('#blockDropdown').append(new Option(displayText, block));
+                }
+            });
+        }
+        $('#gpDropdown').empty().append(new Option("Select Gram Panchayat", ""));
+        $('#sourceDropdown').empty().append(new Option("Select Ownership Type", ""));
+    }
 
-    // Set initial state
-    document.getElementById('waterLevelForm').style.display = 'block';
-    document.getElementById('waterQualityForm').style.display = 'none';
+    $('#blockDropdown').change(function () {
+        var block = $(this).val();
+        console.log("Block selected:", block);
+        resetGP();
+        if (block) {
+            $.get('/mapview/FetchLocationOptionsWL', { block: block })
+                .done(function (data) {
+                    console.log("Gram Panchayat options fetched for block:", data);
+                    populateGrampanchayats(data);
+                    populateSources(data.SourceOwnershipTypes || []);
+                })
+                .fail(handleAjaxError);
+        }
+    });
+
+    function populateGrampanchayats(data) {
+        $('#gpDropdown').empty().append(new Option("Select Gram Panchayat", ""));
+        if (data.GramPanchayats) {
+            $.each(data.GramPanchayats, function (index, gp) {
+                if (gp != null) {
+                    const displayText = gp.split('_')[0];
+                    $('#gpDropdown').append(new Option(displayText, gp));
+                }
+            });
+        }
+    }
+
+    function fetchWellCountsWL() {
+        var state = $('#stateDropdown').val();
+        var district = $('#districtDropdown').val();
+        var block = $('#blockDropdown').val();
+        var grampanchayat = $('#gpDropdown').val();
+        var sourceOwnershipType = $('#sourceDropdown').val();
+        var fyyear_str = $('#yearDropdownWL').val();  // Get the fiscal year from the dropdown
+
+        $("#waterwell").show();
+        $("#depth-range").show();
+
+        function getFirstPart(value) {
+            return value ? value.split('_')[0] : '';
+        }
+
+        let stateDisplay = getFirstPart(state);
+        let distDisplay = getFirstPart(district);
+        let blockDisplay = getFirstPart(block);
+        let gpDisplay = getFirstPart(grampanchayat);
+
+        $('#fetchParamsContainer').html(`
+        <ul class="location-list">
+            ${stateDisplay ? `<li>State: <strong>${stateDisplay}</strong></li>` : ''}
+            ${distDisplay ? `<li>District: <strong>${distDisplay}</strong></li>` : ''}
+            ${blockDisplay ? `<li>Block: <strong>${blockDisplay}</strong></li>` : ''}
+            ${gpDisplay ? `<li>Gram Panchayat: <strong>${gpDisplay}</strong></li>` : ''}
+            ${sourceOwnershipType ? `<li>Source Ownership Type: <strong>${sourceOwnershipType}</strong></li>` : ''}
+            ${fyyear_str ? `<li>Year: <strong>${fyyear_str}</strong></li>` : ''}
+        </ul>
+    `);
+
+        console.log("Fetching well counts with parameters:", {
+            state, district, block, grampanchayat, sourceOwnershipType, fyyear_str
+        });
+
+        let container = $('#wellTypeCountsContainer');
+        let messageContainer = $('#messageContainer');
+        container.html('<div class="loading-message">Loading data, please wait...</div>');
+        messageContainer.empty();       
+        $.get('/mapview/FetchWellCountsWL', {
+            state, district, block, grampanchayat, sourceOwnershipType, fyyear_str  // Send fiscal year as parameter
+        })
+            .done(function (data) {
+                container.empty();
+
+                if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(function (wellTypeCount, index) {
+                        var wellTypeHtml = `
+                <div id="wellTypeCountsContainer_${index}" class="wellTypeContainer d-flex justify-content-between align-items-center mb-2">
+                    <span id="wellType_${index}" class="popUpText">${wellTypeCount.TypeOfWell}:</span>                   
+                   
+                    <span id="distinctGwlMetaIdCount_${index}" class="popUpText2 badge badge-secondary" style="display: ${fyyear_str && fyyear_str !== 'All' ? 'none' : 'inline-block'};">
+                        ${wellTypeCount.Count_All || 0}
+                    </span>                   
+                    <span id="yearCount_${index}" class="popUpText2 badge badge-info" style="display: ${fyyear_str && fyyear_str !== 'All' ? 'inline-block' : 'none'};">
+                        ${wellTypeCount.CountYear || 0}
+                    </span>
+                </div>`;
+
+                        container.append(wellTypeHtml);
+                    });
+
+
+
+                } else {
+                    messageContainer.html('<div class="alert alert-info">No well type data found for the selected filters. Please update the dropdown.</div>');
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("Error fetching well counts:", textStatus, errorThrown);
+                container.empty();
+                messageContainer.html('<div class="alert alert-danger">Failed to fetch well counts. Please try again later.</div>');
+            });
+    }
+
+    
+    $('#yearDropdownWL').change(function () {
+        fetchWellCountsWL();  
+    });
+
+    function handleAjaxError(jqXHR, textStatus, errorThrown) {
+        console.error("AJAX error:", textStatus, errorThrown);
+        $('#messageContainer').html('<div class="alert alert-danger">An error occurred while processing your request. Please try again later.</div>');
+    }
+
+
+
+    //  for wq start
+
+
+    function fetchYearsWQ() {
+        $.get('/mapview/FetchYearsWQ')
+            .done(function (data) {
+                console.log("Years fetched:", data);
+                $('#yearDropdownWQ').empty().append(new Option("Select Year", ""));
+                $.each(data, function (index, year) {
+                    $('#yearDropdownWQ').append(new Option(year, year));
+                });
+            })
+            .fail(handleAjaxError);
+    }
+
+
+    function fetchStateOptionsWQ() {
+        $.get('/mapview/FetchLocationOptionsWQ')
+            .done(function (data) {
+                console.log("State options fetched:", data);
+                $('#stateDropdownQuality').empty().append(new Option("Select State", ""));
+                $.each(data.States || [], function (index, state) {
+                    if (state != null) {
+                        const displayText = state.split('_')[0];
+                        $('#stateDropdownQuality').append(new Option(displayText, state));
+                    }
+                });
+                populateSourcesWQ(data.SourceOwnershipTypes || []);
+                resetOtherDropdownsWQ();
+            })
+            .fail(handleAjaxError);
+    }
+
+    function populateSourcesWQ(sourceOwnershipTypes) {
+        console.log("Source ownership types:", sourceOwnershipTypes);
+        $('#sourceDropdownQuality').empty().append(new Option("Select Ownership Type", ""));
+        if (sourceOwnershipTypes) {
+            $.each(sourceOwnershipTypes, function (index, source) {
+                $('#sourceDropdownQuality').append(new Option(source, source));
+            });
+        }
+        $('#sourceDropdownQuality').val($('#sourceDropdownQuality option:first').val());
+    }
+    $('#stateDropdownQuality').change(function () {
+        var state = $(this).val();
+        console.log("State selected:", state);
+        resetOtherDropdownsWQ();
+        if (state) {
+            $.get('/mapview/FetchLocationOptionsWQ', { state: state })
+                .done(function (data) {
+                    console.log("District options fetched for state:", data);
+                    populateDistrictsWQ(data);
+                    populateSourcesWQ(data.SourceOwnershipTypes || []);
+                })
+                .fail(handleAjaxError);
+        }
+    });
+
+    function populateDistrictsWQ(data) {
+        $('#districtDropdownQuality').empty().append(new Option("Select District", ""));
+        if (data.Districts) {
+            $.each(data.Districts, function (index, district) {
+                const displayText = district.split('_')[0];
+                $('#districtDropdownQuality').append(new Option(displayText, district));
+            });
+        }
+        resetBlockAndGPWQ();
+    }
+
+    $('#districtDropdownQuality').change(function () {
+        var district = $(this).val();
+        console.log("District selected:", district);
+        resetBlockAndGPWQ();
+        if (district) {
+            $.get('/mapview/FetchLocationOptionsWQ', { district: district })
+                .done(function (data) {
+                    console.log("Block options fetched for district:", data);
+                    populateBlocksWQ(data);
+                    populateSourcesWQ(data.SourceOwnershipTypes || []);
+                })
+                .fail(handleAjaxError);
+        }
+    });
+
+    function populateBlocksWQ(data) {
+        $('#blockDropdownQuality').empty().append(new Option("Select Block", ""));
+        if (data.Blocks) {
+            $.each(data.Blocks, function (index, block) {
+                const displayText = block.split('_')[0];
+                $('#blockDropdownQuality').append(new Option(displayText, block));
+            });
+        }
+        $('#gpDropdownQuality').empty().append(new Option("Select Gram Panchayat", ""));
+        $('#sourceDropdownQuality').empty().append(new Option("Select Ownership Type", ""));
+    }
+
+    $('#blockDropdownQuality').change(function () {
+        var block = $(this).val();
+        console.log("Block selected:", block);
+        resetGPWQ();
+        if (block) {
+            $.get('/mapview/FetchLocationOptionsWQ', { block: block })
+                .done(function (data) {
+                    console.log("Gram Panchayat options fetched for block:", data);
+                    populateGrampanchayatsWQ(data);
+                    populateSourcesWQ(data.SourceOwnershipTypes || []);
+                })
+                .fail(handleAjaxError);
+        }
+    });
+
+    function populateGrampanchayatsWQ(data) {
+        $('#gpDropdownQuality').empty().append(new Option("Select Gram Panchayat", ""));
+        if (data.GramPanchayats) {
+            $.each(data.GramPanchayats, function (index, gp) {
+                const displayText = gp.split('_')[0];
+                $('#gpDropdownQuality').append(new Option(displayText, gp));
+            });
+        }
+    }
+
+    $('#yearDropdownWQ, #stateDropdownQuality, #districtDropdownQuality, #blockDropdownQuality, #gpDropdownQuality, #sourceDropdownQuality').change(function () {
+        fetchWellCountsWQ();
+    });
+
+    function fetchWellCountsWQ() {
+     
+        var state = $('#stateDropdownQuality').val();
+        var district = $('#districtDropdownQuality').val();
+        var block = $('#blockDropdownQuality').val();
+        var grampanchayat = $('#gpDropdownQuality').val();
+        var fyyear_str = $('#yearDropdownWQ').val();
+        var sourceOwnershipType = $('#sourceDropdownQuality').val();
+        $("#waterwellQl").show();
+        $("#depth-range-wq").show();
+        $("#water-quality-analysis").show();
+
+        function getFirstPart(value) {
+            return value ? value.split('_')[0] : '';
+        }
+
+        let stateDisplay = getFirstPart(state);
+        let distDisplay = getFirstPart(district);
+        let blockDisplay = getFirstPart(block);
+        let gpDisplay = getFirstPart(grampanchayat);
+
+        // Render the parameter summary inside fetchParamsContainer
+        $('#fetchParamsContainerWQ').html(`
+        <ul class="location-list">
+            ${stateDisplay ? `<li>State: <strong>${stateDisplay}</strong></li>` : ''}
+            ${distDisplay ? `<li>District: <strong>${distDisplay}</strong></li>` : ''}
+            ${blockDisplay ? `<li>Block: <strong>${blockDisplay}</strong></li>` : ''}
+            ${gpDisplay ? `<li>Gram Panchayat: <strong>${gpDisplay}</strong></li>` : ''}
+            ${sourceOwnershipType ? `<li>Source Ownership Type: <strong>${sourceOwnershipType}</strong></li>` : ''}
+            ${fyyear_str ? `<li>Year: <strong>${fyyear_str}</strong></li>` : ''}
+        </ul>
+    `);
+
+        console.log("Fetching well counts with parameters:", {
+            state, district, block, grampanchayat, fyyear_str, sourceOwnershipType
+        });
+
+        let container = $('#wellCountsContainer');
+        let messageContainerQ = $('#messageContainerQ');
+        container.html('<div class="loading-message">Loading data, please wait...</div>');
+        messageContainerQ.empty();
+
+        $.get('/mapview/FetchWellCountsWQ', {
+            state, district, block, grampanchayat, fyyear_str, sourceOwnershipType
+        })
+            .done(function (data) {
+                container.empty(); // Clear loading message
+
+                if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(function (wellTypeCount, index) {
+                        console.log("Data received from FetchWellCountsWQ:", data);
+                        var wellTypeHtml = `
+                    <div id="wellTypeContainer_${index}" class="wellTypeContainer d-flex justify-content-between align-items-center mb-2">
+                        <span id="wellType_${index}" class="popUpText">${wellTypeCount.TypeOfWell}:</span>
+                        <span id="DistinctPvMetaIdCount${index}" class="popUpText2 badge badge-secondary">${wellTypeCount.DistinctPvMetaIdCount}</span>
+                    </div>`;
+                        container.append(wellTypeHtml);
+                    });
+                } else {
+                    messageContainerQ.html('<div class="alert alert-info">No well type data found for the selected filters. Please update the dropdown.</div>');
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("Error fetching well counts:", textStatus, errorThrown);
+                container.empty(); // Clear loading message
+                messageContainerQ.html('<div class="alert alert-danger">Failed to fetch well counts. Please try again later.</div>');
+            });
+    }
+    function handleAjaxError(jqXHR, textStatus, errorThrown) {
+        console.error("AJAX error:", textStatus, errorThrown);
+        $('#messageContainerQ').html('<div class="alert alert-danger">An error occurred while processing your request. Please try again later.</div>');
+    }
+
+    $("#districtDropdownQualityField, #blockDropdownQualityField, #gpDropdownQualityField").hide();
+    $("#stateDropdownQuality").change(function () {
+        var selectedState = $(this).val();
+        if (selectedState === "Select State" || selectedState === "All") {
+            $("#districtDropdownQualityField, #blockDropdownQualityField, #gpDropdownQualityField").hide();
+        } else {
+            $("#districtDropdownQualityField").show();
+        }
+    });
+    $("#districtDropdownQuality").change(function () {
+        var selectedDistrict = $(this).val();
+        if (selectedDistrict === "Select District") {
+            $("#blockDropdownQualityField").hide();
+        } else {
+            $("#blockDropdownQualityField").show();
+        }
+    });
+    $("#blockDropdownQuality").change(function () {
+        var selectedDistrict = $(this).val();
+        if (selectedDistrict === "Select Block") {
+            $("#gpDropdownQualityField").hide();
+        } else {
+            $("#gpDropdownQualityField").show();
+        }
+    });
 
     //
 
-    //function plotPointsOnMapS(coordinates) {
-    //    // Clear any existing points
-    //    graphicsLayer.removeAll();
+    $("#stateDropdown").change(function () {
+        var selectedState = $(this).val();
+        if (selectedState === "Select State" || selectedState === "All") {
+            $("#districtDropdownField, #blockDropdownField, #gpDropdownField").hide();
+        } else {
+            $("#districtDropdownField").show();
+        }
+    });
+    $("#districtDropdown").change(function () {
+        var selectedDistrict = $(this).val();
+        if (selectedDistrict === "Select District") {
+            $("#blockDropdownField").hide();
+        } else {
+            $("#blockDropdownField").show();
+        }
+    });
+    $("#blockDropdown").change(function () {
+        var selectedDistrict = $(this).val();
+        if (selectedDistrict === "Select Block") {
+            $("#gpDropdownField").hide();
+        } else {
+            $("#gpDropdownField").show();
+        }
+    });
+    $(document).ready(function () {
+        console.log("Document is ready. Fetching initial data WL...");
+        fetchYears();
+        fetchStateOptions();
 
-    //    // Loop through each coordinate and create a point
-    //    coordinates.forEach(function (coord) {
-    //        var point = {
-    //            type: "point", // autocasts as new Point()
-    //            longitude: parseFloat(coord.Longitude),
-    //            latitude: parseFloat(coord.Latitude)
-    //        };
+        console.log("Document is ready. Fetching initial data WQ...");
+        fetchYearsWQ();
+        fetchStateOptionsWQ();
 
-    //        var simpleMarkerSymbol = {
-    //            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-    //            color: [226, 119, 40], // Orange color
-    //            outline: {
-    //                color: [255, 255, 255], // White outline
-    //                width: 1
-    //            }
-    //        };
+        $("#districtDropdownField, #blockDropdownField, #gpDropdownField").hide();
 
-    //        var pointGraphic = new Graphic({
-    //            geometry: point,
-    //            symbol: simpleMarkerSymbol
-    //        });
-
-    //        // Add the point to the graphics layer
-    //        graphicsLayer.add(pointGraphic);
-    //    });
-
-    //    // Zoom to the first coordinate
-    //    if (coordinates.length > 0) {
-    //        view.goTo({
-    //            center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
-    //            zoom: 8
-    //        });
-    //    }
-    //}
-
-    //$(document).ready(function () {
-    //    $('#sourceDropdown').change(function () {
-    //        var selectedS = $(this).val();
-    //        if (selectedS) {
-    //            $.ajax({
-    //                url: queryUrlWLSource,
-    //                type: 'GET',
-    //                data: { source_Ownership: selectedS },
-    //                success: function (response) {
-    //                    if (response.success) {
-    //                        console.log(response, "sourceww");
-
-    //                        plotPointsOnMapS(response.coordinates);
-    //                    } else {
-    //                        console.log(response.message);
-    //                    }
-    //                },
-    //                error: function () {
-    //                    console.log("An error occurred while fetching coordinates.");
-    //                }
-    //            });
-    //        }
-    //    });
-    //});
-    //  for zooming in
+    });
 
     function plotPointsOnMap(coordinates) {
         // Clear any existing points
@@ -13519,36 +13362,27 @@ ${additionalContent}
         }
     }
 
-    $(document).ready(function () {
-        $('#stateDropdown').change(function () {
-            var selectedState = $(this).val(); // Get the selected state value
-            if (selectedState) {
-                $.ajax({
-                    url: queryUrlWLSta, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { state: selectedState },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMap(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+    $('#stateDropdown').change(function () {
+        var selectedState = $(this).val(); // Get the selected state value
+        if (selectedState) {
+            $.ajax({
+                url: queryUrlWLSta, // Use the global variable for the URL
+                type: 'GET',
+                data: { state: selectedState },
+                success: function (response) {
+                    if (response.success) {
+                        // Call the function to plot the points on the map
+                        plotPointsOnMap(response.coordinates);
+                    } else {
+                        console.log(response.message); // Log the error message
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
     });
-
-
-
-
-    // for state level viewing in map ends
-    //for dist  level viewing in map starts
-
 
 
     function plotPointsOnMapD(coordinates) {
@@ -13589,33 +13423,27 @@ ${additionalContent}
             });
         }
     }
-
-    $(document).ready(function () {
-        $('#districtDropdown').change(function () {
-            var selectedDist = $(this).val(); // Get the selected state value
-            if (selectedDist) {
-                $.ajax({
-                    url: queryUrlWLDist, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { district: selectedDist },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMapD(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+    $('#districtDropdown').change(function () {
+        var selectedDist = $(this).val(); // Get the selected state value
+        if (selectedDist) {
+            $.ajax({
+                url: queryUrlWLDist, // Use the global variable for the URL
+                type: 'GET',
+                data: { district: selectedDist },
+                success: function (response) {
+                    if (response.success) {
+                        // Call the function to plot the points on the map
+                        plotPointsOnMapD(response.coordinates);
+                    } else {
+                        console.log(response.message); // Log the error message
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
     });
-
-
-    //
 
 
 
@@ -13658,31 +13486,27 @@ ${additionalContent}
         }
     }
 
-    $(document).ready(function () {
-        $('#blockDropdown').change(function () {
-            var selectedBlock = $(this).val(); // Get the selected state value
-            if (selectedBlock) {
-                $.ajax({
-                    url: queryUrlWLBlock, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { block: selectedBlock },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMapB(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+    $('#blockDropdown').change(function () {
+        var selectedBlock = $(this).val(); // Get the selected state value
+        if (selectedBlock) {
+            $.ajax({
+                url: queryUrlWLBlock, // Use the global variable for the URL
+                type: 'GET',
+                data: { block: selectedBlock },
+                success: function (response) {
+                    if (response.success) {
+                        // Call the function to plot the points on the map
+                        plotPointsOnMapB(response.coordinates);
+                    } else {
+                        console.log(response.message); // Log the error message
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
     });
-
-    //
 
 
 
@@ -13725,99 +13549,28 @@ ${additionalContent}
         }
     }
 
-    $(document).ready(function () {
-        $('#gpDropdown').change(function () {
+    $('#gpDropdown').change(function () {
 
-            var selectedGP = $(this).val(); // Get the selected state value
-            if (selectedGP) {
-                $.ajax({
-                    url: queryUrlWLGP, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { grampanchayat: selectedGP },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMapGP(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+        var selectedGP = $(this).val(); // Get the selected state value
+        if (selectedGP) {
+            $.ajax({
+                url: queryUrlWLGP, // Use the global variable for the URL
+                type: 'GET',
+                data: { grampanchayat: selectedGP },
+                success: function (response) {
+                    if (response.success) {
+                        // Call the function to plot the points on the map
+                        plotPointsOnMapGP(response.coordinates);
+                    } else {
+                        console.log(response.message); // Log the error message
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
     });
-
-
-
-    //
-
-    //function plotPointsOnMapS(coordinates) {
-    //    // Clear any existing points
-    //    graphicsLayer.removeAll();
-
-    //    // Loop through each coordinate and create a point
-    //    coordinates.forEach(function (coord) {
-    //        var point = {
-    //            type: "point", // autocasts as new Point()
-    //            longitude: parseFloat(coord.Longitude),
-    //            latitude: parseFloat(coord.Latitude)
-    //        };
-
-    //        var simpleMarkerSymbol = {
-    //            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-    //            color: [226, 119, 40], // Orange color
-    //            outline: {
-    //                color: [255, 255, 255], // White outline
-    //                width: 1
-    //            }
-    //        };
-
-    //        var pointGraphic = new Graphic({
-    //            geometry: point,
-    //            symbol: simpleMarkerSymbol
-    //        });
-
-    //        // Add the point to the graphics layer
-    //        graphicsLayer.add(pointGraphic);
-    //    });
-
-    //    // Zoom to the first coordinate
-    //    if (coordinates.length > 0) {
-    //        view.goTo({
-    //            center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
-    //            zoom: 8
-    //        });
-    //    }
-    //}
-    //$(document).ready(function () {
-    //    $('#sourceDropdown').change(function () {
-    //        var selectedS = $(this).val(); // Get the selected source value
-
-
-    //        if (selectedS) {
-    //            $.ajax({
-    //                url: queryUrlWLSource,
-    //                type: 'GET',
-    //                data: { source_Ownership: selectedS },
-    //                success: function (response) {
-    //                    if (response.success) {
-    //                        console.log(response, "source");
-
-    //                        plotPointsOnMapS(response.coordinates);
-    //                    } else {
-    //                        console.log(response.message);
-    //                    }
-    //                },
-    //                error: function () {
-    //                    console.log("An error occurred while fetching coordinates.");
-    //                }
-    //            });
-    //        }
-    //    });
-    //});
 
 
 
@@ -13859,82 +13612,93 @@ ${additionalContent}
             });
         }
     }
-    $(document).ready(function () {
-        $('#sourceDropdown').change(function () {
-            var selectedSource = $('#sourceDropdown').val(); // Get the selected source value
-            var selectedState = $('#stateDropdown').val(); // Get the selected state
-            var selectedDistrict = $('#districtDropdown').val(); // Get the selected district
-            var selectedBlock = $('#blockDropdown').val(); // Get the selected block
-            var selectedGP = $('#gpDropdown').val(); // Get the selected GP
 
-            // Create a data object to hold only the selected dropdown values
-            var requestData = { source_Ownership: selectedSource };
+    $('#sourceDropdown').change(function () {
+        var selectedSource = $('#sourceDropdown').val(); // Get the selected source value
+        var selectedState = $('#stateDropdown').val(); // Get the selected state
+        var selectedDistrict = $('#districtDropdown').val(); // Get the selected district
+        var selectedBlock = $('#blockDropdown').val(); // Get the selected block
+        var selectedGP = $('#gpDropdown').val(); // Get the selected GP
 
-            // Add selected values only if they exist
-            if (selectedState) {
-                requestData.state = selectedState;
-            }
-            if (selectedDistrict) {
-                requestData.district = selectedDistrict;
-            }
-            if (selectedBlock) {
-                requestData.block = selectedBlock;
-            }
-            if (selectedGP) {
-                requestData.grampanchayat = selectedGP;
-            }
+        // Create a data object to hold only the selected dropdown values
+        var requestData = { source_Ownership: selectedSource };
 
-            // Log the selected combinations
-            console.log("Selected Dropdown Values:", requestData);
+        console.log("Starting count with dropdown values...");
 
-            if (selectedSource) { // Ensure the source is selected
-                // Clear previous points on the map
+        // Add selected values only if they exist, and log their source
+        if (selectedState) {
+            requestData.state = selectedState;
+            console.log("Counting based on State:", selectedState);
+        }
+        if (selectedDistrict) {
+            requestData.district = selectedDistrict;
+            console.log("Counting based on District:", selectedDistrict);
+        }
+        if (selectedBlock) {
+            requestData.block = selectedBlock;
+            console.log("Counting based on Block:", selectedBlock);
+        }
+        if (selectedGP) {
+            requestData.grampanchayat = selectedGP;
+            console.log("Counting based on Gram Panchayat:", selectedGP);
+        }
 
+        console.log("Final requestData object with selected dropdown values:", requestData);
 
-                $.ajax({
-                    url: queryUrlWLSource, // Ensure the correct URL is set
-                    type: 'GET',
-                    data: requestData, // Send only selected values
-                    success: function (response) {
-                        console.log("AJAX URL:", queryUrlWLSource); // Log the request URL
-                        if (response.success) {
-                            console.log(response.coordinates, "Coordinates received"); // Log the coordinates
-                            plotPointsOnMapS(response.coordinates); // Plot the new points using the function
-                        } else {
-                            console.log(response.message); // Log any failure message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+        if (selectedSource) {
+            console.log("Counting based on Source Ownership:", selectedSource);  // Log the source ownership
+            requestData.source_ownership_type = selectedSource;
+            $.ajax({
+                url: queryUrlWLSource,
+                type: 'GET',
+                data: {
+                    state: selectedState || "",
+                    district: selectedDistrict || "",
+                    block: selectedBlock || "",
+                    grampanchayat: selectedGP || "",
+                    source_ownership_type: selectedSource
+                },
+                success: function (response) {
+                    console.log("AJAX request sent to URL:", queryUrlWLSource);
+                    console.log("AJAX Data Sent:", {
+                        state: selectedState || "",
+                        district: selectedDistrict || "",
+                        block: selectedBlock || "",
+                        gp: selectedGP || "",
+                        source_ownership_type: selectedSource
+                    });
+                    console.log("Full AJAX Response:", response); // Log the entire response
+
+                    if (response.success && response.coordinates) {
+                        console.log("Coordinates from Response:", response.coordinates);
+                        plotPointsOnMapS(response.coordinates);
+                    } else {
+                        console.log("No coordinates received. Message from server:", response.message);
                     }
-                });
-            }
-        });
-
-
+                }
+            });
+        }
     });
+
 
 
     // for wq zooming
 
 
     function plotPointsOnMapQ(coordinates) {
-        // Clear any existing points
         graphicsLayer.removeAll();
-
-        // Loop through each coordinate and create a point
         coordinates.forEach(function (coord) {
             var point = {
-                type: "point", // autocasts as new Point()
+                type: "point",
                 longitude: parseFloat(coord.Longitude),
                 latitude: parseFloat(coord.Latitude)
             };
 
             var simpleMarkerSymbol = {
-                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-                color: [226, 119, 40], // Orange color
+                type: "simple-marker",
+                color: [255, 255, 0],
                 outline: {
-                    color: [255, 255, 255], // White outline
+                    color: [255, 255, 255],
                     width: 1
                 }
             };
@@ -13943,12 +13707,8 @@ ${additionalContent}
                 geometry: point,
                 symbol: simpleMarkerSymbol
             });
-
-            // Add the point to the graphics layer
             graphicsLayer.add(pointGraphic);
         });
-
-        // Zoom to the first coordinate
         if (coordinates.length > 0) {
             view.goTo({
                 center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
@@ -13956,67 +13716,51 @@ ${additionalContent}
             });
         }
     }
-
-    $(document).ready(function () {
-        $('#stateDropdownQuality').change(function () {
-            var selectedState = $(this).val(); // Get the selected state value
-            if (selectedState) {
-                $.ajax({
-                    url: queryUrlWQSta, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { state: selectedState },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMapQ(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+    $('#stateDropdownQuality').change(function () {
+        var selectedState = $(this).val();
+        if (selectedState) {
+            $.ajax({
+                url: queryUrlWQSta,
+                type: 'GET',
+                data: { state: selectedState },
+                success: function (response) {
+                    if (response.success) {
+                        plotPointsOnMapQ(response.coordinates);
+                    } else {
+                        console.log(response.message);
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
     });
-
-    // for state level viewing in map ends
-    //for dist  level viewing in map starts
-
 
 
     function plotPointsOnMapDQ(coordinates) {
-        // Clear any existing points
         graphicsLayer.removeAll();
-
-        // Loop through each coordinate and create a point
         coordinates.forEach(function (coord) {
             var point = {
-                type: "point", // autocasts as new Point()
+                type: "point",
                 longitude: parseFloat(coord.Longitude),
                 latitude: parseFloat(coord.Latitude)
             };
 
             var simpleMarkerSymbol = {
-                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-                color: [226, 119, 40], // Orange color
+                type: "simple-marker",
+                color: [255, 255, 0],
                 outline: {
-                    color: [255, 255, 255], // White outline
+                    color: [255, 255, 255],
                     width: 1
                 }
             };
-
             var pointGraphic = new Graphic({
                 geometry: point,
                 symbol: simpleMarkerSymbol
             });
-
-            // Add the point to the graphics layer
             graphicsLayer.add(pointGraphic);
         });
-
-        // Zoom to the first coordinate ff
         if (coordinates.length > 0) {
             view.goTo({
                 center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
@@ -14024,67 +13768,50 @@ ${additionalContent}
             });
         }
     }
-
-    $(document).ready(function () {
-        $('#districtDropdownQuality').change(function () {
-            var selectedDist = $(this).val(); // Get the selected state value
-            if (selectedDist) {
-                $.ajax({
-                    url: queryUrlWQDist, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { district: selectedDist },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMapDQ(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+    $('#districtDropdownQuality').change(function () {
+        var selectedDist = $(this).val();
+        if (selectedDist) {
+            $.ajax({
+                url: queryUrlWQDist,
+                type: 'GET',
+                data: { district: selectedDist },
+                success: function (response) {
+                    if (response.success) {
+                        plotPointsOnMapDQ(response.coordinates);
+                    } else {
+                        console.log(response.message);
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
     });
 
 
-    //
-
-
-
     function plotPointsOnMapBQ(coordinates) {
-        // Clear any existing points
         graphicsLayer.removeAll();
-
-        // Loop through each coordinate and create a point
         coordinates.forEach(function (coord) {
             var point = {
-                type: "point", // autocasts as new Point()
+                type: "point",
                 longitude: parseFloat(coord.Longitude),
                 latitude: parseFloat(coord.Latitude)
             };
-
             var simpleMarkerSymbol = {
-                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-                color: [226, 119, 40], // Orange color
+                type: "simple-marker",
+                color: [255, 255, 0],
                 outline: {
-                    color: [255, 255, 255], // White outline
+                    color: [255, 255, 255],
                     width: 1
                 }
             };
-
             var pointGraphic = new Graphic({
                 geometry: point,
                 symbol: simpleMarkerSymbol
             });
-
-            // Add the point to the graphics layer
             graphicsLayer.add(pointGraphic);
         });
-
-        // Zoom to the first coordinate
         if (coordinates.length > 0) {
             view.goTo({
                 center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
@@ -14093,65 +13820,49 @@ ${additionalContent}
         }
     }
 
-    $(document).ready(function () {
-        $('#blockDropdownQuality').change(function () {
-            var selectedBlock = $(this).val(); // Get the selected state value
-            if (selectedBlock) {
-                $.ajax({
-                    url: queryUrlWQBlock, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { block: selectedBlock },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMapBQ(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+    $('#blockDropdownQuality').change(function () {
+        var selectedBlock = $(this).val(); // Get the selected state value
+        if (selectedBlock) {
+            $.ajax({
+                url: queryUrlWQBlock, // Use the global variable for the URL
+                type: 'GET',
+                data: { block: selectedBlock },
+                success: function (response) {
+                    if (response.success) {
+                        plotPointsOnMapBQ(response.coordinates);
+                    } else {
+                        console.log(response.message);
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
     });
 
-    //
-
-
-
     function plotPointsOnMapGPQ(coordinates) {
-        // Clear any existing points
         graphicsLayer.removeAll();
-
-        // Loop through each coordinate and create a point
         coordinates.forEach(function (coord) {
             var point = {
-                type: "point", // autocasts as new Point()
+                type: "point",
                 longitude: parseFloat(coord.Longitude),
                 latitude: parseFloat(coord.Latitude)
             };
-
             var simpleMarkerSymbol = {
-                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-                color: [226, 119, 40], // Orange color
+                type: "simple-marker",
+                color: [255, 255, 0],
                 outline: {
-                    color: [255, 255, 255], // White outline
+                    color: [255, 255, 255],
                     width: 1
                 }
             };
-
             var pointGraphic = new Graphic({
                 geometry: point,
                 symbol: simpleMarkerSymbol
             });
-
-            // Add the point to the graphics layer
             graphicsLayer.add(pointGraphic);
         });
-
-        // Zoom to the first coordinate
         if (coordinates.length > 0) {
             view.goTo({
                 center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
@@ -14159,53 +13870,43 @@ ${additionalContent}
             });
         }
     }
-
-    $(document).ready(function () {
-        $('#gpDropdownQuality').change(function () {
-
-            var selectedGP = $(this).val(); // Get the selected state value
-            if (selectedGP) {
-                $.ajax({
-                    url: queryUrlWQGP, // Use the global variable for the URL
-                    type: 'GET',
-                    data: { gp: selectedGP },
-                    success: function (response) {
-                        if (response.success) {
-                            // Call the function to plot the points on the map
-                            plotPointsOnMapGPQ(response.coordinates);
-                        } else {
-                            console.log(response.message); // Log the error message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+    $('#gpDropdownQuality').change(function () {
+        var selectedGP = $(this).val();
+        if (selectedGP) {
+            $.ajax({
+                url: queryUrlWQGP,
+                type: 'GET',
+                data: { gp: selectedGP },
+                success: function (response) {
+                    if (response.success) {
+                        plotPointsOnMapGPQ(response.coordinates);
+                    } else {
+                        console.log(response.message);
                     }
-                });
-            }
-        });
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
+    });
+    $('#cntry').change(function () {
+        graphicsLayer.removeAll();
     });
 
-
-
-    //
-
     function plotPointsOnMapSQ(coordinates) {
-        // Clear any existing points
         graphicsLayer.removeAll();
-
-        // Loop through each coordinate and create a point
         coordinates.forEach(function (coord) {
             var point = {
-                type: "point", // autocasts as new Point()
+                type: "point",
                 longitude: parseFloat(coord.Longitude),
                 latitude: parseFloat(coord.Latitude)
             };
-
             var simpleMarkerSymbol = {
-                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-                color: [226, 119, 40], // Orange color
+                type: "simple-marker",
+                color: [255, 255, 0],
                 outline: {
-                    color: [255, 255, 255], // White outline
+                    color: [255, 255, 0],
                     width: 1
                 }
             };
@@ -14214,12 +13915,8 @@ ${additionalContent}
                 geometry: point,
                 symbol: simpleMarkerSymbol
             });
-
-            // Add the point to the graphics layer
             graphicsLayer.add(pointGraphic);
         });
-
-        // Zoom to the first coordinate
         if (coordinates.length > 0) {
             view.goTo({
                 center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
@@ -14227,41 +13924,236 @@ ${additionalContent}
             });
         }
     }
-    $(document).ready(function () {
-        $('#sourceDropdownQuality').change(function () {
-            var selectedS = $(sourceDropdownQuality).val(); // Get the selected source value
-            var selectedState = $('#stateDropdownQuality').val(); // Get the selected state
-            var selectedDistrict = $('#districtDropdownQuality').val(); // Get the selected district
-            var selectedBlock = $('#blockDropdownQuality').val(); // Get the selected block
-            var selectedGP = $('#gpDropdownQuality').val(); // Get the selected group
 
-            // Log the selected values for debugging
-            console.log("Selected Values:", selectedState, selectedDistrict, selectedBlock, selectedGP, selectedS);
+    $('#sourceDropdownQuality').change(function () {
+        var selectedS = $(sourceDropdownQuality).val();
+        var selectedState = $('#stateDropdownQuality').val();
+        var selectedDistrict = $('#districtDropdownQuality').val();
+        var selectedBlock = $('#blockDropdownQuality').val();
+        var selectedGP = $('#gpDropdownQuality').val();
+        console.log("Selected Values:", selectedState, selectedDistrict, selectedBlock, selectedGP, selectedS);
 
-            if (selectedS) { // Make sure the source is selected
-                $.ajax({
-                    url: queryUrlWQSource, // The URL should be set correctly here
-                    type: 'GET',
-                    data: {
-                        state: selectedState || "", // Send empty string if null
-                        district: selectedDistrict || "",
-                        block: selectedBlock || "",
-                        gp: selectedGP || "",
-                        source: selectedS
-                    },
-                    success: function (response) {
-                        console.log("AJAX URL:", queryUrlWQSource);
-
-                        if (response.success) {
-                            console.log(response.coordinates); // Log coordinates
-                            plotPointsOnMapSQ(response.coordinates); // Ensure this function exists to plot the points
-                        } else {
-                            console.log(response.message); // Log failure message
-                        }
-                    },
-                    error: function () {
-                        console.log("An error occurred while fetching coordinates.");
+        if (selectedS) {
+            $.ajax({
+                url: queryUrlWQSource,
+                type: 'GET',
+                data: {
+                    state: selectedState || "",
+                    district: selectedDistrict || "",
+                    block: selectedBlock || "",
+                    gp: selectedGP || "",
+                    source: selectedS
+                },
+                success: function (response) {
+                    console.log("AJAX URL:", queryUrlWQSource);
+                    if (response.success) {
+                        console.log(response.coordinates);
+                        plotPointsOnMapSQ(response.coordinates);
+                    } else {
+                        console.log(response.message);
                     }
+                },
+                error: function () {
+                    console.log("An error occurred while fetching coordinates.");
+                }
+            });
+        }
+    });
+
+    document.getElementById("stateDropdown").addEventListener("change", (event) => {
+        const selectedState = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "state" },
+            { layer: WaterQuality, field: "state" },
+            { layer: StateLayer, field: "State" },
+            { layer: DistrictLayer, field: "State_Name" },
+            { layer: BlockLayer, field: "state" },
+            { layer: GPLayer, field: "st_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) { // Check if the layer exists before assignment
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedState}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
+                });
+            }
+        });
+    });
+
+    //
+
+
+    document.getElementById("districtDropdown").addEventListener("change", (event) => {
+        const selectedDist = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "district" },
+            { layer: WaterQuality, field: "district" },
+            { layer: DistrictLayer, field: "District_N" },
+            { layer: BlockLayer, field: "block" },
+            { layer: GPLayer, field: "dist_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) {
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedDist}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
+                });
+            }
+        });
+    });
+
+    //
+
+
+    document.getElementById("blockDropdown").addEventListener("change", (event) => {
+        const selectedBlock = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "block" },
+            { layer: WaterQuality, field: "block" },
+
+            { layer: BlockLayer, field: "block" },
+            { layer: GPLayer, field: "bloc_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) {
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedBlock}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
+                });
+            }
+        });
+    });
+
+
+    document.getElementById("gpDropdown").addEventListener("change", (event) => {
+        const selectedGP = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "grampanchayat" },
+            { layer: WaterQuality, field: "gp" },
+            { layer: GPLayer, field: "gp_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) {
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedGP}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
+                });
+            }
+        });
+    });
+
+    //  for excluding effect of water quality
+
+
+    document.getElementById("stateDropdownQuality").addEventListener("change", (event) => {
+        const selectedState = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "state" },
+            { layer: WaterQuality, field: "state" },
+            { layer: StateLayer, field: "State" },
+            { layer: DistrictLayer, field: "State_Name" },
+            { layer: BlockLayer, field: "state" },
+            { layer: GPLayer, field: "st_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) { // Check if the layer exists before assignment
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedState}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
+                });
+            }
+        });
+    });
+
+    //
+
+
+    document.getElementById("districtDropdownQuality").addEventListener("change", (event) => {
+        const selectedDist = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "district" },
+            { layer: WaterQuality, field: "district" },
+            { layer: DistrictLayer, field: "District_N" },
+            { layer: BlockLayer, field: "block" },
+            { layer: GPLayer, field: "dist_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) {
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedDist}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
+                });
+            }
+        });
+    });
+
+    //
+
+
+    document.getElementById("blockDropdownQuality").addEventListener("change", (event) => {
+        const selectedBlock = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "block" },
+            { layer: WaterQuality, field: "block" },
+
+            { layer: BlockLayer, field: "block" },
+            { layer: GPLayer, field: "bloc_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) {
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedBlock}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
+                });
+            }
+        });
+    });
+
+
+    document.getElementById("gpDropdownQuality").addEventListener("change", (event) => {
+        const selectedGP = event.target.value;
+
+        const layers = [
+            { layer: WaterLevel, field: "grampanchayat" },
+            { layer: WaterQuality, field: "gp" },
+            { layer: GPLayer, field: "gp_name" }
+        ];
+
+        layers.forEach(({ layer, field }) => {
+            if (layer) {
+                layer.featureEffect = new FeatureEffect({
+                    filter: new FeatureFilter({
+                        where: `${field} = '${selectedGP}'`
+                    }),
+                    excludedEffect: "opacity(5%)"
                 });
             }
         });
@@ -14269,6 +14161,8 @@ ${additionalContent}
 
 
 
+
+    //  End of Query and zooming of pounts for data points
     var zoomInBtn = document.createElement("div");
     zoomInBtn.id = "zoomInBtn";
     zoomInBtn.className = "zoom-btn";
@@ -14304,7 +14198,6 @@ ${additionalContent}
     //    document.getElementById('map_data').style.visibility = 'visible';
 
     //    false;
-
 
     //}
     distanceButton.addEventListener('click', function () {
@@ -14462,15 +14355,13 @@ ${additionalContent}
             suggestionsList.innerHTML = '';
         }
     });
+
     $("#show-sidebar").click(function () {
         var initialCenter = [78, 22];
         var initialZoom = 4;
-
-        document.getElementById("show-sidebar").addEventListener("click", function () {
-            view.goTo({
-                center: initialCenter,
-                zoom: initialZoom
-            });
+        view.goTo({
+            center: initialCenter,
+            zoom: initialZoom
         });
         StateLayer.definitionExpression = "";
         DistrictLayer.definitionExpression = "";
@@ -14824,22 +14715,82 @@ ${additionalContent}
         });
     });
 
+
+    var queryDiv = document.createElement("div");
+    queryDiv.className = "queryDiv";
+    queryDiv.id = "queryDiv";
+    uiContainer.appendChild(queryDiv);
+
     var openPopupBtn = document.createElement("button");
     openPopupBtn.className = "openPopupBtn";
     openPopupBtn.id = "openPopupBtn";
     openPopupBtn.innerHTML = "<i class='fas fa-database'></i>"
     openPopupBtn.title = "Query";
-    uiContainer.appendChild(openPopupBtn);
-    window.addEventListener("click", function (event) {
-        if (!event.target.matches("#basemapDropdownBtn")) {
-            dropdownContent.classList.remove("show");
-        }
+    queryDiv.appendChild(openPopupBtn);
+
+    var queryDropdown = document.createElement("div");
+    queryDropdown.className = "query-dropdown";
+    queryDiv.appendChild(queryDropdown);
+
+
+    var queryOption = [{
+        name: "Water Quality",
+        value: "popupModal"
+    },
+    {
+        name: "Water Level",
+        value: "popupModal2"
+    }];
+
+    queryOption.forEach(function (option) {
+        var optionLink = document.createElement("a");
+        optionLink.href = "#";
+        optionLink.setAttribute("data-value", option.value);
+        optionLink.textContent = option.name;
+        queryDropdown.appendChild(optionLink);
     });
 
-    // Show the modal and load state options on button click
-    $(document).ready(function () {
-        // Show the modal and load state options on button click
-        $('#openPopupBtn').click(function () {
+
+
+    openPopupBtn.addEventListener("click", function () {
+        graphicsLayer.removeAll();
+        $('#popupModal').hide();
+        $('#popupModal2').hide();
+        resetFormOndropdownChange();
+    });
+    function resetFormOndropdownChange() {
+        $('#stateDropdown').empty().append(new Option("Select State", ""));
+        $('#stateDropdownQuality').empty().append(new Option("Select State", ""));
+        resetOtherDropdowns();
+        resetOtherDropdownsWQ();
+        fetchStateOptions();
+        fetchStateOptionsWQ();
+        $("#waterwellQl").hide();
+        $("#waterwell").hide();
+        $("#depth-range-wq").hide();
+        $("#depth-range").hide();
+        $("#water-quality-analysis").hide();
+        let locationListContainer = $('#locationListContainer .location-list');
+        locationListContainer.empty();
+        $("#well-count-quality").hide();
+        let locationListContainer2 = $('#well-count-quality .location-list');
+        locationListContainer2.empty();
+    }
+
+    queryDropdown.querySelectorAll("a").forEach(function (option) {
+        option.addEventListener("click", function (event) {
+            event.preventDefault();
+            resetFormOndropdownChange();
+            var selectedModal = option.getAttribute("data-value");
+            let modal = document.getElementById(selectedModal);
+            if (modal) {
+                modal.style.display = "block";
+            }
+            if (selectedModal == "popupModal2") {
+                $('#popupModal').hide();
+            } else {
+                $('#popupModal2').hide();
+            }
             $(".page-wrapper").removeClass("toggled");
             //$(".map_view").removeClass("toggled");
             $(".page-wrapper").addClass("toggled-other");
@@ -14848,74 +14799,43 @@ ${additionalContent}
             $('#close-sidebar2').css('display', 'none');
             $('#show-sidebar').css('display', 'flex');
         });
+    });
 
+
+    window.addEventListener("click", function (event) {
+        if (!event.target.matches("#basemapDropdownBtn")) {
+            dropdownContent.classList.remove("show");
+        }
+    });
+
+    $(document).ready(function () {
         // Close the modal when the 'x' is clicked
         $('.closePopupModal').click(function () {
             $('#popupModal').hide();
             $(".page-wrapper").removeClass("toggled-other");
         });
-
-        //// Close the modal when clicking outside of the modal
-        //$(window).click(function (event) {
-        //    if ($(event.target).is('#popupModal')) {
-        //        $('#popupModal').hide();
-        //    }
-        //});
-
-        // Get the buttons   Button ID is reversed
-        const waterLevelBtn = document.getElementById('waterLevelBtn');
-        const waterQualityBtn = document.getElementById('waterQualityBtn');
-
-        // Get the formswaterLevelBtn
-        const waterLevelForm = document.getElementById('waterLevelForm');
-        const waterQualityForm = document.getElementById('waterQualityForm');
-
-        // Add click event listeners to the buttons
-        waterLevelBtn.addEventListener('click', function () {
-            waterLevelForm.style.display = 'block';     // Show Water Level form
-            waterQualityForm.style.display = 'none';    // Hide Water Quality form
+        // Close the modal when the 'x' is clicked
+        $('.closePopupModal2').click(function () {
+            $('#popupModal2').hide();
+            $(".page-wrapper").removeClass("toggled-other");
         });
 
-        waterQualityBtn.addEventListener('click', function () {
-            waterQualityForm.style.display = 'block';   // Show Water Quality form
-            waterLevelForm.style.display = 'none';      // Hide Water Level form
-        });
-
-        // Optional: Set initial state
-        waterLevelForm.style.display = 'block'; // Show Water Level form by default
-        waterQualityForm.style.display = 'none'; // Hide Water Quality form by default
     });
-    // Show the modal and load state options on button click
-    document.getElementById('openPopupBtn').onclick = function () {
-        document.getElementById('popupModal').style.display = 'block';
-
-    };
-
 });
-
-
 $(document).ready(function () {
-    var globalCounter = 0; // Initialize global counter
-
-    // Function to increment counter
+    var globalCounter = 0;
     function incrementCounter() {
         globalCounter++;
-        $("#counter").text(globalCounter); // Update counter value in the DOM
+        $("#counter").text(globalCounter);
     }
-
-    // Function to process each div
     function processDivs() {
         $("div").each(function () {
-            incrementCounter(); // Call incrementCounter function for each div
+            incrementCounter();
         });
     }
-
-    // Call processDivs function when button is clicked
     $("#processBtn").click(function () {
         processDivs();
     });
-    //
-
 });
 
 // Show the loader initially
@@ -14950,20 +14870,4 @@ document.addEventListener("DOMContentLoaded", function () {
     //$(window).resize(checkwindowWidthSmall);
 
 });
-
-
-//function checkwindowWidth() {
-//    if ($(window).width() > 1021 && $(window).height() > 500) {
-//        document.getElementById("ui-container").style.flexDirection = 'row';
-//    }
-//}
-
-//function checkwindowWidthSmall() {
-////    if ($(window).width() <= 1021 && $(window).height() > 500) {
-//        document.getElementById("ui-container").style.flexDirection = 'column';
-//    }
-//}
-
-
-
 
