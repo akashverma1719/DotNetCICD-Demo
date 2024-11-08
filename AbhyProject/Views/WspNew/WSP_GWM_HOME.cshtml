@@ -494,7 +494,6 @@
         var SessionTabName = "WSP_HOME_WSP";
 
         $(document).ready(function () {
-            window.location = "/Home/under_maintainance";
             Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.list));
             $("#logout_session").show()
             DropDownInfo();
@@ -1546,9 +1545,6 @@
     }
     $(function () {
         $("#btnSubmit").click(function () {
-            debugger;
-            window.location = "/Home/under_maintainance";
-            return;
             Login();
 
         });

@@ -2669,8 +2669,10 @@ namespace AbhyProject.Controllers
             //ViewBag.upcount = ViewBag.uttarpradesh.Count;
 
         }
-        public ActionResult WSP_GWM_HOME_new()
+        public ActionResult WSP_GWM_HOME_new(String idd)
         {
+            if (idd == "1")
+            {
             var dateAndTime = DateTime.Now;
             var Today_Date_1 = dateAndTime.Date;
             var GrievanceDetails = ABE.objNew_Grievance.Where(x => x.accept != "Approved").ToList();
@@ -2914,6 +2916,12 @@ namespace AbhyProject.Controllers
             Session["id"] = id;
 
             return RedirectToAction("WSP_GWM_HOME", "WspNew");
+
+            }
+            else
+            {
+                return RedirectToAction("under_maintainance", "Home");
+            }
         }
 
         public ActionResult WSP_GWM_HOME()
@@ -6509,9 +6517,16 @@ namespace AbhyProject.Controllers
                 var user = ABE.objUsers.Where(x => x.UserId == intUserID && x.UserToken == stToken).FirstOrDefault();
                 if (user != null)
                 {
-                    if (user.UserId == intUserID)
+                    if (user.Email == "akash.verma@kreatetechnologies.com" || user.Email == "anil.jaswal@kreatetechnologies.com" || user.Email == "balram.krishna@kreatetechnologies.com" || user.Email == "ranjana.devli@kreatetechnologies.com" || user.Email == "rajnish@kreatetechnologies.com" || user.Email == "shivani1@kreatetechnologies.com" || user.Email == "suruchi@kreatetechnologies.com")
                     {
-                        status = true;
+                        if (user.UserId == intUserID)
+                        {
+                            status = true;
+                        }
+                    }
+                    else
+                    {
+                        status = false;
                     }
                 }
                 else
