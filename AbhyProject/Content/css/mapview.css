@@ -5174,3 +5174,7 @@ table .rainguage_icon1 {
             background-color: #b3e0ff;
             cursor: pointer;
         }
+
+.openPopupBtn {
+    display: none;
+}
