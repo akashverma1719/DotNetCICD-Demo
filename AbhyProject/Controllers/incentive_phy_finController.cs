@@ -3885,7 +3885,7 @@ namespace AbhyProject.Controllers
 			try
 			{
 				string[] states = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
-				int[] gps_count = { 1873, 1656, 1199, 670, 1133, 1139, 550 };
+				int[] gps_count = { 1873, 1647, 1199, 670, 1133, 1132, 549 };
 				List<total_demand> all_data = new List<total_demand>();
 				List<incentive_demand> ddetails = new List<incentive_demand>();
 
@@ -4237,7 +4237,7 @@ namespace AbhyProject.Controllers
 			try
 			{
 				string[] states = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
-				int[] gps_count = { 1873, 1656, 1199, 670, 1133, 1139, 550 };
+				int[] gps_count = { 1873, 1647, 1199, 670, 1133, 1132, 549 };
 				List<total_supply> all_data = new List<total_supply>();
 				List<incentive_supply> ddetails = new List<incentive_supply>();
 
@@ -4579,7 +4579,7 @@ namespace AbhyProject.Controllers
 			try
 			{
 				string[] states = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
-				int[] gps_count = { 1873, 1656, 1199, 670, 1133, 1139, 550 };
+				int[] gps_count = { 1873, 1647, 1199, 670, 1133, 1132, 549 };
 				List<total_supply> all_data = new List<total_supply>();
 				List<incentive_other> ddetails = new List<incentive_other>();
 
