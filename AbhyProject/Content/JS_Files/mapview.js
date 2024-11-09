@@ -2004,7 +2004,7 @@ require([
 
 
     const GPLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Hosted/DistrictBlockGP/FeatureServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2036,7 +2036,7 @@ require([
 
 
     const BlockLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/1",
         definitionExpression: "state <> 'Delhi_7'",
         labelingInfo: [labelClassB],
         content: blockChange,
@@ -2062,7 +2062,7 @@ require([
     });
 
     const DistrictLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/2",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Districts",
         labelingInfo: [labelClassD],
@@ -2088,7 +2088,7 @@ require([
 
 
     const StateLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0",
 
         definitionExpression: "State <> 'Delhi_7'",
         title: "States",
@@ -2117,7 +2117,7 @@ require([
 
     //
     const GPLayerse = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2281,7 +2281,7 @@ require([
 
     //State Query
 
-    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/0/query";
+    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0/query";
     var queryOpts = {
         requestType: "json",
         query: {
@@ -2317,7 +2317,7 @@ require([
     });
 
 
-    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/0/query";
+    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/2/query";
     countryDDL.addEventListener("change", function () {
         var stateName = countryDDL.value;
 
@@ -2391,7 +2391,7 @@ require([
             f: "json"
         }
     }
-    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Map2/MapServer/1/query";
+    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/1/query";
 
     DistrictDDL.addEventListener("change", function () {
         var districtname = DistrictDDL.value;
@@ -2470,7 +2470,7 @@ require([
 
     //GP Query
 
-    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BoundaryNew/MapServer/1/query";
+    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3/query";
     BlockDDL.addEventListener("change", function () {
         var blockname = BlockDDL.value;
         if (blockname === '0') {
@@ -8464,7 +8464,7 @@ require([
             const villna = feature.graphic.attributes.VILL_NAME;
             const gppop = feature.graphic.attributes.ST_LGD;
             const gparea = feature.graphic.attributes.GP_AREA;
-            const annuara = feature.graphic.attributes.DIST_LGD;
+            const annuara = feature.graphic.attributes.Rainfall_D;
             console.log("Blockqqqq:", gpName);
 
 
@@ -9345,7 +9345,7 @@ ${additionalContent}
             const distName = feature.graphic.attributes.district; // Get the block name
             const dtNamec = feature.graphic.attributes.District_N;
             const stNamec = feature.graphic.attributes.State_Name;
-            const blcou = feature.graphic.attributes.BLOCK_Coun;
+            const blcou = feature.graphic.attributes.Block_Coun;
             const gpnum = feature.graphic.attributes.GPs_Count;
 
 

@@ -1,4 +1,4 @@
-body {
+/*body {
     font-family: sans-serif;
 }
 
@@ -6,15 +6,15 @@ html,
 body {
     padding: 0;
     margin: 0;
-    height: 100vh;
+    height: 100vh;*/
     /*  width: 100%;*/
-    overflow: hidden;
+    /*overflow: hidden;
 }
 
 #viewDiv {
-    height: calc(100vh - 198px) !important;
+    height: calc(100vh - 198px) !important;*/
     /*  width: 100%;*/
-    overflow: hidden;
+    /*overflow: hidden;
 }
 
 @media screen and (min-height: 600px) and (max-height: 900px) {
@@ -36,12 +36,12 @@ body {
     color: #fff;
     border: 1px solid #004592;
     margin-top: 5px;
-}
+}*/
 
 /*.map_view.toggled {
     width: 78%;
 }*/
-.MapMainDIv {
+/*.MapMainDIv {
     margin-top: 7px;
 }
 
@@ -75,7 +75,7 @@ body {
 
 h2 {
     margin: 0 0 10px;
-}
+}*/
 
 /* 
   #tablediv {
@@ -125,14 +125,14 @@ h2 {
 
 /* Header Styling Start */
 
-.header {
+/*.header {*/
     /*background: url(../Agriculture_icons/map.png);*/
     /*z-index: 99999;*/
     /*background-size: cover;*/
     /*background-repeat: no-repeat
     /*min-height: 10vh;*/
     /*background-position: left;*/
-    width: 100%;
+    /*width: 100%;
     position: relative;
     background-color: #004592;
     padding: 10px;
@@ -193,7 +193,7 @@ span.logodivider {
     width: 28%;
     height: 100%;
     margin-top: 2%;
-}
+}*/
 /*
     .header .logo img {
         height: 40px;
@@ -246,7 +246,7 @@ span.logodivider {
 }*/
 
 /* Header Styling End */
-.item1 {
+/*.item1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,11 +262,11 @@ span.logodivider {
 }
 
 .form_container {
-    width: 100%;
+    width: 100%;*/
     /* min-height: 100px; */
     /* z-index: 1000; */
     /* padding: 0 20px; */
-}
+/*}
 
     .form_container form {
         border-radius: 0 0 3px 3px;
@@ -313,17 +313,17 @@ span.logodivider {
 }
 
 .tabs_section {
-    width: 100%;
+    width: 100%;*/
     /* background: #fff; */
-    min-height: 350px;
+    /*min-height: 350px;*/
     /* padding: 10px;
   border: 1px solid #0099cc;
   border-radius: 0 0 3px 3px; */
-}
+/*}*/
 
 /* .tab-menu {
   } */
-.tab-menu ul,
+/*.tab-menu ul,
 .tab_sec_menu ul {
     margin: 0;
     padding: 0;
@@ -374,9 +374,9 @@ span.logodivider {
 }
 
 .data_box {
-    background: #fff;
+    background: #fff;*/
     /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;*/
-    padding: 5px 0px;
+    /*padding: 5px 0px;
 }
 
     .data_box h6 {
@@ -384,8 +384,8 @@ span.logodivider {
         padding-top: 8px;
         font-size: 14px;
         font-weight: 500;
-        margin: 0; /* Remove default margin */
-    }
+        margin: 0;*/ /* Remove default margin */
+    /*}
 
     .data_box .content {
         display: flex;
@@ -397,14 +397,14 @@ span.logodivider {
 
 
     .data_box .badge {
-        margin-right: 10px; /* Add some spacing between count badge and download button */
-    }
+        margin-right: 10px;*/ /* Add some spacing between count badge and download button */
+    /*}*/
 
 /* Media queries for adjusting font size */
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {
     .data_box h6 {
-        font-size: 12px; /* Decrease font size for smaller screens */
-    }
+        font-size: 12px;*/ /* Decrease font size for smaller screens */
+    /*}
 
     .sidebar-wrapper .sidebar-menu .sidebar-submenu {
         height: 62vh;
@@ -413,8 +413,8 @@ span.logodivider {
 
 @media screen and (min-width: 1200px) {
     .data_box h6 {
-        font-size: 16px; /* Increase font size for larger screens */
-    }
+        font-size: 16px;*/ /* Increase font size for larger screens */
+    /*}
 }
 
 td {
@@ -496,10 +496,10 @@ button#applyAttributeFilter {
 
 .sec_esri_button {
     margin-top: -10px;
-}
+}*/
 
 /* Sidebar Start */
-@keyframes swing {
+/*@keyframes swing {
     0% {
         transform: rotate(0deg);
     }
@@ -569,11 +569,11 @@ body {
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
-}
+}*/
 
 /*----------------page-wrapper----------------*/
 
-.page-wrapper {
+/*.page-wrapper {
     height: 80vh;
 }
 
@@ -587,11 +587,11 @@ body {
 
         .page-wrapper .theme.chiller-theme {
             background: #1e2229;
-        }
+        }*/
 
     /*----------------toggeled sidebar----------------*/
 
-    .page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
+    /*.page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
         left: 0px;
         top: 8vw;
     }
@@ -601,15 +601,15 @@ body {
     .page-wrapper.toggled-other .page-content {
         padding-left: calc(100 - 73%);
     }
-}
+}*/
 
 /*----------------show sidebar button----------------*/
 
-.maptoggleButton {
+/*.maptoggleButton {*/
     /* position: fixed;
     left: 250px;
     top: calc(5.8vw + 47px);*/
-    border-radius: 0 4px 4px 0px;
+    /*border-radius: 0 4px 4px 0px;
     transition-delay: 0.3s;
     z-index: 1;
     display: flex;
@@ -641,31 +641,31 @@ body {
         color: #000;
         border-radius: 4px;
         font-size: 20px;
-    }
+    }*/
 
 /*.page-wrapper.toggled .maptoggleButton {
     left: 250px;
     z-index: 1;
 }*/
 
-.show {
+/*.show {
     display: block;
 }
 
-@media only screen and (max-width: 1599.98px) {
+@media only screen and (max-width: 1599.98px) {*/
     /*  #ui-container {
         padding-right: 90px !important;
     }*/
 
-    .page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
+    /*.page-wrapper.toggled .sidebar-wrapper, .modal.queryModal {
         left: 0px;
         top: calc(8vw + 12px);
         z-index: 2;
     }
-}
+}*/
 /*----------------sidebar-wrapper----------------*/
 
-.sidebar-wrapper {
+/*.sidebar-wrapper {
     width: 27%;
     height: 100%;
     max-height: 100%;
@@ -683,19 +683,19 @@ body {
 
     .sidebar-wrapper a {
         text-decoration: none;
-    }
+    }*/
 
 /*----------------sidebar-content----------------*/
 
-.sidebar-content {
-    height: 81vh;
+/*.sidebar-content {
+    height: 81vh;*/
     /*overflow-y: auto;*/
-    position: relative;
+    /*position: relative;
 }
 
     .sidebar-content.desktop {
         overflow-y: hidden;
-    }
+    }*/
 
 /*--------------------sidebar-brand----------------------*/
 
@@ -706,7 +706,7 @@ body {
     font-size: 15px;
 }
 */
-.sidebar-wrapper .sidebar-brand > a {
+/*.sidebar-wrapper .sidebar-brand > a {
     text-transform: uppercase;
     font-weight: bold;
     flex-grow: 1;
@@ -740,17 +740,17 @@ body {
 
 .sidebar-wrapper .sidebar-brand #close-sidebar {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 20px;*/
     /*margin-top: 13px;*/
-}
+/*}
 
 .sidebar-wrapper .sidebar-search > div {
     padding: 10px 20px;
-}
+}*/
 
 /*----------------------sidebar-menu-------------------------*/
 
-.sidebar-wrapper .sidebar-menu {
+/*.sidebar-wrapper .sidebar-menu {
     padding-bottom: 10px;
 }
 
@@ -794,7 +794,7 @@ body {
     .sidebar-wrapper .sidebar-menu .sidebar-dropdown:nth-child(4) > a:after,
     .sidebar-wrapper .sidebar-menu .sidebar-dropdown:nth-child(5) > a:after {
         content: none;
-    }
+    }*/
 
     /*.sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
         font-family: "Font Awesome 5 Free";
@@ -814,14 +814,14 @@ body {
         top: 12px;
     }*/
 
-    .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
+    /*.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
         padding: 5px 0;
     }
 
-    .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {*/
         /* padding-left: 25px; */
-        font-size: 13px;
-    }
+        /*font-size: 13px;
+    }*/
 
     /* .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
   content: "\f111";
@@ -837,7 +837,7 @@ body {
   font-size: 8px;
 } */
 
-    .sidebar-wrapper .sidebar-menu ul li a span.label,
+    /*.sidebar-wrapper .sidebar-menu ul li a span.label,
     .sidebar-wrapper .sidebar-menu ul li a span.badge {
         float: right;
         margin-top: 8px;
@@ -855,7 +855,7 @@ body {
         display: block;
         overflow-y: auto;
         height: 67vh;
-    }
+    }*/
 
 /* .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
         transform: rotate(90deg);
@@ -864,7 +864,7 @@ body {
 
 /*------scroll bar---------------------*/
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 5px;
     height: 7px;
 }
@@ -904,19 +904,19 @@ body {
 
 ::-webkit-scrollbar-corner {
     background: #fff;
-}
+}*/
 
 /*-----------------------------chiller-theme-------------------------------------------------*/
 
-.chiller-theme .sidebar-wrapper {
+/*.chiller-theme .sidebar-wrapper {
     background: #004592;
-}
+}*/
 
     /*.chiller-theme .sidebar-wrapper .sidebar-menu {
         border-top: 1px solid #f0f0f0;
     }*/
 
-    .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
+    /*.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
     .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status,
     .chiller-theme .sidebar-wrapper .sidebar-brand > a,
     .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
@@ -1016,12 +1016,12 @@ a:hover:before {
 iframe.map {
     width: 100%;
     height: 100vh;
-}
+}*/
 
 /* Sidebar End */
 /* Modal Add */
 
-.modal_view,
+/*.modal_view,
 .sec_modal_view {
     position: fixed;
     left: 0;
@@ -1135,7 +1135,7 @@ iframe.map {
             font-size: 22px;
             margin-top: 5px;
             cursor: pointer;
-        }
+        }*/
 
 /* 
 
@@ -1150,7 +1150,7 @@ iframe.map {
   top: 20px;
   background-color: yellowgreen;
 } */
-.heading {
+/*.heading {
     font-size: 35px;
     font-weight: 200;
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -1176,7 +1176,7 @@ iframe.map {
         background-color: rgba(0, 0, 0, 0.6);
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
         transition: all 300ms ease;
-    }
+    }*/
 
 /* #exportButton
  {
@@ -1187,17 +1187,17 @@ iframe.map {
   cursor: pointer;
 } */
 
-.btn {
+/*.btn {
     background-color: DodgerBlue;
     border: none;
     color: white;
     padding: 12px 30px;
     cursor: pointer;
     font-size: 20px;
-}
+}*/
 
     /* Darker background on mouse-over */
-    .btn:hover {
+    /*.btn:hover {
         background-color: RoyalBlue;
     }
 
@@ -1217,10 +1217,10 @@ iframe.map {
     width: 300px;
     background: #fff;
     padding: 20px;
-}
+}*/
 
 /* Only disable the popup for the specific layer we want. This would allow other layers to work as norml. */
-.esri-component.esri-popup[data-layer-title="USA Counties Generalized"] {
+/*.esri-component.esri-popup[data-layer-title="USA Counties Generalized"] {
     display: none !important;
 }
 
@@ -1328,7 +1328,7 @@ iframe.map {
 #infoPanelCloseButtong {
     font-size: 10px;
     float: right;
-}
+}*/
 
 /*#infoPanelButtonsg {
     display: flex;
@@ -1340,15 +1340,15 @@ iframe.map {
         width: 100%;
     }*/
 
-#infoPanelButtons,
+/*#infoPanelButtons,
 #infoPanelButtonsd,
 #infoPanelButtonsb,
 infoPanelButtonsg {
     display: none;
-}
+}*/
 
 /* CSS to style the new popup */
-.popup {
+/*.popup {
     display: none;
     position: fixed;
     left: 50%;
@@ -1460,9 +1460,9 @@ infoPanelButtonsg {
 
 #closePopupwqm {
     position: absolute;
-    top: 10px; /* Adjust the top position to your preference */
-    right: 10px; /* Adjust the right position to your preference */
-    background-color: #ec5353;
+    top: 10px;*/ /* Adjust the top position to your preference */
+    /*right: 10px;*/ /* Adjust the right position to your preference */
+    /*background-color: #ec5353;
     padding: 5px 9px;
     border: none;
     cursor: pointer;
@@ -1478,24 +1478,24 @@ infoPanelButtonsg {
 
 #closePopupwq {
     position: absolute;
-    top: 10px; /* Adjust the top position to your preference */
-    right: 10px; /* Adjust the right position to your preference */
-    background-color: #ccc;
+    top: 10px;*/ /* Adjust the top position to your preference */
+    /*right: 10px;*/ /* Adjust the right position to your preference */
+    /*background-color: #ccc;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
-}
+}*/
 
     /* Style for the close button on hover (optional) */
-    #closePopupwq:hover {
+    /*#closePopupwq:hover {
         background-color: #aaa;
     }
 
 #closePopupwqm:hover {
     background-color: #aaa;
-}
+}*/
 /* Style for the close button */
-#closePopup {
+/*#closePopup {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -1507,10 +1507,10 @@ infoPanelButtonsg {
     font-size: 13px;
     font-weight: 600;
     border-radius: 29px;
-}
+}*/
 
     /* Style for the close button on hover (optional) */
-    #closePopup:hover {
+    /*#closePopup:hover {
         background-color: #aaa;
     }
 
@@ -1526,10 +1526,10 @@ infoPanelButtonsg {
     font-size: 13px;
     font-weight: 600;
     border-radius: 29px;
-}
+}*/
 
     /* Style for the close button on hover (optional) */
-    #closePopupWF:hover {
+    /*#closePopupWF:hover {
         background-color: #aaa;
     }
 
@@ -1545,10 +1545,10 @@ infoPanelButtonsg {
     font-size: 13px;
     font-weight: 600;
     border-radius: 29px;
-}
+}*/
 
     /* Style for the close button on hover (optional) */
-    #closePopupR:hover {
+    /*#closePopupR:hover {
         background-color: #aaa;
     }
 
@@ -1564,15 +1564,15 @@ infoPanelButtonsg {
     font-size: 13px;
     font-weight: 600;
     border-radius: 29px;
-}
+}*/
 
     /* Style for the close button on hover (optional) */
-    #closePopupwq:hover {
+    /*#closePopupwq:hover {
         background-color: #aaa;
-    }
+    }*/
 /* Style for the search button */
 /* Style for the search button */
-.custom-search-button {
+/*.custom-search-button {
     padding: 6px 10px;
     background-color: #004592;
     color: #fff;
@@ -1612,20 +1612,20 @@ infoPanelButtonsg {
 .page-wrapper.toggled-other #coordinates {
     left: 26.6%;
     font-size: 11px;
-}
+}*/
 
 /*#ui-container.toggled,
 #ui-container.toggled-other {
     padding-left: 27%;
 }
 */
-.coordinates .latitude {
-    color: blue; /* Green color for latitude */
-}
+/*.coordinates .latitude {
+    color: blue;*/ /* Green color for latitude */
+/*}
 
 .coordinates .longitude {
-    color: blue; /* Blue color for longitude */
-}
+    color: blue;*/ /* Blue color for longitude */
+/*}
 
 #loader {
     position: absolute;
@@ -1633,13 +1633,13 @@ infoPanelButtonsg {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    display: block; /* Initially show loader */
-}
+    display: block;*/ /* Initially show loader */
+/*}
 
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #333; /* Change color as needed */
-    border-radius: 50%;
+    border-left: 4px solid #333;*/ /* Change color as needed */
+    /*border-radius: 50%;
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
@@ -1661,13 +1661,13 @@ infoPanelButtonsg {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    display: none; /* Initially hide error message */
-    color: blue;
+    display: none;*/ /* Initially hide error message */
+    /*color: blue;
     font-size: 18px;
-}
+}*/
 
 /* Export File*/
-.dropdown {
+/*.dropdown {
     position: relative;
     display: inline-block;
 }
@@ -1677,9 +1677,9 @@ infoPanelButtonsg {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    max-height: 200px; /* Set a max height for the dropdown */
-    overflow-y: auto; /* Enable vertical scroll if needed */
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    max-height: 200px;*/ /* Set a max height for the dropdown */
+    /*overflow-y: auto;*/ /* Enable vertical scroll if needed */
+    /*box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -1729,10 +1729,10 @@ infoPanelButtonsg {
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
-}
+}*/
 
     /* Hover effect */
-    .dropbtn:hover {
+    /*.dropbtn:hover {
         background-color: #005f6b;
     }
 
@@ -1746,14 +1746,14 @@ infoPanelButtonsg {
     padding: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    overflow: auto; /* Add overflow for cases where content might exceed the container */
-}
+    overflow: auto;*/ /* Add overflow for cases where content might exceed the container */
+/*}
 
 #graphCanvas {
     width: 100%;
     max-width: 100%;
-    height: 300px; /* Adjust as needed */
-    display: block;
+    height: 300px;*/ /* Adjust as needed */
+    /*display: block;
     margin: 0 auto;
 }
 
@@ -1769,9 +1769,9 @@ infoPanelButtonsg {
     font-size: 14px;
     font-weight: 600;
     float: right;
-}
+}*/
 /* Style for the graph popup container */
-.popup {
+/*.popup {
     display: none;
     position: fixed;
     left: 50%;
@@ -1810,24 +1810,24 @@ infoPanelButtonsg {
 
     #executeQueriesButton:hover {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
+    }*/
 
     /* Small circle styling */
-    #executeQueriesButton .smallCircle {
-        width: 20px; /* Initial width */
-        height: 20px; /* Initial height */
-        background-color: #4caf50;
-        border-radius: 50%; /* Create a circular shape */
-        display: inline-block;
-        margin-right: 5px; /* Add some spacing to the right of the small circle */
-        transition: width 0.3s, height 0.3s; /* Smooth transition for size changes */
-    }
+    /*#executeQueriesButton .smallCircle {
+        width: 20px;*/ /* Initial width */
+        /*height: 20px;*/ /* Initial height */
+        /*background-color: #4caf50;
+        border-radius: 50%;*/ /* Create a circular shape */
+        /*display: inline-block;
+        margin-right: 5px;*/ /* Add some spacing to the right of the small circle */
+        /*transition: width 0.3s, height 0.3s;*/ /* Smooth transition for size changes */
+    /*}*/
 
     /* Hover effect to increase the size of the small circle */
-    #executeQueriesButton:hover .smallCircle {
-        width: 30px; /* Increased width on hover */
-        height: 30px; /* Increased height on hover */
-    }
+    /*#executeQueriesButton:hover .smallCircle {
+        width: 30px;*/ /* Increased width on hover */
+        /*height: 30px;*/ /* Increased height on hover */
+    /*}
 
 #executeQueriesButton,
 .smallCircle {
@@ -1839,21 +1839,21 @@ infoPanelButtonsg {
 }
 
 #ws_count {
-    white-space: nowrap; /* Prevent text from wrapping to the next line */
-    overflow: hidden; /* Hide any overflow beyond the container */
-    text-overflow: ellipsis; /* Display an ellipsis (...) for overflowed text */
-    display: block; /* Ensure the text is treated as a block element */
-    max-width: 100%; /* Ensure the text doesn't exceed the container width */
-}
+    white-space: nowrap;*/ /* Prevent text from wrapping to the next line */
+    /*overflow: hidden;*/ /* Hide any overflow beyond the container */
+    /*text-overflow: ellipsis;*/ /* Display an ellipsis (...) for overflowed text */
+    /*display: block;*/ /* Ensure the text is treated as a block element */
+    /*max-width: 100%;*/ /* Ensure the text doesn't exceed the container width */
+/*}
 
     #ws_count:hover {
-        white-space: normal; /* Allow text to wrap to the next line on hover */
-        overflow: visible; /* Show the full text on hover */
-        text-overflow: unset; /* Reset text-overflow on hover */
-    }
+        white-space: normal;*/ /* Allow text to wrap to the next line on hover */
+        /*overflow: visible;*/ /* Show the full text on hover */
+        /*text-overflow: unset;*/ /* Reset text-overflow on hover */
+    /*}*/
 
 /*---------map view responsive start------------*/
-@media only screen and (max-width: 767px) {
+/*@media only screen and (max-width: 767px) {
     .map_view {
         width: 100% !important;
     }
@@ -1916,52 +1916,52 @@ infoPanelButtonsg {
 }
 
 #btnsubmit_water {
-    background-color: #004592;
+    background-color: #004592;*/
     /*padding: 5px 10px;*/
-    border-radius: 8px;
+    /*border-radius: 8px;
     color: #fff;
-    border: 1px solid #004592;
+    border: 1px solid #004592;*/
     /*margin-top: 5px;*/
-}
+/*}
 
     #btnsubmit_water i {
         font-size: 10px;
     }
 
     #btnsubmit_water:hover {
-        background-color: #fff; /* Change background color on hover */
-        color: #004592;
+        background-color: #fff;*/ /* Change background color on hover */
+        /*color: #004592;
         border: 1px solid #004592;
     }
 
 .esri-feature__main-container #btnsubmit_water {
     margin-top: 5px;
     margin-left: 45%;
-}
+}*/
 /*#btnsubmit_water i {
         line-height: 30px;*/ /* Center the icon vertically */
 /*padding: 0 5px;*/ /* Add padding to the sides of the icon */
 /*}*/
-.btn_export {
+/*.btn_export {
     position: relative;
 }
 
     .btn_export:hover::after {
         content: "Download";
         position: absolute;
-        bottom: -20px; /* Adjust as needed */
-        left: 50%;
+        bottom: -20px;*/ /* Adjust as needed */
+        /*left: 50%;
         transform: translateX(-50%);
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        color: white;
-        padding: 3px 8px; /* Adjust padding as needed */
-        border-radius: 5px;
-        font-size: 8px; /* Adjust font size as needed */
-    }
+        background-color: rgba(0, 0, 0, 0.5);*/ /* Semi-transparent background */
+        /*color: white;
+        padding: 3px 8px;*/ /* Adjust padding as needed */
+        /*border-radius: 5px;
+        font-size: 8px;*/ /* Adjust font size as needed */
+    /*}*/
 
 /* From Here Updated */
 
-.toggle-layer-list-button {
+/*.toggle-layer-list-button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -1977,8 +1977,8 @@ infoPanelButtonsg {
 
 #infoDiv {
     padding: 0px;
-    right: 20px; /*tobe comment*/
-    top: calc(58px + 6vw);
+    right: 20px;*/ /*tobe comment*/
+    /*top: calc(58px + 6vw);
 }
 
     #infoDiv button {
@@ -1987,17 +1987,17 @@ infoPanelButtonsg {
     }
 
 .esri-button {
-    background-color: #007bff; /* Blue background color */
-    color: #fff; /* White text color */
-    padding: 10px 20px; /* Padding around the text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Show pointer cursor on hover */
-}
+    background-color: #007bff;*/ /* Blue background color */
+    /*color: #fff;*/ /* White text color */
+    /*padding: 10px 20px;*/ /* Padding around the text */
+    /*border: none;*/ /* No border */
+    /*border-radius: 5px;*/ /* Rounded corners */
+    /*cursor: pointer;*/ /* Show pointer cursor on hover */
+/*}
 
     .esri-button:hover {
-        background-color: #0056b3; /* Darker blue on hover */
-    }
+        background-color: #0056b3;*/ /* Darker blue on hover */
+    /*}
 
 .action-button {
     font-size: 16px;
@@ -2012,9 +2012,9 @@ infoPanelButtonsg {
 
     .action-button:hover,
     .action-button:focus {
-        background: #e4e4e4; /* Change to white color on hover */
-        color: #0079c1; /* Change to blue color on hover */
-    }
+        background: #e4e4e4;*/ /* Change to white color on hover */
+        /*color: #0079c1;*/ /* Change to blue color on hover */
+    /*}*/
 
 /* Style the container */
 /*div {
@@ -2022,23 +2022,23 @@ infoPanelButtonsg {
 }
 */
 /* Style labels */
-label {
+/*label {
     display: inline-block;
     width: 100px;
     font-weight: bold;
-}
+}*/
 
 /* Style text area and input */
-textarea,
+/*textarea,
 input[type="number"] {
     width: 100%;
     padding: 5px;
     border-radius: 14px;
-}
+}*/
 
 /* Style the button */
 
-.popupfeed {
+/*.popupfeed {
     display: none;
     position: absolute;
     background-color: #004592;
@@ -2064,21 +2064,21 @@ input[type="number"] {
 }
 
 .rating-stars {
-    font-size: 0; /* Remove whitespace between stars */
-}
+    font-size: 0;*/ /* Remove whitespace between stars */
+/*}
 
 .star {
     cursor: pointer;
     font-size: 35px;
     color: #ccc;
-}
+}*/
 
     /* .star:hover,
     .star:hover ~ .star {
         color: #ffcc00;
     }*/
 
-    .star.active,
+    /*.star.active,
     .star.active {
         color: #ffcc00;
     }
@@ -2090,13 +2090,13 @@ input[type="number"] {
 
 .header {
     margin: 0;
-}
+}*/
 
 /*.sidebar-dropdown.active {
     background-color: #004592
 }
 */
-.esri-ui-corner .esri-component {
+/*.esri-ui-corner .esri-component {
     box-shadow: none !important;
 }
 
@@ -2321,8 +2321,8 @@ input[type="number"] {
     #wq_id:hover,
     #gwl_id:hover,
     #gwl_view_graph:hover {
-        background-color: #fff; /* Change background color on hover */
-        color: #004592;
+        background-color: #fff;*/ /* Change background color on hover */
+        /*color: #004592;
         border: 1px solid #004592;
     }
 
@@ -2366,9 +2366,9 @@ footer.mapViewFooter {
     border: 4px solid #ccc;
     padding: 11px;
     max-width: 363px;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;*/
     /*    max-height: 800px;*/
-    display: flex;
+    /*display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -2425,9 +2425,9 @@ footer.mapViewFooter {
 .legend-custom-text-container > div {
     display: flex;
     flex-wrap: nowrap;
-    margin-right: 20px; /* Adjust spacing between legend items */
-    margin-bottom: 5px; /* Adjust spacing between rows */
-}
+    margin-right: 20px;*/ /* Adjust spacing between legend items */
+    /*margin-bottom: 5px;*/ /* Adjust spacing between rows */
+/*}
 
 .legend-symbol {
     width: 18px;
@@ -2454,7 +2454,7 @@ footer.mapViewFooter {
     overflow: hidden;
     text-overflow: ellipsis;
     padding-left: 52px;
-}
+}*/
 
 /*.title-color-box {
     width: 29px !important;
@@ -2462,22 +2462,22 @@ footer.mapViewFooter {
     margin-right: 10px;*/ /* Adjust the distance as needed */
 /*}*/
 
-.legend-custom-text-container {
+/*.legend-custom-text-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 5px;
 }
 
-.custom-text {
+.custom-text {*/
     /* Other custom styles for your text */
-    margin-bottom: 10px; /* Add margin below the custom text */
-}
+    /*margin-bottom: 10px;*/ /* Add margin below the custom text */
+/*}
 
 .custom-text-title {
     font-weight: bold;
     margin-right: 5px;
-}
+}*/
 
 /*#toggleButton {
     position: absolute;
@@ -2487,7 +2487,7 @@ footer.mapViewFooter {
 }*/
 
 /* Hide checkbox based on layer ID */
-.layer-checkbox-layer7,
+/*.layer-checkbox-layer7,
 .layer-checkbox-layer8,
 .layer-checkbox-layer9,
 .layer-checkbox-layer10,
@@ -2499,10 +2499,10 @@ footer.mapViewFooter {
 .layer-checkbox-layer16,
 .layer-checkbox-layer17 {
     display: none;
-}
+}*/
 
 /* Hide checkbox1 based on layer ID */
-.layer-checkbox1-layer1,
+/*.layer-checkbox1-layer1,
 .layer-checkbox1-layer2,
 .layer-checkbox1-layer3,
 .layer-checkbox1-layer4,
@@ -2526,9 +2526,9 @@ footer.mapViewFooter {
 }
 
 .scale-bar {
-    position: absolute;
+    position: absolute;*/
     /*    background-color: rgba(255, 255, 255, 0.8);*/
-    padding: 5px;
+    /*padding: 5px;
     border-radius: 5px;
     font-family: Arial, sans-serif;
     font-size: 12px;
@@ -2549,10 +2549,10 @@ footer.mapViewFooter {
     height: 2px;
     background-color: black;
     margin-top: 5px;
-}
+}*/
 
 /* Hide custom text containers by default */
-.legend-custom-text-container {
+/*.legend-custom-text-container {
     display: none;
 }
 
@@ -2568,13 +2568,13 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
 .measurement-button {
     position: absolute;
-    top: 60px; /* Adjust as needed */
-    left: 1300px; /* Adjust as needed */
-    display: flex;
+    top: 60px;*/ /* Adjust as needed */
+    /*left: 1300px;*/ /* Adjust as needed */
+    /*display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0079c1; /* Esri default button color */
-    color: #fff;
+    background-color: #0079c1;*/ /* Esri default button color */
+    /*color: #fff;
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
@@ -2584,8 +2584,8 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 }
 
     .measurement-button:hover {
-        background-color: #005a8e; /* Darker color on hover */
-    }
+        background-color: #005a8e;*/ /* Darker color on hover */
+    /*}
 
 .icon {
     width: 20px;
@@ -2594,8 +2594,8 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 }
 
     .icon path {
-        fill: #fff; /* Icon color */
-    }
+        fill: #fff;*/ /* Icon color */
+    /*}
 
 #distanceMeasurementButton {
 }
@@ -2641,14 +2641,14 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
     .measurementButton:hover {
         background-color: #777;
-    }
+    }*/
 
 /* CSS styles for search input */
-#searchInput {
-}
+/*#searchInput {
+}*/
 
 /* CSS styles for search button */
-#searchButton {
+/*#searchButton {
 }
 
 #searchButton {
@@ -2656,22 +2656,22 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 }
 
     #searchButton:hover {
-        background-color: #fff; /* Darker shade on hover */
-    }
+        background-color: #fff;*/ /* Darker shade on hover */
+    /*}*/
 /* Style the suggestions list */
-#suggestionsList {
+/*#suggestionsList {
     list-style-type: none;
     padding: 0;
     margin: 0;
     position: absolute;
     top: 33px;
     right: 506px;
-    z-index: 1000; /* Ensure the suggestions list appears above other content */
-    background-color: #fff; /* Add background color */
-    border: 1px solid #ccc; /* Add border */
-    border-radius: 4px; /* Add border radius */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for a raised effect */
-}
+    z-index: 1000;*/ /* Ensure the suggestions list appears above other content */
+    /*background-color: #fff;*/ /* Add background color */
+    /*border: 1px solid #ccc;*/ /* Add border */
+    /*border-radius: 4px;*/ /* Add border radius */
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/ /* Add box shadow for a raised effect */
+/*}
 
     #suggestionsList li {
         padding: 8px;
@@ -2680,8 +2680,8 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 
         #suggestionsList li:hover {
-            background-color: #f0f0f0; /* Adjust the background color as needed */
-        }
+            background-color: #f0f0f0;*/ /* Adjust the background color as needed */
+        /*}
 
 #controls-container {
     position: absolute;
@@ -2828,10 +2828,10 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     height: 30px;
     font-size: 14px;
     font-family: math;
-}
+}*/
 
 /* CSS styles for search button */
-#searchButton {
+/*#searchButton {
     background: #fff;
     border: none;
     padding: 4px;
@@ -2931,8 +2931,8 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 .custom-title-color-box-layer18 {
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(0, 0, 0, 0.9); /* Border color */
-    margin-right: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.9);*/ /* Border color */
+    /*margin-right: 10px;
     background-color: transparent !important;
 }
 
@@ -2952,38 +2952,38 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 .custom-title-color-box-layer7 {
     width: 20px;
     height: 20px;
-    border: 2px solid #69dcff; /* Border color */
-    margin-right: 10px;
-    background-color: #69dcff; /* Background color */
-    border-radius: 50%; /* This will make the element circular */
-}
+    border: 2px solid #69dcff;*/ /* Border color */
+    /*margin-right: 10px;
+    background-color: #69dcff;*/ /* Background color */
+    /*border-radius: 50%;*/ /* This will make the element circular */
+/*}
 
 .custom-title-color-box-layer9 {
     width: 20px;
     height: 20px;
-    border: 2px solid #0000ff; /* Border color */
-    margin-right: 10px;
-    background-color: #0000ff; /* Background color */
-    border-radius: 50%; /* This will make the element circular */
-}
+    border: 2px solid #0000ff;*/ /* Border color */
+    /*margin-right: 10px;
+    background-color: #0000ff;*/ /* Background color */
+    /*border-radius: 50%;*/ /* This will make the element circular */
+/*}
 
 .custom-title-color-box-layer16 {
     width: 20px;
     height: 20px;
-    border: 2px solid blue; /* Border color */
-    margin-right: 10px;
-    background-color: green; /* Background color */
-    border-radius: 50%; /* This will make the element circular */
-}
+    border: 2px solid blue;*/ /* Border color */
+    /*margin-right: 10px;
+    background-color: green;*/ /* Background color */
+    /*border-radius: 50%;*/ /* This will make the element circular */
+/*}
 
 .custom-title-color-box-layer17 {
     width: 20px;
     height: 20px;
-    border: 2px solid blue; /* Border color */
-    margin-right: 10px;
-    background-color: red; /* Background color */
-    border-radius: 50%; /* This will make the element circular */
-}
+    border: 2px solid blue;*/ /* Border color */
+    /*margin-right: 10px;
+    background-color: red;*/ /* Background color */
+    /*border-radius: 50%;*/ /* This will make the element circular */
+/*}
 
 .custom-title-color-box-layer15 {
     width: 20px;
@@ -2994,17 +2994,17 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
 .legend-custom-text {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: middle;*/
     /* Add other styles as needed */
-}
+/*}
 
 .color-box {
     display: inline-block;
     vertical-align: middle;
     width: 20px !important;
-    height: 20px;
+    height: 20px;*/
     /* border: 1px solid #000;*/
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;
 }
 
     .color-box.color-box-layer-layer15 {
@@ -3015,9 +3015,9 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 
 .title-color-box layer18 {
-}
+}*/
 /* Define a CSS class to hide the color box */
-.hidden-color-box {
+/*.hidden-color-box {
     display: none;
 }
 
@@ -3096,9 +3096,9 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
 .legend-title-container {
     display: grid;
-    grid-template-columns: 40px 165px 73px 34px !important;
+    grid-template-columns: 40px 165px 73px 34px !important;*/
     /*  grid-template-columns: repeat(4, 1fr);*/
-}
+/*}
 
 .legend-title {
     display: block;
@@ -3115,9 +3115,9 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 .containerGridForCheckBox {
     display: grid;
     grid-template-columns: repeat(4, 0.2fr);
-    justify-content: start;
+    justify-content: start;*/
     /* gap: 20px; */
-    align-items: center;
+    /*align-items: center;
     justify-content: center;
 }
 
@@ -3140,14 +3140,14 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 .legend-title-container.pl_70 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-}
+}*/
 /*.legend-custom-text-container.pl-0.hidden:last-child {
     grid-column: 1 / -1;
 }*/
 
-.gridcustomclass {
+/*.gridcustomclass {*/
     /*  grid-template-columns: repeat(3, 1fr);*/
-    padding-left: 20px;
+    /*padding-left: 20px;
     grid-template-columns: 40px 122px 73px !important;
     padding-top: 10px;
 }
@@ -3161,12 +3161,12 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 
 .legend-item {
-    margin-top: 5px; /* Add margin for better spacing */
-}
+    margin-top: 5px;*/ /* Add margin for better spacing */
+/*}
 
     .legend-item.active {
-        display: none; /* Show legend items when active class is applied */
-    }
+        display: none;*/ /* Show legend items when active class is applied */
+    /*}
 
 .hidden-pv-data-id {
     display: none;
@@ -3186,9 +3186,9 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
 .legend-custom-text-container.disLayerNone {
     display: grid;
-    grid-template-columns: 42px 158px 71px 20px !important;
+    grid-template-columns: 42px 158px 71px 20px !important;*/
     /*    gap: 20px;*/
-    width: 100%;
+    /*width: 100%;
 }
 
 .legend-group:nth-child(3) .legend-item .legend-custom-text-container > div {
@@ -3207,7 +3207,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
 .Span-count {
     font-size: 14px;
-}
+}*/
 /*
 #legend .legend-group:nth-child(2) .legend-item:nth-child(5) .title-color-box {
     border-radius: 50% !important;
@@ -3225,7 +3225,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     border: 2px solid blue !important;
 }*/
 
-.legend-radio {
+/*.legend-radio {
     display: none;
 }
 
@@ -3234,9 +3234,9 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 }
 
 #legend .legend-group:first-child .legend-title-container {
-    grid-template-columns: 40px 147px 92px 34px !important;
+    grid-template-columns: 40px 147px 92px 34px !important;*/
     /* grid-template-columns: 1fr 180px 1fr 1fr !important;*/
-}
+/*}
 
 #legend .legend-group:nth-child(2) .legend-title-container {
     grid-template-columns: 40px 147px 92px 34px !important;
@@ -3299,14 +3299,14 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     height: 2px;
     margin-top: 10px;
     display: none;
-}
+}*/
 
 /*#legend .legend-group:nth-child(3) .legend-item:last-child .color-box {
     height: 2px;
     margin-top: 10px;
 }
 */
-.legend-group:nth-child(3)
+/*.legend-group:nth-child(3)
 .legend-item
 .legend-custom-text-container
 .color-box {
@@ -3387,17 +3387,17 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 .title-color-box.layer3 {
     width: 20px;
     height: 20px;
-    background-color: transparent !important; /* Make the inside transparent */
-    border: 3px solid green; /* Set a solid green border */
-    margin-right: 10px;
+    background-color: transparent !important;*/ /* Make the inside transparent */
+    /*border: 3px solid green;*/ /* Set a solid green border */
+    /*margin-right: 10px;
 }
 
 .title-color-box.layer2 {
     width: 20px;
     height: 20px;
-    background-color: transparent !important; /* Make the inside transparent */
-    border: 3px solid black; /* Set a solid black border */
-    margin-right: 10px;
+    background-color: transparent !important;*/ /* Make the inside transparent */
+    /*border: 3px solid black;*/ /* Set a solid black border */
+    /*margin-right: 10px;
 }
 
 .title-color-box.layer1 {
@@ -3486,14 +3486,14 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 10px solid #f3f3f3; /* Light grey */
-    border-top: 10px solid #3498db; /* Blue */
-    border-radius: 50%;
+    border: 10px solid #f3f3f3;*/ /* Light grey */
+    /*border-top: 10px solid #3498db;*/ /* Blue */
+    /*border-radius: 50%;
     width: 80px;
     height: 80px;
     animation: spin 2s linear infinite;
-    z-index: 9999; /* Ensure it's on top of other elements */
-}
+    z-index: 9999;*/ /* Ensure it's on top of other elements */
+/*}
 
 @keyframes spin {
     0% {
@@ -3542,7 +3542,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     font-size: 13px;
     font-weight: 600;
     border-radius: 29px;
-}
+}*/
 /*@media screen and (min-width: 1200px) and (max-width: 1250px){
     .map-hover-btn{
         right: 24% !important;
@@ -3559,7 +3559,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 }
 */
-.SeachBar {
+/*.SeachBar {
     width: 36px;
     height: 36px;
     background-color: #fff;
@@ -3615,9 +3615,9 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     width: 263px;
     height: 44px;
     padding: 7px;
-    border-radius: 5px;
+    border-radius: 5px;*/
     /*    display: flex;*/
-    justify-content: space-between;
+    /*justify-content: space-between;
     flex-direction: row;
     align-items: center;
     animation: myfirst 1s ease-in-out;
@@ -3848,9 +3848,9 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         top: calc(7vw + 143px);
         width: 98%;
         background-color: #fff;
-        border: 2px solid #ccc;
+        border: 2px solid #ccc;*/
         /*max-width: 99%;*/
-    }
+    /*}
 
     .esri-popup__main-container {
         width: 73% !important;
@@ -3864,7 +3864,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     .chiller-theme .sidebar-wrapper .sidebar-menu ul li .sidebarButton {
         gap: 23px;
         right: calc(10% + 25px);
-    }
+    }*/
     /*
     #close-sidebar .fa-times {
         top: 1.5%;
@@ -3872,7 +3872,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         padding: 5px 8px;
     }*/
 
-    #searchDiv {
+    /*#searchDiv {
         bottom: 77px;
     }
 
@@ -4068,13 +4068,13 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     .scale-bar {
         bottom: 10% !important;
         right: 45% !important;
-    }
+    }*/
 
     /* .SeachBar {
         margin-bottom: 6px;
     }*/
 
-    .header h4 {
+    /*.header h4 {
         font-size: 13px;
     }
 
@@ -4221,7 +4221,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         height: calc(100vh - 288px) !important;
         margin-top: 37px;
     }
-}
+}*/
 
 /*@media screen and (min-width: 900px) and (max-width: 1000px) {
     #ui-container {
@@ -4234,7 +4234,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 
 }*/
-@media screen and (min-width: 600px) and (max-width: 800px) {
+/*@media screen and (min-width: 600px) and (max-width: 800px) {
     .esri-popup__main-container {
         width: 50% !important;
     }
@@ -4388,7 +4388,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 @media screen and (min-width: 1601px) and (max-width: 2200px) {
     #legend {
         height: calc(100vh - 205px) !important;
-    }
+    }*/
     /*  .Artificial_Icon {
         width: 22px !important;
     }*/
@@ -4396,12 +4396,12 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         width: 19px !important;
       
     }*/
-}
+/*}
 
 @media screen and (min-width: 2200px) and (max-width: 3000px) {
     #legend {
         height: 72vh !important;
-    }
+    }*/
     /* .Artificial_Icon {
         width: 18px !important;
     }
@@ -4409,7 +4409,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     .icon_WaterQualityMonitoring {
         width: 19px !important;
     }*/
-}
+/*}
 
 @media screen and (min-height: 901px) and (max-height: 1200px) {
     #legend {
@@ -4541,11 +4541,11 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
 .Show_Hide_Sidebar {
     display: none;
-}
+}*/
 
 /* Icons Style */
 
-.icon_WaterQualityMonitoring1, .icon_Waterlevel1, .icon_WaterQuality1, .Artificial_Icon1, .WaterFlow_icon1, .icon_Well1, .rainguage_icon1 {
+/*.icon_WaterQualityMonitoring1, .icon_Waterlevel1, .icon_WaterQuality1, .Artificial_Icon1, .WaterFlow_icon1, .icon_Well1, .rainguage_icon1 {
     position: relative;
     width: 40px;
 }
@@ -4729,12 +4729,12 @@ table .rainguage_icon1 {
 
 .esri-popup--is-docked-top-left .esri-popup__main-container {
     max-height: 90% !important;
-}
+}*/
 
 
 
 /* Modal container - hidden by default */
-.modal {
+/*.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -4742,30 +4742,30 @@ table .rainguage_icon1 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-}
+    background-color: rgba(0, 0, 0, 0.5);*/ /* Black background with opacity */
+/*}
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
+    display: none;*/ /* Hidden by default */
+    /*position: fixed;*/ /* Stay in place */
+    /*z-index: 1;*/ /* Sit on top */
+    /*left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
+    width: 100%;*/ /* Full width */
+    /*height: 100%;*/ /* Full height */
+    /*overflow: auto;*/ /* Enable scroll if needed */
+    /*background-color: rgb(0,0,0);*/ /* Fallback color */
+    /*background-color: rgba(0,0,0,0.4);*/ /* Black w/ opacity */
+    /*padding-top: 60px;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto; /* 15% from the top and centered */
-    padding: 20px;
+    margin: 5% auto;*/ /* 15% from the top and centered */
+    /*padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
+    width: 80%;*/ /* Could be more or less, depending on screen size */
+/*}
 
 .close {
     color: #aaa;
@@ -4801,13 +4801,13 @@ table .rainguage_icon1 {
 
 .queryDiv:hover .query-dropdown {
     display: flex;
-}
+}*/
 
 /*.query-dropdown.show {
     display: flex;
 }
 */
-.query-dropdown a {
+/*.query-dropdown a {
     display: block;
     height: 100%;
     width: 100%;
@@ -4860,12 +4860,12 @@ table .rainguage_icon1 {
     #toggleButton {
         top: 122px !important;
     }
-}
+}*/
 
 
 /* for the Water Level Button and Water Quality download */
 
-#downloadExcelWL, #downloadExcel {
+/*#downloadExcelWL, #downloadExcel {
     background-color: transparent;
     border: none;
     padding: 0;
@@ -4953,9 +4953,9 @@ table .rainguage_icon1 {
 
 .filter-container p span:first-child {
     font-weight: 500;
-}
+}*/
 /* for the Filter Button */
-.filter-container {
+/*.filter-container {
     max-width: 400px;
     margin: 20px auto;
     padding: 20px;
@@ -4995,18 +4995,18 @@ table .rainguage_icon1 {
     .filter-form input[type="number"]:focus {
         border-color: #004592;
         outline: none;
-    }
+    }*/
 
 /* Submit and Download Button  */
-.button-group {
+/*.button-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
-}
+}*/
 
 /* Small Submit Button */
-.submit-button {
+/*.submit-button {
     padding: 5px 12px;
     background-color: #004592;
     color: white;
@@ -5020,10 +5020,10 @@ table .rainguage_icon1 {
 
     .submit-button:hover {
         background-color: #003366;
-    }
+    }*/
 
 /* Download Button */
-.download-button {
+/*.download-button {
     padding: 5px;
     background-color: transparent;
     border: none;
@@ -5147,11 +5147,11 @@ table .rainguage_icon1 {
     color: #333;
     text-align: center;
     font-size: 14px;
-}
+}*/
 
 /* Styling the location list */
 
-.location-list {
+/*.location-list {
     list-style: none;
     padding-left: 0;
     margin-top: 5px;
@@ -5173,4 +5173,4 @@ table .rainguage_icon1 {
         .location-list li:hover {
             background-color: #b3e0ff;
             cursor: pointer;
-        }
+        }*/
