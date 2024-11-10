@@ -2004,7 +2004,7 @@ require([
 
 
     const GPLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2088,7 +2088,7 @@ require([
 
 
     const StateLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3",
 
         definitionExpression: "State <> 'Delhi_7'",
         title: "States",
@@ -2117,7 +2117,7 @@ require([
 
     //
     const GPLayerse = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2281,7 +2281,7 @@ require([
 
     //State Query
 
-    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0/query";
+    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3/query";
     var queryOpts = {
         requestType: "json",
         query: {
@@ -2441,9 +2441,18 @@ require([
             var BlockNames = Array.from(new Set(response.data.features.map(r => r.attributes["block"]))).sort();
             // console.log("Block Name :" + BlockNames.length);
             BlockNames.forEach((a, i) => {
+                
                 var names = a.split("_");
-                BlockDDL.innerHTML += `<option value="${a}"> ${names[0]} </option>`
+                let displayName;               
+                if (names.length > 2 && names[1].startsWith("(") && names[1].endsWith(")")) {                   
+                    displayName = `${names[0]}_${names[1]}`;
+                } else {                   
+                    displayName = names[0];
+                }
+
+                BlockDDL.innerHTML += `<option value="${a}"> ${displayName} </option>`;
             });
+
 
         });
 
@@ -2470,7 +2479,7 @@ require([
 
     //GP Query
 
-    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3/query";
+    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0/query";
     BlockDDL.addEventListener("change", function () {
         var blockname = BlockDDL.value;
         if (blockname === '0') {
