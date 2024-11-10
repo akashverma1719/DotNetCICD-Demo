@@ -2439,7 +2439,7 @@ require([
         //Getting the features data from the api
         esriRequest(queryUrlB, queryOptsB).then(function (response) {
             var BlockNames = Array.from(new Set(response.data.features.map(r => r.attributes["block"]))).sort();
-            // console.log("Block Name :" + BlockNames.length);
+            // console.log("Block Nameq :" + BlockNames.length);
             BlockNames.forEach((a, i) => {
                 
                 var names = a.split("_");
