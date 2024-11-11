@@ -6509,18 +6509,8 @@ namespace AbhyProject.Controllers
             {
                 var user = ABE.objUsers.Where(x => x.UserId == intUserID && x.UserToken == stToken).FirstOrDefault();
                 if (user != null)
-                {
-                    if (user.Email == "akash.verma@kreatetechnologies.com" || user.Email == "anil.jaswal@kreatetechnologies.com" || user.Email == "balram.krishna@kreatetechnologies.com" || user.Email == "ranjana.devli@kreatetechnologies.com" || user.Email == "rajnish@kreatetechnologies.com" || user.Email == "shivani1@kreatetechnologies.com" || user.Email == "suruchi@kreatetechnologies.com")
-                    {
-                        if (user.UserId == intUserID)
-                        {
-                            status = true;
-                        }
-                    }
-                    else
-                    {
-                        status = false;
-                    }
+                {   
+                    status = true;
                 }
                 else
                 {
