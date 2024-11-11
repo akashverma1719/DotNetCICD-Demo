@@ -6222,16 +6222,10 @@ require([
 
             // Return CSV content as string
             return csvContent.join('\n');
-        }
-
-
-
-
+        }        
         popupContentR.appendChild(button);
         return popupContentR;
-
-
-
+        
         ///
     }
     const closeButtonr = document.getElementById('closePopupR');
