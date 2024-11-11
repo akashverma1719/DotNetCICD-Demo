@@ -2669,10 +2669,9 @@ namespace AbhyProject.Controllers
             //ViewBag.upcount = ViewBag.uttarpradesh.Count;
 
         }
-        public ActionResult WSP_GWM_HOME_new(String idd)
+        public ActionResult WSP_GWM_HOME_new()
         {
-            if (idd == "1")
-            {
+            
             var dateAndTime = DateTime.Now;
             var Today_Date_1 = dateAndTime.Date;
             var GrievanceDetails = ABE.objNew_Grievance.Where(x => x.accept != "Approved").ToList();
@@ -2916,12 +2915,6 @@ namespace AbhyProject.Controllers
             Session["id"] = id;
 
             return RedirectToAction("WSP_GWM_HOME", "WspNew");
-
-            }
-            else
-            {
-                return RedirectToAction("under_maintainance", "Home");
-            }
         }
 
         public ActionResult WSP_GWM_HOME()

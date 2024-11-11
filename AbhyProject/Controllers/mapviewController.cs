@@ -4277,6 +4277,14 @@ namespace AbhyProject.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine("Error fetching location options: " + ex.Message);
+
+                abhy_tbl_error error_data = new abhy_tbl_error();
+                error_data.error_test = ex.Message;
+                error_data.user_email = ex.StackTrace;
+                error_data.user_type = "Map view";
+                error_data.error_count = "1";
+                ABE.obj_abhy_tbl_error.Add(error_data);
+                ABE.SaveChanges();
                 return Json(new { error = "An error occurred while fetching location options." }, JsonRequestBehavior.AllowGet);
             }
         }
