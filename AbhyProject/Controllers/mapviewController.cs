@@ -489,7 +489,7 @@ namespace AbhyProject.Controllers
         }
 
 
-        //
+        // Water Level
 
 
         public ActionResult exesitingwellexcel(string state1, string district1, string block01, string gp1)
@@ -542,6 +542,7 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow, 17).Value = "Ground Water Level Date";
                 worksheet.Cell(currentRow, 18).Value = "Diameter of Well";
                 worksheet.Cell(currentRow, 19).Value = "Height of Measuring Point";
+                worksheet.Cell(currentRow, 20).Value = "GWL_Meta_ID";
 
 
                 currentRow++;
@@ -569,6 +570,7 @@ namespace AbhyProject.Controllers
                     worksheet.Cell(currentRow, 17).Value = item.gwl_date;
                     worksheet.Cell(currentRow, 18).Value = item.diameter_of_well;
                     worksheet.Cell(currentRow, 19).Value = item.height_of_measuring_point;
+                    worksheet.Cell(currentRow, 20).Value = item.gwl_meta_id;
 
                     currentRow++;
                 }
@@ -4362,7 +4364,7 @@ namespace AbhyProject.Controllers
                         TypeOfWell = g.Key,
 
                         // Use Count_All column directly
-                        Count_All = g.Sum(w => w.Count_All ?? 0),
+                        Count_All = g.Sum(w => w.dist_total ?? 0),
 
                         // Calculate CountYear based on fyyear_str using if-else conditions
                         CountYear = fyyear_str == "2015" ? g.Sum(w => w.Count_2015 ?? 0) :
