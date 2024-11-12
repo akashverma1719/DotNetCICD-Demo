@@ -285,6 +285,26 @@
             font-weight: 600;
             padding: 0;
         }
+
+    .selectWidth {
+        width: 192px;
+        border-radius: 25px;
+        font-size: 14px;
+    }
+
+    @@media only screen and (max-width:992px) {
+        .rowJustify {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 5px;
+        }
+
+        .selectWidth {
+            width: 135px;
+            border-radius: 25px;
+            font-size: 12px;
+        }
+    }
 </style>
 
 <div class="loading-container">
@@ -330,37 +350,35 @@
         </div>
     </div>
 
-    <div class="row flex-justify-center">
+    <div class="row flex-justify-center rowJustify">
         <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
-        <div id="StateDropdownLabel" class="col-md-2">
-            <select class="form-control" id="spnstate_state_1" onchange="State_Dropdown_Function_1()" style="width: 192px; border-radius: 25px; font-size: 14px"></select>
+        <div id="StateDropdownLabel" class="col-2">
+            <select class="form-control selectWidth" id="spnstate_state_1" onchange="State_Dropdown_Function_1()"></select>
         </div>
-        <div id="DistDropdownLabel" class="col-md-2">
-            <select class="form-control" id="dist11" onchange="Dist_fun()" style="width:192px;border-radius: 25px; font-size: 14px"></select>
+        <div id="DistDropdownLabel" class="col-2">
+            <select class="form-control selectWidth" id="dist11" onchange="Dist_fun()"></select>
         </div>
-        <div id="BlockDropdownLabel" class="col-md-2">
-
-            <select class="form-control" id="block1" onchange="Block_fun()" style="width: 192px; border-radius: 25px; font-size: 14px"></select>
+        <div id="BlockDropdownLabel" class="col-2">
+            <select class="form-control selectWidth" id="block1" onchange="Block_fun()"></select>
         </div>
-        <div id="GramDropdownLabel" class="col-md-2">
-
-            <select class="form-control" id="gram" onchange="Gram_Fun()" style="width: 192px; border-radius: 25px; font-size: 13px"></select>
+        <div id="GramDropdownLabel" class="col-2">
+            <select class="form-control selectWidth" id="gram" onchange="Gram_Fun()"></select>
         </div>
 
     </div>
 
-    <div class="row flex-justify-center" style="margin-top:10px;">
+    <div class="row flex-justify-center rowJustify" style="margin-top:10px;">
 
-        <div id="" class="col-md-2">
-            <select class="form-control" id="year" onchange="chnagemonthyear()" style="width: 192px; border-radius: 25px; font-size: 14px">
+        <div id="" class="col-2">
+            <select class="form-control selectWidth" id="year" onchange="chnagemonthyear()">
                 <option value="0">Select Financial Year</option>
                 <option value="2022-23">2022-23</option>
                 <option value="2023-24">2023-24</option>
                 <option value="2024-25">2024-25</option>
             </select>
         </div>
-        <div id="" class="col-md-2">
-            <select class="form-control" id="month" onchange="chnagemonthyear()" style="width: 192px; border-radius: 25px; font-size: 14px">
+        <div id="" class="col-2">
+            <select class="form-control selectWidth" id="month" onchange="chnagemonthyear()">
                 <option value="0">Select Month</option>
                 <option value="April">April</option>
                 <option value="May">May</option>
@@ -376,8 +394,8 @@
                 <option value="March">March</option>
             </select>
         </div>
-        <div id="" class="col-md-2">
-            <select class="form-control" id="ddldate" onchange="chnagemonthyear()" style="width: 192px; border-radius: 25px; font-size: 14px">
+        <div id="" class="col-2">
+            <select class="form-control selectWidth" id="ddldate" onchange="chnagemonthyear()" style="width: 192px; border-radius: 25px; font-size: 14px">
                 <option value="0">Select Date</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -492,77 +510,72 @@
 
     <div class="container-fluid box_shadow" style="padding: 0px;">
         <div class="row">
-            <div class="content-wrapper">
-                <div class="content">
-                    <div class="col-md-12">
-                        <div class="">
-                            <div class="">
-                                <div id="style-1" class="table-responsive" style="height:500px;width:100%">
-                                    <table id="example" class=" display  table  table-striped table-bordered dataTable no-footer table_tender_pdf" style=" font-size: 13px;border: #fff;">
-                                        <thead style="position:sticky;top:0;">
-                                            <tr class="text-center" style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
-                                                <th class="text-center" style="text-align:center" colspan="20">List of Current Trainings</th>
-                                            </tr>
-                                            <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
-                                                <th rowspan="2" class="text-center">Sr.No</th>
-                                                <th rowspan="2" class="text-center">Registration Form </th>
-                                                <th rowspan="2" class="text-center">Topic of Training</th>
-                                                <th rowspan="2" class="text-center">Type of Training</th>
-                                                <th rowspan="2" class="text-center">Location Of Exposure Visit</th>
-                                                <th rowspan="2" class="text-center">Particulars Of Exposure Visit</th>
-                                                <th colspan="4" class="text-center">Level Of Training</th>
+            <div class="col-md-12">
+                <div class="">
+                    <div class="">
+                        <div id="style-1" class="table-responsive" style="height:500px;width:100%">
+                            <table id="example" class=" display  table  table-striped table-bordered dataTable no-footer table_tender_pdf" style=" font-size: 13px;border: #fff;">
+                                <thead style="position:sticky;top:0;">
+                                    <tr class="text-center" style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
+                                        <th class="text-center" style="text-align:center" colspan="20">List of Current Trainings</th>
+                                    </tr>
+                                    <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
+                                        <th rowspan="2" class="text-center">Sr.No</th>
+                                        <th rowspan="2" class="text-center">Registration Form </th>
+                                        <th rowspan="2" class="text-center">Topic of Training</th>
+                                        <th rowspan="2" class="text-center">Type of Training</th>
+                                        <th rowspan="2" class="text-center">Location Of Exposure Visit</th>
+                                        <th rowspan="2" class="text-center">Particulars Of Exposure Visit</th>
+                                        <th colspan="4" class="text-center">Level Of Training</th>
 
-                                                <th rowspan="2" class="text-center">Training Platform</th>
-                                                <th rowspan="2" class="text-center" style="min-width:95px">From Date</th>
-                                                <th rowspan="2" class="text-center" style="min-width:95px">To Date</th>
-                                                <th rowspan="2" class="text-center">Registration Open Date</th>
-                                                <th rowspan="2" class="text-center">Registration Close Date</th>
-                                            </tr>
-                                            <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
-                                                <th rowspan="2" class="text-center">NPMU and State</th>
-                                                <th rowspan="2" class="text-center">District</th>
-                                                <th rowspan="2" class="text-center">Block</th>
-                                                <th rowspan="2" class="text-center">GP</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="Training_Workshop" style="text-align: center; font-size: 13px;"></tbody>
-                                    </table>
+                                        <th rowspan="2" class="text-center">Training Platform</th>
+                                        <th rowspan="2" class="text-center" style="min-width:95px">From Date</th>
+                                        <th rowspan="2" class="text-center" style="min-width:95px">To Date</th>
+                                        <th rowspan="2" class="text-center">Registration Open Date</th>
+                                        <th rowspan="2" class="text-center">Registration Close Date</th>
+                                    </tr>
+                                    <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
+                                        <th rowspan="2" class="text-center">NPMU and State</th>
+                                        <th rowspan="2" class="text-center">District</th>
+                                        <th rowspan="2" class="text-center">Block</th>
+                                        <th rowspan="2" class="text-center">GP</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="Training_Workshop" style="text-align: center; font-size: 13px;"></tbody>
+                            </table>
 
 
 
-                                    <table id="example_gp" class=" display  table stripe row-border order-column table-striped table-bordered dataTable no-footer table_tender_pdf" style=" font-size: 13px;border: #fff;">
-                                        <thead style="position:sticky;top:0;">
-                                            <tr class="text-center" style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
-                                                <th class="text-center" colspan="20">Table For Current Trainings</th>
-                                            </tr>
-                                            <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
-                                                <th rowspan="2" class="text-center">Sr.No</th>
-                                                <th rowspan="2" class="text-center">Topic of Training</th>
-                                                <th rowspan="2" class="text-center">Type of Training</th>
-                                                <th rowspan="2" class="text-center">Location Of Exposure Visit</th>
-                                                <th rowspan="2" class="text-center">Particulars Of Exposure Visit</th>
-                                                <th colspan="4" class="text-center">Level Of Training</th>
-                                                <th rowspan="2" class="text-center">Event Platform</th>
-                                                <th rowspan="2" class="text-center">From Date</th>
-                                                <th rowspan="2" class="text-center">To Date</th>
-                                            </tr>
-                                            <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
-                                                <th rowspan="2" class="text-center">NPMU and State</th>
-                                                <th rowspan="2" class="text-center">District</th>
-                                                <th rowspan="2" class="text-center">Block</th>
-                                                <th rowspan="2" class="text-center">GP</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody style=" font-size: 13px;border: transparent;" id="Training_Workshop_gp"></tbody>
-                                    </table>
-                                </div>
-
-                            </div>
+                            <table id="example_gp" class=" display  table stripe row-border order-column table-striped table-bordered dataTable no-footer table_tender_pdf" style=" font-size: 13px;border: #fff;">
+                                <thead style="position:sticky;top:0;">
+                                    <tr class="text-center" style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
+                                        <th class="text-center" colspan="20">Table For Current Trainings</th>
+                                    </tr>
+                                    <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
+                                        <th rowspan="2" class="text-center">Sr.No</th>
+                                        <th rowspan="2" class="text-center">Topic of Training</th>
+                                        <th rowspan="2" class="text-center">Type of Training</th>
+                                        <th rowspan="2" class="text-center">Location Of Exposure Visit</th>
+                                        <th rowspan="2" class="text-center">Particulars Of Exposure Visit</th>
+                                        <th colspan="4" class="text-center">Level Of Training</th>
+                                        <th rowspan="2" class="text-center">Event Platform</th>
+                                        <th rowspan="2" class="text-center">From Date</th>
+                                        <th rowspan="2" class="text-center">To Date</th>
+                                    </tr>
+                                    <tr style="text-align: center; font-size: 14px; font-family: RobotoSlab-Regular;background-color:#337ab7;border:white;">
+                                        <th rowspan="2" class="text-center">NPMU and State</th>
+                                        <th rowspan="2" class="text-center">District</th>
+                                        <th rowspan="2" class="text-center">Block</th>
+                                        <th rowspan="2" class="text-center">GP</th>
+                                    </tr>
+                                </thead>
+                                <tbody style=" font-size: 13px;border: transparent;" id="Training_Workshop_gp"></tbody>
+                            </table>
                         </div>
+
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -696,7 +709,7 @@
             year = "2022-23";
         } else if (fin_year == "2023-24") {
             year = "2023-24"
-        }else if (fin_year == "2024-25") {
+        } else if (fin_year == "2024-25") {
             year = "2024-25"
         }
         $("#year").val(year);
@@ -843,7 +856,7 @@
                 var tr = '';
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
                     Full_Info = response;
@@ -887,7 +900,7 @@
         }
 
     }
-   
+
     function isWithinNext3Days(date) {
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth(); // Month is 0 indexed
@@ -898,9 +911,9 @@
         var todate = date;
         var year = date.getFullYear();
         var month = date.getMonth();
-        var datea = date.getDate()+3;
+        var datea = date.getDate() + 3;
         var dd = new Date(year, month, datea);
-        
+
         if (currentdatea <= dd) {
             return true;
         }
@@ -910,7 +923,7 @@
     }
 
 
-    
+
     function current_event_info() {       //abhi
         $('.loader').show();
         $('#Training_Workshop').html("");
@@ -942,7 +955,7 @@
                 $('#pages_count').text(pages);
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
 
                 }
                 var tr = '';
@@ -1032,7 +1045,7 @@
                             else {
                                 tr += '<tr><td>' + (i + 1) + '</td><td></td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + StateName[0] + '</td> <td>' + Dist[0] + '</td> <td>' + Block[0] + '</td> <td>' + Gp[0] + '</td> <td>' + data[i].event_platform + '</td> <td>' + data[i].from_date + '</td> <td>' + data[i].to_date + '</td><td>' + data[i].reg_open_date + '</td><td>' + data[i].reg_close_date + '</td></tr>';
                             }
-                            
+
                         }
                     }
                 }
@@ -1065,7 +1078,7 @@
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var data = data.split(',');
                 $('#atnpmu_count').text(data[0]);
@@ -1112,13 +1125,13 @@
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
 
                 }
                 var tr = '';
                 if (data.length != 0) {
                     for (var i = 0; i < data.length; i++) {
-                        
+
                         var StateName = "";
                         var Dist = "";
                         var Block = "";
@@ -1204,7 +1217,7 @@
 
                             }
                         }
-                        
+
                     }
                 }
                 if (tr == '') {
@@ -1236,10 +1249,10 @@
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var data = data.split(',');
-                
+
                 $('#atnpmu_count').text(data[0]);
                 $('#atstate_count').text(data[1]);
                 $('#atdpmu_count').text(data[2]);
@@ -1286,7 +1299,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
 
                 }
                 var tr = '';
@@ -1408,7 +1421,7 @@
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var data = data.split(',');
                 $('#atnpmu_count').text(data[0]);
@@ -1456,9 +1469,9 @@
             data: { STATE: current_event_state, DISTRICT: current_event_dist, BLOCK: current_event_block, year: year_p, month: month_p, date: date_p },
             dataType: 'JSON',
             success: function (data) {
-                
+
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
 
                 }
                 var tr = '';
@@ -1578,7 +1591,7 @@
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var data = data.split(',');
                 $('#atnpmu_count').text(data[0]);
@@ -1625,7 +1638,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
 
                 }
                 var tr = '';
@@ -1730,7 +1743,7 @@
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var data = data.split(',');
                 $('#atnpmu_count').text(data[0]);
