@@ -19662,7 +19662,7 @@ namespace AbhyProject.Models
         public int? Count_2023 { get; set; }
         public int? Count_2024 { get; set; }
         public int? Count_All { get; set; }
-
+        public int? dist_total { get; set; }
         public string Count_2015_str { get; set; }
         public string Count_2016_str { get; set; }
         public string Count_2017_str { get; set; }
