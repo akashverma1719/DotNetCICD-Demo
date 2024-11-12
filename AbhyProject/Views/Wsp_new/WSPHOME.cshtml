@@ -354,7 +354,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/Water Security plan.png" onclick="Image_onchange('WSPDemandside')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li>@*<i class="fa fa-angle-double-right"></i>*@</li>
                         </ul>
 
                     </li>
@@ -449,7 +449,7 @@
                 }
                 $('#WaterAvailabilty').text("0");
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -484,7 +484,7 @@
 
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 Domestic_Total = 0;
@@ -525,7 +525,7 @@
 
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 Irrigated_Total = 0;
@@ -568,7 +568,7 @@
             success: function (response) {
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 Industry_Total = 0, industry_demand_surface_water = 0, industry_demand_ground_water = 0;
                 if (response.length != 0) {
@@ -594,7 +594,7 @@
 
 
     function Other_Usage_Info() {
-        
+
         $.ajax({
             type: 'GET',
             contentType: 'application/json; chatset=utf-8',
@@ -603,9 +603,9 @@
             dataType: 'JSON',
             success: function (response) {
 
-                
+
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 Other_Total = 0, other_demand_ground_water = 0, other_demand_surface_water = 0;
                 var tr = '';
@@ -625,14 +625,14 @@
                 }
 
 
-                
-               
+
+
                 Industry_Total = industry_demand_surface_water + industry_demand_ground_water;
 
                 Other_Total = other_demand_ground_water + other_demand_surface_water;
-               
+
                 var Total = Domestic_Total + Irrigated_Total + Industry_Total + Other_Total;
-                
+
 
                 $('#WaterUtilization').text(Total.toFixed(2));
             }
@@ -652,7 +652,7 @@
                     window.location = "/Wsp_new/Balancereport";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -682,7 +682,7 @@
 
                 $('#WaterBudget').text("0");
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -710,7 +710,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else {
                     $('#Error_').text("");
@@ -826,7 +826,7 @@
             data: "{ }",
             dataType: 'JSON',
             success: function (response) {
-                
+
                 if (response.length != 0) {
                     Jsondata = response;
                     $("#spnstate").empty();
@@ -863,8 +863,8 @@
                         optionState = '<option value="0">Select StateName</option>';
                         for (var i = 0; i < DistArray.length; i++) {
                             if (DistArray[i] != "Delhi_7") {
-                            if (DistArray[i] != null && DistArray[i] != "") {
-                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
                                 }
                             }
                         }
@@ -933,7 +933,7 @@
 
 
     function Dist_fun() {
-        
+
         $("#block1").empty();
         var opblock = '<option value="0">Select Block</option>';
         $("#block1").append(opblock);
@@ -957,12 +957,12 @@
             for (var i = 0; i < Jsondata.length; i++) {
                 //if (Jsondata[i].district_name == 'Kaithal' ) {
                 //    alert(dist);
-                 
+
                 //    return;
                 //}
-               
+
                 if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
-                  
+
                     if (!ddlst[Jsondata[i].block_name]) {
                         all_blocks.push(Jsondata[i].block_name);
                         ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
@@ -1047,8 +1047,8 @@
 
 
 
-    function Dropdown_Search() {        
-        
+    function Dropdown_Search() {
+
         if (Gram != "0") {
 
         } else {

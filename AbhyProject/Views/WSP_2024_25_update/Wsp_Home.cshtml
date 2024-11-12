@@ -466,7 +466,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/demand-side.png" onclick="Image_onchange('Demand')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
                         </ul>
 
                     </li>
@@ -508,7 +508,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/declaration.png" onclick="Image_onchange('DPMU')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
                         </ul>
 
                     </li>
@@ -537,7 +537,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/wsp_report.png" onclick="Image_onchange('wsp_report')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li>@*<i class="fa fa-angle-double-right"></i>*@</li>
                         </ul>
 
                     </li>
@@ -590,7 +590,7 @@
 <script>
     var StateOfficer = '@Session["Officer"]';
     $(document).ready(function () {
-       
+
         const d = new Date();
         var fin_year = getCurrentFiscalYear();
         var year = fin_year;
@@ -681,7 +681,7 @@
                 }
                 $('#WaterAvailabilty').text("0");
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -716,7 +716,7 @@
 
                 $('#WaterUtilization').text(response.toFixed(4));
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
             }
         });
@@ -835,7 +835,7 @@
                     window.location = "/WSP_2024_25_update/Balancereport";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -865,7 +865,7 @@
 
                 $('#WaterBudget').text("0");
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -894,7 +894,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else {
                     $('#Error_').text("");
@@ -1379,7 +1379,7 @@
                     status = 'In Progress';
                     $('#status_wsp').text(status).css({ 'color': 'blue' });
                 }
-                
+
 
             }
         });
@@ -1453,7 +1453,7 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
 
     function Image_onchange(ss) {
         var check = 1;
-        
+
         var StateOfficer = '@Session["Officer"]';
         if (State == "0") {
             alert("Please Select StateName");

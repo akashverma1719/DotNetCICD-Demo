@@ -1,11 +1,12 @@
 ﻿body {
 }
+
 ul.totalul {
     list-style: none;
 }
-    ul.totalul > li
-    {
-        padding:5px;
+
+    ul.totalul > li {
+        padding: 5px;
     }
 
 header.hederImage {
@@ -156,8 +157,8 @@ ul.Select_option {
 
     ul.Select_option > li {
         display: inline-block;
-        padding: 0px 0px 0px 5px;
-        text-transform:capitalize;
+        padding: 4px 0px 4px 5px;
+        text-transform: capitalize;
     }
 
         ul.Select_option > li > span > i {
@@ -176,6 +177,7 @@ ul.Select_option {
 .fa-arrow-right {
     padding-left: 5px;
 }
+
 .fa-arrow-left {
     padding-right: 5px;
 }
@@ -202,27 +204,29 @@ ul.btnall > li {
     font-size: 15px;
     font-weight: 600;
 }
+
     .under_list > li > span > input {
         width: 500px;
         height: 30px;
         padding: 3px 10px;
-        display:inline;
+        display: inline;
     }
+
     .under_list > li > span > select {
         width: 500px;
         height: 30px;
         padding: 3px 10px;
         display: inline;
     }
-.panel-title {
-   
-    font-size: 18px;
 
+.panel-title {
+    font-size: 18px;
     font-weight: 700;
 }
-    .ullistdiv_menu {
-        margin: 10px 0px;
-    }
+
+.ullistdiv_menu {
+    margin: 10px 0px;
+}
 
 
 
@@ -288,7 +292,8 @@ panel-group .panel {
 .panel-body {
     text-align: left;
 }
-.firstformtable > thead >tr > td{
-    padding:5px;
-    font-weight:600;
+
+.firstformtable > thead > tr > td {
+    padding: 5px;
+    font-weight: 600;
 }

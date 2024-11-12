@@ -545,6 +545,8 @@ header.hederImage:before {
 
 ul.imgHome {
     display: inline-flex;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
     ul.imgHome > li {
@@ -1807,6 +1809,7 @@ ul.Select_option > li > span {
     font-size: 13px;
     text-align: center;
 }
+
 button.btn.btn-dark.btnPrevious {
     background: #bab6b0;
 }

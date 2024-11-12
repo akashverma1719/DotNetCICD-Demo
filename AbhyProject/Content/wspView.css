@@ -153,6 +153,8 @@ header.hederImage:before {
 ul.imgHome {
     display: inline-flex;
     margin-top: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
     ul.imgHome > li {
@@ -203,6 +205,9 @@ ul.Select_option {
     list-style: none;
     font-size: 13px;
     margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     ul.Select_option > li {
