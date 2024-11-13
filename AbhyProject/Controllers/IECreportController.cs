@@ -2097,8 +2097,10 @@ namespace AbhyProject.Controllers
                         }
                         if (activity == "No. of Awareness meetings conducted")
                         {
+                            
                             if (sub_activity == "Publicity meetings")
                             {
+                                
                                 e_Publicity += Convert.ToInt32(number);
                             }
 
@@ -2298,7 +2300,7 @@ namespace AbhyProject.Controllers
                     data.c_Twitter = c_Twitter;
                     data.c_YouTube = c_YouTube;
                     data.c_Instagram = c_Instagram;
-                    data.c_Others = a_total;
+                    data.c_Others = c_Others;
                     data.d_Others = d_Others;
                     data.d_Audio = d_Audio;
                     data.d_Video = d_Video;
@@ -2323,7 +2325,7 @@ namespace AbhyProject.Controllers
                     data.bc_Twitter = bc_Twitter;
                     data.bc_YouTube = bc_YouTube;
                     data.bc_Instagram = bc_Instagram;
-                    data.bc_Others = b_total;
+                    data.bc_Others = bc_Others;
                     data.bd_Others = bd_Others;
                     data.bd_Audio = bd_Audio;
                     data.bd_Video = bd_Video;

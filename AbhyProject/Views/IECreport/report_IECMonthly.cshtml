@@ -1606,21 +1606,13 @@
                 var Tbodyhtml = '';
                 if (data.length != 0) {
 
-                    var a_Pamphlets = 0;
-                    var a_Magazine = 0;
-                    var a_Leaflets = 0;
-                    var a_Brochures = 0;
-                    var a_Others = 0;
+                  
                     var b_Pamphlets = 0;
                     var b_Magazine = 0;
                     var b_Leaflets = 0;
                     var b_Brochures = 0;
                     var b_Others = 0;
-                    var c_Facebook = 0;
-                    var c_Twitter = 0;
-                    var c_YouTube = 0;
-                    var c_Instagram = 0;
-                    var c_Others = 0;
+                   
                     var d_Others = 0;
                     var d_Audio = 0;
                     var d_Video = 0;
@@ -1632,11 +1624,7 @@
                     var h_Fair = 0;
                     var h_Seminars = 0;
 
-                    var ba_Pamphlets = 0;
-                    var ba_Magazine = 0;
-                    var ba_Leaflets = 0;
-                    var ba_Brochures = 0;
-                    var ba_Others = 0;
+                  
                     var bb_Pamphlets = 0;
                     var bb_Magazine = 0;
                     var bb_Leaflets = 0;
@@ -1658,11 +1646,10 @@
                     var bh_Fair = 0;
                     var bh_Seminars = 0;
 
-                    var totachivements_ieca = 0;
-                    var totcummulative_ieca = 0;
+                  
                     var totachivements_audiovideo = 0;
                     var totcummulative_audiovideo = 0;
-                    var totachivements_social = 0;
+                   
                     var totcummulative_social = 0;
                     var totachivements_road = 0;
                     var totcummulative_street = 0;
@@ -1687,11 +1674,30 @@
 
                     for (var i = 0; i < data.length; i++) {
 
-                        a_Pamphlets += data[i].a_Pamphlets;
-                        a_Magazine += data[i].a_Magazine;
-                        a_Leaflets += data[i].a_Leaflets;
-                        a_Brochures += data[i].a_Brochures;
-                        a_Others += data[i].a_Others;
+                        var a_Pamphlets = 0;
+                        var a_Magazine = 0;
+                        var a_Leaflets = 0;
+                        var a_Brochures = 0;
+                        var a_Others = 0;
+                        var ba_Pamphlets = 0;
+                        var ba_Magazine = 0;
+                        var ba_Leaflets = 0;
+                        var ba_Brochures = 0;
+                        var ba_Others = 0;
+
+                        var c_Facebook = 0;
+                        var c_Twitter = 0;
+                        var c_YouTube = 0;
+                        var c_Instagram = 0;
+                        var c_Others = 0;
+                        var totachivements_social = 0;
+                        var totachivements_ieca = 0;
+                        var totcummulative_ieca = 0;
+                        a_Pamphlets = data[i].a_Pamphlets;
+                        a_Magazine = data[i].a_Magazine;
+                        a_Leaflets = data[i].a_Leaflets;
+                        a_Brochures = data[i].a_Brochures;
+                        a_Others = data[i].a_Others;
                         b_Pamphlets += data[i].b_Pamphlets;
                         b_Magazine += data[i].b_Magazine;
                         b_Leaflets += data[i].b_Leaflets;
@@ -1703,56 +1709,56 @@
                         c_Instagram += data[i].c_Instagram;
                         c_Others += data[i].c_Others;
                         d_Others += data[i].d_Others;
-                        d_Audio += data[i].d_Audio;
-                        d_Video += data[i].d_Video;
+                        d_Audio = data[i].d_Audio;
+                        d_Video = data[i].d_Video;
                         e_Publicity += data[i].e_Publicity;
-                        f_Road += data[i].f_Road;
-                        f_Street += data[i].f_Street;
+                        f_Road = data[i].f_Road;
+                        f_Street = data[i].f_Street;
                         g_HHS += data[i].g_HHS;
-                        h_Exhibitions += data[i].h_Exhibitions;
-                        h_Fair += data[i].h_Fair;
-                        h_Seminars += data[i].h_Seminars;
-                        ba_Pamphlets += data[i].ba_Pamphlets;
-                        ba_Magazine += data[i].ba_Magazine;
-                        ba_Leaflets += data[i].ba_Leaflets;
-                        ba_Brochures += data[i].ba_Brochures;
-                        ba_Others += data[i].ba_Others;
+                        h_Exhibitions = data[i].h_Exhibitions;
+                        h_Fair = data[i].h_Fair;
+                        h_Seminars = data[i].h_Seminars;
+                        ba_Pamphlets = data[i].ba_Pamphlets;
+                        ba_Magazine = data[i].ba_Magazine;
+                        ba_Leaflets = data[i].ba_Leaflets;
+                        ba_Brochures = data[i].ba_Brochures;
+                        ba_Others = data[i].ba_Others;
                         bb_Pamphlets += data[i].bb_Pamphlets;
                         bb_Magazine += data[i].bb_Magazine;
                         bb_Leaflets += data[i].bb_Leaflets;
                         bb_Brochures += data[i].bb_Brochures;
                         bb_Others += data[i].bb_Others;
-                        bc_Facebook += data[i].bc_Facebook;
-                        bc_Twitter += data[i].bc_Twitter;
-                        bc_YouTube += data[i].bc_YouTube;
-                        bc_Instagram += data[i].bc_Instagram;
-                        bc_Others += data[i].bc_Others;
+                        bc_Facebook = data[i].bc_Facebook;
+                        bc_Twitter = data[i].bc_Twitter;
+                        bc_YouTube = data[i].bc_YouTube;
+                        bc_Instagram = data[i].bc_Instagram;
+                        bc_Others = data[i].bc_Others;
                         bd_Others += data[i].bd_Others;
-                        bd_Audio += data[i].bd_Audio;
-                        bd_Video += data[i].bd_Video;
+                        bd_Audio = data[i].bd_Audio;
+                        bd_Video = data[i].bd_Video;
                         be_Publicity += data[i].be_Publicity;
-                        bf_Road += data[i].bf_Road;
-                        bf_Street += data[i].bf_Street;
+                        bf_Road = data[i].bf_Road;
+                        bf_Street = data[i].bf_Street;
                         bg_HHS += data[i].bg_HHS;
-                        bh_Exhibitions += data[i].bh_Exhibitions;
-                        bh_Fair += data[i].bh_Fair;
-                        bh_Seminars += data[i].bh_Seminars;
+                        bh_Exhibitions = data[i].bh_Exhibitions;
+                        bh_Fair = data[i].bh_Fair;
+                        bh_Seminars = data[i].bh_Seminars;
 
-                        totachivements_ieca += a_Pamphlets + a_Leaflets + a_Magazine + a_Brochures + a_Others;
-                        totcummulative_ieca += ba_Pamphlets + ba_Leaflets + ba_Magazine + ba_Brochures + ba_Others;
+                        totachivements_ieca = a_Pamphlets + a_Leaflets + a_Magazine + a_Brochures + a_Others;
+                        totcummulative_ieca = ba_Pamphlets + ba_Leaflets + ba_Magazine + ba_Brochures + ba_Others;
 
 
-                        totachivements_audiovideo += d_Audio + d_Video;
-                        totcummulative_audiovideo += bd_Audio + bd_Video;
+                        totachivements_audiovideo = d_Audio + d_Video;
+                        totcummulative_audiovideo = bd_Audio + bd_Video;
 
-                        totachivements_social += c_Twitter + c_Facebook + c_Instagram + c_YouTube + c_Others;
-                        totcummulative_social += bc_Twitter + bc_Facebook + bc_Instagram + bc_YouTube + bc_Others;
+                        totachivements_social = c_Twitter + c_Facebook + c_Instagram + c_YouTube + c_Others;
+                        totcummulative_social = bc_Twitter + bc_Facebook + bc_Instagram + bc_YouTube + bc_Others;
 
-                        totachivements_road += f_Road + f_Street;
-                        totcummulative_street += bf_Road + bf_Street;
+                        totachivements_road = f_Road + f_Street;
+                        totcummulative_street = bf_Road + bf_Street;
 
-                        totachivements_esf += h_Exhibitions + h_Fair + h_Seminars;
-                        totcummulative_esf += bh_Exhibitions + bh_Fair + bh_Seminars;
+                        totachivements_esf = h_Exhibitions + h_Fair + h_Seminars;
+                        totcummulative_esf = bh_Exhibitions + bh_Fair + bh_Seminars;
 
 
                         sumtotachivements_ieca += totachivements_ieca;
@@ -1814,7 +1820,7 @@
                         Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13"  ? "NA" : data[i].e_Publicity)  + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].be_Publicity + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_ieca) + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall totcummulative_ieca"><label>' + totcummulative_ieca + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Magazine + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Leaflets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Pamphlets + '</label></td>';
