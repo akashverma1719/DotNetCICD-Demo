@@ -2273,7 +2273,7 @@ namespace AbhyProject.Controllers
                                 {
                                     bh_Fair += Convert.ToInt32(number);
                                 }
-                                if (sub_activity == "Seminars ")
+                                if (sub_activity == "Seminars")
                                 {
                                     bh_Seminars += Convert.ToInt32(number);
                                 }
@@ -2333,9 +2333,9 @@ namespace AbhyProject.Controllers
                     data.bf_Road = bf_Road;
                     data.bf_Street = bf_Street;
                     data.bg_HHS = bg_HHS;
-                    data.bh_Exhibitions = h_Exhibitions;
-                    data.bh_Fair = h_Fair;
-                    data.bh_Seminars = h_Seminars;
+                    data.bh_Exhibitions = bh_Exhibitions;
+                    data.bh_Fair = bh_Fair;
+                    data.bh_Seminars = bh_Seminars;
                     data.activity_other = other_activity;
                     all_data.Add(data);
                 }
