@@ -3842,7 +3842,7 @@ namespace AbhyProject.Controllers
             {
                 if (Session["Forget_PWD_Captcha"].ToString() != Data.clientcaptcha)
                 {
-                    Session["ForgetError"] = "Your Captcha  is Not Matched";
+                    Session["ForgetError"] = "Your Captcha is Not Matched";
                     var Error_data = new abhy_tbl_error();
                     Error_data.date_time = DateTime.Now.ToString();
                     Error_data.error_test = "Captcha is not Matched";
@@ -3969,11 +3969,12 @@ namespace AbhyProject.Controllers
                 sb.Append("</table>");
                 string results1 = WebConstents.SendEmailSMTP(Email, "", Mail_Subject, sb.ToString(), "");
 
-                Session["ForgetError"] = "Please Check Your Mail";
+                //Session["ForgetError"] = "Please Check Your Mail";
+                Session["ForgetError"] = "Please check your mail inbox to change your password";
                 //Session["FCode"] = Code;
                 var Error_data = new abhy_tbl_error();
                 Error_data.date_time = DateTime.Now.ToString();
-                Error_data.error_test = "Please Check Your Mail";
+                Error_data.error_test = "Please check your mail inbox to change your password";
                 Error_data.ipaddress = ipAddress1;
                 Error_data.user_email = Email;
                 Error_data.error_count = "1";
