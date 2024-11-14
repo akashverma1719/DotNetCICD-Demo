@@ -1478,7 +1478,8 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                            var totper = (total_female / total_all) * 100;
+                            Tbodyhtml += '<td id="rainfall"><label>' + totper.toFixed(2) + '</label></td></tr>';
                         }
                         $('#tbldata').html(Tbodyhtml);
                     }
@@ -1581,7 +1582,8 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                            var totper = (total_female / total_all) * 100;
+                            Tbodyhtml += '<td id="rainfall"><label>' + totper.toFixed(2) + '</label></td></tr>';
                         }
                         $('#tbldata_dist').html(Tbodyhtml);
                     }
@@ -1652,7 +1654,8 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                            var totper = (total_female / total_all) * 100;
+                            Tbodyhtml += '<td id="rainfall"><label>' + totper.toFixed(2) + '</label></td></tr>';
                         }
                         $('#tbldata_block').html(Tbodyhtml);
                     }
@@ -1711,7 +1714,8 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                            var totper = (total_female / total_all) * 100;
+                            Tbodyhtml += '<td id="rainfall"><label>' + totper.toFixed(2) + '</label></td></tr>';
                         }
                         $('#tbldata_gram').html(Tbodyhtml);
                     }
