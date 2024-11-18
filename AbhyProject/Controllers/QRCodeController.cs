@@ -25,11 +25,11 @@ public class QRCodeController : Controller
         {
             // Create QR code generator
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(link, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(link, QRCodeGenerator.ECCLevel.L);
 
             // Generate QR code as bitmap
             QRCode qrCode = new QRCode(qrCodeData);
-            using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
+            using (Bitmap qrCodeImage = qrCode.GetGraphic(40))
             {
                 qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
@@ -51,11 +51,11 @@ public class QRCodeController : Controller
         {
             // Create QR code generator
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(link, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(link, QRCodeGenerator.ECCLevel.L);
 
             // Generate QR code as bitmap
             QRCode qrCode = new QRCode(qrCodeData);
-            using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
+            using (Bitmap qrCodeImage = qrCode.GetGraphic(40))
             {
                 qrCodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
