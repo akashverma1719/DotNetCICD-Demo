@@ -1666,11 +1666,14 @@
             return true;
         }
         else {
-            if ("2024-12-06" > todaydate) {
-                return true;
-            } else {
-                return false;
+            if (year == "2024") {
+                if ("2024-12-06" > todaydate) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
+            return false;
         }
     }
     function abhy_Curr_Training_Info_Search_4() {

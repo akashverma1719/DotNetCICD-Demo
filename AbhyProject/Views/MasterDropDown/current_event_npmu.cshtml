@@ -1659,7 +1659,7 @@
         var currentdate = currentDate.getDate();
 
         var currentdatea = new Date(currentYear, currentMonth, currentdate);
-
+        debugger;
         var todate = date; 
         var year = date.getFullYear();
         var month = date.getMonth();
@@ -1668,12 +1668,17 @@
             return true;
         }
         else {
-            if ("2024-12-06" > todaydate) {
-                return true;
+            debugger;
+            if (year == "2024") {
+                if ("2024-12-06" > todaydate) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
             }
-            else {
-                return false;
-            }
+            return false;
         }
     }
 

@@ -27,13 +27,15 @@ function isWithinRange(date) {
         return true;
     }
     else {
-        debugger;
-        if ("2024-12-06" > todaydate) {
-            return true;
+        if (year == "2024") {
+            if ("2024-12-06" > todaydate) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }
 var exetotal = 0;
