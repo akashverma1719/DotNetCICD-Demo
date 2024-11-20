@@ -1571,81 +1571,81 @@
         var select_month_num = Get_Month_Number(select_month);
         debugger;
         var select_Year = $("#year").val();
-        if (select_Year == "2024-25") {
-            if (select_month_num == 1 || select_month_num == 2 || select_month_num == 3) {
-                $('#year').prop('disabled', false);
-                $('#btn1').prop('disabled', true);
-                $('#btn1').hide();
+        debugger;
+        if ("20241206" > formattedDateaa) {
+            if (select_Year == "2024-25") {
+                if (select_month_num == 1 || select_month_num == 2 || select_month_num == 3) {
+                    $('#year').prop('disabled', false);
+                    $('#btn1').prop('disabled', true);
+                    $('#btn1').hide();
+                }
+                else if (11 >= select_month_num) {
+                    $('#year').prop('disabled', false);
+                    $('#btn1').prop('disabled', false);
+                    $('#btn1').show();
+                }
+                else {
+                    $('#year').prop('disabled', false);
+                    $('#btn1').prop('disabled', true);
+                    $('#btn1').hide();
+                }
             }
-          else if (11 >= select_month_num) {
+            else {
                 $('#year').prop('disabled', false);
                 $('#btn1').prop('disabled', false);
                 $('#btn1').show();
             }
-            else {
-                $('#year').prop('disabled', false);
-                $('#btn1').prop('disabled', true);
-                $('#btn1').hide();
-            }
         }
         else {
-            $('#year').prop('disabled', false);
-            $('#btn1').prop('disabled', false);
-            $('#btn1').show();
+                if (select_month_num == mm && select_Year == fiscalyear) {
+                    $('#btn1').prop('disabled', false);
+                }
+                else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
+                    $('#btn1').prop('disabled', false);
+                }
+                else {
+
+                    $('#btn1').prop('disabled', true);
+                    if (select_Year == "2023-24" && select_month_num == "3") {
+                        if ("20240406" <= formattedDateaa) {
+                            $('#year').prop('disabled', true);
+                            $('#btn1').prop('disabled', true);
+                            $('#btn1').hide();
+                        }
+                        else {
+                            $('#year').prop('disabled', false);
+                            $('#btn1').prop('disabled', false);
+                        }
+
+                    }
+
+                    else if (select_Year == "2024-25") {
+                        debugger;
+                        $('#btn1').prop('disabled', false);
+                        if ("20240406" <= formattedDateaa) {
+                            $('#year').prop('disabled', true);
+                            $('#btn1').prop('disabled', true);
+                            $('#btn1').hide();
+                        }
+                        else {
+                            $('#year').prop('disabled', true);
+                            $('#btn1').prop('disabled', true);
+                            $('#btn1').hide();
+                        }
+                    }
+                    else {
+                        $('#year').prop('disabled', false);
+                        $('#btn1').prop('disabled', true);
+                        $('#btn1').hide();
+                    }
+                }
+                if (mm == 1) {
+                    mn = 13;
+                    if (dd <= fix_Date && select_month_num == mn - 1 && select_Year == fiscalyear) {
+                        $('#btn1').prop('disabled', false);
+                    }
+                }
         }
-        //else {
-        //    if (select_month_num == mm && select_Year == fiscalyear) {
-        //        $('#btn1').prop('disabled', false);
-        //    }
-        //    else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
-        //        $('#btn1').prop('disabled', false);
-        //    }
-        //    else {
-
-        //        $('#btn1').prop('disabled', true);
-        //        if (select_Year == "2023-24" && select_month_num == "3") {
-        //            if ("20240406" <= formattedDateaa) {
-        //                $('#year').prop('disabled', true);
-        //                $('#btn1').prop('disabled', true);
-        //                $('#btn1').hide();
-        //            }
-        //            else {
-        //                $('#year').prop('disabled', false);
-        //                $('#btn1').prop('disabled', false);
-        //            }
-
-        //        }
-
-        //        else if (select_Year == "2024-25") {
-        //            debugger;
-        //            $('#btn1').prop('disabled', false);
-        //            if ("20240406" <= formattedDateaa) {
-        //                $('#year').prop('disabled', true);
-        //                $('#btn1').prop('disabled', true);
-        //                $('#btn1').hide();
-        //            }
-        //            else {
-        //                $('#year').prop('disabled', true);
-        //                $('#btn1').prop('disabled', true);
-        //                $('#btn1').hide();
-        //            }
-        //        }
-        //        else {
-        //            $('#year').prop('disabled', false);
-        //            $('#btn1').prop('disabled', true);
-        //            $('#btn1').hide();
-        //        }
-        //    }
-        //    if (mm == 1) {
-        //        mn = 13;
-        //        if (dd <= fix_Date && select_month_num == mn - 1 && select_Year == fiscalyear) {
-        //            $('#btn1').prop('disabled', false);
-        //        }
-        //    }
-        //}
-       
-
-
     }
 
 

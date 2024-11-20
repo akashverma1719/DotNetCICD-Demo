@@ -1927,6 +1927,7 @@
     var statename_new = "";
     var yyear = "";
     var ymonth = "";
+    var todaydate = "";
     $(document).ready(function () {
         $('.loader').show();
         $("#entryauth").hide();
@@ -2017,14 +2018,21 @@
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
+        todaydate = today;
         var lastMonthMonth = String(mm - 1).padStart(2, '0');
         var lastMonthDay = "06";
         var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
-        debugger;
+        var only10days = String(mm - 10).padStart(2, '0');
         var finmm = "";
         if (today >= startDate) {
-            finmm = mm;
+            if ("2024-12-06" > today) {
+                finmm = only10days;
+            }
+            else {
+                finmm = mm;
+            }
         }
+
         else {
             finmm = lastMonthMonth;
         }

@@ -15,7 +15,12 @@
         return true;
     }
     else {
-        return false;
+        if ("2024-12-06" > todaydate) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 function dropdownii() {
@@ -5331,10 +5336,15 @@ function editrowcomp_A_Good2(i) {
     var lastMonthMonth = String(mm - 1).padStart(2, '0');
     var lastMonthDay = "06";
     var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
-
+    var only10days = String(mm - 10).padStart(2, '0');
     var finmm = "";
     if (today >= startDate) {
-        finmm = mm;
+        if ("2024-12-06" > today) {
+            finmm = only10days;
+        }
+        else {
+            finmm = mm;
+        }
     }
     else {
         finmm = lastMonthMonth;

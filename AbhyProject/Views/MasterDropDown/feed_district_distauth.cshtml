@@ -662,6 +662,7 @@
                 <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Overall Impression</th>
                 <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Your Suggestions</th>
                 <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Feedback Submission Date</th>
+                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Delete</th>
 
 
             </tr>
@@ -891,6 +892,32 @@
 
         });
     }
+    function isWithinRange(date) {
+
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth(); // Month is 0 indexed
+        var currentYear = currentDate.getFullYear();
+        var currentdate = currentDate.getDate();
+
+        var currentdatea = new Date(currentYear, currentMonth, currentdate);
+        var closedate = new Date(2024, 11, 06);
+
+        var todate = date;
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var dd = new Date(year, month + 1, 5);
+        if (currentdatea <= dd) {
+            return true;
+        }
+        else {
+            if (closedate > currentdatea) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
     function search_feedback() {
 
         var topic_of_event = $("#p_training_name").val();
@@ -983,14 +1010,37 @@
                         if (registration_no == null) {
                             registration_no = "";
                         }
+                        var to_date = response[i].to_date;
+                        if (to_date == null) {
+                            to_date = "";
+                        }
+                        var approve_status = response[i].approve_status;
+                        if (approve_status == null) {
+                            approve_status = "";
+                        }
                         var input = registration_no;
                         var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
                         Z += 1;
-                        tr += '<tr><td>' + Z + '</td><td>' +  input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
-                            '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
-                            '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td></tr>';
-
-
+                        if (isWithinRange(new Date(to_date))) {
+                            if (approve_status == "Approved" || approve_status == "Submitted") {
+                                tr += '<tr><td>' + Z + '</td><td>' + input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
+                                    '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
+                                    '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td><td><label style="color: black;">Not Applicable</label></td></tr>';
+                            }
+                            else {
+                                tr += '<tr><td>' + Z + '</td><td>' + input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
+                                    '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
+                                    '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td><td><button class="btn btn-danger" onclick="Delete_Reg_Partcipant(' + response[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                            }
+                        }
+                        else {
+                            tr += '<tr><td>' + Z + '</td><td>' + input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
+                                '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
+                                '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td><td><label style="color: black;">Not Applicable</label></td></tr>';
+                        }
+                        //tr += '<tr><td>' + Z + '</td><td>' +  input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
+                        //    '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
+                        //    '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td></tr>';
                     }
                 }
                 $('#male_count').text(male);
@@ -1007,7 +1057,28 @@
 
         });
     }
+    function Delete_Reg_Partcipant(Id) {
 
+        if (confirm("Do You want to delete ?")) {
+            var obj = {};
+            obj.id = Id;
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/Delete_feed',
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/Home/LogOut";
+                    }
+                    search_feedback();
+                }
+
+            });
+        }
+    }
     function Get_Training_Working_Events_Info_all() {
         $(".loader").show();
         var state = State;
