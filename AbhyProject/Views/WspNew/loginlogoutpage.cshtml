@@ -460,30 +460,18 @@
     </div>
     <br />
     <div id="excel_a" class="text-right btn_hide">
-        <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_a_Table()"> Export To Excel</i></div>
-        <input type="button" id="AComponent_Id" onclick="tableToExcel('state_tt', 'Mis Login Logout Information','Mis_Login_Logout_Information.xls')" hidden />
+        <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="exportdata()"> Export To Excel</i></div>
+        @*<input type="button" id="AComponent_Id" onclick="tableToExcel('state_tt', 'Mis Login Logout Information','Mis_Login_Logout_Information.xls')" hidden />*@
     </div>
-    @*<div id="excel_b" class="text-right btn_hide">
-            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_b_Table()"> Export To Excel</i></div>
-            <input type="button" id="BComponent_Id" onclick="tableToExcel('district_tt', 'Social Event Report')" hidden />
-        </div>
-        <div id="excel_c" class="text-right btn_hide">
-            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_c_Table()"> Export To Excel</i></div>
-            <input type="button" id="CComponent_Id" onclick="tableToExcel('block_tt', 'Social Event Report')" hidden />
-        </div>
-        <div id="excel_d" class="text-right btn_hide">
-            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_d_Table()"> Export To Excel</i></div>
-            <input type="button" id="DComponent_Id" onclick="tableToExcel('gp_tt', 'Social Event Report')" hidden />
-        </div>*@
-
+   
     <div id="example_filter" class="dataTables_filter" style="margin-bottom: 10px; margin-left:190px;">
 
         <div class="row">
-            <label class="col-md-2" style=" margin-top: 18px; position: relative; right:72px; font-size:12px;">
+            <label class="col-md-2" style=" margin-top: 18px; position: relative; right:110px; font-size:12px;">
                 Search Data in Table:
             </label>
             <div class="col-md-2">
-                <input type="search" id="myInput" class="form-control input-sm" placeholder="Search" style=" border-radius:25px; position: absolute; right: 95px; margin-top: 10px; padding-bottom:8px;" />
+                <input type="search" id="myInput" class="form-control input-sm" placeholder="Search" style=" border-radius:25px; position: absolute; right: 175px; margin-top: 10px; padding-bottom:8px;" />
             </div>
         </div>
 
@@ -491,6 +479,35 @@
 
     <br />
     <div class="col-lg-12 col-md-12 col-sm-12  form-body" style="padding-left:5%;width:95%">
+        <div class="row justify-content-between onlygp">
+            <div class="col-md-6 col-lg-6 text-left">
+                <label class="display_flex">
+                    Total Number of  Entry   :  <label id="existing_well_total"></label>
+                </label>
+            </div>
+            <div class="col-md-6 col-lg-6 text-right">
+                <label class="display_flex">
+                    Total Pages :
+                    <label id="totalwaterlevelexess">
+
+                    </label>
+                </label>
+            </div>
+        </div>
+        <div class="row justify-content-between onlygp">
+            <div class="col-md-6 col-lg-6 text-left ">
+            </div>
+            <div class="col-md-6 col-lg-6 text-right onlygp">
+                <label class="display_flex">
+                    Current Page No :
+                    <label id="currentwaterlevelexepageno">
+
+                    </label>
+                </label>
+            </div>
+
+        </div>
+
         <div class="table-responsive" id="style-1" style="overflow:auto; height:500px;">
             <table id="state_tt" class="table table-striped table-bordered table-striped social-table">
                 <thead>
@@ -519,7 +536,7 @@
                         <th>User Name</th>
                         <th>Log In / Log Out</th>
                         <th style="padding: 30px; padding-bottom: 10px;">Date</th>
-                        
+
                     </tr>
 
                 </thead>
@@ -527,7 +544,13 @@
             </table>
 
         </div>
+        <div class="row" style="margin-top: 18px;">
+            <div class="col-md-12 col-lg-12 col-sm-12 text-right">
+                <button class="btn btn-success btn_export btn-sm" id="btnpreexe" onclick="gp_data_pre()">Prev page</button>
 
+                <button type="button" id="btnnextexe" onclick="gp_data_next()" class="btn btn-success btn-sm">  Next page</button>
+            </div>
+        </div>
     </div>
     <br /> <br />
 
@@ -591,6 +614,8 @@
         $('#GramLabel').hide();
         $('#GramDropdownLabel').hide();
         $('#DropdownSearch_btn').hide();
+        $('#btnpreexe').hide();
+        $('#btnnextexe').hide();
 
         hideshowtable();
         DropDownInfo();
@@ -1018,8 +1043,15 @@
                 data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
                 dataType: 'JSON',
                 success: function (results) {
-                    state_data();
 
+                    exetotal = 0;
+                    totalexess = 0;
+                    PageNumber = 1;
+                    sno = 0;
+                    count = 0;
+                    close_length = 0;
+                    click_button = 0;
+                    totalexe();
                 }
             });
         }
@@ -1103,7 +1135,7 @@
             data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','nodal':'" + nodal + "','year':'" + year + "','month':'" + month + "','date':'" + date + "'}",
             dataType: 'JSON',
             success: function (data) {
-                debugger;
+               
                 if (data == "Logout") {
                       window.location = "/Home/LogOut";
                 }
@@ -1257,6 +1289,695 @@
 
 
     }
+    var exetotal = 0;
+    var totalexess = 0;
+    var PageNumber = 1;
+    var sno = 0;
+    var count = 0;
+    var close_length = 0;
+    var click_button = 0;
+    function totalexe() {
+
+        $('.loader').show();
+
+        var nodal = $("#nodal").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var date = $('#ddldate').val();
+        var date_val = $('#ddldate option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WspNew/all_report',
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','nodal':'" + nodal + "','year':'" + year + "','month':'" + month + "','date':'" + date + "','PageNumber':'" + PageNumber + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == 'Logout') {
+                    window.location = "/Home/LogOut";
+                }
+                var data = data;
+
+                if (data == 'No Data') {
+                    $('#existing_well_total').text(0);
+                    $('#totalwaterlevelexess').text(0);
+                }
+                else {
+                    var data = data.split(',');
+                    $('#existing_well_total').text(data[0]);
+                    $('#totalwaterlevelexess').text(data[1]);
+                    exetotal = data[0];
+                    totalexess = data[1];
+                }
+                if (totalexess == PageNumber || totalexess == 0) {
+                    $('#btnnextexe').hide();
+                }
+                else {
+                    $('#btnnextexe').show();
+                }
+                if (totalexess == 1) {
+                    PageNumber = 1;
+                }
+               
+                if (PageNumber == 1) {
+                    sno = 0;
+                    count = 0;
+                }
+
+                gp_data();
+            },
+            error: function () {
+
+            }
+        });
+    }
+    function gp_data() {
+
+        $(".loader").show();
+        $("#myInput").val("");
+        var nodal = $("#nodal").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var date = $('#ddldate').val();
+        var date_val = $('#ddldate option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WspNew/all_report_data',
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','nodal':'" + nodal + "','year':'" + year + "','month':'" + month + "','date':'" + date + "','PageNumber':'" + PageNumber + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                close_length = data.length;
+                var Tbodyhtml = '';
+                if (data.length != 0) {
+                    if (date_val != "Select Date") {
+                        for (var i = 0; i < data.length; i++) {
+
+                            var NodalOfficer = data[i].NodalOfficer
+                            if (NodalOfficer == null || NodalOfficer == "NULL") {
+                                NodalOfficer = "";
+                            }
+                            var email = data[i].email
+                            if (email == null || email == "NULL") {
+                                email = "";
+                            }
+                            var StateName = data[i].StateName
+                            if (StateName == null || StateName == "NULL") {
+                                StateName = "";
+                            }
+                            var DistrictName = data[i].DistrictName
+                            if (DistrictName == null || DistrictName == "NULL") {
+                                DistrictName = "";
+                            }
+                            var BlockName = data[i].BlockName
+                            if (BlockName == null || BlockName == "NULL") {
+                                BlockName = "";
+                            }
+                            var GramPanchayatName = data[i].GramPanchayatName
+                            if (GramPanchayatName == null || GramPanchayatName == "NULL") {
+                                GramPanchayatName = "";
+                            }
+                            var name = data[i].name
+                            if (name == null || name == "NULL") {
+                                name = "";
+                            }
+                            var loginlogout = data[i].loginlogout
+                            if (loginlogout == null || loginlogout == "NULL") {
+                                loginlogout = "";
+                            }
+                            var date = data[i].date
+                            if (date == null || date == "NULL") {
+                                date = "";
+                            }
+                            var datetime = data[i].datetime
+                            if (datetime == null || datetime == "NULL") {
+                                datetime = "";
+                            }
+                            //var totalcount = data[i].totalcount
+                            //if (totalcount == null || totalcount == "NULL") {
+                            //    totalcount = "";
+                            //}
+
+                            sno += 1;
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + StateName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + DistrictName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + BlockName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + loginlogout + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td></tr>';
+
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < data.length; i++) {
+
+                            var NodalOfficer = data[i].NodalOfficer
+                            if (NodalOfficer == null || NodalOfficer == "NULL") {
+                                NodalOfficer = "";
+                            }
+                            var email = data[i].email
+                            if (email == null || email == "NULL") {
+                                email = "";
+                            }
+                            var StateName = data[i].StateName
+                            if (StateName == null || StateName == "NULL") {
+                                StateName = "";
+                            }
+                            var DistrictName = data[i].DistrictName
+                            if (DistrictName == null || DistrictName == "NULL") {
+                                DistrictName = "";
+                            }
+                            var BlockName = data[i].BlockName
+                            if (BlockName == null || BlockName == "NULL") {
+                                BlockName = "";
+                            }
+                            var GramPanchayatName = data[i].GramPanchayatName
+                            if (GramPanchayatName == null || GramPanchayatName == "NULL") {
+                                GramPanchayatName = "";
+                            }
+                            var name = data[i].name
+                            if (name == null || name == "NULL") {
+                                name = "";
+                            }
+
+                            var date = data[i].date
+                            if (date == null || date == "NULL") {
+                                date = "";
+                            }
+                            var totalcount = data[i].totalcount
+                            if (totalcount == null || totalcount == "NULL") {
+                                totalcount = "";
+                            }
+                            var login_count = data[i].login_count
+                            if (login_count == null || login_count == "NULL") {
+                                login_count = "";
+                            }
+                            var logout_count = data[i].logout_count
+                            if (logout_count == null || logout_count == "NULL") {
+                                logout_count = "";
+                            }
+                            var total_duration = data[i].total_duration
+                            if (total_duration == null || total_duration == "NULL") {
+                                total_duration = "";
+                            }
+                            sno += 1;
+
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + StateName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + DistrictName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + BlockName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + date + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + login_count + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + logout_count + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td></tr>';
+
+                        }
+                    }
+
+                    $('#tbl_state').html(Tbodyhtml);
+                    $(".loader").hide();
+
+                    $('#currentwaterlevelexepageno').text(PageNumber);
+                }
+                else {
+                    Tbodyhtml = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbl_state').html(Tbodyhtml);
+                    $(".loader").hide();
+                }
+
+
+            }
+
+
+        });
+
+
+
+    }
+    function gp_data_next() {
+       
+        $("#myInput").val("");
+        $(".loader").show();
+        click_button = 0;
+        PageNumber++;
+        if (PageNumber == 1) {
+            $('#btnpreexe').hide();
+        }
+        else {
+            $('#btnpreexe').show();
+        }
+        if (totalexess == PageNumber || totalexess == 0) {
+            $('#btnnextexe').hide();
+        }
+        else {
+            $('#btnnextexe').show();
+        }
+        var nodal = $("#nodal").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var date = $('#ddldate').val();
+        var date_val = $('#ddldate option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WspNew/all_report_data',
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','nodal':'" + nodal + "','year':'" + year + "','month':'" + month + "','date':'" + date + "','PageNumber':'" + PageNumber + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                close_length = data.length;
+
+                var Tbodyhtml = '';
+                if (data.length != 0) {
+
+                    if (date_val != "Select Date") {
+                        for (var i = 0; i < data.length; i++) {
+
+                            var NodalOfficer = data[i].NodalOfficer
+                            if (NodalOfficer == null || NodalOfficer == "NULL") {
+                                NodalOfficer = "";
+                            }
+                            var email = data[i].email
+                            if (email == null || email == "NULL") {
+                                email = "";
+                            }
+                            var StateName = data[i].StateName
+                            if (StateName == null || StateName == "NULL") {
+                                StateName = "";
+                            }
+                            var DistrictName = data[i].DistrictName
+                            if (DistrictName == null || DistrictName == "NULL") {
+                                DistrictName = "";
+                            }
+                            var BlockName = data[i].BlockName
+                            if (BlockName == null || BlockName == "NULL") {
+                                BlockName = "";
+                            }
+                            var GramPanchayatName = data[i].GramPanchayatName
+                            if (GramPanchayatName == null || GramPanchayatName == "NULL") {
+                                GramPanchayatName = "";
+                            }
+                            var name = data[i].name
+                            if (name == null || name == "NULL") {
+                                name = "";
+                            }
+                            var loginlogout = data[i].loginlogout
+                            if (loginlogout == null || loginlogout == "NULL") {
+                                loginlogout = "";
+                            }
+                            var date = data[i].date
+                            if (date == null || date == "NULL") {
+                                date = "";
+                            }
+                            var datetime = data[i].datetime
+                            if (datetime == null || datetime == "NULL") {
+                                datetime = "";
+                            }
+                            //var totalcount = data[i].totalcount
+                            //if (totalcount == null || totalcount == "NULL") {
+                            //    totalcount = "";
+                            //}
+
+                            sno += 1;
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + StateName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + DistrictName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + BlockName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + loginlogout + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td></tr>';
+
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < data.length; i++) {
+
+                            var NodalOfficer = data[i].NodalOfficer
+                            if (NodalOfficer == null || NodalOfficer == "NULL") {
+                                NodalOfficer = "";
+                            }
+                            var email = data[i].email
+                            if (email == null || email == "NULL") {
+                                email = "";
+                            }
+                            var StateName = data[i].StateName
+                            if (StateName == null || StateName == "NULL") {
+                                StateName = "";
+                            }
+                            var DistrictName = data[i].DistrictName
+                            if (DistrictName == null || DistrictName == "NULL") {
+                                DistrictName = "";
+                            }
+                            var BlockName = data[i].BlockName
+                            if (BlockName == null || BlockName == "NULL") {
+                                BlockName = "";
+                            }
+                            var GramPanchayatName = data[i].GramPanchayatName
+                            if (GramPanchayatName == null || GramPanchayatName == "NULL") {
+                                GramPanchayatName = "";
+                            }
+                            var name = data[i].name
+                            if (name == null || name == "NULL") {
+                                name = "";
+                            }
+
+                            var date = data[i].date
+                            if (date == null || date == "NULL") {
+                                date = "";
+                            }
+                            var totalcount = data[i].totalcount
+                            if (totalcount == null || totalcount == "NULL") {
+                                totalcount = "";
+                            }
+                            var login_count = data[i].login_count
+                            if (login_count == null || login_count == "NULL") {
+                                login_count = "";
+                            }
+                            var logout_count = data[i].logout_count
+                            if (logout_count == null || logout_count == "NULL") {
+                                logout_count = "";
+                            }
+                            var total_duration = data[i].total_duration
+                            if (total_duration == null || total_duration == "NULL") {
+                                total_duration = "";
+                            }
+                            sno += 1;
+
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + StateName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + DistrictName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + BlockName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + date + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + login_count + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + logout_count + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td></tr>';
+
+                        }
+                    }
+                    count = i + 200;
+                    $('#tbl_state').html(Tbodyhtml);
+                    $(".loader").hide();
+
+                    $('#currentwaterlevelexepageno').text(PageNumber);
+                }
+                else {
+                    Tbodyhtml = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbl_state').html(Tbodyhtml);
+                    $(".loader").hide();
+                }
+
+
+            }
+
+
+        });
+
+
+
+    }
+    function gp_data_pre() {
+       
+        $("#myInput").val("");
+        $(".loader").show();
+        click_button = 0;
+        PageNumber--;
+        if (PageNumber == 1) {
+            $('#btnpreexe').hide();
+        }
+        else {
+            $('#btnnextexe').show();
+        }
+        if (totalexess == PageNumber || totalexess == 0) {
+            $('#btnnextexe').hide();
+        }
+        else {
+            $('#btnnextexe').show();
+        }
+        var nodal = $("#nodal").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var date = $('#ddldate').val();
+        var date_val = $('#ddldate option:selected').text();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WspNew/all_report_data',
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','nodal':'" + nodal + "','year':'" + year + "','month':'" + month + "','date':'" + date + "','PageNumber':'" + PageNumber + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                close_length = data.length;
+                if (PageNumber == 1) {
+                    sno = 0;
+                } else {
+                    sno -= count;
+                    sno += click_button;
+                    click_button = 0;
+                }
+                var Tbodyhtml = '';
+                if (data.length != 0) {
+                    if (date_val != "Select Date") {
+                        for (var i = 0; i < data.length; i++) {
+
+                            var NodalOfficer = data[i].NodalOfficer
+                            if (NodalOfficer == null || NodalOfficer == "NULL") {
+                                NodalOfficer = "";
+                            }
+                            var email = data[i].email
+                            if (email == null || email == "NULL") {
+                                email = "";
+                            }
+                            var StateName = data[i].StateName
+                            if (StateName == null || StateName == "NULL") {
+                                StateName = "";
+                            }
+                            var DistrictName = data[i].DistrictName
+                            if (DistrictName == null || DistrictName == "NULL") {
+                                DistrictName = "";
+                            }
+                            var BlockName = data[i].BlockName
+                            if (BlockName == null || BlockName == "NULL") {
+                                BlockName = "";
+                            }
+                            var GramPanchayatName = data[i].GramPanchayatName
+                            if (GramPanchayatName == null || GramPanchayatName == "NULL") {
+                                GramPanchayatName = "";
+                            }
+                            var name = data[i].name
+                            if (name == null || name == "NULL") {
+                                name = "";
+                            }
+                            var loginlogout = data[i].loginlogout
+                            if (loginlogout == null || loginlogout == "NULL") {
+                                loginlogout = "";
+                            }
+                            var date = data[i].date
+                            if (date == null || date == "NULL") {
+                                date = "";
+                            }
+                            var datetime = data[i].datetime
+                            if (datetime == null || datetime == "NULL") {
+                                datetime = "";
+                            }
+                            //var totalcount = data[i].totalcount
+                            //if (totalcount == null || totalcount == "NULL") {
+                            //    totalcount = "";
+                            //}
+
+                            sno += 1;
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + StateName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + DistrictName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + BlockName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + loginlogout + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td></tr>';
+
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < data.length; i++) {
+
+                            var NodalOfficer = data[i].NodalOfficer
+                            if (NodalOfficer == null || NodalOfficer == "NULL") {
+                                NodalOfficer = "";
+                            }
+                            var email = data[i].email
+                            if (email == null || email == "NULL") {
+                                email = "";
+                            }
+                            var StateName = data[i].StateName
+                            if (StateName == null || StateName == "NULL") {
+                                StateName = "";
+                            }
+                            var DistrictName = data[i].DistrictName
+                            if (DistrictName == null || DistrictName == "NULL") {
+                                DistrictName = "";
+                            }
+                            var BlockName = data[i].BlockName
+                            if (BlockName == null || BlockName == "NULL") {
+                                BlockName = "";
+                            }
+                            var GramPanchayatName = data[i].GramPanchayatName
+                            if (GramPanchayatName == null || GramPanchayatName == "NULL") {
+                                GramPanchayatName = "";
+                            }
+                            var name = data[i].name
+                            if (name == null || name == "NULL") {
+                                name = "";
+                            }
+
+                            var date = data[i].date
+                            if (date == null || date == "NULL") {
+                                date = "";
+                            }
+                            var totalcount = data[i].totalcount
+                            if (totalcount == null || totalcount == "NULL") {
+                                totalcount = "";
+                            }
+                            var login_count = data[i].login_count
+                            if (login_count == null || login_count == "NULL") {
+                                login_count = "";
+                            }
+                            var logout_count = data[i].logout_count
+                            if (logout_count == null || logout_count == "NULL") {
+                                logout_count = "";
+                            }
+                            var total_duration = data[i].total_duration
+                            if (total_duration == null || total_duration == "NULL") {
+                                total_duration = "";
+                            }
+                            sno += 1;
+
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + StateName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + DistrictName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + BlockName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + date + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + login_count + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + logout_count + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td></tr>';
+
+                        }
+                    }
+                    count = i + 200;
+
+                    $('#currentwaterlevelexepageno').text(PageNumber);
+                    $('#tbl_state').html(Tbodyhtml);
+                    $(".loader").hide();
+
+                }
+                else {
+                    Tbodyhtml = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbl_state').html(Tbodyhtml);
+                    $(".loader").hide();
+                }
+
+
+            }
+
+
+        });
+
+
+
+    }
+
+    function exportdata() {
+        // Get form values
+        var nodal1 = $("#nodal").val();
+        var year1 = $("#year").val();
+        var month1 = $('#month').val();
+        var date1 = $('#ddldate').val();
+
+        // Retrieve other necessary values
+        var State1 = State;
+        var Dist1 = Dist;
+        var Block1 = Block;
+        var Gram1 = Gram;
+       
+        // Validate Nodal Officer selection
+        if (nodal1 == "0") {
+            alert("Please Select Nodal Officer");
+            return false;
+        }
+
+        // Validate Year and Month
+        if (year1 == "0") {
+            if (month1 == "0" && date1 != "0") {
+                alert("Please Select Year and Month");
+                return false;
+            } else if (month1 != "0") {
+                alert("Please Select Year");
+                return false;
+            }
+        }
+
+        // Construct the URL for report export
+        var url = "/WspNew/all_report_excel?StateName=" + State1 + "&Dist=" + Dist1 + "&Block=" + Block1 + "&Gram=" + Gram1 + "&nodal=" + nodal1 + "&year=" + year1 + "&month=" + month1 + "&date=" + date1;
+       
+        // Redirect to the generated URL
+        window.location.href = url;
+    }
+
+
+
+    //function exportdata() {
+    //    var nodal = $("#nodal").val();
+    //    var year = $("#year").val();
+    //    var month = $('#month').val();
+    //    var date = $('#ddldate').val();
+    //    var date_val = $('#ddldate option:selected').text();
+    //   
+    //    var xx = 0;
+    //    if (nodal == "0") {
+    //        xx = 1;
+    //        alert("Please Select Nodal Officer");
+    //        return false;
+    //    }
+    //    if (year == "0") {
+    //        if (month == "0") {
+    //            if (date != "0") {
+    //                alert("Please Select Year and Month");
+    //                return false;
+    //            }
+    //        }
+    //    }
+    //    if (year == "0") {
+    //        if (month != "0") {
+    //            alert("Please Select Year");
+    //            return false;
+    //        }
+    //    }
+
+    //    {
+    //        window.location.href = "/WspNew/all_report_excel?StateName=" + State + "&Dist=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&nodal=" + nodal + "&year=" + year + "&month=" + month + "&date=" + date;
+    //    }
+
+    //}
 
     function Export_a_Table() {
         $('#AComponent_Id').click();
@@ -1281,19 +2002,6 @@
     function yearchange() {
         $('#month').val("0");
     }
-
-    //var tableToExcel = (function () {
-
-    //    var uri = 'data:application/vnd.ms-excel;base64,'
-    //        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
-    //        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
-    //        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
-    //    return function (table, name) {
-    //        if (!table.nodeType) table = document.getElementById(table)
-    //        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
-    //        window.location.href = uri + base64(format(template, ctx))
-    //    }
-    //})()
 
     var tableToExcel = (function () {
         var uri = 'data:application/vnd.ms-excel;base64,'
