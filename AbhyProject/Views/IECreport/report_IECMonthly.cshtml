@@ -322,10 +322,16 @@
                             <div class="">
                                 <label style="text-align:center;color:red;" id="Error_"></label>
                                 <ul class="Select_option col-md-12 col-sm-8  text-left">
-                                    @*<li>
-                                            <select class="form-control" id="ddllevel" onclick="levelchange()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
+                                    @*
+                                    <li>
+                                        <select class="form-control" id="ddllevel" onclick="levelchange()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
+
+
+                                   
+
+
                                     <li id="StateLabel">
                                         <label id="lblstate">State:</label>
                                         <span id="spnstate1">@Session["gstate"]</span>
@@ -336,43 +342,49 @@
                                         </select>
                                     </li>
 
-                                    @*<li id="DistLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label id="lbldistrict">District:</label>
-                                            <span id="spndistrict">@Session["gdist"]</span>
-                                        </li>*@
+                                    @*
+                                    <li id="DistLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label id="lbldistrict">District:</label>
+                                        <span id="spndistrict">@Session["gdist"]</span>
+                                    </li>*@
 
-                                    @*<li id="DistDropdownLabel">
+                                    @*
+                                    <li id="DistDropdownLabel">
 
-                                            <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
+                                        <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
 
-                                    @*<li id="BlockLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label>Block:</label>
-                                            <span>@Session["gblock"] </span>
-                                        </li>*@
+                                    @*
+                                    <li id="BlockLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Block:</label>
+                                        <span>@Session["gblock"] </span>
+                                    </li>*@
 
-                                    @*<li id="BlockDropdownLabel">
+                                    @*
+                                    <li id="BlockDropdownLabel">
 
-                                            <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
-                                    @*<li id="GramLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label>Gram panchayat:</label>
-                                            <span>@Session["ggram"]</span>
-                                        </li>*@
+                                        <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
+                                    @*
+                                    <li id="GramLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Gram panchayat:</label>
+                                        <span>@Session["ggram"]</span>
+                                    </li>*@
 
-                                    @*<li id="GramDropdownLabel">
+                                    @*
+                                    <li id="GramDropdownLabel">
 
-                                            <select class="form-control" id="gram" onchange="Gram_change()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
+                                        <select class="form-control" id="gram" onchange="Gram_change()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
                                     <li>
                                         <label>Year:</label>
-                                        <select class="form-control" id="year"  style="border-radius:5px;">
+                                        <select class="form-control" id="year" style="border-radius:5px;">
                                             <option value="0">Select  Year</option>
                                             <option value="All">All</option>
                                             <option value="2020-21">2020-21</option>
@@ -811,44 +823,44 @@
         $('#excel_c').hide();
         $('#excel_d').hide();
 
-        if (StateOfficer == 'State Level Nodal Officer') {
-            var opgram = '';
-            opgram = '<option value="State Level Nodal Officer">State Level Data</option>';
-            opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
-            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       // if (StateOfficer == 'State Level Nodal Officer') {
+       //     var opgram = '';
+       //     opgram = '<option value="State Level Nodal Officer">State Level Data</option>';
+       //     opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
+       //     opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-            levelchange();
-        }
-       else if (StateOfficer == 'District Level Nodal Officer') {
-            var opgram = '';
-            opgram = '<option value="District Level Nodal Officer">District Level Data</option>';
-            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       //     $("#ddllevel").append(opgram);
+       //     levelchange();
+       // }
+       //else if (StateOfficer == 'District Level Nodal Officer') {
+       //     var opgram = '';
+       //     opgram = '<option value="District Level Nodal Officer">District Level Data</option>';
+       //     opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-            levelchange();
-        }
-       else if (StateOfficer == 'GramPanchayat Level Nodal Officer') {
-            var opgram = '';
-            opgram = '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       //     $("#ddllevel").append(opgram);
+       //     levelchange();
+       // }
+       //else if (StateOfficer == 'GramPanchayat Level Nodal Officer') {
+       //     var opgram = '';
+       //     opgram = '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-            levelchange();
-        }
-        else {
-            var opgram = '';
-            opgram += '<option value="0">Select Level Data</option>';
-            opgram += '<option value="State Level Nodal Officer">State Level Data</option>';
-            opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
-            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       //     $("#ddllevel").append(opgram);
+       //     levelchange();
+       // }
+       // else {
+       //     var opgram = '';
+       //     opgram += '<option value="0">Select Level Data</option>';
+       //     opgram += '<option value="State Level Nodal Officer">State Level Data</option>';
+       //     opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
+       //     opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-        }
-
+       //     $("#ddllevel").append(opgram);
+       // }
 
 
 
         DropDownInfo();
+        levelchange();
     });
 
     function pagechange() {
@@ -859,97 +871,100 @@
 <script type="text/javascript">
     var check_table = "";
 
-    //function levelchange() {
-    //    var level = $("#ddllevel").val();
-    //    if (level == "State Level Nodal Officer") {
-    //        check_table = 1;
-    //        $('#dist11').hide();
-    //        $('#block1').hide();
-    //        $('#gram').hide();
-    //        $('#state_tt').show();
-    //        $('#district_tt').hide();
-    //        $('#block_tt').hide();
-    //        $('#gp_tt').hide();
-    //        $('#state_tt tbody').html("");
-    //        $('#district_tt tbody').html("");
-    //        $('#block_tt tbody').html("");
-    //        $('#gp_tt tbody').html("");
-    //        $('#excel_a').show();
-    //        $('#excel_b').hide();
-    //        $('#excel_c').hide();
-    //        $('#excel_d').hide();
-    //    }
-    //    else if (level == "District Level Nodal Officer") {
-    //        check_table = 2;
-    //        $('#dist11').show();
-    //        $('#block1').hide();
-    //        $('#gram').hide();
-    //        var dist1 = $("#dist11").val();
-    //        if (dist1 == "0") {
-    //            $('#state_tt').hide();
-    //            $('#district_tt').show();
-    //            $('#block_tt').hide();
-    //            $('#gp_tt').hide();
-    //            $('#state_tt tbody').html("");
-    //            $('#district_tt tbody').html("");
-    //            $('#block_tt tbody').html("");
-    //            $('#gp_tt tbody').html("");
-    //            $('#excel_a').hide();
-    //            $('#excel_b').show();
-    //            $('#excel_c').hide();
-    //            $('#excel_d').hide();
-    //        }
-    //        else {
-    //            $('#state_tt').hide();
-    //            $('#district_tt').show();
-    //            $('#block_tt').hide();
-    //            $('#gp_tt').hide();
-    //            $('#state_tt tbody').html("");
-    //            $('#district_tt tbody').html("");
-    //            $('#block_tt tbody').html("");
-    //            $('#gp_tt tbody').html("");
-    //            $('#excel_a').hide();
-    //            $('#excel_b').show();
-    //            $('#excel_c').hide();
-    //            $('#excel_d').hide();
-    //        }
-    //    }
-    //    else if (level == "GramPanchayat Level Nodal Officer") {
-    //        check_table = 3;
-    //        $('#dist11').show();
-    //        $('#block1').show();
-    //        $('#gram').show();
-    //        $('#gp_tt').show();
-    //        $('#excel_d').show();
-    //        $('#state_tt').hide();
-    //        $('#district_tt').hide();
-    //        $('#block_tt').hide();
-    //        $('#state_tt tbody').html("");
-    //        $('#district_tt tbody').html("");
-    //        $('#block_tt tbody').html("");
-    //        $('#gp_tt tbody').html("");
-    //        $('#excel_a').hide();
-    //        $('#excel_b').hide();
-    //        $('#excel_c').hide();
-    //    }
-    //    else {
-    //        $('#dist11').show();
-    //        $('#block1').show();
-    //        $('#gram').show();
-    //        $('#state_tt').show();
-    //        $('#district_tt').hide();
-    //        $('#block_tt').hide();
-    //        $('#gp_tt').hide();
-    //        $('#state_tt tbody').html("");
-    //        $('#district_tt tbody').html("");
-    //        $('#block_tt tbody').html("");
-    //        $('#gp_tt tbody').html("");
-    //        $('#excel_a').hide();
-    //        $('#excel_b').hide();
-    //        $('#excel_c').hide();
-    //        $('#excel_d').hide();
-    //    }
-    //}
+    function levelchange() {
+        //var level = $("#ddllevel").val('State Level Nodal Officer');
+        if (StateOfficer == "State Level Nodal Officer") {
+            check_table = 1;
+            $('#dist11').hide();
+            $('#block1').hide();
+            $('#gram').hide();
+            $('#state_tt').show();
+            $('#district_tt').hide();
+            $('#block_tt').hide();
+            $('#gp_tt').hide();
+            $('#state_tt tbody').html("");
+            $('#district_tt tbody').html("");
+            $('#block_tt tbody').html("");
+            $('#gp_tt tbody').html("");
+            $('#excel_a').show();
+            $('#excel_b').hide();
+            $('#excel_c').hide();
+            $('#excel_d').hide();
+        }
+        //else if (level == "District Level Nodal Officer") {
+        //    check_table = 2;
+        //    $('#dist11').show();
+        //    $('#block1').hide();
+        //    $('#gram').hide();
+        //    var dist1 = $("#dist11").val();
+        //    if (dist1 == "0") {
+        //        $('#state_tt').hide();
+        //        $('#district_tt').show();
+        //        $('#block_tt').hide();
+        //        $('#gp_tt').hide();
+        //        $('#state_tt tbody').html("");
+        //        $('#district_tt tbody').html("");
+        //        $('#block_tt tbody').html("");
+        //        $('#gp_tt tbody').html("");
+        //        $('#excel_a').hide();
+        //        $('#excel_b').show();
+        //        $('#excel_c').hide();
+        //        $('#excel_d').hide();
+        //    }
+        //    else {
+        //        $('#state_tt').hide();
+        //        $('#district_tt').show();
+        //        $('#block_tt').hide();
+        //        $('#gp_tt').hide();
+        //        $('#state_tt tbody').html("");
+        //        $('#district_tt tbody').html("");
+        //        $('#block_tt tbody').html("");
+        //        $('#gp_tt tbody').html("");
+        //        $('#excel_a').hide();
+        //        $('#excel_b').show();
+        //        $('#excel_c').hide();
+        //        $('#excel_d').hide();
+        //    }
+        //}
+        //else if (level == "GramPanchayat Level Nodal Officer") {
+        //    check_table = 3;
+        //    $('#dist11').show();
+        //    $('#block1').show();
+        //    $('#gram').show();
+        //    $('#gp_tt').show();
+        //    $('#excel_d').show();
+        //    $('#state_tt').hide();
+        //    $('#district_tt').hide();
+        //    $('#block_tt').hide();
+        //    $('#state_tt tbody').html("");
+        //    $('#district_tt tbody').html("");
+        //    $('#block_tt tbody').html("");
+        //    $('#gp_tt tbody').html("");
+        //    $('#excel_a').hide();
+        //    $('#excel_b').hide();
+        //    $('#excel_c').hide();
+        //}
+        else {
+            $('#dist11').hide();
+            $('#block1').hide();
+            $('#gram').hide();
+            $('#state_tt').hide();
+            $('#spnstate1').hide();
+            $('#district_tt').hide();
+            $('#block_tt').hide();
+            $('#gp_tt').hide();
+            $('#state_tt tbody').html("");
+            $('#district_tt tbody').html("");
+            $('#block_tt tbody').html("");
+            $('#gp_tt tbody').html("");
+            $('#excel_a').hide();
+            $('#excel_b').hide();
+            $('#excel_c').hide();
+            $('#excel_d').hide();
+        }
+    }
+
+
     function SessionInfo() {
 
         var obj = {};
