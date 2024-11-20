@@ -15,7 +15,7 @@
         return true;
     }
     else {
-        if (year = "2024") {
+        if (year == "2024") {
             if ("2024-12-06" > todaydate) {
                 return true;
             }
