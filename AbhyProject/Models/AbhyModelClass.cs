@@ -18091,6 +18091,7 @@ namespace AbhyProject.Models
         public string month { get; set; }
         public string gender { get; set; }
         public string unic_key { get; set; }
+        public string approve_status { get; set; }
     }
     [Table("mstr_states", Schema = "public")]        //chetan mstr 
     public class mstr_states
