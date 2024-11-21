@@ -1022,12 +1022,13 @@
                         var input = registration_no;
                         var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
                         Z += 1;
+                        debugger;
                         if (Email == "akash.verma@kreatetechnologies.com") {
                             tr += '<tr><td>' + Z + '</td><td>' + input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
                                 '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
                                 '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td><td><button class="btn btn-danger" onclick="Delete_Reg_Partcipant(' + response[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
                         }
-                        if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        else if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
                             if (isWithinRange(new Date(to_date))) {
                                 if (approve_status == "Approved" || approve_status == "Submitted") {
                                     tr += '<tr><td>' + Z + '</td><td>' + input + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
