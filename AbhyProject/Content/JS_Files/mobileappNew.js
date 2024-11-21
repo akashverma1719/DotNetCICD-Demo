@@ -28816,9 +28816,13 @@ function find_dwlr_data(data_id) {
             else {
                 for (var i = 0; i < data.length; i++) {
                     sndwlr = i + 1;
+                    var dateString = data[i].datetime;
+                    var timestamp = dateString.replace("/Date(", "").replace(")/", "");
+                    var date = new Date(parseInt(timestamp));
+                    var formattedDate = date.toLocaleString();
 
                     Tbodyhtml += '<tr id="AWP1_TR_data_quality' + i + '"><td id="srNo">' + (sndwlr) + '</td>';
-                    Tbodyhtml += '<td id="vill">' + data[i].date + '</td>';
+                    Tbodyhtml += '<td id="vill">' + formattedDate + '</td>';
                     Tbodyhtml += '<td id="vill">' + data[i].datavalue + '</td></tr >';
                 }
                 $('#dwlr_data').html(Tbodyhtml);

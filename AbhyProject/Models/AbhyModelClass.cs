@@ -20563,6 +20563,7 @@ namespace AbhyProject.Models
         public string datatypecode { get; set; }
         public string date { get; set; }
         public string datavalue { get; set; }
+        public DateTime datetime { get; set; }
         public string fyyear { get; set; }
         public string fymonth { get; set; }
 
