@@ -29123,7 +29123,6 @@ namespace AbhyProject.Controllers
             {
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
-
         }
         [HttpPost]
         public ActionResult Delete_feed(string Data)
