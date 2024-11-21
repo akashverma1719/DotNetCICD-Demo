@@ -271,7 +271,7 @@ function HideFinctions() {
             $(".hidethedelete").attr("disabled", true);
         }, 1000);
     }
-    if (eemail == "vivekvivektiwari80@gmail.com") {
+    if (eemail == "vivekvivektiwari80@gmail.com" || eemail == "dpbcse@gmail.com") {
         $(".hidethedelete").attr("disabled", false);
     }
     else if (eemail == "neetynagi@gmail.comaaa") {
