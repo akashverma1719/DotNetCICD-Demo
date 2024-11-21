@@ -17658,11 +17658,22 @@ namespace AbhyProject.Controllers
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     int idd = Convert.ToInt32(id);
                     var getwellid = AJE.obj_vw_dwlr_meta_data.Where(x => x.data_id == idd).FirstOrDefault();
+                    List<vw_dwlr_meta_data> oob = new List<vw_dwlr_meta_data>();
                     if (getwellid != null)
                     {
                         var well = getwellid.Well_ID;
-                        var Final_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.Well_ID == well).OrderByDescending(x => x.date).ToList();
-                        var jsonresult = Json(Final_data, JsonRequestBehavior.AllowGet);
+                        var Final_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.Well_ID == well).OrderByDescending(x => x.datetime).ToList();
+                        var uniqueGpNames = Final_data.GroupBy(c => c.date).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_dwlr_meta_data.OrderByDescending(x => x.id).FirstOrDefault(x => x.date == gpName && x.Well_ID == well);
+
+                            if (matchedData != null)
+                            {
+                                oob.Add(matchedData);
+                            }
+                        }
+                        var jsonresult = Json(oob, JsonRequestBehavior.AllowGet);
                         jsonresult.MaxJsonLength = int.MaxValue;
                         return jsonresult;
                     }
@@ -17726,7 +17737,7 @@ namespace AbhyProject.Controllers
                     }
 
                     List<vw_dwlr_meta_data> Final_data_data = new List<vw_dwlr_meta_data>();
-
+                    List<vw_dwlr_meta_data> oob = new List<vw_dwlr_meta_data>();
                     if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                     {
                         Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
@@ -17775,10 +17786,20 @@ namespace AbhyProject.Controllers
                     {
                         Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ToList();
                     }
+                    var uniqueGpNames = Final_data_data.GroupBy(c => new { c.Well_ID, c.date }).Select(g => g.Key).ToList();
 
-                    if (Final_data_data.Count != 0)
+                    foreach (var gpName in uniqueGpNames)
                     {
-                        var jsonresult = Json(Final_data_data, JsonRequestBehavior.AllowGet);
+                        var matchedData = AJE.obj_vw_dwlr_meta_data.Where(x => x.Well_ID == gpName.Well_ID && x.date == gpName.date).OrderByDescending(x => x.id).FirstOrDefault();
+                        if (matchedData != null)
+                        {
+                            oob.Add(matchedData);
+                        }
+                    }
+
+                    if (oob.Count != 0)
+                    {
+                        var jsonresult = Json(oob, JsonRequestBehavior.AllowGet);
                         jsonresult.MaxJsonLength = int.MaxValue;
                         return jsonresult;
                     }
@@ -17880,7 +17901,7 @@ namespace AbhyProject.Controllers
                 dt.Columns.Add("Longitude", typeof(string));
                 dt.Columns.Add("Well Id", typeof(string));
                 dt.Columns.Add("Type of well", typeof(string));
-                dt.Columns.Add("Date", typeof(string));
+                dt.Columns.Add("DateTime", typeof(string));
                 dt.Columns.Add("Data type code", typeof(string));
                 dt.Columns.Add("Data value(mbgl)", typeof(string));
 
@@ -17900,7 +17921,7 @@ namespace AbhyProject.Controllers
                         dataRow["Longitude"] = itema.longitude;
                         dataRow["Well Id"] = itema.Well_ID;
                         dataRow["Type of well"] = itema.type;
-                        dataRow["Date"] = itema.date;
+                        dataRow["DateTime"] = itema.datetime;
                         dataRow["Data type code"] = itema.datatypecode;
                         dataRow["Data value(mbgl)"] = itema.datavalue;
 
@@ -17922,7 +17943,7 @@ namespace AbhyProject.Controllers
                     dataRow["Longitude"] = "";
                     dataRow["Well Id"] = "";
                     dataRow["Type of well"] = "";
-                    dataRow["Date"] = "";
+                    dataRow["DateTime"] = "";
                     dataRow["Data type code"] = "";
                     dataRow["Data value(mbgl)"] = "";
                     dt.Rows.Add(dataRow);
