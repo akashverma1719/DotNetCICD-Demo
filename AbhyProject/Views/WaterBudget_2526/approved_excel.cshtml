@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 @{
     Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
 }
@@ -217,7 +217,7 @@
 
                 <li id="GramDropdownLabel">
 
-                    <select class="form-control" id="gram" ></select>
+                    <select class="form-control" id="gram"></select>
                     @*<select class="form-control" id="gram" onchange="Dropdown_Search()"></select>*@
 
                 </li>
@@ -255,7 +255,7 @@
                     <option value="-1">All</option>
                 </select>
             </div>
-            
+
             <!--<div class="col-md-3 col-lg-3">
             <label>Financial Year</label>
             <select class="form-control" id="Year">
@@ -282,10 +282,10 @@
         <div class="col-md-12">
             <ul class="note_warning">
                 @*<li>
-                    <p>
-                        Only state-level nodal officer-approved data will be downloaded according to the above selection.
-                    </p>
-                </li>*@
+                        <p>
+                            Only state-level nodal officer-approved data will be downloaded according to the above selection.
+                        </p>
+                    </li>*@
                 <li>
                     <p>
                         Data will be downloaded as the name of templates under the Water Budget Module.
@@ -369,7 +369,7 @@
         $("#Year").val("2025-26");
         GetApprovedGpCount();
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
-        
+
         /*BindModule_DD();*/
 
         $('#Error_').text("States Information is Loading....");
@@ -392,7 +392,7 @@
         });
     });
 
-    
+
     //function DropDownInfo() {
     //    $.ajax({
     //        type: 'POST',
@@ -968,32 +968,30 @@
     //}
 
     function Dist_fun() {
-
         $("#block1").empty();
         var opblock = '<option value="0">Select Block</option>';
         $("#block1").append(opblock);
-        Block = "0";
         $("#gram").empty();
         var opgram = '<option value="0">Select GramPanchayat</option>';
         $("#gram").append(opgram);
-        Gram = "0";
-        //var dist = $("#dist11").val();
-        var distName = $("#dist11 option:selected").text();
-        var State = $("#spnstate option:selected").text();
+
+        var dist = $("#dist11").val();
+        //var distName = $("#spndistrict option:selected").text();
+        //var State = $("#spnstate1 option:selected").text();
         if (off_1 == "dist") {
-            distName = dist;
+            dist = Dist;
         } else {
-            Dist = $("#dist11").val();
+            Dist = dist;
         }
         console.log(Dist)
         if (Dist != "0" && Jsondata.length != 0) {
             var ddlst = {};
             var all_blocks = [];
             var optionDist = '';
+
             for (var i = 0; i < Jsondata.length; i++) {
 
-                if (distName == Jsondata[i].district_name && State == Jsondata[i].state_name) {
-
+                if (dist == Jsondata[i].lg_dist && State == Jsondata[i].lg_state) {
                     if (!ddlst[Jsondata[i].block_name]) {
                         all_blocks.push({ lg_block: Jsondata[i].lg_block, block_name: Jsondata[i].block_name });
                         ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
@@ -1020,81 +1018,31 @@
         GetApprovedGpCount();
     }
 
-    //function Block_fun() {
-    //    //$("#Year").val("0");
-    //    $("#gram").empty();
-    //    var opgram = '<option value="0">Select Gram Panchayat Name</option>';
-    //    $("#gram").append(opgram);
-    //    Gram = "0";
 
-
-    //    var block = $("#block1 option:selected").text();
-    //    var StateName = $("#spnstate option:selected").text();
-    //    var DistName = $("#dist11 option:selected").text();
-
-
-    //    if (off_1 == "block") {
-    //        block = Block;
-    //    } else {
-    //        Block = $("#block1").val();
-    //    }
-    //    if (block != "0" && Jsondata.length != 0) {
-
-    //        Gram = "0";
-    //        var ddlst = {};
-    //        var all_grams = [];
-    //        var optionDist = '';
-    //        for (var i = 0; i < Jsondata.length; i++) {
-    //            if (StateName == Jsondata[i].state_name && DistName == Jsondata[i].district_name && blockName == Jsondata[i].block_name) {
-
-    //                if (!ddlst[Jsondata[i].gram_panchayat_name]) {
-    //                    ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
-    //                    all_grams.push({ lg_gram: Jsondata[i].lg_gram, gram_panchayat_name: Jsondata[i].gram_panchayat_name });
-    //                    //   $("#gram").append(optionDist);
-    //                }
-    //            }
-    //        }
-
-    //        var GramArray = [];
-    //        GramArray = all_grams.sort(function (a, b) {
-    //            if (a < b) return -1;
-    //            else if (a > b) return 1;
-    //            return 0;
-    //        });
-    //        for (var i = 0; i < GramArray.length; i++) {
-    //            if (GramArray[i] != null && GramArray[i] != "") {
-
-    //                optionDist += '<option value="' + GramArray[i].lg_gram + '">' + GramArray[i].gram_panchayat_name + '</option>';
-    //            }
-    //        }
-    //        $("#gram").append(optionDist);
-    //    }
-    //    GetApprovedGpCount();
-    //}
 
     function Block_fun() {
+        debugger;
         $("#gram").empty();
         var opgram = '<option value="0">Select GramPanchayat</option>';
         $("#gram").append(opgram);
-        Gram = "0";
-        //var block = $("#block1").val();
-        var blockName = $("#block1 option:selected").text();
-        var StateName = $("#spnstate option:selected").text();
-        var DistName = $("#dist11 option:selected").text();
+        var block = $("#block1").val();
+
+        //var blockName = $("#block1 option:selected").text();
+        //var StateName = $("#spnstate option:selected").text();
+        //var DistName = $("#dist11 option:selected").text();
 
         if (off_1 == "block") {
-            StateName = Block;
+            block = Block;
         } else {
-            Block = $("#block1").val();
+            Block = block;
         }
 
-
-        if (Block != "0" && Jsondata.length != 0) {
+        if (block != "0" && Jsondata.length != 0) {
             var ddlst = {};
             var all_grams = [];
             var optionDist = '';
             for (var i = 0; i < Jsondata.length; i++) {
-                if (StateName == Jsondata[i].state_name && DistName == Jsondata[i].district_name && blockName == Jsondata[i].block_name) {
+                if (State == Jsondata[i].lg_state && Dist == Jsondata[i].lg_dist && block == Jsondata[i].lg_block) {
 
                     if (!ddlst[Jsondata[i].gram_panchayat_name]) {
                         ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
@@ -1132,7 +1080,7 @@
     //    }
     //  //  GetApprovedGpCount();
     //}
-   
+
     //function Gram_Fun() {
 
     //    var Gram1 = $("#gram").val();
@@ -1186,7 +1134,7 @@
     //}
 
     function Dropdown_Search() {
-       
+
         //let State = $('#spnstate').val();
         //let Dist = $('#dist11').val();
         //let Block = $('#block1').val();
@@ -1232,7 +1180,7 @@
                 success: function (results) {
                     Gram = 0;
                     //get_approved_reject_status();
-                   
+
                 }
             });
         }
@@ -1240,226 +1188,19 @@
 
 
     $("#Export_Excel").click(function () {
-
         var Year = $("#Year").val();
         var Module_Name = $("#Module_Name").val();
 
         if (Module_Name == -1) {
-            $("#myModal").modal('show');
-        }
-
-        else {
-
-            if (State == "0") {
-                alert("Please Select State");
-                return false;
-            } else if (Module_Name == "0") {
-                alert("Please Select Module");
-
-                return false;
-            } else if (Year == "0") {
-                alert("Please Select Year");
-
-                return false;
-            }
-            if (DD_Check == true) {
-                if (Sub_Module_Name == "0") {
-                    alert("Please Select Sub Module");
-
-                    return false;
-                }
-                else {
-                    if (Sub_Module_Name == "-2") {
-                        Module_Name = Module_Name;
-                    }
-                    else {
-                        Module_Name = Sub_Module_Name;
-
-                    }
-                }
-            }
-
-            if (Module_Name == "-1" && Sub_Module_Name == "-2") {
-                alert("Please Selecte at least one module");
-                //$('.loader').hide();
-                return false;
+            if (StateOfficer != 'Gram Panchyat Nodal Officer') {
+                $("#myModal").modal('show');
             }
             else {
-
-                $('.loader').show();
-                let url;
-                if (Year == "2023-24") {
-                    if (Sub_Module_Name == "-2") {
-                        url = "/WspReport/Create_WSP_Excel_2023_24_AllVersion2";
-                    }
-                    else {
-                        url = "/WspReport/Create_WSP_Excel_2023_24_AllVersion1";
-                    }
-
-                } else if (Year == "2022-23") {
-                    if (Sub_Module_Name == "-2") {
-                        url = "/WspReport/Create_WSP_Excel_2022_23_AllVersion2";
-                    }
-                    else {
-                        url = "/WspReport/Create_WSP_Excel_2022_23_AllVersion1";
-                    }
-
-                } else if (Year == "2024-25") {
-                    if (Sub_Module_Name == "-2") {
-                        url = "/WspReport/Create_WSP_Excel_2024_25_AllVersion2";
-                    }
-                    else {
-                        url = "/WspReport/Create_WSP_Excel_2024_25_AllVersion";
-                    }
-                } else if (Year == "2023-24 Update") {
-                    if (Sub_Module_Name == "-2") {
-                        url = "/WspReport/Create_WSP_Excel_2023_24_update_AllVersion2";//?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name + "&Year=" + Year;
-                    }
-                    else {
-                        url = "/WspReport/Create_WSP_Excel_2023_24_update_AllVersion1";//?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name + "&Year=" + Year;
-
-                    }
-                }
-                    else if (Year == "2024-25 Update") {
-                        if (Sub_Module_Name == "-2") {
-                            url = "/WspReport/Create_WSP_Excel_2024_25_update_AllVersion2";//?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name + "&Year=" + Year;
-                        }
-                        else {
-                            url = "/WspReport/Create_WSP_Excel_2024_25_update_AllVersion1";//?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name + "&Year=" + Year;
-
-                        }
-                }
-
-                $.ajax({
-                    type: "GET",
-                    url: `${url}`,
-                    contentType: "application/json; charset=utf-8",
-                    //data: `{"State" : '${State}',"District": '${Dist}', "Block" : '${Block}', "Gram": '${Gram}', "Module_name" : '1.1', "Year" : '${Year}'}`,
-                    data: {
-                        "State": `${State}`,
-                        "District": `${Dist}`,// 'Banaskantha_441',
-                        "Block": `${Block}`,//'Dantiwada_3735',
-                        "Gram": `${Gram}`,//'Chodungri_155952',
-                        "Module_name": `${Module_Name}`,//'1.1',
-                        "Year": `${Year}`//'2023-24 Update'
-                    },
-                    success: function (Rdata) {
-                        console.log(Rdata);
-                        console.log('success');
-                        if (Rdata !== null) {
-                            console.log('robj');
-                            if (Rdata.hasOwnProperty('robj')) {
-                                console.log('ds');
-                                console.log(Rdata.robj.FileContents)
-                                var bytes = new Uint8Array(Rdata.robj.FileContents);
-                                var blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-                                var link = document.createElement('a');
-                                link.href = window.URL.createObjectURL(blob);
-                                link.download = Rdata.robj.FileDownloadName;
-                                link.click();
-
-                                $('.loader').hide();
-                                //$('#myModal').attr('data-backdrop', 'false');
-                                $('.modal-backdrop').remove();
-                                $("#myModal").modal('hide');
-                                $("#Module_Name").val("0");
-                                $("#Sub_Module_Name").val("0");
-                                $("#spnstate").val("0");
-                                $("#dist11").val("0");
-                                $("#block1").val("0");
-                                $("#gram").val("0");
-
-                            }
-                            else {
-                            var bytes = new Uint8Array(Rdata.FileContents);
-                            var blob = new Blob([bytes], {
-                                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                            });
-                            var link = document.createElement('a');
-                            link.href = window.URL.createObjectURL(blob);
-                            link.download = Rdata.FileDownloadName;
-                            link.click();
-                            $('.loader').hide();
-                            $("#Module_Name").val("0");
-                            $("#Sub_Module_Name").val("0");
-                                $("#spnstate").val("0");
-                                $("#dist11").val("0");
-                                $("#block1").val("0");
-                                $("#gram").val("0");
-
-
-                            }
-                        } else {
-                            $('.loader').show();
-                        }
-
-                    },
-                    error: function (err) {
-
-                    }
-
-                });
-
+                $("#myModal").modal('hide');
+                $("#confirm-button").click();
             }
+
         }
-
-
-
-        //if (Module_Name == -1) {
-        //    if (confirm("You are trying to download all the data at once. This will check and the download multiple sheets into one file and may take longer than expected depanding on internet speed and server response. Are you sure you want to download?", function () {
-
-
-        //    })); {
-
-        //        if (State == "0") {
-        //            alert("Please Select State");
-        //            return false;
-        //        } else if (Module_Name == "0") {
-        //            alert("Please Select Module");
-        //            return false;
-        //        } else if (Year == "0") {
-        //            alert("Please Select Year");
-        //            return false;
-        //        }
-        //        if (DD_Check == true) {
-        //            if (Sub_Module_Name == "0") {
-        //                alert("Please Select Sub Module");
-        //                return false;
-        //            }
-        //            else {
-        //                if (Sub_Module_Name == "-2") {
-        //                    Module_Name = Module_Name;
-        //                }
-        //                else {
-        //                    Module_Name = Sub_Module_Name;
-
-        //                }
-        //            }
-
-
-        //        }
-
-        //        if (Module_Name == "-1" && Sub_Module_Name == "-2") {
-        //            alert("Please Selecte at least one module");
-        //            return false;
-        //        }
-        //        else {
-        //            if (Year == "2023-24") {
-        //                window.location.href = "/WspReport/Create_WSP_Excel_2023_24?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name + "&Year=" + Year;
-        //            } else if (Year == "2022-23") {
-        //                window.location.href = "/WspReport/Create_WSP_Excel_2022_23?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name;
-        //            } else if (Year == "2024-25") {
-        //                window.location.href = "/WspReport/Create_WSP_Excel_2024_25_AllVersion?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name + "&Year=" + Year;
-        //            } else if (Year == "2023-24 Update") {
-        //                window.location.href = "/WspReport/Create_WSP_Excel_2023_24_AllVersion1?State=" + State + "&District=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Module_name=" + Module_Name + "&Year=" + Year;
-        //            }
-        //        }
-        //    } else {
-
-        //        return false;
-        //    }
-        //}
-
 
 
     });
@@ -1533,11 +1274,8 @@
                 }
 
             });
-
-
-
-
     });
+
     //$("#cancel-button").click(function () {
     //    //$("#myModal").hide();
     //    return false;
