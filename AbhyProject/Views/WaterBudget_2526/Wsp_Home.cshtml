@@ -1,4 +1,4 @@
-﻿@model AbhyProject.Models.WizardViewModel
+﻿﻿@model AbhyProject.Models.WizardViewModel
 @{
     ViewBag.Title = "Gp_information";
     Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
@@ -604,29 +604,29 @@
                                                                 if (Model.items[i].type_of_structure_other != null)
                                                                 {
                                                                     @Html.DropDownListFor(m => Model.items[i].type_of_structure,
-                                                                                       new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
-                                                                                       new { @class = "form-control dropdown Structure_Dropdown", @disabled = "disabled" })
+                                                                                            new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
+                                                                                            new { @class = "form-control dropdown Structure_Dropdown", @disabled = "disabled" })
                                                                     @Html.ValidationMessageFor(m => Model.items[i].type_of_structure, "", new { @class = "text-danger" })
                                                                     @Html.TextBoxFor(m => Model.items[i].type_of_structure_other, new
                                                                     {
                                                                         @class = "form-control other-structure-textbox disabledInputcss",
-                                                                   @Placeholder = "Number of Structures (Nos.)",
+                                                                        @Placeholder = "Number of Structures (Nos.)",
                                                                         autocomplete = "off",
-                                                                   @readonly = "readonly",
+                                                                        @readonly = "readonly",
                                                                         maxlength = "8"
-                                                               })
+                                                                    })
                                                                     @Html.ValidationMessageFor(m => Model.items[i].type_of_structure_other, "", new { @class = "text-danger" })
                                                                 }
                                                                 else
                                                                 {
                                                                     @Html.DropDownListFor(m => Model.items[i].type_of_structure,
-                                                                              new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
-                                                                              new { @class = "form-control dropdown Structure_Dropdown", @disabled = "disabled" })
+                                                                                   new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
+                                                                                   new { @class = "form-control dropdown Structure_Dropdown", @disabled = "disabled" })
                                                                     @Html.ValidationMessageFor(m => Model.items[i].type_of_structure, "", new
                                                                     {
                                                                         @class = "text-danger"
 
-                                                               })
+                                                                    })
 
                                                                 }
                                                             }
@@ -641,25 +641,25 @@
                                                             @Html.TextBoxFor(m => Model.items[i].area_of_structures, new
                                                             {
                                                                 @class = "form-control areastructures disabledInputcss",
-                                                           @Placeholder = "Area of the Structures (Sq.m)",
+                                                                @Placeholder = "Area of the Structures (Sq.m)",
                                                                 autocomplete = "off",
                                                                 maxlength = "8",
-                                                           @readonly = "readonly"
-                                                       })
+                                                                @readonly = "readonly"
+                                                            })
                                                             @Html.ValidationMessageFor(m => Model.items[i].area_of_structures, "", new
                                                             {
                                                                 @class = "text-danger"
-                                                       })
+                                                            })
                                                         </td>
                                                         <td>
                                                             @Html.TextBoxFor(m => Model.items[i].avg_depth_structures, new
                                                             {
                                                                 @class = "form-control depthstructures disabledInputcss",
-                                                           @Placeholder = "Average Depth of Structures (m)",
-                                                           @readonly = "readonly",
+                                                                @Placeholder = "Average Depth of Structures (m)",
+                                                                @readonly = "readonly",
                                                                 autocomplete = "off",
                                                                 maxlength = "8"
-                                                       })
+                                                            })
                                                             @Html.ValidationMessageFor(m => Model.items[i].avg_depth_structures, "", new { @class = "text-danger disabledInputcss", @readonly = "readonly" })
                                                         </td>
                                                         <td>
@@ -669,11 +669,11 @@
                                                             @Html.TextBoxFor(m => Model.items[i].annual_fillings, new
                                                             {
                                                                 @class = "form-control disabledInputcss annualfillings numeric",
-                                                           @readonly = "readonly",
+                                                                @readonly = "readonly",
                                                                 @Placeholder = "Annual No. of Fillings (Nos.)",
                                                                 autocomplete = "off",
                                                                 maxlength = "8"
-                                                       })
+                                                            })
                                                             @Html.ValidationMessageFor(m => Model.items[i].annual_fillings, "", new { @class = "text-danger" })
                                                         </td>
                                                         <td>
@@ -1067,8 +1067,8 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                                                                 else
                                                                 {
                                                                     @Html.DropDownListFor(m => Model.itemsList[i].crop,
-                                                                 new SelectList(Model.Allcrops, "Value", "Text", Model.itemsList[i].crop),
-                                                                 new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
+                                                                      new SelectList(Model.Allcrops, "Value", "Text", Model.itemsList[i].crop),
+                                                                      new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                                                                     @Html.ValidationMessageFor(m => Model.itemsList[i].crop, "", new { @class = "text-danger" })
 
                                                                 }
@@ -1161,7 +1161,7 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                                                 <span class="col-md-8">
                                                     <strong>
                                                         1. पीने और घरेलू पानी की आवश्यकता (हेक्टेयर मीटर) :
-                                                     
+
                                                     </strong> <br /><strong> Drinking and Domestic Water Requirement (ha m)  :</strong>
                                                 </span>
                                                 <span class="col-md-3">
@@ -1173,7 +1173,7 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                                                 <span class="col-md-8">
                                                     <strong>
                                                         2. पशुधन आबादी के लिए पानी की आवश्यकता (हेक्टेयर मीटर) :
-                                                        
+
                                                     </strong> <br /><strong> Water Requirement for Livestock Population(ha m)    :</strong>
                                                 </span>
                                                 <span class="col-md-3">
@@ -1185,7 +1185,7 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                                                 <span class="col-md-8">
                                                     <strong>
                                                         3. सिंचाई जल की आवश्यकता (हेक्टेयर मीटर) :
-                                                       
+
                                                     </strong> <br /><strong>Irrigation Water Requirement(ha m)  :</strong>
                                                 </span>
                                                 <span class="col-md-3">
@@ -1197,7 +1197,7 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                                                 <span class="col-md-8">
                                                     <strong>
                                                         4. उद्योगों और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता (हेक्टेयर मीटर) :
-                                                       
+
 
                                                     </strong> <br /><strong> Water requirement for industries and other commercial uses, if any (ha m) :</strong>
                                                 </span>
@@ -1365,8 +1365,8 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
         var StateOfficer = '@Session["Officer"]';
         var UserId = '@Session["UserId"]';
 
-        if (StateOfficer == "National Level Nodal Officer") {
-            if (UserId == "20613" || UserId == "19235" || UserId == "19244") {
+        if (StateOfficer == "District Level Nodal Officer") {
+            /*if (UserId == "20613" || UserId == "19235" || UserId == "19244") {*/
                 var approveButtonLi = document.createElement('li');
                 var approveButton = document.createElement('button');
                 approveButton.textContent = 'Approve';
@@ -1386,7 +1386,7 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                 document.querySelector('.actions ul li:last-child').insertAdjacentElement('beforebegin', rejectButtonLi);
                 approveButtonLi.classList.add('customButtonWrapper');
                 rejectButtonLi.classList.add('customButtonWrapper');
-            }
+           /* }*/
         }
 
 
@@ -1441,13 +1441,13 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
     var lg_gramId = "0";
     var lg_year = "0";
     $(document).ready(function () {
-        var water_balance = 0;
-         water_balance = parseFloat($("#wb_water_balance_water_balance").val()) || 0;
-        if (water_balance > 0) {
-            $("#wb_water_balance_water_balance").addClass('positiveValue');
-        } else {
-            $("#wb_water_balance_water_balance").addClass('negativeValue');
-        }
+        //var water_balance = 0;
+        // water_balance = parseFloat($("#wb_water_balance_water_balance").val()) || 0;
+        //if (water_balance > 0) {
+        //    $("#wb_water_balance_water_balance").addClass('positiveValue');
+        //} else {
+        //    $("#wb_water_balance_water_balance").addClass('negativeValue');
+        //}
 
         StateName = '@Session["lg_stateName"]';
         DistName ='@Session["lg_distName"]';
@@ -1471,38 +1471,57 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
 
     });
     function get_approved_reject_status() {
-
-
         $.ajax({
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
             url: "/WaterBudget_2526/get_approved_reject_status",
             dataType: 'JSON',
             success: function (data) {
-
+                debugger;
                 status_check = data.status_id;
                 var status = '';
                 if (data == "null") {
+                     var StateOfficer = '@Session["Officer"]';
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        $(".savebtn").hide();
+                        $("input, select").prop("readonly", true);
+                        $('.remove-rowcrop').prop("disabled", true);
+                        $('.remove-row').prop("disabled", true);
+                        $('.add-row-btn2').hide();
+                        $('.add-row-btn').hide();
+                        $('.btnedit').prop("disabled", true);
+                        $('.btneditcrop').prop("disabled", true);
+
+                        let submitBtnLi = document.querySelector("#wizard ul[role='menu'] li:last-of-type");
+                        submitBtnLi.style.display = "none";
+                    }
+                    else {
+                        $(".savebtn").show();
+                        //let submitBtnLi = document.querySelector("#wizard ul[role='menu'] li:last-of-type");
+                        //submitBtnLi.style.display = "block";
+                    }
                     status = 'Pending';
                     $('#status_wsp').text(status).css({ 'color': 'blue' });
                     $('.customButtonWrapper').hide();
+
                 }
 
                 if (data.status_id == 1) {
-                    status = 'Submitted to NPMU';
+                    status = 'Submitted to DPMU';
                     console.log($(".savebtn"));
                     var UserId = '@Session["UserId"]';
-                    if (UserId == "20613" || UserId == "19235" || UserId == "19244") {
-                        //$(".savebtn").show();
-                         //$('.customButtonWrapper').show();
-                        //$("input, select, textarea").prop("readonly", false);
-                    }
-                    else {
-                        //$(".savebtn").hide();
-                        //$('.customButtonWrapper').hide();
-                        //$("input, select, textarea").prop("readonly", true);
 
-                    }
+                    //if (UserId == "20613" || UserId == "19235" || UserId == "19244") {
+                    //    //$(".savebtn").show();
+                    //     //$('.customButtonWrapper').show();
+                    //    //$("input, select, textarea").prop("readonly", false);
+                    //}
+                    //else {
+                    //    //$(".savebtn").hide();
+                    //    //$('.customButtonWrapper').hide();
+                    //    //$("input, select, textarea").prop("readonly", true);
+
+                    //}
                     $('#status_wsp').text(status).css({ 'color': 'green' });
                     $('.btnshow_hide').show();
                     $(".savebtn").hide();
@@ -1521,7 +1540,9 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                 if (data.status_id == 3) {
                     status = 'Reject';
                     var UserId = '@Session["UserId"]';
-                    if (UserId == "20613" || UserId == "19235" || UserId == "19244") {
+                     var StateOfficer = '@Session["Officer"]';
+                    //if (UserId == "20613" || UserId == "19235" || UserId == "19244")
+                    if (StateOfficer == "District Level Nodal Officer") {
                         $(".savebtn").hide();
                         let submitBtnLi = document.querySelector("#wizard ul[role='menu'] li:last-of-type");
                         submitBtnLi.style.display = "none";
@@ -1578,16 +1599,12 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
 
             $(this).val(value);
         });
-
-
-
     });
 
 </script>
 
 <script>
     $("#Export_Excel").click(function () {
-
             lg_stateId = '@Session["lg_state"]';
             lg_distId ='@Session["lg_dist"]';
             lg_blockId = '@Session["lg_block"]';
@@ -1639,9 +1656,7 @@ new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
                     error: function (err) {
 
                     }
-
                 });
-
 
     });
 </script>

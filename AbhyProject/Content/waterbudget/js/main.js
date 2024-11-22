@@ -650,10 +650,10 @@ $(function () {
             </select>
                 
             </td>
-            <td><input type="text" autocomplete = "off"  class="form-control input net_irrigation_requirement" name="itemsList[${rowCount_major_Crops}].net_irrigation_requirement" placeholder="Number of Structures (Nos.)" required readonly maxlength = "8"></td>
-            <td><input autocomplete = "off"  name="itemsList[${rowCount_major_Crops}].area_kharif_season" type="text" class="form-control input area_kharif_season" placeholder="Area of the Structures (Sq.m)" required maxlength = "8"></td>
-            <td><input autocomplete = "off"  name="itemsList[${rowCount_major_Crops}].area_rabi_season" type="text" class="form-control input area_rabi_season" placeholder="Average Depth of Structures (m)" required maxlength = "8"></td>
-            <td class="text-secondary"><input type="text" autocomplete = "off" class="form-control input area_summer_season" name="itemsList[${rowCount_major_Crops}].area_summer_season" required maxlength = "8"/></td>
+            <td><input type="text" autocomplete = "off"  class="form-control input net_irrigation_requirement" name="itemsList[${rowCount_major_Crops}].net_irrigation_requirement" placeholder="Net Irrigation Requirement (NIR) (in m)" required readonly maxlength = "8"></td>
+            <td><input autocomplete = "off"  name="itemsList[${rowCount_major_Crops}].area_kharif_season" type="text" class="form-control input area_kharif_season" placeholder="Area in Kharif Season (ha)" required maxlength = "8"></td>
+            <td><input autocomplete = "off"  name="itemsList[${rowCount_major_Crops}].area_rabi_season" type="text" class="form-control input area_rabi_season" placeholder="Area in Rabi Season (ha)" required maxlength = "8"></td>
+            <td class="text-secondary"><input type="text" autocomplete = "off" class="form-control input area_summer_season" name="itemsList[${rowCount_major_Crops}].area_summer_season" placeholder="Area in Summer Season (ha)" required maxlength = "8"/></td>
             <td><input autocomplete = "off" name="itemsList[${rowCount_major_Crops}].total_gross_cropped_area" type="text" class="form-control input total_gross_cropped_area" disabled></td>
             <td class="text-secondary"><input type="text" name="itemsList[${rowCount_major_Crops}].total_irrigation_requirement" class="form-control input total_irrigation_requirement"  disabled/></td>
             <td><button type="button" class="btn btn-lg btn-danger text-white remove-rowcrop" attr="0">Remove</button></td>
@@ -1215,7 +1215,7 @@ $(function () {
                     return false;
                 }
             } else {
-                alert("Please add atleast one crop!");
+                alert("Please add atleast one structure!");
                 return false;
             }
         }

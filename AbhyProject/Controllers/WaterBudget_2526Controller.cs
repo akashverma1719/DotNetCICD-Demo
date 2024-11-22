@@ -564,7 +564,6 @@ namespace AbhyProject.Controllers
         [HttpPost]
         public JsonResult Approved(Param model)
         {
-
             try
             {
                 wb_reject_status obj = new wb_reject_status();
@@ -610,7 +609,6 @@ namespace AbhyProject.Controllers
 
                     }
 
-
                 }
             }
             catch (Exception ex)
@@ -625,8 +623,6 @@ namespace AbhyProject.Controllers
         [HttpPost]
         public JsonResult Reject(Param model)
         {
-
-
             wb_reject_status obj = new wb_reject_status();
             if (model != null)
             {
@@ -789,7 +785,6 @@ namespace AbhyProject.Controllers
                 {
                     return Json("null", JsonRequestBehavior.AllowGet);
                 }
-
 
             }
             catch (Exception Ex)
@@ -1972,8 +1967,6 @@ namespace AbhyProject.Controllers
                 try
                 {
 
-
-
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     var result = js.Deserialize<abhy_socialmgt_gramdb>(Data);
                     if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
@@ -1993,19 +1986,20 @@ namespace AbhyProject.Controllers
                     else if (Session["Officer"] != null && Session["Officer"].ToString() == "State Level Nodal Officer")
                     {
                         string sname = Session["gstate"].ToString();
-                        string dist = Session["gdist"].ToString();
-                        string block = Session["gblock"].ToString();
-                        string gp = Session["ggram"].ToString();
+                        //string dist = Session["gdist"].ToString();
+                        //string block = Session["gblock"].ToString();
+                        //string gp = Session["ggram"].ToString();
 
-                        var data = ABE.obj_abhy_ml_with_block_gp_area_info_new.Where(s => s.state_name == sname
-                        && s.district_name == dist
-                        && s.block_name == block
-                        && s.gram_panchayat_name == gp
-                        ).SingleOrDefault();
-                        if (data != null)
-                        {
-                            Session["lg_state"] = data.lg_state;
-                        }
+                        //var data = ABE.obj_abhy_ml_with_block_gp_area_info_new.Where(s => s.state_name == sname
+                        ////&& s.district_name == dist
+                        ////&& s.block_name == block
+                        ////&& s.gram_panchayat_name == gp
+                        //).SingleOrDefault();
+                        //if (data != null)
+                        //{
+                        //    Session["lg_state"] = data.lg_state;
+                        //}
+
                         var Officer = "State Level Nodal Officer";
                         var Statename = Session["lg_state"].ToString();
                         var Str = Officer + ',' + Statename;
@@ -2016,19 +2010,22 @@ namespace AbhyProject.Controllers
                     {
                         string sname = Session["gstate"].ToString();
                         string dist = Session["gdist"].ToString();
-                        string block = Session["gblock"].ToString();
-                        string gp = Session["ggram"].ToString();
+                        //string block = Session["gblock"].ToString();
+                        //string gp = Session["ggram"].ToString();
 
                         var data = ABE.obj_abhy_ml_with_block_gp_area_info_new.Where(s => s.state_name == sname
                         && s.district_name == dist
-                        && s.block_name == block
-                        && s.gram_panchayat_name == gp
-                        ).SingleOrDefault();
-                        if (data != null)
+                        ////&& s.block_name == block
+                        ////&& s.gram_panchayat_name == gp
+                        ).ToList();
+                        if (data != null && data.Any())
                         {
-                            Session["lg_state"] = data.lg_state;
-                            Session["lg_dist"] = data.lg_dist;
+                            Session["lg_state"] = data.FirstOrDefault()?.lg_state;
+                            Session["lg_dist"] = data.FirstOrDefault()?.lg_dist;
                         }
+
+
+
                         var Officer = "District Level Nodal Officer";
                         var Statename = Session["lg_state"].ToString();
                         var Dist = Session["lg_dist"].ToString();
@@ -2041,19 +2038,19 @@ namespace AbhyProject.Controllers
                         string sname = Session["gstate"].ToString();
                         string dist = Session["gdist"].ToString();
                         string block = Session["gblock"].ToString();
-                        string gp = Session["ggram"].ToString();
+                        //string gp = Session["ggram"].ToString();
 
-                        var data = ABE.obj_abhy_ml_with_block_gp_area_info_new.Where(s => s.state_name == sname
-                        && s.district_name == dist
-                        && s.block_name == block
-                        && s.gram_panchayat_name == gp
-                        ).SingleOrDefault();
-                        if (data != null)
-                        {
-                            Session["lg_state"] = data.lg_state;
-                            Session["lg_dist"] = data.lg_dist;
-                            Session["lg_block"] = data.lg_block;
-                        }
+                        //var data = ABE.obj_abhy_ml_with_block_gp_area_info_new.Where(s => s.state_name == sname
+                        //&& s.district_name == dist
+                        //&& s.block_name == block
+                        ////&& s.gram_panchayat_name == gp
+                        //).SingleOrDefault();
+                        //if (data != null)
+                        //{
+                        //    Session["lg_state"] = data.lg_state;
+                        //    Session["lg_dist"] = data.lg_dist;
+                        //    Session["lg_block"] = data.lg_block;
+                        //}
                         var Officer = "Block Level Nodal Officer";
                         var Statename = Session["lg_state"].ToString();
                         var Dist = Session["lg_dist"].ToString();
@@ -2553,7 +2550,7 @@ namespace AbhyProject.Controllers
 
                                 ABE.obj_wb_art_rech_water_cons_structure.Add(newEntity);
                             }
-                            
+
 
                         }
                     }
@@ -2593,7 +2590,7 @@ namespace AbhyProject.Controllers
 
                     }
 
-                   
+
                     //return Json(new { success = true ,msg= isExits,data= duplicateEntityAll});
                     return Json(new
                     {
@@ -3118,7 +3115,8 @@ namespace AbhyProject.Controllers
 
                                 }
                             }
-                            else {
+                            else
+                            {
                                 wb_area_crops_irr_water_req newEntity = new wb_area_crops_irr_water_req
                                 {
                                     state_id = item.state_id,
@@ -3140,7 +3138,7 @@ namespace AbhyProject.Controllers
                                 };
                                 ABE.obj_wb_area_crops_irr_water_req.Add(newEntity);
                             }
-                            }
+                        }
                     }
                     ABE.SaveChanges();
 
@@ -3199,7 +3197,7 @@ namespace AbhyProject.Controllers
             }
         }
 
-      
+
 
         public ActionResult AllApprovedExcel_WaterBudget_All(string StateName, string DistrictName, string BlockName, string GramName, string Year)
         {
@@ -4655,7 +4653,7 @@ namespace AbhyProject.Controllers
                         lg_gramName = data.gram_panchayat_name;
                     }
 
-                    double[] AllVersion = { 1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12 };
+                    double[] AllVersion = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
                     FileContentResult robj;
                     using (var workbookAll = new XLWorkbook())
                     {
@@ -4833,7 +4831,7 @@ namespace AbhyProject.Controllers
                                     mergedWorksheet.Cell(currentRow, 6).Value = "Total Surface Water Storage Available for Utilisation(ha m)";
                                     break;
 
-                                case "Table 5: Detail of Artificial Recharge & Water Conservation Structures":                                    
+                                case "Table 5: Detail of Artificial Recharge & Water Conservation Structures":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Type of Structure";
                                     mergedWorksheet.Cell(currentRow, 2).Value = "Other Type of Structure";
                                     mergedWorksheet.Cell(currentRow, 3).Value = "Number of Structures(Nos.)";
@@ -4845,15 +4843,15 @@ namespace AbhyProject.Controllers
                                     //mergedWorksheet.Cell(currentRow, 9).Value = "Total";
                                     break;
 
-                                case "Table 6: Water Availability from Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources)":                                   
+                                case "Table 6: Water Availability from Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources)":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources)(ha.m)";
                                     break;
 
-                                case "Table 7. Water Available for non - potable use through Grey Water Management":                                  
+                                case "Table 7. Water Available for non - potable use through Grey Water Management":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Water Available for non - potable use through Grey Water Management (ha.m)";
                                     break;
 
-                                case "Table 8. Total Water Availability":                                  
+                                case "Table 8. Total Water Availability":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Groundwater Availability(ha.m)";
                                     mergedWorksheet.Cell(currentRow, 2).Value = "Surface water Availability(ha.m)";
                                     mergedWorksheet.Cell(currentRow, 3).Value = "Additional Ground water availability due to AR & WC Structure(ha.m)";
@@ -4862,14 +4860,14 @@ namespace AbhyProject.Controllers
                                     mergedWorksheet.Cell(currentRow, 6).Value = "Total Water Availability(ha.m)";
                                     break;
 
-                                case "Table 9. Water Requirement for drinking/domestic, Industries and other commercial uses":                                  
+                                case "Table 9. Water Requirement for drinking/domestic, Industries and other commercial uses":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Drinking and Domestic Water Requirement for Human population of GP(ha.m)";
                                     mergedWorksheet.Cell(currentRow, 2).Value = "Water Requirement for Livestock Population (20 LPCD approx.)(ha m) ";
                                     mergedWorksheet.Cell(currentRow, 3).Value = "Water requirement for industries and other commercial uses, if any(ha m) ";
                                     mergedWorksheet.Cell(currentRow, 4).Value = "Total Water Requirement(ha m) ";
                                     break;
 
-                                case "Table 10. Area under Major Crops and Irrigation Water Requirement":                                    
+                                case "Table 10. Area under Major Crops and Irrigation Water Requirement":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Crop";
                                     mergedWorksheet.Cell(currentRow, 2).Value = "Other Crop";
                                     mergedWorksheet.Cell(currentRow, 3).Value = "Net Irrigation Requirement(in m)";
@@ -4881,7 +4879,7 @@ namespace AbhyProject.Controllers
                                     mergedWorksheet.Cell(currentRow, 9).Value = "Total(ha m)";
                                     break;
 
-                                case "Table 11. Total  Water Requirement":                                    
+                                case "Table 11. Total  Water Requirement":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Drinking and Domestic Water Requirement(ha m)";
                                     mergedWorksheet.Cell(currentRow, 2).Value = "Livestock Population Water Requirement(ha m)";
                                     mergedWorksheet.Cell(currentRow, 3).Value = "Irrigation Water Requirement(ha m)";
@@ -4889,7 +4887,7 @@ namespace AbhyProject.Controllers
                                     mergedWorksheet.Cell(currentRow, 5).Value = "Total Water Requirement(ha m)";
                                     break;
 
-                                case "Table 12. Water Balance (Ha. m)":                                   
+                                case "Table 12. Water Balance (Ha. m)":
                                     mergedWorksheet.Cell(currentRow, 1).Value = "Total Water Availability(ha m)";
                                     mergedWorksheet.Cell(currentRow, 2).Value = "Total Water Requirement(ha m)";
                                     mergedWorksheet.Cell(currentRow, 3).Value = "Water Balance(ha m)";
@@ -4906,7 +4904,7 @@ namespace AbhyProject.Controllers
                                 double cal_total_water_req = 0;
                                 foreach (var detail in ddetails)
                                 {
-                                   
+
                                     currentRow++;
                                     switch (source)
                                     {
@@ -4936,19 +4934,19 @@ namespace AbhyProject.Controllers
                                             break;
 
                                         case "Table 5: Detail of Artificial Recharge & Water Conservation Structures":
-                                                mergedWorksheet.Cell(currentRow, 1).Value = detail.type_of_structure;
-                                                mergedWorksheet.Cell(currentRow, 2).Value = detail.other_type_of_structure;
-                                                mergedWorksheet.Cell(currentRow, 3).Value = detail.number_of_structures;
-                                                mergedWorksheet.Cell(currentRow, 4).Value = detail.area_of_structures;
-                                                mergedWorksheet.Cell(currentRow, 5).Value = detail.avg_depth_structures;
-                                                mergedWorksheet.Cell(currentRow, 6).Value = detail.total_storage_capacity;
-                                                mergedWorksheet.Cell(currentRow, 7).Value = detail.annual_fillings;
-                                                mergedWorksheet.Cell(currentRow, 8).Value = detail.qt_annual_rech_water;
+                                            mergedWorksheet.Cell(currentRow, 1).Value = detail.type_of_structure;
+                                            mergedWorksheet.Cell(currentRow, 2).Value = detail.other_type_of_structure;
+                                            mergedWorksheet.Cell(currentRow, 3).Value = detail.number_of_structures;
+                                            mergedWorksheet.Cell(currentRow, 4).Value = detail.area_of_structures;
+                                            mergedWorksheet.Cell(currentRow, 5).Value = detail.avg_depth_structures;
+                                            mergedWorksheet.Cell(currentRow, 6).Value = detail.total_storage_capacity;
+                                            mergedWorksheet.Cell(currentRow, 7).Value = detail.annual_fillings;
+                                            mergedWorksheet.Cell(currentRow, 8).Value = detail.qt_annual_rech_water;
                                             //mergedWorksheet.Cell(currentRow, 9).Value = detail.total;
 
-                                            totalQtAnnualRechWater = detail.total; 
+                                            totalQtAnnualRechWater = detail.total;
                                             break;
-                                         
+
                                         case "Table 6: Water Availability from Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources)":
                                             mergedWorksheet.Cell(currentRow, 1).Value = detail.transported_water;
                                             break;
@@ -5066,7 +5064,6 @@ namespace AbhyProject.Controllers
 
         public ActionResult GetApprovedGpCount(string lg_state, string lg_dist, string lg_block, string lg_gram, string Year)
         {
-
             int State = Convert.ToInt32(lg_state);
             int District = Convert.ToInt32(lg_dist);
             int Block = Convert.ToInt32(lg_block);
