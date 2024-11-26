@@ -17988,57 +17988,57 @@ namespace AbhyProject.Controllers
 
                 if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(x => x.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ThenByDescending(x=>x.datetime).ToList();
                 }
                 using (var workbook = new XLWorkbook())
                 {
                     int currentRow = 1;
                     int sheetNumber = 1;
-                    const int rowsPerSheet = 100;
+                    const int rowsPerSheet = 1000000;
 
                     // Loop through the data in chunks of 100 and create separate sheets
                     for (int i = 0; i < Final_data_data.Count; i += rowsPerSheet)
@@ -18071,6 +18071,7 @@ namespace AbhyProject.Controllers
                         for (int j = i; j < Math.Min(i + rowsPerSheet, Final_data_data.Count); j++)
                         {
                             var dataItem = Final_data_data[j];
+                            DateTime aa = dataItem.datetime;
                             worksheet.Cell(currentRow, 1).Value = dataItem.state;
                             worksheet.Cell(currentRow, 2).Value = dataItem.district;
                             worksheet.Cell(currentRow, 3).Value = dataItem.block;
@@ -18079,7 +18080,8 @@ namespace AbhyProject.Controllers
                             worksheet.Cell(currentRow, 6).Value = dataItem.longitude;
                             worksheet.Cell(currentRow, 7).Value = dataItem.Well_ID;
                             worksheet.Cell(currentRow, 8).Value = dataItem.type;
-                            worksheet.Cell(currentRow, 9).Value = dataItem.date;
+                            worksheet.Cell(currentRow, 9).Value = aa;
+                            worksheet.Cell(currentRow, 9).Style.NumberFormat.Format = "yyyy-MM-dd hh:mm:ss AM/PM";
                             worksheet.Cell(currentRow, 10).Value = dataItem.datatypecode;
                             worksheet.Cell(currentRow, 11).Value = dataItem.datavalue;
 
