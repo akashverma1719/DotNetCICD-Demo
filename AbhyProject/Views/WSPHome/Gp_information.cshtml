@@ -273,7 +273,14 @@
         
         var officer = '@Session["Officer"]';
         var email = '@Session["Email"]';
-        
+
+        if (officer == "State Level Nodal Officer") {
+            $('#water_budget').hide();
+        }
+        else {
+            $('#water_budget').show();
+        }
+
         //if (officer == "National Level Nodal Officer") {
             
         //    if (email == 'ranjana.devli@kreatetechnologies.com') {
