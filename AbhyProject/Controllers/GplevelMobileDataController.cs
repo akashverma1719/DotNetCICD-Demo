@@ -15107,8 +15107,6 @@ namespace AbhyProject.Controllers
             }
         }
 
-
-
         public ActionResult Mapview_MADB_waterflow(string id)
         {
             var ID = Convert.ToInt32(id);
@@ -17823,7 +17821,7 @@ namespace AbhyProject.Controllers
             }
 
         }
-        public ActionResult dwlrexcel(string state1, string district1, string block01, string gp1, string year1, string month1)
+        public ActionResult dwlrexcel_old(string state1, string district1, string block01, string gp1, string year1, string month1)
         {
             try
             {
@@ -17992,6 +17990,152 @@ namespace AbhyProject.Controllers
             {
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult dwlrexcel(string state1, string district1, string block01, string gp1, string year1, string month1)
+        {
+            try
+            {
+                var State = state1 == "0" ? null : state1;
+                var Dist = district1 == "0" ? null : district1;
+                var Block = block01 == "0" ? null : block01;
+                var Gram = gp1 == "0" ? null : gp1;
+                var year = year1 == "0" ? null : year1;
+                var month = month1 == "0" ? null : month1;
+
+                List<vw_dwlr_meta_data> Final_data_data = new List<vw_dwlr_meta_data>();
+
+                if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                else if (!string.IsNullOrEmpty(State))
+                {
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ToList();
+                }
+                using (var workbook = new XLWorkbook())
+                {
+                    int currentRow = 1;
+                    int sheetNumber = 1;
+                    const int rowsPerSheet = 100;
+
+                    // Loop through the data in chunks of 100 and create separate sheets
+                    for (int i = 0; i < Final_data_data.Count; i += rowsPerSheet)
+                    {
+                        // Create a new sheet for each chunk
+                        var worksheet = workbook.Worksheets.Add($"DWLR - Sheet {sheetNumber}");
+                        // Add headers (these are the same for each sheet)
+                        worksheet.Cell(currentRow, 1).Value = "State Name";
+                        worksheet.Cell(currentRow, 2).Value = "District Name";
+                        worksheet.Cell(currentRow, 3).Value = "Block Name";
+                        worksheet.Cell(currentRow, 4).Value = "GramPanchayat Name";
+                        worksheet.Cell(currentRow, 5).Value = "Latitude";
+                        worksheet.Cell(currentRow, 6).Value = "Longitude";
+                        worksheet.Cell(currentRow, 7).Value = "Well Id";
+                        worksheet.Cell(currentRow, 8).Value = "Type of well";
+                        worksheet.Cell(currentRow, 9).Value = "Date";
+                        worksheet.Cell(currentRow, 10).Value = "Data type code";
+                        worksheet.Cell(currentRow, 11).Value = "Data value(mbgl)";
+                       
+                        // Style the headers
+                        for (int col = 1; col <= 11; col++)
+                        {
+                            worksheet.Cell(currentRow, col).Style.Font.Bold = true;
+                            worksheet.Cell(currentRow, col).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        }
+                       
+                        currentRow = 2; // Start inserting data from the second row
+
+                        // Add data to the sheet in chunks of 100
+                        for (int j = i; j < Math.Min(i + rowsPerSheet, Final_data_data.Count); j++)
+                        {
+                            var dataItem = Final_data_data[j];
+                            worksheet.Cell(currentRow, 1).Value = dataItem.state;
+                            worksheet.Cell(currentRow, 2).Value = dataItem.district;
+                            worksheet.Cell(currentRow, 3).Value = dataItem.block;
+                            worksheet.Cell(currentRow, 4).Value = dataItem.gp;
+                            worksheet.Cell(currentRow, 5).Value = dataItem.latitude;
+                            worksheet.Cell(currentRow, 6).Value = dataItem.longitude;
+                            worksheet.Cell(currentRow, 7).Value = dataItem.Well_ID;
+                            worksheet.Cell(currentRow, 8).Value = dataItem.type;
+                            worksheet.Cell(currentRow, 9).Value = dataItem.date;
+                            worksheet.Cell(currentRow, 10).Value = dataItem.datatypecode;
+                            worksheet.Cell(currentRow, 11).Value = dataItem.datavalue;
+
+                            currentRow++; // Move to the next row
+                        }
+
+                        sheetNumber++; // Increment sheet number
+                        currentRow = 1; // Reset currentRow for the next sheet
+                    }
+
+                    using (var stream = new MemoryStream())
+                    {
+                        workbook.SaveAs(stream);
+                        var content = stream.ToArray();
+
+                        var exeState = state1;
+                        var exeDist = district1;
+                        var exeBlock = block01;
+                        var exeGram = gp1;
+                        var xls = "xlsx";
+
+                        // Generate the file name
+                        if (exeDist == "0") exeDist = "";
+                        if (exeBlock == "0") exeBlock = "";
+                        if (exeGram == "0") exeGram = "";
+
+                        var aa = $"dwlr_data.{xls}";
+
+                        return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", aa);
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+
         }
 
 

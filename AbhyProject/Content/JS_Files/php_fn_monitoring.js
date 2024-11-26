@@ -749,93 +749,153 @@ function PHP_FN_A_Table_Info() {
                         if (data[i].cumulative_expenditure != null && data[i].cumulative_expenditure != "") {
                             Component_A = data[i].cumulative_expenditure;
                         }
+                      
+                        if ("20241126" == formattedDateaa) {
+                            if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in') {
+                                if (data[i].fyyear == "2024") {
+                                    tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                        '<td>' + (i + 1) + '</td>' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" disabled  /> </td>' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
+
+                                        '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" disabled /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" disabled /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
+                                        '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                        '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
+                                        '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
+                                        '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
+                                        '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
 
+                                }
+                                else {
+                                    tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                        '<td>' + (i + 1) + '</td>' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" disabled  /> </td>' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
 
-                        if (data[i].month_number == month_numbers && data[i].fyyear == fincalyear) {
+                                        '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" disabled /> </td >' +
+                                        //'<td class="tdborder"><input type="text" class="form-control" id="financial_awp1' + i + '" value="' + data[i].financial_awp + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" disabled /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
+                                        '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                        '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
+                                        '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
+                                        '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
+                                        '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" disabled> <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"disabled><i class="fa fa-trash"></i></button></td></tr>';
 
-                            tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
-                                '<td>' + (i + 1) + '</td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" readonly  /> </td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
 
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" readonly /> </td >' +
-                                //'<td class="tdborder"><input type="text" class="form-control" id="financial_awp1' + i + '" value="' + data[i].financial_awp + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
-                                '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
-                                '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
-                                '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
-                                '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
-                                '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
-
-                          
-
-                        } else if (dd <= fix_Date && data[i].month_number == month_numbers - 1 && data[i].fyyear == fincalyear) {
-                            tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
-                                '<td>' + (i + 1) + '</td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" readonly  /> </td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
-
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" readonly /> </td >' +
-                                //'<td class="tdborder"><input type="text" class="form-control" id="financial_awp1' + i + '" value="' + data[i].financial_awp + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
-                                '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
-                                '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
-                                '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
-                                '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
-                                '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
-
-                          
+                                }
+                            }
                         }
                         else {
-                            tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
-                                '<td>' + (i + 1) + '</td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" disabled  /> </td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
+                            if (data[i].month_number == month_numbers && data[i].fyyear == fincalyear) {
 
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" disabled /> </td >' +
-                                //'<td class="tdborder"><input type="text" class="form-control" id="financial_awp1' + i + '" value="' + data[i].financial_awp + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" disabled /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
-                                '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
-                                '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
-                                '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
-                                '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
-                                '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" disabled> <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"disabled><i class="fa fa-trash"></i></button></td></tr>';
+                                tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" readonly  /> </td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
 
-                           
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" readonly /> </td >' +
+                                    //'<td class="tdborder"><input type="text" class="form-control" id="financial_awp1' + i + '" value="' + data[i].financial_awp + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
+                                    '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                    '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
+                                    '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
+                                    '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
+                                    '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+
+                            }
+                            else if (dd <= fix_Date && data[i].month_number == month_numbers - 1 && data[i].fyyear == fincalyear) {
+                                tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" readonly  /> </td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
+
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" readonly /> </td >' +
+                                    //'<td class="tdborder"><input type="text" class="form-control" id="financial_awp1' + i + '" value="' + data[i].financial_awp + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
+                                    '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                    '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
+                                    '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
+                                    '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
+                                    '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                            }
+                            else {
+                                tr += '<tr id="trphp_fn' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_statename' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_month' + i + '" value="' + data[i].fin_month + '" disabled  /> </td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_year' + i + '" value="' + data[i].fin_year + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_id' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="sub_component_id' + i + '" value="' + data[i].sub_component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_id' + i + '" value="' + data[i].activity_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="item_code' + i + '" value="' + data[i].item_code + '" readonly/> </td >' +
+
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_name' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="financial_awp' + i + '" readonly value="' + data[i].financial_awp + '"  /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="producrment_selection' + i + '" value="' + data[i].producrment_selection + '" disabled /> </td >' +
+                                    //'<td class="tdborder"><input type="text" class="form-control" id="financial_awp1' + i + '" value="' + data[i].financial_awp + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="category_of_procurement' + i + '" value="' + data[i].category_of_procurement + '" disabled /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_budget_head' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_code' + i + '" readonly value="' + data[i].expenditure_code + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_made' + i + '" value="' + expenditure_made + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditure' + i + '" readonly value="' + Sum_1.toFixed(6) + '" /> </td >' +
+                                    '<td><button type="button" class="btn btn-primary" onclick="updatecomp_A_php_fn(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_php_fn(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                    '<tr  role="row"  id="hidephp_fn_' + i + '"><td> ' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].fin_month + '</td><td>' + data[i].fin_year + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td><td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td>' +
+                                    '<td>' + data[i].activity_name + '</td><td>' + data[i].financial_awp + '</td><td>' + data[i].producrment_selection + '</td>' +
+                                    '</td><td>' + data[i].category_of_procurement + '</td><td>' + data[i].component_budget_head + '</td>' +
+                                    '<td>' + data[i].expenditure_code + '</td><td>' + expenditure_made + '</td><td>' + Sum_1.toFixed(6) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_A_php_fn(' + i + ')" disabled> <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_A_php_fn(' + data[i].id + ')"disabled><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                            }
                         }
 
                     }
@@ -862,7 +922,7 @@ function PHP_FN_A_Table_Info() {
             }
 
             $('#PHP_FN_A_Form_Tbl').html(tr);
-            
+         
             //if (Email == 'wbataljal@gmail.com') {
             //    $('.disable_ph_btn').prop('disabled', true);
             //}
@@ -871,6 +931,7 @@ function PHP_FN_A_Table_Info() {
             } else if (Access_Auth == 'readonly') {
                 $('.disable_ph_btn').prop('disabled', true);
             }
+           
 
         }
     });
@@ -1313,16 +1374,7 @@ function FinYear_Awp(Email) {
 }
 
 function validate_month(Email) {
-
-    //var yyy = '';
-    //if (fincalyear == "2022") {
-    //    yyy = "2022-23";
-    //} else if (fincalyear == "2023") {
-    //    yyy = "2023-24";
-    //} else if (fincalyear == "2024") {
-    //    yyy = "2024-25";
-    //}
-    
+  
     var select_month = $('#fin_month').val();
     var select_month_num = Get_Month_Number(select_month)
     var select_Year = $("#fin_year").val();
@@ -1330,9 +1382,11 @@ function validate_month(Email) {
     $('#a_form_save').prop('disabled', false);
     if (select_month_num == mm && select_Year == fiscalyear) {
         $('#a_form_save').prop('disabled', false);
-    } else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
+    }
+    else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
         $('#a_form_save').prop('disabled', false);
-    } else {
+    }
+    else {
         $('#a_form_save').prop('disabled', true);
         if (select_Year == "2023-24" && select_month_num == "3") {
             if ("20240416" <= formattedDateaa) {
@@ -1351,7 +1405,6 @@ function validate_month(Email) {
         
 
     }
-
     if (mm == 1) {
         mn = 13;
         if (dd <= fix_Date && select_month_num == mn - 1 && select_Year == fiscalyear) {
@@ -1360,6 +1413,22 @@ function validate_month(Email) {
     }
     if (Email == 'kirannayyar95@gmail.com'|| Email == 'groundwater.atalbhujal@gmail.com') {
         $('#a_form_save').prop('disabled', false);
+    }
+    if ("20241126" == formattedDateaa) {
+        if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in') {
+            if (select_Year == "2024-25") {
+                if (select_month_num != 0 && select_month_num != 12 ) {
+                    $('#a_form_save').prop('disabled', false);
+                }
+                else {
+                    $('#a_form_save').prop('disabled', true);
+                }
+            }
+            else {
+                $('#a_form_save').prop('disabled', true);
+            }
+
+        }
     }
     if (Access_Auth == 'readonly') {
         $('#a_form_save').prop('disabled', true);
@@ -1659,73 +1728,110 @@ function PHP_FN_B_Table_Info() {
                             }
 
                         }
-                        if (data[i].month_number == month_numbers && data[i].fyyear == fincalyear) {
-                            tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
-                                '<td>' + (i + 1) + '</td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
+                      
+                        if ("20241126" == formattedDateaa) {
+                            if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in') {
+                                if (data[i].fin_b_year == "2024-25") {
+                                    tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                        '<td>' + (i + 1) + '</td>' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
 
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
 
-                                '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                        '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
 
-                                '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
-                                '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_B(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_B(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td></tr>';
-                        }
-                        else if (dd <= fix_Date && data[i].month_number == month_numbers - 1 && data[i].fyyear == fincalyear) {
-                            tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
-                                '<td>' + (i + 1) + '</td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
+                                        '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
+                                        '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary " onclick="editrowcomp_B(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger " onclick="deletecomp_B(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td></tr>';
+                                }
+                                else {
+                                    tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                        '<td>' + (i + 1) + '</td>' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
 
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
+                                        '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
 
-                                '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                        '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
 
-                                '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
-                                '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_B(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_B(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td></tr>';
-
+                                        '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
+                                        '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_B(' + i + ')" disabled> <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_B(' + data[i].id + ')" disabled><i class="fa fa-trash"></i></button></td></tr>';
+                                }
+                            }
                         }
                         else {
-                            tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
-                                '<td>' + (i + 1) + '</td>' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
+                            if (data[i].month_number == month_numbers && data[i].fyyear == fincalyear) {
+                                tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
 
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
-                                '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
 
-                                '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+                                    '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
 
-                                '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
-                                '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_B(' + i + ')" disabled> <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_B(' + data[i].id + ')" disabled><i class="fa fa-trash"></i></button></td></tr>';
+                                    '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
+                                    '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_B(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_B(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td></tr>';
+                            }
+                            else if (dd <= fix_Date && data[i].month_number == month_numbers - 1 && data[i].fyyear == fincalyear) {
+                                tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
+
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
+
+                                    '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+
+                                    '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
+                                    '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_B(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_B(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td></tr>';
+
+                            }
+                            else {
+                                tr += '<tr id="trAO1' + i + '" class="donarclass database_trainer_row " role="row" style="display:none">' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_statenameb' + i + '" value="' + data[i].state_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_yearb' + i + '" value="' + data[i].fin_b_year + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="fin_b_monthb' + i + '" disabled value="' + data[i].fin_b_month + '" /> </td >' +
+
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_idb' + i + '" value="' + data[i].component_id + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="activity_nameb' + i + '" value="' + data[i].activity_name + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="component_budget_headb' + i + '" value="' + data[i].component_budget_head + '" readonly /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_codeb' + i + '" disabled value="' + data[i].expenditure_code + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="expenditure_madeb' + i + '" value="' + Expenditure_Made_val + '" /> </td >' +
+                                    '<td class="tdborder"><input type="text" class="form-control" id="cumulative_expenditureb' + i + '" readonly value="' + Sum_1.toFixed(2) + '" /> </td >' +
+
+                                    '<td><button type="button" class="btn btn-primary" onclick="updatecomp_B(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_B(' + i + ');"><i class="fa fa-remove"</button>' + '</td>' +
+
+                                    '<tr  role="row"  id="hideAO1_' + i + '"> <td>' + (i + 1) + '</td><td> ' + data[i].state_name + '</td><td> ' + data[i].fin_b_year + '</td><td> ' + data[i].fin_b_month + '</td><td> ' + data[i].component_id + '</td><td>' + data[i].activity_name + '</td>' +
+                                    '<td>' + data[i].component_budget_head + '</td><td>' + data[i].expenditure_code + '</td>  <td>' + Expenditure_Made_val + '</td><td>' + Sum_1.toFixed(2) + '</td><td><button class="btn btn-primary disable_ph_btn" onclick="editrowcomp_B(' + i + ')" disabled> <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger disable_ph_btn" onclick="deletecomp_B(' + data[i].id + ')" disabled><i class="fa fa-trash"></i></button></td></tr>';
+                            }
                         }
 
-
-
-
-
-                        //tr += '<tr><td> ' + (i + 1) + '</td><td>' + data[i].component_id + '</td>' +
-                        //    '<td>' + data[i].activity_name + '</td>' +
-                        //    '<td>' + data[i].component_budget_head + '</td>' +
-                        //    '<td>' + data[i].expenditure_code + '</td><td>' + data[i].expenditure_made + '</td><td>' + data[i].cumulative_expenditure + '</td></tr>';
                     }
 
                 }
@@ -2254,19 +2360,17 @@ function Financial_Progress_Monitoring_Component_A_Report_Year() {
                     }
 
                     $('#PHP_FN_A_Form_Tbl').html(tr);
-                    
-                    //if (Email == 'wbataljal@gmail.com') {
-                    //    $('.disable_ph_btn').prop('disabled', true);
-                    //}
-                    
+                  
                     if (Email == 'kirannayyar95@gmail.com' || Email == 'groundwater.atalbhujal@gmail.com') {
                         $('.disable_ph_btn').prop('disabled', false);
                     } else if (Access_Auth == 'readonly') {
                         $('.disable_ph_btn').prop('disabled', true);
                     }
-                    //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2023-24') {
-                    //    $('.disable_ph_btn').prop('disabled', false);
-                    //}
+                    if ("20241126" == formattedDateaa) {
+                        if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2024-25') {
+                            $('.disable_ph_btn').prop('disabled', false);
+                        }
+                    }
                     //if (Email == 'abhy.maharashtra@gmail.com' && Finacial_Year == '2023-24') {
                     //    $('.disable_ph_btn').prop('disabled', false);
                     //}
@@ -2537,9 +2641,11 @@ function Financial_Progress_Monitoring_Component_B_Report_Year() {
                     if (Email == 'wbataljal@gmail.com') {
                         $('.disable_ph_btn').prop('disabled', true);
                     }
-                    //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2023-24') {
-                    //    $('.disable_ph_btn').prop('disabled', false);
-                    //}
+                    if ("20241126" == formattedDateaa) {
+                        if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2024-25') {
+                            $('.disable_ph_btn').prop('disabled', false);
+                        }
+                    }
                     //if (Email == 'abhy.maharashtra@gmail.com' && Finacial_Year == '2023-24') {
                     //    $('.disable_ph_btn').prop('disabled', false);
                     //}
@@ -2862,7 +2968,7 @@ function Financial_Progress_Monitoring_Component_A_Report_Month() {
                     }
 
                     $('#PHP_FN_A_Form_Tbl').html(tr);
-                    
+                  
                     if (Email == 'wbataljal@gmail.com') {
                         $('.disable_ph_btn').prop('disabled', true);
                     }
@@ -2871,9 +2977,11 @@ function Financial_Progress_Monitoring_Component_A_Report_Month() {
                     } else if (Access_Auth == 'readonly') {
                         $('.disable_ph_btn').prop('disabled', true);
                     }
-                    //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2023-24' && Finacial_Month != "0") {
-                    //    $('.disable_ph_btn').prop('disabled', false);
-                    //}
+                    if ("20241126" == formattedDateaa) {
+                        if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2024-25' && Finacial_Month != "0") {
+                            $('.disable_ph_btn').prop('disabled', false);
+                        }
+                    }
                     //if (Email == 'abhy.maharashtra@gmail.com' && Finacial_Year == '2023-24' && Finacial_Month != "0") {
                     //    $('.disable_ph_btn').prop('disabled', false);
                     //}
@@ -3309,9 +3417,11 @@ function Financial_Progress_Monitoring_Component_B_Report_Month() {
                     } else if (Access_Auth == 'readonly') {
                         $('.disable_ph_btn').prop('disabled', true);
                     }
-                    //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2023-24' && Finacial_Month != "0") {
-                    //    $('.disable_ph_btn').prop('disabled', false);
-                    //}
+                    if ("20241126" == formattedDateaa) {
+                        if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' && Finacial_Year == '2024-25' && Finacial_Month != "0") {
+                            $('.disable_ph_btn').prop('disabled', false);
+                        }
+                    }
                     //if (Email == 'abhy.maharashtra@gmail.com' && Finacial_Year == '2023-24' && Finacial_Month != "0") {
                     //    $('.disable_ph_btn').prop('disabled', false);
                     //}

@@ -2580,11 +2580,11 @@ namespace AbhyProject.Controllers
                     {
                         if (State == "ALL")
                         {
-                            ddetails = ABE.obj_abhy_financialprogress_insertdata_vw.ToList();//total list
+                            ddetails = ABE.obj_abhy_financialprogress_insertdata_vw.OrderBy(x => x.fin_year).ToList();//total list
                         }
                         else
                         {
-                            ddetails = ABE.obj_abhy_financialprogress_insertdata_vw.Where(x => x.state_name == StateName).ToList();//total list
+                            ddetails = ABE.obj_abhy_financialprogress_insertdata_vw.Where(x => x.state_name == StateName).OrderBy(x=>x.fin_year).ToList();//total list
                         }
                     }
                     var jsonResult = Json(ddetails, JsonRequestBehavior.AllowGet);
@@ -3106,11 +3106,11 @@ namespace AbhyProject.Controllers
                     {
                         if (State == "ALL")
                         {
-                            ddetails = ABE.obj_abhy_financialprogress_b_insertdata_vw.ToList();//total list
+                            ddetails = ABE.obj_abhy_financialprogress_b_insertdata_vw.OrderBy(x=>x.fin_b_year).ToList();//total list
                         }
                         else
                         {
-                            ddetails = ABE.obj_abhy_financialprogress_b_insertdata_vw.Where(x => x.state_name == StateName).ToList();//total list
+                            ddetails = ABE.obj_abhy_financialprogress_b_insertdata_vw.Where(x => x.state_name == StateName).OrderBy(x => x.fin_b_year).ToList();//total list
                         }
                     }
                     var jsonResult = Json(ddetails, JsonRequestBehavior.AllowGet);
