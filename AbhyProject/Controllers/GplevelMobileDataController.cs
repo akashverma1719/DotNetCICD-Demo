@@ -20,7 +20,6 @@ using AbhyProject.Classes;
 using System.Globalization;
 using AbhyProject.Utility;
 using System.Drawing;
-using OfficeOpenXml;
 
 namespace AbhyProject.Controllers
 {
@@ -17834,146 +17833,168 @@ namespace AbhyProject.Controllers
                 var Gram = gp1 == "0" ? null : gp1;
                 var year = year1 == "0" ? null : year1;
                 var month = month1 == "0" ? null : month1;
+                //var State = state1;
+                //var Dist = district1;
+                //var Block = block01;
+                //var Gram = gp1;
+                //var year = year1;
+                //var month = month1;
 
                 List<vw_dwlr_meta_data> Final_data_data = new List<vw_dwlr_meta_data>();
 
                 if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(c=>c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(Gram))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(Block))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.block == Block).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Dist))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.district == Dist).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year && x.fymonth == month).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(year))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State && x.fyyear == year).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
                 else if (!string.IsNullOrEmpty(State))
                 {
-                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ToList();
+                    Final_data_data = AJE.obj_vw_dwlr_meta_data.Where(x => x.state == State).OrderByDescending(c => c.Well_ID).ThenByDescending(c => c.datetime).ToList();
                 }
 
-                using (var package = new ExcelPackage())
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("State Name", typeof(string));
+                dt.Columns.Add("District Name", typeof(string));
+                dt.Columns.Add("Block Name", typeof(string));
+                dt.Columns.Add("GramPanchayat Name", typeof(string));
+                dt.Columns.Add("Latitude", typeof(string));
+                dt.Columns.Add("Longitude", typeof(string));
+                dt.Columns.Add("Well Id", typeof(string));
+                dt.Columns.Add("Type of well", typeof(string));
+                dt.Columns.Add("DateTime", typeof(string));
+                dt.Columns.Add("Data type code", typeof(string));
+                dt.Columns.Add("Data value(mbgl)", typeof(string));
+
+                var a = Final_data_data.Count;
+
+                int sr_no = 0;
+                if (a != 0)
                 {
-                    int sheetCount = 1;
-                    int rowCount = 0;
-                    const int maxRowsPerSheet = 1000000;
-
-                    // Create the first sheet
-                    var worksheet = package.Workbook.Worksheets.Add("Sheet" + sheetCount);
-
-                    // Add column headers
-                    worksheet.Cells[1, 1].Value = "State Name";
-                    worksheet.Cells[1, 2].Value = "District Name";
-                    worksheet.Cells[1, 3].Value = "Block Name";
-                    worksheet.Cells[1, 4].Value = "GramPanchayat Name";
-                    worksheet.Cells[1, 5].Value = "Latitude";
-                    worksheet.Cells[1, 6].Value = "Longitude";
-                    worksheet.Cells[1, 7].Value = "Well Id";
-                    worksheet.Cells[1, 8].Value = "Type of well";
-                    worksheet.Cells[1, 9].Value = "Date";
-                    worksheet.Cells[1, 10].Value = "Data type code";
-                    worksheet.Cells[1, 11].Value = "Data value(mbgl)";
-                    for (int col = 1; col <= 11; col++)
+                    foreach (var itema in Final_data_data)
                     {
-                        worksheet.Cells[1, col].Style.Font.Bold = true;
+                        DataRow dataRow = dt.NewRow();
+                        dataRow["State Name"] = itema.state;
+                        dataRow["District Name"] = itema.district;
+                        dataRow["Block Name"] = itema.block;
+                        dataRow["GramPanchayat Name"] = itema.gp;
+                        dataRow["Latitude"] = itema.latitude;
+                        dataRow["Longitude"] = itema.longitude;
+                        dataRow["Well Id"] = itema.Well_ID;
+                        dataRow["Type of well"] = itema.type;
+                        dataRow["DateTime"] = itema.datetime;
+                        dataRow["Data type code"] = itema.datatypecode;
+                        dataRow["Data value(mbgl)"] = itema.datavalue;
+
+                        dt.Rows.Add(dataRow);
+
                     }
-                    int row = 2;
 
-                    foreach (var item in Final_data_data)
+
+                }
+
+                if (a == 0)
+                {
+                    DataRow dataRow = dt.NewRow();
+                    dataRow["State Name"] = "";
+                    dataRow["District Name"] = "";
+                    dataRow["Block Name"] = "";
+                    dataRow["GramPanchayat Name"] = "";
+                    dataRow["Latitude"] = "";
+                    dataRow["Longitude"] = "";
+                    dataRow["Well Id"] = "";
+                    dataRow["Type of well"] = "";
+                    dataRow["DateTime"] = "";
+                    dataRow["Data type code"] = "";
+                    dataRow["Data value(mbgl)"] = "";
+                    dt.Rows.Add(dataRow);
+                }
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    System.Web.HttpContext.Current.Response.Clear();
+                    System.Web.HttpContext.Current.Response.ClearContent();
+                    System.Web.HttpContext.Current.Response.ClearHeaders();
+                    System.Web.HttpContext.Current.Response.Buffer = true;
+                    System.Web.HttpContext.Current.Response.ContentType = "text/csv";
+                    System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=Dwlr.csv");
+                    System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("windows-1250");
+
+                    // Write the CSV header
+                    for (int j = 0; j < dt.Columns.Count; j++)
                     {
-                        // If the row count exceeds the max limit, create a new sheet
-                        if (rowCount >= maxRowsPerSheet)
+                        System.Web.HttpContext.Current.Response.Write("\"" + dt.Columns[j].ToString() + "\"");
+                        if (j < dt.Columns.Count - 1)
+                            System.Web.HttpContext.Current.Response.Write(",");
+                    }
+                    System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+
+                    // Write the CSV data
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        for (int i = 0; i < dt.Columns.Count; i++)
                         {
-                            sheetCount++;
-                            worksheet = package.Workbook.Worksheets.Add("Sheet" + sheetCount);
-                            worksheet.Cells[1, 1].Value = "State Name";
-                            worksheet.Cells[1, 2].Value = "District Name";
-                            worksheet.Cells[1, 3].Value = "Block Name";
-                            worksheet.Cells[1, 4].Value = "GramPanchayat Name";
-                            worksheet.Cells[1, 5].Value = "Latitude";
-                            worksheet.Cells[1, 6].Value = "Longitude";
-                            worksheet.Cells[1, 7].Value = "Well Id";
-                            worksheet.Cells[1, 8].Value = "Type of well";
-                            worksheet.Cells[1, 9].Value = "Date";
-                            worksheet.Cells[1, 10].Value = "Data type code";
-                            worksheet.Cells[1, 11].Value = "Data value(mbgl)";
-                            row = 2;
-                            rowCount = 0;
+                            string fieldValue = row[i].ToString();
+
+                            // Enclose the field in double quotes and escape existing double quotes
+                            System.Web.HttpContext.Current.Response.Write("\"" + fieldValue.Replace("\"", "\"\"") + "\"");
+
+                            if (i < dt.Columns.Count - 1)
+                                System.Web.HttpContext.Current.Response.Write(",");
                         }
 
-                        // Add the data to the current sheet
-                        worksheet.Cells[row, 1].Value = item.state;
-                        worksheet.Cells[row, 2].Value = item.district;
-                        worksheet.Cells[row, 3].Value = item.block;
-                        worksheet.Cells[row, 4].Value = item.gp;
-                        worksheet.Cells[row, 5].Value = item.latitude;
-                        worksheet.Cells[row, 6].Value = item.longitude;
-                        worksheet.Cells[row, 7].Value = item.Well_ID;
-                        worksheet.Cells[row, 8].Value = item.type;
-                        worksheet.Cells[row, 9].Value = item.date;
-                        worksheet.Cells[row, 10].Value = item.datatypecode;
-                        worksheet.Cells[row, 11].Value = item.datavalue;
-
-                        row++;
-                        rowCount++;
+                        System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
                     }
-
-                    // Write the Excel file to the response stream
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        package.SaveAs(memoryStream);
-                        memoryStream.Position = 0;
-
-                        System.Web.HttpContext.Current.Response.Clear();
-                        System.Web.HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                        System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=dwlr_data.xlsx");
-                        System.Web.HttpContext.Current.Response.BinaryWrite(memoryStream.ToArray());
-                        System.Web.HttpContext.Current.Response.End();
-                    }
+                    System.Web.HttpContext.Current.Response.Flush();
+                    System.Web.HttpContext.Current.Response.End();
                 }
-
                 return RedirectToAction("Index");
             }
             catch (Exception Ex)
             {
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
-
         }
+
+
 
 
         #region View Image
