@@ -1635,7 +1635,13 @@
     function state_data() {
 
         $(".loader").show();
-        var StateName = State;
+        //var StateName = State; 
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
         var year = $("#year").val();
         var month = $('#month').val();
 
@@ -1898,7 +1904,13 @@
     function district_data() {
 
         $(".loader").show();
-        var StateName = State;
+        //var StateName = State;
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
         var distName = Dist;
         var year = $("#year").val();
         var month = $('#month').val();
@@ -2340,10 +2352,14 @@
     var close_length = 0;
     var click_button = 0;
     function totalexe() {
-
         $('.loader').show();
-        
-        var StateName = State;
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
+       
         var distName = Dist;
         var blockName = Block;
         var gpname = Gram;
@@ -2404,7 +2420,13 @@
     function gp_data() {
 
         $(".loader").show();
-        var StateName = State;
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
+
         var distName = Dist;
         var blockName = Block;
         var gpname = Gram;
@@ -2555,7 +2577,7 @@
 
     }
     function gp_data_next() {
-        debugger;
+       
         $(".loader").show();
         click_button = 0;
         PageNumber++;
@@ -2571,7 +2593,12 @@
         else {
             $('#btnnextexe').show();
         }
-        var StateName = State;
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
         var distName = Dist;
         var blockName = Block;
         var gpname = Gram;
@@ -2720,7 +2747,7 @@
 
     }
     function gp_data_pre() {
-        debugger;
+       
         $(".loader").show();
         click_button = 0;
         PageNumber--;
@@ -2736,7 +2763,12 @@
         else {
             $('#btnnextexe').show();
         }
-        var StateName = State;
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
         var distName = Dist;
         var blockName = Block;
         var gpname = Gram;
