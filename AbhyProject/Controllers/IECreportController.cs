@@ -1402,22 +1402,22 @@ namespace AbhyProject.Controllers
                         {
                             if (Month != 0)
                             {
-                                data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month).OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                         }
                         else
                         {
                             if (Year != "0" && Year != "" && Year != null && Month != 0)
                             {
-                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month).OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                             else if (Year != "0" && Year != "" && Year != null)
                             {
-                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year).OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                             else
                             {
-                                data = ABE.obj_vw_iec_report.OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                         }
                     }
@@ -1548,22 +1548,22 @@ namespace AbhyProject.Controllers
                     {
                         if (Month != 0)
                         {
-                            data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                     }
                     else
                     {
                         if (Year != "0" && Year != "" && Year != null && Month != 0)
                         {
-                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                         else if (Year != "0" && Year != "" && Year != null)
                         {
-                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                         else
                         {
-                            data = ABE.obj_vw_iec_report.OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                     }
                 }
