@@ -298,17 +298,7 @@ require([
             content: createCustomPopupContentW
         }
     });
-
-
-
-
-
-
-    // Function to update clustering configuration based on zoom level
-
-
-
-
+    
     const WaterQuality = new FeatureLayer({
         url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6",
 
@@ -523,9 +513,6 @@ require([
         }),
         label: "Over Expolited"
     }));
-
-
-
 
     renderergw.addUniqueValueInfo(new UniqueValueInfo({
         value: "Not-Specified", // Replace with the attribute value you want to symbolize
@@ -1386,18 +1373,9 @@ require([
 
                 ],
             },
-
-
-
             ],
-
-
         },
-
-
         outFields: ["*"],
-
-
     });
 
 
@@ -1648,10 +1626,7 @@ require([
         popupTemplate: {
 
             title: "Annual Rainfall (in mm)",
-
-
             content: [{
-
                 type: "fields",
                 fieldInfos: [
 
@@ -1783,17 +1758,8 @@ require([
 
     // Set the renderer to the Rainfall layer
     Rainfall.renderer = rendererraf;
-
-
-
-
     // Add the Rainfall layer to the map
-
-
-
     //drrrr
-
-
     //const Drainage = new FeatureLayer({
     //    url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Hosted/Drainage/FeatureServer/0",
     //    title: "Drainage",
@@ -1931,10 +1897,6 @@ require([
             title: "Water Flow  <span class='WaterFlow_icon'></span>",
             content: createCustomPopupContentWF,
         }
-
-
-
-
     });
 
     const waterdropWithCrossSymbol = {
@@ -2029,12 +1991,7 @@ require([
         },
 
         outFields: ["*"],
-
-
     });
-
-
-
     const BlockLayer = new FeatureLayer({
         url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/1",
         definitionExpression: "state <> 'Delhi_7'",
@@ -2169,9 +2126,6 @@ require([
         opacity: 0.75
     });
 
-
-
-
     const rain = new GroupLayer({
         title: "Integrated Water Resources Mapping",
         visible: true,
@@ -2179,16 +2133,12 @@ require([
         layers: [Rainfall, GWRA, acquifier, majoracquifier, watershed],
         opacity: 0.75
     });
-
-
-
     const map = new Map({
 
         basemap: "topo",
         layers: [rain, PointGroupLayer, BoundaryGroupLayer, graphicsLayer1]
 
     })
-
     const view = new MapView({
         container: "viewDiv",
         map: map,
@@ -2268,17 +2218,7 @@ require([
     var countryDDL = document.querySelector("#cntry");
     var DistrictDDL = document.querySelector("#District");
     var BlockDDL = document.querySelector("#Block");
-    var GPDDL = document.querySelector("#Gram");
-    var WellDDL = document.querySelector("#well_count");
-    var PieDDL = document.querySelector("#piezometer_count");
-    var GeoDDL = document.querySelector("#geo_count");
-    var wlDDL = document.querySelector("#wl_count");
-    var wqDDL = document.querySelector("#wq_count");
-    var rgDDL = document.querySelector("#rg_count");
-    var wfDDL = document.querySelector("#wf_count");
-    var wsDDL = document.querySelector("#ws_count");
-    var wspDDL = document.querySelector("#wsp_count");
-
+    var GPDDL = document.querySelector("#Gram"); 
     //State Query
 
     var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3/query";
@@ -2290,23 +2230,18 @@ require([
             f: "json"
         }
     };
-
-    // Getting the features data from the API
     esriRequest(queryUrl, queryOpts).then(function (response) {
 
         var countryNames = Array.from(new Set(response.data.features.map(r => r.attributes["State"]))).sort();
         var hardcodedStates = ["All", "--Select State--", "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9"];
 
-        // Clear existing options
+     
         countryDDL.innerHTML = "";
 
-        // Add hardcoded states
         hardcodedStates.forEach(state => {
             var names = state.split("_");
             countryDDL.innerHTML += `<option value="${state}"> ${names[0]} </option>`;
-        });
-
-        // Add remaining states from API response
+        });      
         countryNames.forEach(a => {
             if (a != "Delhi_7" && !hardcodedStates.includes(a)) {
                 var names = a.split("_");
@@ -14736,14 +14671,16 @@ ${additionalContent}
     queryDiv.appendChild(queryDropdown);
 
 
-    var queryOption = [{
-        name: "Water Quality",
-        value: "popupModal"
-    },
+    var queryOption = [
     {
         name: "Water Level",
         value: "popupModal2"
-    }];
+        },
+        {
+            name: "Water Quality",
+            value: "popupModal"
+        },
+    ];
 
     queryOption.forEach(function (option) {
         var optionLink = document.createElement("a");
@@ -14874,3 +14811,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+
+   
