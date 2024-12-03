@@ -24,6 +24,7 @@ namespace AbhyProject
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             PreSendRequestHeaders += Application_PreSendRequestHeaders;
+
         }
         protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
         {
@@ -36,10 +37,23 @@ namespace AbhyProject
             //HttpContext.Current.Response.Headers.Remove("X-AspNet-Version");
             //HttpContext.Current.Response.Headers.Remove("X-Powered-By");
             //HttpContext.Current.Response.Headers.Remove("X-AspNetMvc-Version");
-
-
-
         }
+        
+        protected void Application_PostAcquireRequestState(object sender, EventArgs e)
+        {
+            // Ensure the session is available and the user is logged in
+            if (HttpContext.Current.Session["UserName"] != null &&
+        HttpContext.Current.Session["DateTime"] == null || HttpContext.Current.Session["UserName"] != null &&
+        HttpContext.Current.Session["DateTime"] != null)
+            {
+                HttpContext.Current.Session["DateTime"] = DateTime.Now; // Set the current DateTime
+                string currentPage = HttpContext.Current.Request.Url.AbsolutePath;
+
+                // Store the last accessed page in session
+                HttpContext.Current.Session["LastAccessedPage"] = currentPage;
+            }
+        }
+
 
     }
 }

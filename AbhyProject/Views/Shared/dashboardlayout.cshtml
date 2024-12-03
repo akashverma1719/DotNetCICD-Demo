@@ -93,6 +93,11 @@
 
                         </div>
                     </li>
+                    @{
+                        // Retrieve the DateTime session value
+                        var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+                        var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+                    }
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-hc-lg  fa fa-power-off"></i></a>
                         <ul class="dropdown-menu animated flipInY">
@@ -382,7 +387,8 @@
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
                 setInterval(GetCunCurrentUser, 30000);
-            }
+        }
+        GetPagelog();
     });
 
         function GetCunCurrentUser() {
@@ -398,7 +404,32 @@
                     $(".loader").hide();
                 }
             });
+    }
+
+    function GetPagelog() {
+    var dateTime = "@dateTime";
+    var pageName = "@lastAccessedPage"
+
+    $.ajax({
+        url: '/WspNew/UpdatePageLog',
+        type: 'POST',
+        data: {
+            dateTime: dateTime,
+            pageName: pageName
+        },
+        success: function (response) {
+            if (response.success) {
+                console.log(response.message);
+            } else {
+                alert("Error: " + response.message);
+            }
+        },
+        error: function () {
+            alert("Failed to update the log.");
         }
+    });
+}
+
 </script>
 <script type="text/javascript">
 
