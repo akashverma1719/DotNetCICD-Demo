@@ -68,6 +68,11 @@
                         <span style="color:#fff;">:@Session["UserName"].ToString()</span>
                     }
                 </li>
+                @{
+                    // Retrieve the DateTime session value
+                    var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+                    var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+                }
                 <li>
                     <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
                 </li>
@@ -267,7 +272,8 @@
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
                 setInterval(GetCunCurrentUser, 30000);
-            }
+        }
+        GetPagelog();
     });
 
         function GetCunCurrentUser() {
@@ -283,7 +289,32 @@
                     $(".loader").hide();
                 }
             });
-        }
+    }
+
+     function GetPagelog() {
+     var dateTime = "@dateTime";
+     var pageName = "@lastAccessedPage"
+   
+     $.ajax({
+         url: '/WspNew/UpdatePageLog',
+         type: 'POST',
+         data: {
+             dateTime: dateTime,
+             pageName: pageName
+         },
+         success: function (response) {
+             if (response.success) {
+                 console.log(response.message);
+             } else {
+                 alert("Error: " + response.message);
+             }
+         },
+         error: function () {
+             alert("Failed to update the log.");
+         }
+     });
+ }
+
 </script>
 
 <script>

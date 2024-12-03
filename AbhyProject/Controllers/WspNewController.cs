@@ -6125,7 +6125,7 @@ namespace AbhyProject.Controllers
                     {
                         if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6148,7 +6148,7 @@ namespace AbhyProject.Controllers
                     {
                         if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6171,12 +6171,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6194,7 +6194,6 @@ namespace AbhyProject.Controllers
                             dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
                             //dd.Add(data);
                         }
-
                         else
                         {
                             dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
@@ -6205,13 +6204,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
-
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6259,12 +6257,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6284,7 +6282,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6304,7 +6302,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6332,12 +6330,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.GramPanchayatName == Gram && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.GramPanchayatName == Gram && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6357,7 +6355,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6377,7 +6375,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6397,7 +6395,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6438,6 +6436,7 @@ namespace AbhyProject.Controllers
                             worksheet.Cell(currentRow, 7).Value = "User Name";
                             worksheet.Cell(currentRow, 8).Value = "Log In / Log Out";
                             worksheet.Cell(currentRow, 9).Value = "Date";
+                            worksheet.Cell(currentRow, 10).Value = "Action Time";
 
                             if (dd_full.Count != 0)
                             {
@@ -6446,7 +6445,7 @@ namespace AbhyProject.Controllers
                                 foreach (var user in dd_full)
                                 {
                                     currentRow++;
-                                   
+
                                     worksheet.Cell(currentRow, 1).Value = user.NodalOfficer;
                                     worksheet.Cell(currentRow, 2).Value = user.email;
                                     worksheet.Cell(currentRow, 3).Value = user.StateName;
@@ -6456,6 +6455,7 @@ namespace AbhyProject.Controllers
                                     worksheet.Cell(currentRow, 7).Value = user.name;
                                     worksheet.Cell(currentRow, 8).Value = user.loginlogout;
                                     worksheet.Cell(currentRow, 9).Value = user.datetime;
+                                    worksheet.Cell(currentRow, 10).Value = user.ActionTime;
 
                                 }
                             }
@@ -6500,6 +6500,7 @@ namespace AbhyProject.Controllers
                             worksheet.Cell(currentRow, 9).Value = "Log In Count";
                             worksheet.Cell(currentRow, 10).Value = "Log Out Count";
                             worksheet.Cell(currentRow, 11).Value = "Duration";
+                            worksheet.Cell(currentRow, 12).Value = "Action Time";
 
                             if (dd.Count != 0)
                             {
@@ -6520,6 +6521,7 @@ namespace AbhyProject.Controllers
                                     worksheet.Cell(currentRow, 9).Value = user.login_count;
                                     worksheet.Cell(currentRow, 10).Value = user.logout_count;
                                     worksheet.Cell(currentRow, 11).Value = user.total_duration;
+                                    worksheet.Cell(currentRow, 12).Value = user.ActionTime;
 
                                 }
                             }
@@ -6923,6 +6925,7 @@ namespace AbhyProject.Controllers
         }
 
 
+
         [HttpPost]
         public ActionResult all_report_data(string StateName, string Dist, string Block, string Gram, string nodal, string year, string month, string date, int PageNumber)
         {
@@ -6937,7 +6940,7 @@ namespace AbhyProject.Controllers
                     {
                         if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6960,7 +6963,7 @@ namespace AbhyProject.Controllers
                     {
                         if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -6983,12 +6986,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7006,7 +7009,6 @@ namespace AbhyProject.Controllers
                             dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
-
                         else
                         {
                             dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
@@ -7017,13 +7019,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
-
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7071,12 +7072,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7096,7 +7097,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7116,7 +7117,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7144,12 +7145,12 @@ namespace AbhyProject.Controllers
                     {
                         if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.GramPanchayatName == Gram && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.GramPanchayatName == Gram && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7169,7 +7170,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7189,7 +7190,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7209,7 +7210,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
                         {
-                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Take(200).ToList();
                             //dd.Add(data);
                         }
                         else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -7267,6 +7268,7 @@ namespace AbhyProject.Controllers
         }
 
 
+
         [HttpGet]
         public ActionResult report_declaration_details()
         {
@@ -7322,16 +7324,105 @@ namespace AbhyProject.Controllers
             {
                 var user = ABE.objUsers.Where(x => x.UserId == intUserID && x.UserToken == stToken).FirstOrDefault();
                 if (user != null)
-                {   
+                {
                     status = true;
                 }
                 else
                 {
                     status = false;
                 }
-            }
+            }  
             return status;
         }
+
+
+
+
+
+        // public bool CheckCurrentStatus()
+        //{
+
+        //             string email = Convert.ToString(HttpContext.Session["Email"]);
+        //             // Fetch current page URL and date-time from the session
+        //             string currentPage = Convert.ToString(HttpContext.Session["LastAccessedPage"]);
+        //             DateTime currentTime = Convert.ToDateTime(HttpContext.Session["DateTime"]);
+
+        //             // Retrieve the `login_datetime` record for the user using email
+
+        //             string currentTimeString = currentTime.ToString("yyyy-MM-dd"); // Format based on your database date format
+
+        //             var userlog = ABE.obj_login_datetime
+        //                 .Where(x => x.email == email && x.date == currentTimeString)
+        //                 .OrderByDescending(x => x.id)
+        //                 .FirstOrDefault();
+
+        //             if (userlog != null)
+        //             {
+        //                 // Update existing record
+        //                 userlog.ActionTime = currentTime;
+        //                 userlog.PageUrl = currentPage;
+
+        //                 // Mark entity as modified
+        //                 ABE.Entry(userlog).State = EntityState.Modified;
+        //             }
+
+        //             ABE.SaveChanges();
+        //     return true;
+
+        // }
+
+
+        [HttpPost]
+        [Route("WspNew/UpdatePageLog")]
+        public JsonResult UpdatePageLog(DateTime dateTime, string pageName)
+        {
+            try
+            {
+                string email = Convert.ToString(HttpContext.Session["Email"]);
+
+                // Use the passed parameters
+                string currentPage = pageName;
+                DateTime currentTime = dateTime;
+
+                // Format the date for comparison (if needed for string matching in DB)
+                string currentDateString = currentTime.ToString("yyyy-MM-dd");
+
+                // Find the existing record
+                var userLog = ABE.obj_login_datetime
+                    .Where(x => x.email == email && x.date == currentDateString)
+                    .OrderByDescending(x => x.id)
+                    .FirstOrDefault();
+
+                if (userLog != null)
+                {
+                    // Update the record
+                    userLog.ActionTime = currentTime;
+                    userLog.PageUrl = currentPage;
+                    ABE.Entry(userLog).State = EntityState.Modified;
+                }
+                //else
+                //{
+                //    // Create a new record if not found
+                //    var newLog = new login_datetime
+                //    {
+                //        email = email,
+                //        ActionTime = currentTime,
+                //        PageUrl = currentPage,
+                //        date = currentTime.ToString("yyyy-MM-dd")
+                //    };
+                //    ABE.obj_login_datetime.Add(newLog);
+                //}
+
+                ABE.SaveChanges();
+
+                return Json(new { success = true, message = "Page log updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
 
         public string Log_Information(string Action_performed, string Status)
         {

@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Login Info";
     Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
 }
@@ -463,15 +463,17 @@
         <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="exportdata()"> Export To Excel</i></div>
         @*<input type="button" id="AComponent_Id" onclick="tableToExcel('state_tt', 'Mis Login Logout Information','Mis_Login_Logout_Information.xls')" hidden />*@
     </div>
-   
-    <div id="example_filter" class="dataTables_filter" style="margin-bottom: 10px; margin-left:190px;">
+
+    <div id="example_filter" class="dataTables_filter" style="margin-bottom: 10px; ">
 
         <div class="row">
-            <label class="col-md-2" style=" margin-top: 18px; position: relative; right:110px; font-size:12px;">
-                Search Data in Table:
-            </label>
-            <div class="col-md-2">
-                <input type="search" id="myInput" class="form-control input-sm" placeholder="Search" style=" border-radius:25px; position: absolute; right: 175px; margin-top: 10px; padding-bottom:8px;" />
+
+            <div class="col-12" style="display:flex;
+justify-content:flex-start;align-items:center;padding-left:80px;column-gap:10px;">
+                <label style="margin-bottom:0px;">
+                    Search Data in Table:
+                </label>
+                <input type="search" id="myInput" class="form-control input-sm" placeholder="Search" style="width:220px" />
             </div>
         </div>
 
@@ -524,6 +526,8 @@
                         <th>Log In Count</th>
                         <th>Log Out Count</th>
                         <th>Duration</th>
+                        <th style="padding: 30px; padding-bottom: 10px;">Action Time</th>
+                        @*<th>Page URL</th>*@
                     </tr>
                     <tr class="bg-info text-white" id="withdate">
                         <th>Sl.No.</th>
@@ -536,7 +540,8 @@
                         <th>User Name</th>
                         <th>Log In / Log Out</th>
                         <th style="padding: 30px; padding-bottom: 10px;">Date</th>
-
+                        <th style="padding: 30px; padding-bottom: 10px;">Action Time</th>
+                        @*<th>Page URL</th>*@
                     </tr>
 
                 </thead>
@@ -600,6 +605,7 @@
     var StateOfficer = "";
     var button_click = "0";
     var image_path = "";
+
     $(document).ready(function () {
         StateOfficer = '@Session["Officer"]';
         image_path = '@Session["sUploadDirectory"]';
@@ -617,6 +623,7 @@
         $('#btnpreexe').hide();
         $('#btnnextexe').hide();
 
+
         hideshowtable();
         DropDownInfo();
     });
@@ -624,6 +631,7 @@
     function pagechange() {
         window.location = "WspWaterAvailability", "WspNew"
     }
+
 </script>
 
 <script type="text/javascript">
@@ -640,7 +648,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     $(".loader").hide();
                 }
                 else {
@@ -1022,11 +1030,11 @@
         }
         if (year == "0") {
             if (month != "0") {
-                    alert("Please Select Year");
-                    return false;
+                alert("Please Select Year");
+                return false;
             }
         }
-       
+
 
         var xx = 0;
         if (nodal == "0") {
@@ -1065,6 +1073,13 @@
             $('#DistDropdownLabel').hide();
             $('#BlockDropdownLabel').hide();
             $('#GramDropdownLabel').hide();
+            $('#spnstate').val("0");
+            $('#dist11').val("0");
+            $('#block1').val("0");
+            $('#gram').val("0");
+            $('#year').val("0");
+            $('#month').val("0");
+            $('#ddldate').val("0");
 
         }
         else if (nodal == "National Level Nodal Officer") {
@@ -1072,30 +1087,59 @@
             $('#DistDropdownLabel').hide();
             $('#BlockDropdownLabel').hide();
             $('#GramDropdownLabel').hide();
+            $('#spnstate').val("0");
+            $('#dist11').val("0");
+            $('#block1').val("0");
+            $('#gram').val("0");
+            $('#year').val("0");
+            $('#month').val("0");
+            $('#ddldate').val("0");
         }
         else if (nodal == "State Level Nodal Officer") {
             $('#StateDropdownLabel').show();
             $('#DistDropdownLabel').hide();
             $('#BlockDropdownLabel').hide();
             $('#GramDropdownLabel').hide();
+            $('#spnstate').val("0");
+            $('#year').val("0");
+            $('#month').val("0");
+            $('#ddldate').val("0");
         }
         else if (nodal == "District Level Nodal Officer") {
             $('#StateDropdownLabel').show();
             $('#DistDropdownLabel').show();
             $('#BlockDropdownLabel').hide();
             $('#GramDropdownLabel').hide();
+            $('#spnstate').val("0");
+            $('#dist11').val("0");
+            $('#year').val("0");
+            $('#month').val("0");
+            $('#ddldate').val("0");
         }
         else if (nodal == "Block Level Nodal Officer") {
             $('#StateDropdownLabel').show();
             $('#DistDropdownLabel').show();
             $('#BlockDropdownLabel').show();
             $('#GramDropdownLabel').hide();
+            $('#spnstate').val("0");
+            $('#dist11').val("0");
+            $('#block1').val("0");
+            $('#year').val("0");
+            $('#month').val("0");
+            $('#ddldate').val("0");
         }
         else if (nodal == "Gram Panchyat Nodal Officer") {
             $('#StateDropdownLabel').show();
             $('#DistDropdownLabel').show();
             $('#BlockDropdownLabel').show();
             $('#GramDropdownLabel').show();
+            $('#spnstate').val("0");
+            $('#dist11').val("0");
+            $('#block1').val("0");
+            $('#gram').val("0");
+            $('#year').val("0");
+            $('#month').val("0");
+            $('#ddldate').val("0");
         }
         else if (nodal == "0") {
             $('#StateDropdownLabel').show();
@@ -1108,8 +1152,8 @@
     function hideshowtable() {
         var date_val = $('#ddldate option:selected').text();
         if (date_val != "Select Date") {
-        var Tbodyhtml = '<tr colspan="16"><td colspan="16" style="text-align: center;"></td></tr>';
-        $('#tbl_state').html(Tbodyhtml);
+            var Tbodyhtml = '<tr colspan="16"><td colspan="16" style="text-align: center;"></td></tr>';
+            $('#tbl_state').html(Tbodyhtml);
             $("#withdate").show();
             $("#withoutdate").hide();
         }
@@ -1121,7 +1165,6 @@
         }
     }
     function state_data() {
-
         $(".loader").show();
         var nodal = $("#nodal").val();
         var year = $("#year").val();
@@ -1135,9 +1178,9 @@
             data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','nodal':'" + nodal + "','year':'" + year + "','month':'" + month + "','date':'" + date + "'}",
             dataType: 'JSON',
             success: function (data) {
-               
+                debugger;
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var Tbodyhtml = '';
                 if (data.length != 0) {
@@ -1184,6 +1227,47 @@
                             if (datetime == null || datetime == "NULL") {
                                 datetime = "";
                             }
+
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
+
                             //var totalcount = data[i].totalcount
                             //if (totalcount == null || totalcount == "NULL") {
                             //    totalcount = "";
@@ -1199,7 +1283,9 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + loginlogout + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
 
                         }
                     }
@@ -1234,7 +1320,7 @@
                             if (name == null || name == "NULL") {
                                 name = "";
                             }
-                           
+
                             var date = data[i].date
                             if (date == null || date == "NULL") {
                                 date = "";
@@ -1255,6 +1341,45 @@
                             if (total_duration == null || total_duration == "NULL") {
                                 total_duration = "";
                             }
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
 
 
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
@@ -1268,7 +1393,9 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + date + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + login_count + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + logout_count + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
 
                         }
                     }
@@ -1338,7 +1465,7 @@
                 if (totalexess == 1) {
                     PageNumber = 1;
                 }
-               
+
                 if (PageNumber == 1) {
                     sno = 0;
                     count = 0;
@@ -1419,6 +1546,47 @@
                             //    totalcount = "";
                             //}
 
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
+
+
                             sno += 1;
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
@@ -1429,7 +1597,9 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + loginlogout + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
 
                         }
                     }
@@ -1485,6 +1655,47 @@
                             if (total_duration == null || total_duration == "NULL") {
                                 total_duration = "";
                             }
+
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
+
                             sno += 1;
 
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
@@ -1498,7 +1709,9 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + date + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + login_count + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + logout_count + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
 
                         }
                     }
@@ -1524,7 +1737,7 @@
 
     }
     function gp_data_next() {
-       
+
         $("#myInput").val("");
         $(".loader").show();
         click_button = 0;
@@ -1606,6 +1819,46 @@
                             //    totalcount = "";
                             //}
 
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
+
                             sno += 1;
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
@@ -1616,7 +1869,9 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + loginlogout + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
 
                         }
                     }
@@ -1672,6 +1927,47 @@
                             if (total_duration == null || total_duration == "NULL") {
                                 total_duration = "";
                             }
+
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
+
                             sno += 1;
 
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
@@ -1685,7 +1981,9 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + date + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + login_count + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + logout_count + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
 
                         }
                     }
@@ -1711,7 +2009,7 @@
 
     }
     function gp_data_pre() {
-       
+
         $("#myInput").val("");
         $(".loader").show();
         click_button = 0;
@@ -1800,6 +2098,46 @@
                             //    totalcount = "";
                             //}
 
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
+
                             sno += 1;
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + NodalOfficer + '</label></td>';
@@ -1810,7 +2148,9 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + GramPanchayatName + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + name + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + loginlogout + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + datetime + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
 
                         }
                     }
@@ -1866,6 +2206,47 @@
                             if (total_duration == null || total_duration == "NULL") {
                                 total_duration = "";
                             }
+
+                            //var ActionTime = data[i].ActionTime
+                            //if (ActionTime == null || ActionTime == "NULL") {
+                            //    ActionTime = "";
+                            //}
+                            //else {
+                            //    // Extract the timestamp and parse it
+                            //    var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                            //    var parsedDate = new Date(timestamp);
+                            //    ActionTime = parsedDate.toLocaleString(); // Formats date to a local string
+                            //}
+
+                            var ActionTime = data[i].ActionTime;
+
+                            if (ActionTime == null || ActionTime === "NULL") {
+                                ActionTime = "";
+                            } else {
+                                // Extract the timestamp and parse it
+                                var timestamp = parseInt(ActionTime.replace(/\/Date\((\d+)\)\//, "$1"));
+                                var parsedDate = new Date(timestamp);
+
+                                // Format the date as YYYY-MM-DD
+                                var year = parsedDate.getFullYear();
+                                var month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                                var day = String(parsedDate.getDate()).padStart(2, '0');
+
+                                // Format the time as HH:mm:ss
+                                var hours = String(parsedDate.getHours()).padStart(2, '0');
+                                var minutes = String(parsedDate.getMinutes()).padStart(2, '0');
+                                var seconds = String(parsedDate.getSeconds()).padStart(2, '0');
+
+                                // Combine date and time
+                                ActionTime = `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                            }
+
+
+                            //var PageUrl = data[i].PageUrl
+                            //if (PageUrl == null || PageUrl == "NULL") {
+                            //    PageUrl = "";
+                            //}
+
                             sno += 1;
 
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (sno) + '</label></td>';
@@ -1879,7 +2260,10 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + date + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + login_count + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + logout_count + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td></tr>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_duration + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + ActionTime + '</label></td>';
+                            //Tbodyhtml += '<td id="rainfall"><label>' + PageUrl + '</label></td></tr>';
+
 
                         }
                     }
@@ -1918,7 +2302,7 @@
         var Dist1 = Dist;
         var Block1 = Block;
         var Gram1 = Gram;
-       
+
         // Validate Nodal Officer selection
         if (nodal1 == "0") {
             alert("Please Select Nodal Officer");
@@ -1938,7 +2322,7 @@
 
         // Construct the URL for report export
         var url = "/WspNew/all_report_excel?StateName=" + State1 + "&Dist=" + Dist1 + "&Block=" + Block1 + "&Gram=" + Gram1 + "&nodal=" + nodal1 + "&year=" + year1 + "&month=" + month1 + "&date=" + date1;
-       
+
         // Redirect to the generated URL
         window.location.href = url;
     }
@@ -1951,7 +2335,7 @@
     //    var month = $('#month').val();
     //    var date = $('#ddldate').val();
     //    var date_val = $('#ddldate option:selected').text();
-    //   
+    //
     //    var xx = 0;
     //    if (nodal == "0") {
     //        xx = 1;

@@ -39,7 +39,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="clearfix total_div_wsp_home user_div" style="">
         <div class="col-lg-4  col-md-4 col-sm-4 text-center sub_total_div" id="wsp_module_div">
             <a href="~/Wsp_new/WSPHOME">
@@ -105,7 +105,7 @@
             </a>
         </div>
 
-    
+
 
         <div class=" col-lg-4  col-md-4 col-sm-4 text-center sub_total_div" id="wsp_approved_div">
             <a href="~/project/ApprovedWspReport">
@@ -120,6 +120,7 @@
             </a>
         </div>
     </div>
+
     <div id="progress">
         <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
             <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
@@ -130,6 +131,11 @@
         </ul>
     </div>
 </main>
+@{
+    // Retrieve the DateTime session value
+    var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+    var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+}
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -158,7 +164,7 @@
         var Email = '@Session["Email"]';
         var Auth = '@Session["Access_Auth"]';
         var SateName = '@Session["gstate"]';
-       
+
         if (Auth == "WSP") {
             $("#wsp_approved_div").hide();
         }
@@ -166,14 +172,15 @@
         if (Auth == "admin") {
             $("#wsp_2024_25").show();
         }
-       
+
         //if (SateName == 'Madhya Pradesh_23') {
         //    $("#Madhya Pradesh_23").show();
         //}
         //else {
         //    $("#wsp_2024_25_update").hide();
-        //}   
+        //}
 
+        
     });
 
     //function SessionInfo() {
@@ -208,6 +215,8 @@
                 GetCunCurrentUser();
                 setInterval(GetCunCurrentUser, 30000);
             }
+            GetPagelog();
+
         });
 
         function GetCunCurrentUser() {
@@ -222,5 +231,29 @@
                 }
             });
     }
+
+     function GetPagelog() {
+     var dateTime = "@dateTime";
+     var pageName = "@lastAccessedPage"
+
+     $.ajax({
+         url: '/WspNew/UpdatePageLog',
+         type: 'POST',
+         data: {
+             dateTime: dateTime,
+             pageName: pageName
+         },
+         success: function (response) {
+             if (response.success) {
+                 console.log(response.message);
+             } else {
+                 alert("Error: " + response.message);
+             }
+         },
+         error: function () {
+             alert("Failed to update the log.");
+         }
+     });
+ }
 
 </script>
