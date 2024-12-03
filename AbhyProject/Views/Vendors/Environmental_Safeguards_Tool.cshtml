@@ -275,67 +275,72 @@
 
                     </ul>
 
+                    @{
+                        // Retrieve the DateTime session value
+                        var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+                        var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+                    }
 
                     @*<ul class="Select_option selectbackhome" style="margin-bottom:10px;">
-                            <li id="StateLabel">
-                                <label id="lblstate">State:</label>
-                                <span id="spnstate1">@Session["gstate"]</span>
-                            </li>
-                            <li id="StateDropdownLabel">
+            <li id="StateLabel">
+                <label id="lblstate">State:</label>
+                <span id="spnstate1">@Session["gstate"]</span>
+            </li>
+            <li id="StateDropdownLabel">
 
-                                <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
-                                </select>
-                            </li>
+                <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
+                </select>
+            </li>
 
-                            <li id="DistLabel">
-                                <i class="fas fa fa-angle-double-right"></i>
-                                <label id="lbldistrict">District:</label>
-                                <span id="spndistrict">@Session["gdist"]</span>
-                            </li>
+            <li id="DistLabel">
+                <i class="fas fa fa-angle-double-right"></i>
+                <label id="lbldistrict">District:</label>
+                <span id="spndistrict">@Session["gdist"]</span>
+            </li>
 
-                            <li id="DistDropdownLabel">
+            <li id="DistDropdownLabel">
 
-                                <select class="form-control" id="dist11" onchange="Dist_fun()">
-                                </select>
-                            </li>
+                <select class="form-control" id="dist11" onchange="Dist_fun()">
+                </select>
+            </li>
 
-                            <li id="BlockLabel">
-                                <i class="fas fa fa-angle-double-right"></i>
-                                <label>Block:</label>
-                                <span>@Session["gblock"] </span>
-                            </li>
+            <li id="BlockLabel">
+                <i class="fas fa fa-angle-double-right"></i>
+                <label>Block:</label>
+                <span>@Session["gblock"] </span>
+            </li>
 
-                            <li id="BlockDropdownLabel">
+            <li id="BlockDropdownLabel">
 
-                                <select class="form-control" id="block1" onchange="Block_fun()">
-                                </select>
-                            </li>
-                            <li id="GramLabel">
-                                <i class="fas fa fa-angle-double-right"></i>
-                                <label>Gram panchayat:</label>
-                                <span>@Session["ggram"]</span>
-                            </li>
+                <select class="form-control" id="block1" onchange="Block_fun()">
+                </select>
+            </li>
+            <li id="GramLabel">
+                <i class="fas fa fa-angle-double-right"></i>
+                <label>Gram panchayat:</label>
+                <span>@Session["ggram"]</span>
+            </li>
 
-                            <li id="GramDropdownLabel">
+            <li id="GramDropdownLabel">
 
-                                <select class="form-control" id="gram" onchange="Gram1_Fun()">
-                                </select>
-                            </li>
+                <select class="form-control" id="gram" onchange="Gram1_Fun()">
+                </select>
+            </li>
 
-                            <li>
-                                <select class="form-control" id="finacial_year">
-                                    <option value="0">Select Financial Year</option>
+            <li>
+                <select class="form-control" id="finacial_year">
+                    <option value="0">Select Financial Year</option>
 
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                </select>
-                            </li>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </li>
 
 
-                        </ul>*@
+        </ul>*@
                 </div>
                 <br />
                 <br />
@@ -1637,6 +1642,9 @@
                 GetCunCurrentUser();
                 setInterval(GetCunCurrentUser, 30000);
             }
+
+            GetPagelog();
+
         });
 
         function GetCunCurrentUser() {
@@ -1650,5 +1658,30 @@
                     }
                 }
             });
+    }
+
+    function GetPagelog() {
+    var dateTime = "@dateTime";
+    var pageName = "@lastAccessedPage"
+
+    $.ajax({
+        url: '/WspNew/UpdatePageLog',
+        type: 'POST',
+        data: {
+            dateTime: dateTime,
+            pageName: pageName
+        },
+        success: function (response) {
+            if (response.success) {
+                console.log(response.message);
+            } else {
+                alert("Error: " + response.message);
+            }
+        },
+        error: function () {
+            alert("Failed to update the log.");
         }
+    });
+}
+
 </script>

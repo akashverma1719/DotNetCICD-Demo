@@ -41,6 +41,11 @@
 </style>
 
 <div class="" style="width:100%;padding:0px!important">
+    @{
+        // Retrieve the DateTime session value
+        var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+        var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+    }
     @RenderBody()
 </div>
 <div class="loading-container" style="width:100%;padding:0px!important">
@@ -49,6 +54,7 @@
     </div>
 </div>
 <script>
+
     $(".loader").show();
     $(document).ready(function () {
             var currentUrl = window.location.href;
@@ -58,7 +64,35 @@
                 GetCunCurrentUser();
                 setInterval(GetCunCurrentUser, 30000);
             }
+
+        GetPagelog();
+        
+
     });
+
+    function GetPagelog() {
+        var dateTime = "@dateTime";
+        var pageName = "@lastAccessedPage"
+       
+        $.ajax({
+            url: '/WspNew/UpdatePageLog',
+            type: 'POST',
+            data: {
+                dateTime: dateTime,
+                pageName: pageName
+            },
+            success: function (response) {
+                if (response.success) {
+                    console.log(response.message);
+                } else {
+                    alert("Error: " + response.message);
+                }
+            },
+            error: function () {
+                alert("Failed to update the log.");
+            }
+        });
+    }
 
     function GetCunCurrentUser() {
             $.ajax({
@@ -66,14 +100,13 @@
                 url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
                 success: function (data) {
 
-                    if (data == "False") {
-
-                        window.location.href = "../../WspNew/WSP_GWM_HOME";
-                    }
-                    $(".loader").hide();
+                if (data == "False") {
+                window.location.href = "../../WspNew/WSP_GWM_HOME";
                 }
-            });
-        }
+                $(".loader").hide();
+                }
+                });
+                }
 </script>
 
 

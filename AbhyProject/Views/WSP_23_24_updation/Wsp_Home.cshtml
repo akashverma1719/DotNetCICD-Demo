@@ -333,53 +333,58 @@
                         <option value="0">Select Financial Year</option>
                         @*<option value="2019-20">2019-2020</option>*@
                         @*<option value="2020-21">2020-2021</option>
-                            <option value="2021-22">2021-2022</option>
-                            <option value="2022-23">2022-2023</option>*@
+                    <option value="2021-22">2021-2022</option>
+                    <option value="2022-23">2022-2023</option>*@
                         @*<option value="2023-24" selected>2023-2024</option>*@
                         <option value="2023-24 Update" selected>2023-24 Update</option>
                     </select>
                 </li>
 
                 <!--<li id="MonthLabel">
-                    <i class="fas fa fa-angle-double-right"></i>
-                    <label>Month:</label>-->
+            <i class="fas fa fa-angle-double-right"></i>
+            <label>Month:</label>-->
                 @*<span>@Session["year"]</span>*@
                 <!--</li>
 
-                <li id="MonthDropdownLabel">
+        <li id="MonthDropdownLabel">
 
-                    <select class="form-control" id="month" onchange="Month_change()">
-                        <option value="0">Select Month</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                    </select>
-                </li>-->
+            <select class="form-control" id="month" onchange="Month_change()">
+                <option value="0">Select Month</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+            </select>
+        </li>-->
 
 
                 <li id="DropdownSearch_btn">
                     <a class="btn btn-success" onclick="Dropdown_Search()">Search</a>
                 </li>
             </ul>
+            @{
+                // Retrieve the DateTime session value
+                var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+                var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+            }
             <ul class="Select_option text-right col-md-12 col-sm-12">
                 <li>
                     <h4>Status : <label id="status_wsp"></label></h4>
                 </li>
                 @*<li>
-                        <button class="btn btn-primary" onclick="Image_onchange('WSPR')">
-                            Water Security Plan Report
-                        </button>
+                <button class="btn btn-primary" onclick="Image_onchange('WSPR')">
+                    Water Security Plan Report
+                </button>
 
-                    </li>*@
+            </li>*@
             </ul>
 
         </div>
@@ -1568,6 +1573,7 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
                 GetCunCurrentUser();
                 setInterval(GetCunCurrentUser, 30000);
             }
+            GetPagelog();
         });
 
         function GetCunCurrentUser() {
@@ -1581,5 +1587,31 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
                     }
                 }
             });
+    }
+
+    function GetPagelog() {
+    var dateTime = "@dateTime";
+    var pageName = "@lastAccessedPage"
+
+    $.ajax({
+        url: '/WspNew/UpdatePageLog',
+        type: 'POST',
+        data: {
+            dateTime: dateTime,
+            pageName: pageName
+        },
+        success: function (response) {
+            if (response.success) {
+                console.log(response.message);
+            } else {
+                alert("Error: " + response.message);
+            }
+        },
+        error: function () {
+            alert("Failed to update the log.");
         }
+    });
+}
+
+
 </script>

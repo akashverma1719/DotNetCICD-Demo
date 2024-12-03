@@ -4516,7 +4516,8 @@ namespace AbhyProject.Models
         public string date { get; set; }
         public string datetime { get; set; }
         public string checkloginlogout { get; set; }
-
+        public DateTime ? ActionTime { get; set; }
+        public string PageUrl { get; set; }
 
     }
 
@@ -4569,6 +4570,8 @@ namespace AbhyProject.Models
         public string year { get; set; }
         public string month { get; set; }
         public string day { get; set; }
+        public DateTime ?  ActionTime { get; set; }
+        public string  PageUrl { get; set; }
 
     }
 
@@ -4592,6 +4595,10 @@ namespace AbhyProject.Models
         public string year { get; set; }
         public string month { get; set; }
         public string day { get; set; }
+
+        public DateTime? ActionTime { get; set; }
+
+        public string PageUrl { get; set; }
 
     }
 
