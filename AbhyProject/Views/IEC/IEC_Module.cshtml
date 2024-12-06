@@ -941,7 +941,7 @@
                                                     <select class="form-control" id="dist11_dist" onchange="District()"></select>
                                                 </li>
                                                 <li>
-                                                    <select class="form-control" id="year_dist" onchange="all_excel_dist()" >
+                                                    <select class="form-control" id="year_dist" onchange="all_excel_dist()">
                                                         <option value="0">Select Financial Year</option>
                                                         <option value="All">All</option>
                                                         <option value="2021-22">2021-22</option>
@@ -1074,7 +1074,7 @@
                                                     <select class="form-control" id="gram" onchange="Gram_change()"></select>
                                                 </li>
                                                 <li>
-                                                    <select class="form-control" id="year_gram" onchange="all_excel_gram()" style="width:103%;padding-left:14px" >
+                                                    <select class="form-control" id="year_gram" onchange="all_excel_gram()" style="width:103%;padding-left:14px">
                                                         <option value="0">Select Financial Year</option>
                                                         <option value="All">All</option>
                                                         <option value="2021-22">2021-22</option>
@@ -1434,7 +1434,7 @@
     var fincalyear = 0;
 
     function getCurrentFinancialYear() {
-        
+        debugger;
         var today = new Date();
         if ((today.getMonth() + 1) <= 3) {
             fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
@@ -1561,6 +1561,7 @@
 
 
     function validate_month() {
+        debugger;
         $('#btn1').show();
         $('#btn1').prop('disabled', false);
         var select_month = $('#month').val();
@@ -1568,21 +1569,37 @@
         $("#month_dist").val(select_month);
         $("#month_gram").val(select_month);
         $("#month2").val(select_month);
-        var select_month_num = Get_Month_Number(select_month);
-        debugger;
+        var select_month_num = Get_Month_Number(select_month)
         var select_Year = $("#year").val();
-        debugger;
-        if ("20241206" > formattedDateaa) {
-            if (select_Year == "2024-25") {
-                if (select_month_num == 1 || select_month_num == 2 || select_month_num == 3) {
-                    $('#year').prop('disabled', false);
+
+        if (select_month_num == mm && select_Year == fiscalyear) {
+            $('#btn1').prop('disabled', false);
+        }
+        else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
+            $('#btn1').prop('disabled', false);
+        }
+        else {
+
+            $('#btn1').prop('disabled', true);
+            if (select_Year == "2023-24" && select_month_num == "3") {
+                if ("20240406" <= formattedDateaa) {
+                    $('#year').prop('disabled', true);
                     $('#btn1').prop('disabled', true);
                     $('#btn1').hide();
                 }
-                else if (11 >= select_month_num) {
+                else {
                     $('#year').prop('disabled', false);
                     $('#btn1').prop('disabled', false);
-                    $('#btn1').show();
+                }
+
+            }
+
+            else if (select_Year == "2024-25") {
+                $('#btn1').prop('disabled', false);
+                if ("20240406" <= formattedDateaa) {
+                    $('#year').prop('disabled', true);
+                    $('#btn1').prop('disabled', true);
+                    $('#btn1').hide();
                 }
                 else {
                     $('#year').prop('disabled', false);
@@ -1592,60 +1609,21 @@
             }
             else {
                 $('#year').prop('disabled', false);
-                $('#btn1').prop('disabled', false);
-                $('#btn1').show();
+                $('#btn1').prop('disabled', true);
+                $('#btn1').hide();
             }
         }
-        else {
-                if (select_month_num == mm && select_Year == fiscalyear) {
-                    $('#btn1').prop('disabled', false);
-                }
-                else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
-                    $('#btn1').prop('disabled', false);
-                }
-                else {
 
-                    $('#btn1').prop('disabled', true);
-                    if (select_Year == "2023-24" && select_month_num == "3") {
-                        if ("20240406" <= formattedDateaa) {
-                            $('#year').prop('disabled', true);
-                            $('#btn1').prop('disabled', true);
-                            $('#btn1').hide();
-                        }
-                        else {
-                            $('#year').prop('disabled', false);
-                            $('#btn1').prop('disabled', false);
-                        }
 
-                    }
-
-                    else if (select_Year == "2024-25") {
-                        debugger;
-                        $('#btn1').prop('disabled', false);
-                        if ("20240406" <= formattedDateaa) {
-                            $('#year').prop('disabled', true);
-                            $('#btn1').prop('disabled', true);
-                            $('#btn1').hide();
-                        }
-                        else {
-                            $('#year').prop('disabled', true);
-                            $('#btn1').prop('disabled', true);
-                            $('#btn1').hide();
-                        }
-                    }
-                    else {
-                        $('#year').prop('disabled', false);
-                        $('#btn1').prop('disabled', true);
-                        $('#btn1').hide();
-                    }
-                }
-                if (mm == 1) {
-                    mn = 13;
-                    if (dd <= fix_Date && select_month_num == mn - 1 && select_Year == fiscalyear) {
-                        $('#btn1').prop('disabled', false);
-                    }
-                }
+        if (mm == 1) {
+            mn = 13;
+            if (dd <= fix_Date && select_month_num == mn - 1 && select_Year == fiscalyear) {
+                $('#btn1').prop('disabled', false);
+            }
         }
+
+
+
     }
 
 
@@ -1706,7 +1684,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else {
                     $('#Error_').text("");
@@ -2844,7 +2822,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var slection_options = '<option value="0">Select Sub Activity </option>';
 
@@ -2972,7 +2950,7 @@
                     success: function (response) {
                         alert(response);
                         if (response == "Logout") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         $('#activity_name').val(0);
                         $('#txtother_activity').val("");
@@ -3025,7 +3003,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 var tr = '';
@@ -3072,7 +3050,7 @@
 
                             }
                             else if (approve_status == "Approved" && reject_status == "") {
-                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td> <td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td><td></td><td></td><td><button class="btn btn-danger"  onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button><label style="color: green;">Approved By DPMU</label></td><td></td> ' +
+                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td> <td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td><td></td><td></td><td><label style="color: green;">Approved By DPMU</label></td><td></td> ' +
 
                                     '<tr id="Hide_AWP1_TR' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="state' + i + '" value="' + data[i].state_name + '" disabled /></td><td><input type="text" class="form-control" id="dist' + i + '" value="' + data[i].district_name + '" disabled /></td><td><input type="text" class="form-control" id="block' + i + '" value="' + data[i].block_name + '" disabled /></td><td><input type="text" class="form-control" id="gp' + i + '" value="' + data[i].gpname + '" disabled /></td><td><input type="text" class="form-control" id="year' + i + '" value="' + data[i].year + '" disabled /></td><td><input type="text" class="form-control" id="month' + i + '" value="' + data[i].month + '" disabled /></td>';
 
@@ -3102,7 +3080,7 @@
 
                             }
                             else if (approve_status == "Approved" && reject_status == "") {
-                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td> <td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td><td></td><td></td><td><button class="btn btn-danger"  onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button><label style="color: green;">Approved By DPMU</label></td><td></td> ' +
+                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td> <td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td><td></td><td></td><td><label style="color: green;">Approved By DPMU</label></td><td></td> ' +
 
                                     '<tr id="Hide_AWP1_TR' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="state' + i + '" value="' + data[i].state_name + '" disabled /></td><td><input type="text" class="form-control" id="dist' + i + '" value="' + data[i].district_name + '" disabled /></td><td><input type="text" class="form-control" id="block' + i + '" value="' + data[i].block_name + '" disabled /></td><td><input type="text" class="form-control" id="gp' + i + '" value="' + data[i].gpname + '" disabled /></td><td><input type="text" class="form-control" id="year' + i + '" value="' + data[i].year + '" disabled /></td><td><input type="text" class="form-control" id="month' + i + '" value="' + data[i].month + '" disabled /></td>';
 
@@ -3184,7 +3162,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 var tr = '';
@@ -3232,7 +3210,7 @@
 
                             }
                             else if (approve_status == "Approved" && reject_status == "") {
-                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td >  <td></td><td></td><td><button class="btn btn-danger" onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button><label style="color: green;">Approved By SPMU</label></td><td></td> </tr>';
+                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td >  <td></td><td></td><td><label style="color: green;">Approved By SPMU</label></td><td></td> </tr>';
 
 
                             }
@@ -3251,7 +3229,7 @@
 
                             }
                             else if (approve_status == "Approved" && reject_status == "") {
-                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td >  <td></td><td></td><td><button class="btn btn-danger" onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button><label style="color: green;">Approved By SPMU</label></td><td></td> </tr>';
+                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td >  <td></td><td></td><td><label style="color: green;">Approved By SPMU</label></td><td></td> </tr>';
                             }
                             else if (approve_status == "Dist" && reject_status != "") {
                                 tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td >  <td></td><td></td><td><label style="color: red;">Rejected</label></td><td></td> </tr>';
@@ -3297,7 +3275,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 var tr = '';
@@ -3336,7 +3314,7 @@
                             }
                             else if (approve_status == "Approved" && reject_status == "") {
 
-                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++a) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td >  <td></td> <td></td><td><button class="btn btn-danger" onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button><label style="color: green;">Approved</labe></td></tr>';
+                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++a) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td></td >  <td></td> <td></td><td><label style="color: green;">Approved</labe></td></tr>';
 
                             }
 
@@ -3409,7 +3387,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var slection_options = '<option value="0">Select Sub Activity </option>';
 
@@ -3506,7 +3484,7 @@
 
                     alert(response);
                     if (response == "SessionTimeOut") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     Data_state();
                     Data_dist();
@@ -3519,32 +3497,30 @@
         }
     }
     function Delete_data(ss) {
-        if (confirm("Are you sure you want to Delete?")) {
-            var obj = {};
-            obj.id = ss;
-            $.ajax({
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
-                url: "/IEC/Delete_data",
-                data: "{'Data': '" + JSON.stringify(obj) + "'}",
-                dataType: 'JSON',
-                success: function (response) {
-                    alert(response);
-                    if (response == "Logout") {
-                        window.location = "/Home/LogOut";
-                    }
-                    else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
-                        window.location = "/Error/DefaultError";
-                    }
-
-                    ab = 1;
-
-                    Data_state();
-                    Data_dist();
-                    Data_get();
+        var obj = {};
+        obj.id = ss;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/IEC/Delete_data",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                if (response == "Logout") {
+                    window.location = "/Home/LogOut";
                 }
-            });
-        }
+                else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                    window.location = "/Error/DefaultError";
+                }
+
+                ab = 1;
+
+                Data_state();
+                Data_dist();
+                Data_get();
+            }
+        });
     }
     /*Approvel process*/
     function approve_gram(id, RowNo) {
@@ -3568,7 +3544,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_get();
                     },
@@ -3597,7 +3573,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_get();
                     },
@@ -3626,7 +3602,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_get();
                     },
@@ -3659,7 +3635,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_dist();
                         Data_state();
@@ -3689,7 +3665,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_dist();
                     },
@@ -3725,7 +3701,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_get();
                     },
@@ -3758,7 +3734,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_get();
                     },
@@ -3793,7 +3769,7 @@
 
                         alert(response);
                         if (response == "SessionTimeOut") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         Data_dist();
 
