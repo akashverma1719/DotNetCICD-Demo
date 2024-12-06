@@ -553,12 +553,22 @@ function get_data_new() {
             //else {
             //    $('.disable_prm_btn').prop('disabled', true);
             //}
-            if (Email == 'ankitsaxena.hid@govcontractor.in' || Email == 'abhy.maharashtra@gmail.com' || Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'karnatakaabhyproc@gmail.com' || Email == 'sud.abhy.raj@gmail.com' || Email == 'grdlucknow@gmail.com' || Email == 'dhaval2.login@gmail.com') {
+            //if (Email == 'ankitsaxena.hid@govcontractor.in' || Email == 'abhy.maharashtra@gmail.com' || Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'karnatakaabhyproc@gmail.com' || Email == 'sud.abhy.raj@gmail.com' || Email == 'grdlucknow@gmail.com' || Email == 'dhaval2.login@gmail.com') {
+            //    $('.disable_prm_btn').prop('disabled', false);
+            //}
+            //else {
+            //    $('.disable_prm_btn').prop('disabled', true);
+            //}
+
+           
+            if (StateOfficer == 'State Level Nodal Officer') {
                 $('.disable_prm_btn').prop('disabled', false);
             }
             else {
                 $('.disable_prm_btn').prop('disabled', true);
             }
+
+
             if (Access_Auth == 'readonly') {
                 $('.disable_prm_btn').prop('disabled', true);
             }
@@ -685,9 +695,17 @@ function get_data() {
             //}
             //else {
             //    $('.disable_prm_btn').prop('disabled', true);
-            //}         
+            //}
 
-            if (Email == 'ankitsaxena.hid@govcontractor.in' || Email == 'abhy.maharashtra@gmail.com' || Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'karnatakaabhyproc@gmail.com' || Email == 'sud.abhy.raj@gmail.com' || Email == 'grdlucknow@gmail.com' || Email == 'dhaval2.login@gmail.com') {
+            //if (Email == 'ankitsaxena.hid@govcontractor.in' || Email == 'abhy.maharashtra@gmail.com' || Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'karnatakaabhyproc@gmail.com' || Email == 'sud.abhy.raj@gmail.com' || Email == 'grdlucknow@gmail.com' || Email == 'dhaval2.login@gmail.com') {
+            //    $('.disable_prm_btn').prop('disabled', false);
+            //}
+            //else {
+            //    $('.disable_prm_btn').prop('disabled', true);
+            //}
+
+          
+            if (StateOfficer == 'State Level Nodal Officer') {
                 $('.disable_prm_btn').prop('disabled', false);
             }
             else {
