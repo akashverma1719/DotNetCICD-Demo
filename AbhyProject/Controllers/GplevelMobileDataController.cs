@@ -5779,46 +5779,79 @@ namespace AbhyProject.Controllers
                 dataRow["Status_dymanic"] = "";
                 dt.Rows.Add(dataRow);
             }
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                System.Web.HttpContext.Current.Response.Clear();
-                System.Web.HttpContext.Current.Response.ClearContent();
-                System.Web.HttpContext.Current.Response.ClearHeaders();
-                System.Web.HttpContext.Current.Response.Buffer = true;
-                System.Web.HttpContext.Current.Response.ContentType = "text/csv";
-                System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=Rainfall.csv");
-                System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("windows-1250");
 
-                // Write the CSV header
-                for (int j = 0; j < dt.Columns.Count; j++)
-                {
-                    System.Web.HttpContext.Current.Response.Write("\"" + dt.Columns[j].ToString() + "\"");
-                    if (j < dt.Columns.Count - 1)
-                        System.Web.HttpContext.Current.Response.Write(",");
-                }
-                System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+                //if (dt != null && dt.Rows.Count > 0)
+                //{
+                //    System.Web.HttpContext.Current.Response.Clear();
+                //    System.Web.HttpContext.Current.Response.ClearContent();
+                //    System.Web.HttpContext.Current.Response.ClearHeaders();
+                //    System.Web.HttpContext.Current.Response.Buffer = true;
+                //    System.Web.HttpContext.Current.Response.ContentType = "text/csv";
+                //    System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=Rainfall.csv");
+                //    System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("windows-1250");
 
-                // Write the CSV data
-                foreach (DataRow row in dt.Rows)
+                //    // Write the CSV header
+                //    for (int j = 0; j < dt.Columns.Count; j++)
+                //    {
+                //        System.Web.HttpContext.Current.Response.Write("\"" + dt.Columns[j].ToString() + "\"");
+                //        if (j < dt.Columns.Count - 1)
+                //            System.Web.HttpContext.Current.Response.Write(",");
+                //    }
+                //    System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+
+                //    // Write the CSV data
+                //    foreach (DataRow row in dt.Rows)
+                //    {
+                //        for (int i = 0; i < dt.Columns.Count; i++)
+                //        {
+                //            string fieldValue = row[i].ToString();
+
+                //            // Enclose the field in double quotes and escape existing double quotes
+                //            System.Web.HttpContext.Current.Response.Write("\"" + fieldValue.Replace("\"", "\"\"") + "\"");
+
+                //            if (i < dt.Columns.Count - 1)
+                //                System.Web.HttpContext.Current.Response.Write(",");
+                //        }
+
+                //        System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+                //    }
+                //    System.Web.HttpContext.Current.Response.Flush();
+                //    System.Web.HttpContext.Current.Response.End();
+                //}
+
+
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    for (int i = 0; i < dt.Columns.Count; i++)
+                    using (var workbook = new XLWorkbook())
                     {
-                        string fieldValue = row[i].ToString();
+                        // Ensure the DataTable is not null or empty
+                        int maxRowsPerSheet = 100000;
+                        int sheetCount = (int)Math.Ceiling(dt.Rows.Count / (double)maxRowsPerSheet);
 
-                        // Enclose the field in double quotes and escape existing double quotes
-                        System.Web.HttpContext.Current.Response.Write("\"" + fieldValue.Replace("\"", "\"\"") + "\"");
+                        for (int i = 0; i < sheetCount; i++)
+                        {
+                            var sheetName = $"Sheet{i + 1}";
 
-                        if (i < dt.Columns.Count - 1)
-                            System.Web.HttpContext.Current.Response.Write(",");
+                            // Avoid creating an empty DataTable
+                            var sheetData = dt.AsEnumerable()
+                                              .Skip(i * maxRowsPerSheet)
+                                              .Take(maxRowsPerSheet)
+                                              .CopyToDataTable();
+
+                            workbook.Worksheets.Add(sheetData, sheetName);
+                        }
+
+                        using (var stream = new MemoryStream())
+                        {
+                            workbook.SaveAs(stream);
+                            stream.Position = 0;  // Reset the stream position for reading
+                            var fileBytes = stream.ToArray();
+                            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Raingauge.xlsx");
+                        }
                     }
-
-                    System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
                 }
-                System.Web.HttpContext.Current.Response.Flush();
-                System.Web.HttpContext.Current.Response.End();
-            }
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
 
             }
             catch (Exception Ex)
@@ -5835,8 +5868,6 @@ namespace AbhyProject.Controllers
             var Gram = gp1;
             var year = year1;
             var month = month1;
-
-
 
             List<vw_socialmonitoring> ddetails = AJE.obj_vw_socialmonitoring.ToList();
 
