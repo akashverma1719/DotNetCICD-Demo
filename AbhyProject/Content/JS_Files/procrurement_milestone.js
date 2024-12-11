@@ -2854,6 +2854,9 @@ function Service_Tr_function() {
     if (StateOfficer == 'State Level Nodal Officer') {
         $('.disable_prm_btn').prop('disabled', false);
     }
+    else if (Email == 'pranavman11@gmail.com') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2893,6 +2896,9 @@ function Goods_Tr_function() {
     //}
 
     if (StateOfficer == 'State Level Nodal Officer') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
+    else if (Email == 'pranavman11@gmail.com') {
         $('.disable_prm_btn').prop('disabled', false);
     }
     else {
@@ -2936,6 +2942,9 @@ function Work_Tr_function() {
     if (StateOfficer == 'State Level Nodal Officer') {
         $('.disable_prm_btn').prop('disabled', false);
     }
+    else if (Email == 'pranavman11@gmail.com') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2976,6 +2985,9 @@ function Training_Tr_Function() {
     //}   
   
     if (StateOfficer == 'State Level Nodal Officer') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
+    else if (Email == 'pranavman11@gmail.com') {
         $('.disable_prm_btn').prop('disabled', false);
     }
     else {
