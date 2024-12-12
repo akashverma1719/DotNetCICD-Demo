@@ -9280,7 +9280,7 @@ ${additionalContent}
 
     async function districtChange(feature) {
         try {
-            const distName = feature.graphic.attributes.District_N; // Get the block nameDistrict_N
+            const distName = feature.graphic.attributes.District_N; // Get the block nameDistrict_Nm
             const dtNamec = feature.graphic.attributes.district;
             const stNamec = feature.graphic.attributes.State_Name;
             const stNameP = feature.graphic.attributes.State_Na_1;
