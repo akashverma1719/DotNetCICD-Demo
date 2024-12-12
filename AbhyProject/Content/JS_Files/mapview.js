@@ -1966,7 +1966,7 @@ require([
 
 
     const GPLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/GPLayerupdated/MapServer/0",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -1993,7 +1993,7 @@ require([
         outFields: ["*"],
     });
     const BlockLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BlockNewUpdated/MapServer/0",
         definitionExpression: "state <> 'Delhi_7'",
         labelingInfo: [labelClassB],
         content: blockChange,
@@ -2019,7 +2019,7 @@ require([
     });
 
     const DistrictLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/2",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/DistrictUpdated/MapServer/0",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Districts",
         labelingInfo: [labelClassD],
@@ -2045,7 +2045,7 @@ require([
 
 
     const StateLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/StateUpdated/MapServer/0",
 
         definitionExpression: "State <> 'Delhi_7'",
         title: "States",
@@ -2074,7 +2074,7 @@ require([
 
     //
     const GPLayerse = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/GPLayerupdated/MapServer/0",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2221,7 +2221,7 @@ require([
     var GPDDL = document.querySelector("#Gram"); 
     //State Query
 
-    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/3/query";
+    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/StateUpdated/MapServer/0/query";
     var queryOpts = {
         requestType: "json",
         query: {
@@ -2252,7 +2252,7 @@ require([
     });
 
 
-    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/2/query";
+    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/DistrictUpdated/MapServer/0/query";
     countryDDL.addEventListener("change", function () {
         var stateName = countryDDL.value;
 
@@ -2326,7 +2326,7 @@ require([
             f: "json"
         }
     }
-    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/1/query";
+    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/BlockNewUpdated/MapServer/0/query";
 
     DistrictDDL.addEventListener("change", function () {
         var districtname = DistrictDDL.value;
@@ -2364,8 +2364,8 @@ require([
         var queryOptsB = {
             requestType: "json",
             query: {
-                where: "district  = '" + districtname + "'",
-                outfields: ["block "],
+                where: "district   = '" + districtname + "'",
+                outfields: ["Block_Name"],
                 f: "json"
             }
         }
@@ -2373,7 +2373,7 @@ require([
         GPDDL.innerHTML = `<option value="0"> Select Gram Panchayat </option>`;
         //Getting the features data from the api
         esriRequest(queryUrlB, queryOptsB).then(function (response) {
-            var BlockNames = Array.from(new Set(response.data.features.map(r => r.attributes["block"]))).sort();
+            var BlockNames = Array.from(new Set(response.data.features.map(r => r.attributes["Block_Name"]))).sort();
             // console.log("Block Nameq :" + BlockNames.length);
             BlockNames.forEach((a, i) => {
                 
@@ -2414,7 +2414,7 @@ require([
 
     //GP Query
 
-    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/AdminNewBoundary/MapServer/0/query";
+    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/GPLayerupdated/MapServer/0/query";
     BlockDDL.addEventListener("change", function () {
         var blockname = BlockDDL.value;
         if (blockname === '0') {
@@ -9280,9 +9280,10 @@ ${additionalContent}
 
     async function districtChange(feature) {
         try {
-            const distName = feature.graphic.attributes.district; // Get the block name
-            const dtNamec = feature.graphic.attributes.District_N;
+            const distName = feature.graphic.attributes.District_N; // Get the block nameDistrict_N
+            const dtNamec = feature.graphic.attributes.district;
             const stNamec = feature.graphic.attributes.State_Name;
+            const stNameP = feature.graphic.attributes.State_Na_1;
             const blcou = feature.graphic.attributes.Block_Coun;
             const gpnum = feature.graphic.attributes.GPs_Count;
 
@@ -9373,7 +9374,7 @@ ${additionalContent}
     <div>
        
         <strong>Blocks Covered Under Atal Jal (In Numbers)-</strong> ${blcou}<br>
-        <strong>State Name-:</strong> ${stNamec}<br>
+        <strong>State Name-:</strong> ${stNameP}<br>
         <strong>Gram Panchayats Covered Under Atal Jal (In Numbers)-:</strong> ${gpnum}<br>
        
     </div>
@@ -9669,16 +9670,18 @@ ${additionalContent}
 
 
     BlockLayer.popupTemplate = {
-        title: "Block:- {Block_Name}",
+        title: "Block:- {Block_Na_1}",
         content: blockChange
     };
 
     async function blockChange(feature) {
         try {
-            const blockName = feature.graphic.attributes.block; // Get the block name
-            const blNamec = feature.graphic.attributes.Block_Name;
+            const blockName = feature.graphic.attributes.Block_Name; // Get the block name block
+            const blNamec = feature.graphic.attributes.block;
             const dtName = feature.graphic.attributes.District_N;
             const statName = feature.graphic.attributes.State_Name;
+            const statNameP = feature.graphic.attributes.State_Na_1;
+                     
             const blhe = feature.graphic.attributes.Block_Area;
             const gws = feature.graphic.attributes.GWS;
             const gpa = feature.graphic.attributes.gps;
@@ -9789,7 +9792,7 @@ ${additionalContent}
             const additionalContent = `
     <div>
         <strong>District Name:</strong> ${dtName}<br>
-        <strong>State Name:</strong> ${statName}<br>
+        <strong>State Name:</strong> ${statNameP}<br>
         <strong>Block Area (in ha):</strong> ${blhe}<br>
         <strong>Ground Water Situation (Block Level) As per GWRA (CGWB 2023)-:</strong> ${gws}<br>
         <strong>Gram Panchayats Covered Under Atal Jal (In Numbers)-:</strong> ${gpa}<br>
