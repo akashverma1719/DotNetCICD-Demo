@@ -289,6 +289,7 @@
                     <div class="col-md-12 bg-light btn_hide" style="text-align:right; width:100%; padding:0;">
                         <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_Table()"> Export To Excel</i></div>
                         <input type="button" id="dli_report_excel" onclick="tableToExcel('DliTable' , 'DLI_Data', 'DLI_Data.xls')" hidden />
+                        <input type="button" id="dli_report_excel2" onclick="tableToExcel('DliTable2' , 'DLI_Data', 'DLI_Data.xls')" hidden />
 
                     </div>
 
@@ -386,7 +387,7 @@
                 </table>
             </div>
             <div class="tbl-responsive" id="hide_div_DLI" style="overflow-x:scroll;overflow-y:scroll; height:500px; ">
-                <table id="DliTable" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                <table id="DliTable2" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
                     <thead>
                         <tr class="info red">
 
@@ -434,15 +435,15 @@
     });
 
     function Export_Table() {
-        //if (component != 0) {
-        //    for (var i = 0; i < component; i++) {
-        //        var ss = "TRA01" + i;
-        //        $(ss).remove();
-        //    }
-        //}
-
-        $('#dli_report_excel').click();
-        Dli_1_Details();
+        let dli_type = $('#Stype_check').val();
+        if (dli_type == 'DLI1') {
+            $('#dli_report_excel').click();
+            Dli_1_Details();
+        }
+        else {
+            $('#dli_report_excel2').click();
+            Dli_1_Details();
+        }
 
     }
 
@@ -585,7 +586,7 @@
             //data: '{state:' + state_s + ',year:' + year_s + ',type:' + type_s +'}',
             dataType: 'JSON',
             success: function (data) {
-
+                debugger;
                 //for (var i = 0; i < data.length; i++) {
                 //    html += '<tr><td><label id="srNo" rowId = ' + data[i].Id + '>' + (i + 1) + '</label></td>';
                 //    html += '<td><label id="year">' + data[i].Year + '</label></td>';
@@ -634,7 +635,8 @@
 
                                 '<td> <button type="button" class="btn btn-primary" onclick="Update_AWP1(' + data[i].Id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger " type="button" onclick="cancelcomp_A_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
 
-                        } else {
+                        }
+                        else {
                             tr1 += '<tr id="AWP1_TR_Meeting' + i + '"><td>' + (parseInt(i) + 1) + '</td><td>' + data[i].State + '</td><td>' + data[i].Year + '</td><td>' + data[i].Type + '</td><td>' + data[i].Target + '</td>';
                             tr1 += '<td>' + data[i].Achievement + '</td> <td><button class="btn btn-primary disable_btn" onclick="editrowcomp_A_Good2(' + i + ')" disabled> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger disable_btn" onclick="Delete_SocMan(' + data[i].Id + ')" disabled><i class="fa fa-trash"></i></button></td>' +
                                 '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td>' + (i + 1) + '</td>' +
