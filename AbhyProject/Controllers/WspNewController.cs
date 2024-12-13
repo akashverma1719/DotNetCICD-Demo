@@ -3842,7 +3842,7 @@ namespace AbhyProject.Controllers
             {
                 if (Session["Forget_PWD_Captcha"].ToString() != Data.clientcaptcha)
                 {
-                    Session["ForgetError"] = "Your Captcha  is Not Matched";
+                    Session["ForgetError"] = "Your Captcha is Not Matched";
                     var Error_data = new abhy_tbl_error();
                     Error_data.date_time = DateTime.Now.ToString();
                     Error_data.error_test = "Captcha is not Matched";
@@ -3969,11 +3969,12 @@ namespace AbhyProject.Controllers
                 sb.Append("</table>");
                 string results1 = WebConstents.SendEmailSMTP(Email, "", Mail_Subject, sb.ToString(), "");
 
-                Session["ForgetError"] = "Please Check Your Mail";
+                //Session["ForgetError"] = "Please Check Your Mail";
+                Session["ForgetError"] = "Please check your mail inbox to change your password";
                 //Session["FCode"] = Code;
                 var Error_data = new abhy_tbl_error();
                 Error_data.date_time = DateTime.Now.ToString();
-                Error_data.error_test = "Please Check Your Mail";
+                Error_data.error_test = "Please check your mail inbox to change your password";
                 Error_data.ipaddress = ipAddress1;
                 Error_data.user_email = Email;
                 Error_data.error_count = "1";
@@ -6112,6 +6113,461 @@ namespace AbhyProject.Controllers
             }
         }
 
+        public ActionResult all_report_excel(string StateName, string Dist, string Block, string Gram, string nodal, string year, string month, string date)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    List<vw_loginboth> dd = new List<vw_loginboth>();
+                    List<vw_loginboth_full> dd_full = new List<vw_loginboth_full>();
+                    if (nodal == "All")
+                    {
+                        if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "National Level Nodal Officer")
+                    {
+                        if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "State Level Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "District Level Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "Block Level Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "Gram Panchyat Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.GramPanchayatName == Gram && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+
+                    if (dd_full.Count != 0)
+                    {
+                        using (var workbook = new XLWorkbook())
+                        {
+
+                            var worksheet = workbook.Worksheets.Add("Login-Logout Information");
+                            var currentRow = 1;
+                            worksheet.Cell(currentRow, 1).Value = "Nodal Officer";
+                            worksheet.Cell(currentRow, 2).Value = "Email";
+                            worksheet.Cell(currentRow, 3).Value = "State Name";
+                            worksheet.Cell(currentRow, 4).Value = "District Name";
+                            worksheet.Cell(currentRow, 5).Value = "Block Name";
+                            worksheet.Cell(currentRow, 6).Value = "GramPanchayat Name";
+                            worksheet.Cell(currentRow, 7).Value = "User Name";
+                            worksheet.Cell(currentRow, 8).Value = "Log In / Log Out";
+                            worksheet.Cell(currentRow, 9).Value = "Date";
+                            worksheet.Cell(currentRow, 10).Value = "Action Time";
+
+                            if (dd_full.Count != 0)
+                            {
+
+
+                                foreach (var user in dd_full)
+                                {
+                                    currentRow++;
+
+                                    worksheet.Cell(currentRow, 1).Value = user.NodalOfficer;
+                                    worksheet.Cell(currentRow, 2).Value = user.email;
+                                    worksheet.Cell(currentRow, 3).Value = user.StateName;
+                                    worksheet.Cell(currentRow, 4).Value = user.DistrictName;
+                                    worksheet.Cell(currentRow, 5).Value = user.BlockName;
+                                    worksheet.Cell(currentRow, 6).Value = user.GramPanchayatName;
+                                    worksheet.Cell(currentRow, 7).Value = user.name;
+                                    worksheet.Cell(currentRow, 8).Value = user.loginlogout;
+                                    worksheet.Cell(currentRow, 9).Value = user.datetime;
+                                    worksheet.Cell(currentRow, 10).Value = user.ActionTime;
+
+                                }
+                            }
+                            else
+                            {
+                                currentRow++;
+                                worksheet.Cell(currentRow, 1).Value = "";
+                                worksheet.Cell(currentRow, 2).Value = "";
+                                worksheet.Cell(currentRow, 3).Value = "No Data";
+                                worksheet.Cell(currentRow, 4).Value = "";
+                                worksheet.Cell(currentRow, 5).Value = "";
+                                worksheet.Cell(currentRow, 6).Value = "";
+
+                            }
+                            using (var stream = new MemoryStream())
+                            {
+                                workbook.SaveAs(stream);
+                                var content = stream.ToArray();
+
+                                return File(
+                                    content,
+                                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    "Login-Logout Information.csv");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (var workbook = new XLWorkbook())
+                        {
+
+                            var worksheet = workbook.Worksheets.Add("Login-Logout Information");
+                            var currentRow = 1;
+                            worksheet.Cell(currentRow, 1).Value = "Nodal Officer";
+                            worksheet.Cell(currentRow, 2).Value = "Email";
+                            worksheet.Cell(currentRow, 3).Value = "State Name";
+                            worksheet.Cell(currentRow, 4).Value = "District Name";
+                            worksheet.Cell(currentRow, 5).Value = "Block Name";
+                            worksheet.Cell(currentRow, 6).Value = "GramPanchayat Name";
+                            worksheet.Cell(currentRow, 7).Value = "User Name";
+                            worksheet.Cell(currentRow, 8).Value = "Date";
+                            worksheet.Cell(currentRow, 9).Value = "Log In Count";
+                            worksheet.Cell(currentRow, 10).Value = "Log Out Count";
+                            worksheet.Cell(currentRow, 11).Value = "Duration";
+                            worksheet.Cell(currentRow, 12).Value = "Action Time";
+
+                            if (dd.Count != 0)
+                            {
+
+
+                                foreach (var user in dd)
+                                {
+                                    currentRow++;
+
+                                    worksheet.Cell(currentRow, 1).Value = user.NodalOfficer;
+                                    worksheet.Cell(currentRow, 2).Value = user.email;
+                                    worksheet.Cell(currentRow, 3).Value = user.StateName;
+                                    worksheet.Cell(currentRow, 4).Value = user.DistrictName;
+                                    worksheet.Cell(currentRow, 5).Value = user.BlockName;
+                                    worksheet.Cell(currentRow, 6).Value = user.GramPanchayatName;
+                                    worksheet.Cell(currentRow, 7).Value = user.name;
+                                    worksheet.Cell(currentRow, 8).Value = user.date;
+                                    worksheet.Cell(currentRow, 9).Value = user.login_count;
+                                    worksheet.Cell(currentRow, 10).Value = user.logout_count;
+                                    worksheet.Cell(currentRow, 11).Value = user.total_duration;
+                                    worksheet.Cell(currentRow, 12).Value = user.ActionTime;
+
+                                }
+                            }
+                            else
+                            {
+                                currentRow++;
+                                worksheet.Cell(currentRow, 1).Value = "";
+                                worksheet.Cell(currentRow, 2).Value = "";
+                                worksheet.Cell(currentRow, 3).Value = "No Data";
+                                worksheet.Cell(currentRow, 4).Value = "";
+                                worksheet.Cell(currentRow, 5).Value = "";
+                                worksheet.Cell(currentRow, 6).Value = "";
+
+                            }
+                            using (var stream = new MemoryStream())
+                            {
+                                workbook.SaveAs(stream);
+                                var content = stream.ToArray();
+
+                                return File(
+                                    content,
+                                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    "Login-Logout Information.csv");
+                            }
+                        }
+                    }
+                }
+
+                catch (Exception Ex)
+                {
+                    abhy_tbl_error error_data = new abhy_tbl_error();
+                    error_data.error_test = Ex.Message;
+                    error_data.user_email = Ex.StackTrace;
+                    error_data.user_type = "Mis Login";
+                    error_data.error_count = "1";
+                    ABE.obj_abhy_tbl_error.Add(error_data);
+                    ABE.SaveChanges();
+                    return Json("error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         public ActionResult all_report(string StateName, string Dist, string Block, string Gram, string nodal, string year, string month, string date)
         {
@@ -6422,7 +6878,364 @@ namespace AbhyProject.Controllers
                         }
                     }
 
-                    if (date != "0")
+                    if (dd_full.Count != 0)
+                    {
+                        var exetotal = dd_full.Count;
+
+                        var Totalpages = Math.Ceiling(exetotal / 200.0);
+                        var jsonresult = Json(exetotal + "," + Totalpages, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+
+                        //var jsonResult = Json(dd_full, JsonRequestBehavior.AllowGet);
+                        //jsonResult.MaxJsonLength = int.MaxValue;
+                        //return jsonResult;
+                    }
+                    else
+                    {
+                        var exetotal = dd.Count;
+
+                        var Totalpages = Math.Ceiling(exetotal / 200.0);
+                        var jsonresult = Json(exetotal + "," + Totalpages, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+
+                        //var jsonResult = Json(dd, JsonRequestBehavior.AllowGet);
+                        //jsonResult.MaxJsonLength = int.MaxValue;
+                        //return jsonResult;
+                    }
+                }
+
+                catch (Exception Ex)
+                {
+                    abhy_tbl_error error_data = new abhy_tbl_error();
+                    error_data.error_test = Ex.Message;
+                    error_data.user_email = Ex.StackTrace;
+                    error_data.user_type = "Mis Login";
+                    error_data.error_count = "1";
+                    ABE.obj_abhy_tbl_error.Add(error_data);
+                    ABE.SaveChanges();
+                    return Json("error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+        [HttpPost]
+        public ActionResult all_report_data(string StateName, string Dist, string Block, string Gram, string nodal, string year, string month, string date, int PageNumber)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    int recordsToSkip = (PageNumber - 1) * 200;
+                    List<vw_loginboth> dd = new List<vw_loginboth>();
+                    List<vw_loginboth_full> dd_full = new List<vw_loginboth_full>();
+                    if (nodal == "All")
+                    {
+                        if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "National Level Nodal Officer")
+                    {
+                        if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "State Level Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "District Level Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.id).ThenByDescending(x => x.email).ThenByDescending(x => x.loginlogout).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "Block Level Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+                    else if (nodal == "Gram Panchyat Nodal Officer")
+                    {
+                        if (StateName == "0" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.GramPanchayatName == Gram && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.GramPanchayatName == Gram).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.BlockName == Block && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && Dist != "0" && Dist != "" && Dist != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.DistrictName == Dist && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null && date != "0" && date != "" && date != null)
+                        {
+                            dd_full = ABE.obj_vw_loginboth_full.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month && x.day == date).OrderByDescending(x => x.datetime).ThenByDescending(x => x.id).ThenByDescending(x => x.email).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year && x.month == month).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal && x.year == year).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else if (StateName != "0" && StateName != "" && StateName != null)
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.StateName == StateName && x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                        else
+                        {
+                            dd = ABE.obj_vw_loginboth.Where(x => x.NodalOfficer == nodal).OrderByDescending(x => x.date).ThenByDescending(x => x.email).ThenByDescending(x => x.id).Skip(recordsToSkip).Take(200).ToList();
+                            //dd.Add(data);
+                        }
+                    }
+
+                    if (dd_full.Count != 0)
                     {
                         var jsonResult = Json(dd_full, JsonRequestBehavior.AllowGet);
                         jsonResult.MaxJsonLength = int.MaxValue;
@@ -6453,6 +7266,8 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
+
+
 
         [HttpGet]
         public ActionResult report_declaration_details()
@@ -6509,16 +7324,105 @@ namespace AbhyProject.Controllers
             {
                 var user = ABE.objUsers.Where(x => x.UserId == intUserID && x.UserToken == stToken).FirstOrDefault();
                 if (user != null)
-                {   
+                {
                     status = true;
                 }
                 else
                 {
                     status = false;
                 }
-            }
+            }  
             return status;
         }
+
+
+
+
+
+        // public bool CheckCurrentStatus()
+        //{
+
+        //             string email = Convert.ToString(HttpContext.Session["Email"]);
+        //             // Fetch current page URL and date-time from the session
+        //             string currentPage = Convert.ToString(HttpContext.Session["LastAccessedPage"]);
+        //             DateTime currentTime = Convert.ToDateTime(HttpContext.Session["DateTime"]);
+
+        //             // Retrieve the `login_datetime` record for the user using email
+
+        //             string currentTimeString = currentTime.ToString("yyyy-MM-dd"); // Format based on your database date format
+
+        //             var userlog = ABE.obj_login_datetime
+        //                 .Where(x => x.email == email && x.date == currentTimeString)
+        //                 .OrderByDescending(x => x.id)
+        //                 .FirstOrDefault();
+
+        //             if (userlog != null)
+        //             {
+        //                 // Update existing record
+        //                 userlog.ActionTime = currentTime;
+        //                 userlog.PageUrl = currentPage;
+
+        //                 // Mark entity as modified
+        //                 ABE.Entry(userlog).State = EntityState.Modified;
+        //             }
+
+        //             ABE.SaveChanges();
+        //     return true;
+
+        // }
+
+
+        [HttpPost]
+        [Route("WspNew/UpdatePageLog")]
+        public JsonResult UpdatePageLog(DateTime dateTime, string pageName)
+        {
+            try
+            {
+                string email = Convert.ToString(HttpContext.Session["Email"]);
+
+                // Use the passed parameters
+                string currentPage = pageName;
+                DateTime currentTime = dateTime;
+
+                // Format the date for comparison (if needed for string matching in DB)
+                string currentDateString = currentTime.ToString("yyyy-MM-dd");
+
+                // Find the existing record
+                var userLog = ABE.obj_login_datetime
+                    .Where(x => x.email == email && x.date == currentDateString)
+                    .OrderByDescending(x => x.id)
+                    .FirstOrDefault();
+
+                if (userLog != null)
+                {
+                    // Update the record
+                    userLog.ActionTime = currentTime;
+                    userLog.PageUrl = currentPage;
+                    ABE.Entry(userLog).State = EntityState.Modified;
+                }
+                //else
+                //{
+                //    // Create a new record if not found
+                //    var newLog = new login_datetime
+                //    {
+                //        email = email,
+                //        ActionTime = currentTime,
+                //        PageUrl = currentPage,
+                //        date = currentTime.ToString("yyyy-MM-dd")
+                //    };
+                //    ABE.obj_login_datetime.Add(newLog);
+                //}
+
+                ABE.SaveChanges();
+
+                return Json(new { success = true, message = "Page log updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
 
         public string Log_Information(string Action_performed, string Status)
         {

@@ -1388,6 +1388,9 @@
                 }
             }
             $("#dist11").append(optionDist);
+            Dist = "0";
+            Block = "0";
+            Gram = "0";
         }
 
     }
@@ -1503,7 +1506,8 @@
                 }
             }
             $("#block1").append(optionDist);
-
+            Block = "0";
+            Gram = "0";
         }
     }
     function Block_fun() {
@@ -1548,6 +1552,7 @@
                 }
             }
             $("#gram").append(optionDist);
+            Gram = "0";
         }
     }
     function Gram_change() {
@@ -1630,7 +1635,13 @@
     function state_data() {
 
         $(".loader").show();
-        var StateName = $("#spnstate").val();
+        //var StateName = State; 
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
         var year = $("#year").val();
         var month = $('#month').val();
 
@@ -1893,8 +1904,14 @@
     function district_data() {
 
         $(".loader").show();
-        var StateName = $("#spnstate").val();
-        var distName = $("#dist11").val();
+        //var StateName = State;
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
+        var distName = Dist;
         var year = $("#year").val();
         var month = $('#month').val();
 
@@ -2227,9 +2244,9 @@
     function block_data() {
 
         $(".loader").show();
-        var StateName = $("#spnstate").val();
-        var distName = $("#dist11").val();
-        var blockName = $("#block1").val();
+        var StateName = State;
+        var distName = Dist;
+        var blockName = Block;
         var year = $("#year").val();
         var month = $('#month').val();
 
@@ -2335,13 +2352,17 @@
     var close_length = 0;
     var click_button = 0;
     function totalexe() {
-
         $('.loader').show();
-        
-        var StateName = $("#spnstate").val();
-        var distName = $("#dist11").val();
-        var blockName = $("#block1").val();
-        var gpname = $("#gram").val();
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
+       
+        var distName = Dist;
+        var blockName = Block;
+        var gpname = Gram;
         var year = $("#year").val();
         var month = $('#month').val();
         $.ajax({
@@ -2399,10 +2420,16 @@
     function gp_data() {
 
         $(".loader").show();
-        var StateName = $("#spnstate").val();
-        var distName = $("#dist11").val();
-        var blockName = $("#block1").val();
-        var gpname = $("#gram").val();
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
+
+        var distName = Dist;
+        var blockName = Block;
+        var gpname = Gram;
         var year = $("#year").val();
         var month = $('#month').val();
 
@@ -2550,7 +2577,7 @@
 
     }
     function gp_data_next() {
-        debugger;
+       
         $(".loader").show();
         click_button = 0;
         PageNumber++;
@@ -2566,10 +2593,15 @@
         else {
             $('#btnnextexe').show();
         }
-        var StateName = $("#spnstate").val();
-        var distName = $("#dist11").val();
-        var blockName = $("#block1").val();
-        var gpname = $("#gram").val();
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
+        var distName = Dist;
+        var blockName = Block;
+        var gpname = Gram;
         var year = $("#year").val();
         var month = $('#month').val();
 
@@ -2715,7 +2747,7 @@
 
     }
     function gp_data_pre() {
-        debugger;
+       
         $(".loader").show();
         click_button = 0;
         PageNumber--;
@@ -2731,10 +2763,15 @@
         else {
             $('#btnnextexe').show();
         }
-        var StateName = $("#spnstate").val();
-        var distName = $("#dist11").val();
-        var blockName = $("#block1").val();
-        var gpname = $("#gram").val();
+        if (State == '0') {
+            var StateName = $("#spnstate").val();
+        }
+        else {
+            var StateName = State;
+        }
+        var distName = Dist;
+        var blockName = Block;
+        var gpname = Gram;
         var year = $("#year").val();
         var month = $('#month').val();
 
@@ -2904,7 +2941,7 @@
         block_data();
     }
     function Export_d_Table() {
-        var StateName = $("#spnstate").val();
+        var StateName = State;
         var year = $("#year").val();
         var month = $('#month').val();
         var level = $('#ddllevel').val();

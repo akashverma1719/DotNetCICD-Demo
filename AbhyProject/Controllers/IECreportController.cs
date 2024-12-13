@@ -1402,22 +1402,22 @@ namespace AbhyProject.Controllers
                         {
                             if (Month != 0)
                             {
-                                data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month).OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                         }
                         else
                         {
                             if (Year != "0" && Year != "" && Year != null && Month != 0)
                             {
-                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month).OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                             else if (Year != "0" && Year != "" && Year != null)
                             {
-                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year).OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                             else
                             {
-                                data = ABE.obj_vw_iec_report.OrderBy(c => c.id).ToList();
+                                data = ABE.obj_vw_iec_report.Where(x => x.state_name != "Delhi_7").OrderBy(c => c.id).ToList();
                             }
                         }
                     }
@@ -1548,22 +1548,22 @@ namespace AbhyProject.Controllers
                     {
                         if (Month != 0)
                         {
-                            data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                     }
                     else
                     {
                         if (Year != "0" && Year != "" && Year != null && Month != 0)
                         {
-                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == Month && x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                         else if (Year != "0" && Year != "" && Year != null)
                         {
-                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year).OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                         else
                         {
-                            data = ABE.obj_vw_iec_report.OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
+                            data = ABE.obj_vw_iec_report.Where(x => x.state_name != "Delhi_7").OrderBy(c => c.id).Skip(recordsToSkip).Take(200).ToList();
                         }
                     }
                 }
@@ -2097,8 +2097,10 @@ namespace AbhyProject.Controllers
                         }
                         if (activity == "No. of Awareness meetings conducted")
                         {
+                            
                             if (sub_activity == "Publicity meetings")
                             {
+                                
                                 e_Publicity += Convert.ToInt32(number);
                             }
 
@@ -2271,7 +2273,7 @@ namespace AbhyProject.Controllers
                                 {
                                     bh_Fair += Convert.ToInt32(number);
                                 }
-                                if (sub_activity == "Seminars ")
+                                if (sub_activity == "Seminars")
                                 {
                                     bh_Seminars += Convert.ToInt32(number);
                                 }
@@ -2298,7 +2300,7 @@ namespace AbhyProject.Controllers
                     data.c_Twitter = c_Twitter;
                     data.c_YouTube = c_YouTube;
                     data.c_Instagram = c_Instagram;
-                    data.c_Others = a_total;
+                    data.c_Others = c_Others;
                     data.d_Others = d_Others;
                     data.d_Audio = d_Audio;
                     data.d_Video = d_Video;
@@ -2323,7 +2325,7 @@ namespace AbhyProject.Controllers
                     data.bc_Twitter = bc_Twitter;
                     data.bc_YouTube = bc_YouTube;
                     data.bc_Instagram = bc_Instagram;
-                    data.bc_Others = b_total;
+                    data.bc_Others = bc_Others;
                     data.bd_Others = bd_Others;
                     data.bd_Audio = bd_Audio;
                     data.bd_Video = bd_Video;
@@ -2331,9 +2333,9 @@ namespace AbhyProject.Controllers
                     data.bf_Road = bf_Road;
                     data.bf_Street = bf_Street;
                     data.bg_HHS = bg_HHS;
-                    data.bh_Exhibitions = h_Exhibitions;
-                    data.bh_Fair = h_Fair;
-                    data.bh_Seminars = h_Seminars;
+                    data.bh_Exhibitions = bh_Exhibitions;
+                    data.bh_Fair = bh_Fair;
+                    data.bh_Seminars = bh_Seminars;
                     data.activity_other = other_activity;
                     all_data.Add(data);
                 }

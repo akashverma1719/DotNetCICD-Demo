@@ -845,6 +845,10 @@
 
                 $('#tbldata').html(Tbodyhtml);
                 for (var i = 0; i < data.length; i++) {
+                    var dateString = data[i].datetime;
+                    var timestamp = dateString.replace("/Date(", "").replace(")/", "");
+                    var date = new Date(parseInt(timestamp));
+                    var formattedDate = date.toLocaleString();
                     Tbodyhtml += '<tr id="AWP1_TR_well' + i + '"><td id="srNo">' + (1+i) + '</td>';
                     Tbodyhtml += '<td id="vill">' + data[i].state + '</td>';
                     Tbodyhtml += '<td id="vill">' + data[i].district + '</td>';
@@ -854,7 +858,7 @@
                     Tbodyhtml += '<td id="longi1">' + data[i].longitude + '</td>';
                     Tbodyhtml += '<td id="dat1">' + data[i].Well_ID + '</td>';
                     Tbodyhtml += '<td id="wno1">' + data[i].type + '</td>';
-                    Tbodyhtml += '<td id="vill">' + data[i].date + '</td>';
+                    Tbodyhtml += '<td id="vill">' + formattedDate + '</td>';
                     Tbodyhtml += '<td id="vill">' + data[i].datatypecode + '</td>';
                     Tbodyhtml += '<td id="vill">' + data[i].datavalue + '</td></tr >';
 

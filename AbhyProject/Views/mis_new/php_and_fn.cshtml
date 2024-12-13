@@ -401,9 +401,11 @@
 
         if (select_month_num == mm && select_Year == fiscalyear) {
             $('#Save_B_Form_Info').prop('disabled', false);
-        } else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
+        }
+        else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
             $('#Save_B_Form_Info').prop('disabled', false);
-        } else {
+        }
+        else {
             $('#Save_B_Form_Info').prop('disabled', true);
             if (select_Year == "2023-24" && select_month_num == "3") {
                 if ("20240406" <= formattedDateaa) {
@@ -417,7 +419,23 @@
 
             }
         }
-       
+
+        if ("20241126" == formattedDateaa) {
+            if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in') {
+                if (select_Year == "2024-25") {
+                    if (select_month_num != 0 && select_month_num != 12) {
+                        $('#Save_B_Form_Info').prop('disabled', false);
+                    }
+                    else {
+                        $('#Save_B_Form_Info').prop('disabled', true);
+                    }
+                }
+                else {
+                    $('#Save_B_Form_Info').prop('disabled', true);
+                }
+
+            }
+        }
 
         if (mm == 1) {
             mn = 13;

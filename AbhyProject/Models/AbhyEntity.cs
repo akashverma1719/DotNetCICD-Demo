@@ -145,6 +145,7 @@ namespace AbhyProject.Models
         public virtual DbSet<vw_abhy_feedback_latest> obj_vw_abhy_feedback_latest { get; set; }
         //new regs training and workshops
         public virtual DbSet<abhy_training_newregs> obj_abhy_training_newregs { get; set; }
+        public virtual DbSet<vw_abhy_training_newregs_approved> obj_vw_abhy_training_newregs_approved { get; set; }
         
         public virtual DbSet<reg_traininggp> obj_reg_traininggp { get; set; }
         public virtual DbSet<reg_traininggp_full> obj_reg_traininggp_full { get; set; }

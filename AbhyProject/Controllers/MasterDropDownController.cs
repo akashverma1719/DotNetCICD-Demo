@@ -9946,13 +9946,28 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
-                        {
-                            finaldata.Add(item);
+                        if (year == "2024-25") {
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
                         }
-
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
+                        }
                     }
 
                 }
@@ -10125,11 +10140,28 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
+                        if (year == "2024-25")
                         {
-                            finaldata.Add(item);
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
                         }
                     }
 
@@ -10286,13 +10318,31 @@ namespace AbhyProject.Controllers
                         foreach (var item in ddetails)
                         {
                             DateTime currentDatenn = DateTime.Now.Date;
+                            DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                             DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                            if (currentDatenn <= highest_date)
+                            if (year == "2024-25")
                             {
-                                finaldata.Add(item);
+                                if (currentDatennasa > currentDatenn)
+                                {
+                                    finaldata.Add(item);
+                                }
+                                else
+                                {
+                                    if (currentDatenn <= highest_date)
+                                    {
+                                        finaldata.Add(item);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
                             }
                         }
+
 
                     }
 
@@ -10445,14 +10495,31 @@ namespace AbhyProject.Controllers
                         foreach (var item in ddetails)
                         {
                             DateTime currentDatenn = DateTime.Now.Date;
+                            DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                             DateTime highest_date = Convert.ToDateTime(item.highest_date);
-                            DateTime from_date = Convert.ToDateTime(item.from_date);
-
-                            if (currentDatenn <= highest_date)
+                            if (year == "2024-25")
                             {
-                                finaldata.Add(item);
+                                if (currentDatennasa > currentDatenn)
+                                {
+                                    finaldata.Add(item);
+                                }
+                                else
+                                {
+                                    if (currentDatenn <= highest_date)
+                                    {
+                                        finaldata.Add(item);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
                             }
                         }
+
 
                     }
 
@@ -10628,13 +10695,31 @@ namespace AbhyProject.Controllers
                         foreach (var item in ddetails)
                         {
                             DateTime currentDatenn = DateTime.Now.Date;
+                            DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                             DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                            if (currentDatenn <= highest_date)
+                            if (year == "2024-25")
                             {
-                                finaldata.Add(item);
+                                if (currentDatennasa > currentDatenn)
+                                {
+                                    finaldata.Add(item);
+                                }
+                                else
+                                {
+                                    if (currentDatenn <= highest_date)
+                                    {
+                                        finaldata.Add(item);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
                             }
                         }
+
 
                     }
 
@@ -10781,13 +10866,31 @@ namespace AbhyProject.Controllers
                         foreach (var item in ddetails)
                         {
                             DateTime currentDatenn = DateTime.Now.Date;
+                            DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                             DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                            if (currentDatenn <= highest_date)
+                            if (year == "2024-25")
                             {
-                                finaldata.Add(item);
+                                if (currentDatennasa > currentDatenn)
+                                {
+                                    finaldata.Add(item);
+                                }
+                                else
+                                {
+                                    if (currentDatenn <= highest_date)
+                                    {
+                                        finaldata.Add(item);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
                             }
                         }
+
 
                     }
 
@@ -10948,11 +11051,28 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
+                        if (year == "2024-25")
                         {
-                            finaldata.Add(item);
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
                         }
                     }
 
@@ -11127,13 +11247,31 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
+                        if (year == "2024-25")
                         {
-                            finaldata.Add(item);
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
                         }
                     }
+
 
                 }
 
@@ -11288,13 +11426,31 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
+                        if (year == "2024-25")
                         {
-                            finaldata.Add(item);
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
                         }
                     }
+
 
                 }
 
@@ -11467,13 +11623,31 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
+                        if (year == "2024-25")
                         {
-                            finaldata.Add(item);
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
                         }
                     }
+
 
                 }
 
@@ -11629,13 +11803,31 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
+                        if (year == "2024-25")
                         {
-                            finaldata.Add(item);
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
                         }
                     }
+
 
                 }
 
@@ -11808,14 +12000,31 @@ namespace AbhyProject.Controllers
                     foreach (var item in ddetails)
                     {
                         DateTime currentDatenn = DateTime.Now.Date;
+                        DateTime currentDatennasa = Convert.ToDateTime("2024-12-06");
                         DateTime highest_date = Convert.ToDateTime(item.highest_date);
-
-                        if (currentDatenn <= highest_date)
+                        if (year == "2024-25")
                         {
-
-                            finaldata.Add(item);
+                            if (currentDatennasa > currentDatenn)
+                            {
+                                finaldata.Add(item);
+                            }
+                            else
+                            {
+                                if (currentDatenn <= highest_date)
+                                {
+                                    finaldata.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (currentDatenn <= highest_date)
+                            {
+                                finaldata.Add(item);
+                            }
                         }
                     }
+
 
                 }
 
@@ -27115,10 +27324,11 @@ namespace AbhyProject.Controllers
             {
                 DateTime currentDate = DateTime.Now;
                 DateTime fixedDate = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day);
+                DateTime close10dys = new DateTime(currentDate.Year, 12, 06);
 
                 var ddetails = ABE.obj_vw_current_events.Where(x => x.id == id).OrderByDescending(x => x.id).ToList();
                 DateTime registration = Convert.ToDateTime(ddetails[0].reg_close_date).AddDays(3);
-                if (fixedDate <= registration)
+                if (close10dys > fixedDate)
                 {
                     if (ddetails[0].approve_status == "" || ddetails[0].approve_status == null || ddetails[0].approve_status == "Reject by SPMU" || ddetails[0].approve_status == "Reject by DPMU" || ddetails[0].approve_status == "Reject")
                     {
@@ -27131,9 +27341,23 @@ namespace AbhyProject.Controllers
                 }
                 else
                 {
-                    return Json("This training session has concluded. Registration is now closed. Thank you for your Interest", JsonRequestBehavior.AllowGet);
+                    if (fixedDate <= registration)
+                    {
+                        if (ddetails[0].approve_status == "" || ddetails[0].approve_status == null || ddetails[0].approve_status == "Reject by SPMU" || ddetails[0].approve_status == "Reject by DPMU" || ddetails[0].approve_status == "Reject")
+                        {
+                            return Json(ddetails, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            return Json("This training session has concluded. Registration is now closed. Thank you for your Interest", JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                    else
+                    {
+                        return Json("This training session has concluded. Registration is now closed. Thank you for your Interest", JsonRequestBehavior.AllowGet);
+                    }
                 }
-
+           
             }
             catch (Exception Ex)
             {
@@ -28866,10 +29090,18 @@ namespace AbhyProject.Controllers
                         var Data1 = ABE.obj_abhy_training_newregs.Where(x => x.id == SocID).SingleOrDefault();
                         if (Data1 != null)
                         {
-
+                            var registration = Data1.registration_no;
+                            var Data2 = ABE.obj_vw_abhy_feedback_latest.Where(x => x.registration_no == registration).SingleOrDefault();
+                            if (Data2 != null)
+                            {
+                                return Json("First Delete Feedback");
+                            }
+                            else
+                            {
                             ABE.Entry(Data1).State = EntityState.Deleted;
                             ABE.SaveChanges();
                             return Json("Deleted Successfully");
+                        }
                         }
                         else
                         {
@@ -28891,7 +29123,6 @@ namespace AbhyProject.Controllers
             {
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
-
         }
         [HttpPost]
         public ActionResult Delete_feed(string Data)
@@ -29842,25 +30073,25 @@ namespace AbhyProject.Controllers
                     }
 
 
-                    List<abhy_training_newregs> ddetails1 = new List<abhy_training_newregs>();
+                    List<vw_abhy_training_newregs_approved> ddetails1 = new List<vw_abhy_training_newregs_approved>();
 
 
                     if (officer == "Admin" || officer == "National Level Nodal Officer")
                     {
-                        ddetails1 = ABE.obj_abhy_training_newregs.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == NPMU).OrderByDescending(x => x.id).ToList();//total list
+                        ddetails1 = ABE.obj_vw_abhy_training_newregs_approved.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == NPMU).OrderByDescending(x => x.id).ToList();//total list
 
                     }
                     else if (officer == "State Level Nodal Officer")
                     {
-                        ddetails1 = ABE.obj_abhy_training_newregs.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == State && x.nodal == "State Level Nodal Officer").OrderByDescending(x => x.id).ToList();
+                        ddetails1 = ABE.obj_vw_abhy_training_newregs_approved.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == State && x.nodal == "State Level Nodal Officer").OrderByDescending(x => x.id).ToList();
                     }
                     else if (officer == "District Level Nodal Officer")
                     {
-                        ddetails1 = ABE.obj_abhy_training_newregs.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == State && x.p_district_name == Dist && x.nodal == "District Level Nodal Officer").OrderByDescending(x => x.id).ToList();
+                        ddetails1 = ABE.obj_vw_abhy_training_newregs_approved.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == State && x.p_district_name == Dist && x.nodal == "District Level Nodal Officer").OrderByDescending(x => x.id).ToList();
                     }
                     else if (officer == "Block Level Nodal Officer")
                     {
-                        ddetails1 = ABE.obj_abhy_training_newregs.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == State && x.p_district_name == Dist && x.p_block_name == Block && x.nodal == "Block Level Nodal Officer").OrderByDescending(x => x.id).ToList();
+                        ddetails1 = ABE.obj_vw_abhy_training_newregs_approved.Where(x => x.unic_key == Topic_OF_EVENT && x.p_state_name == State && x.p_district_name == Dist && x.p_block_name == Block && x.nodal == "Block Level Nodal Officer").OrderByDescending(x => x.id).ToList();
                     }
                     var jsonresult = Json(ddetails1, JsonRequestBehavior.AllowGet);
                     jsonresult.MaxJsonLength = int.MaxValue;

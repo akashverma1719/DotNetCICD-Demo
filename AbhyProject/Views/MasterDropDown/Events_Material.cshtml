@@ -495,6 +495,11 @@
                             }
 
                         </li>
+                        @{
+                            // Retrieve the DateTime session value
+                            var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+                            var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+                        }
                         <li>
                             <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
                         </li>
@@ -520,7 +525,6 @@
             </div>
         </div>
     </header>
-
 
     <div class="ss section1 container-fluid">
         <div class="row">
@@ -659,20 +663,20 @@
                                         <li id="MonthDropdownLabel">
 
                                             @*<select class="form-control" id="month" onchange="Month_change()" disabled>
-                                                <option value="0">Select Month</option>
-                                                <option value="April">April</option>
-                                                <option value="May">May</option>
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                            </select>*@
+                                                    <option value="0">Select Month</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                </select>*@
                                             <select class="form-control" id="month" onchange="">
                                                 <option value="0">Select Month</option>
 
@@ -6790,6 +6794,7 @@
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
             }
+            GetPagelog();
         });
 
         function GetCunCurrentUser() {
@@ -6803,5 +6808,30 @@
                     }
                 }
             });
-        }
+    }
+
+     function GetPagelog() {
+     var dateTime = "@dateTime";
+     var pageName = "@lastAccessedPage"
+    
+     $.ajax({
+         url: '/WspNew/UpdatePageLog',
+         type: 'POST',
+         data: {
+             dateTime: dateTime,
+             pageName: pageName
+         },
+         success: function (response) {
+             if (response.success) {
+                 console.log(response.message);
+             } else {
+                 alert("Error: " + response.message);
+             }
+         },
+         error: function () {
+             alert("Failed to update the log.");
+         }
+     });
+ }
+
 </script>

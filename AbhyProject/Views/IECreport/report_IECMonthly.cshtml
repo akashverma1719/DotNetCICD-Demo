@@ -322,10 +322,16 @@
                             <div class="">
                                 <label style="text-align:center;color:red;" id="Error_"></label>
                                 <ul class="Select_option col-md-12 col-sm-8  text-left">
-                                    @*<li>
-                                            <select class="form-control" id="ddllevel" onclick="levelchange()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
+                                    @*
+                                    <li>
+                                        <select class="form-control" id="ddllevel" onclick="levelchange()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
+
+
+                                   
+
+
                                     <li id="StateLabel">
                                         <label id="lblstate">State:</label>
                                         <span id="spnstate1">@Session["gstate"]</span>
@@ -336,43 +342,49 @@
                                         </select>
                                     </li>
 
-                                    @*<li id="DistLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label id="lbldistrict">District:</label>
-                                            <span id="spndistrict">@Session["gdist"]</span>
-                                        </li>*@
+                                    @*
+                                    <li id="DistLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label id="lbldistrict">District:</label>
+                                        <span id="spndistrict">@Session["gdist"]</span>
+                                    </li>*@
 
-                                    @*<li id="DistDropdownLabel">
+                                    @*
+                                    <li id="DistDropdownLabel">
 
-                                            <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
+                                        <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
 
-                                    @*<li id="BlockLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label>Block:</label>
-                                            <span>@Session["gblock"] </span>
-                                        </li>*@
+                                    @*
+                                    <li id="BlockLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Block:</label>
+                                        <span>@Session["gblock"] </span>
+                                    </li>*@
 
-                                    @*<li id="BlockDropdownLabel">
+                                    @*
+                                    <li id="BlockDropdownLabel">
 
-                                            <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
-                                    @*<li id="GramLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label>Gram panchayat:</label>
-                                            <span>@Session["ggram"]</span>
-                                        </li>*@
+                                        <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
+                                    @*
+                                    <li id="GramLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Gram panchayat:</label>
+                                        <span>@Session["ggram"]</span>
+                                    </li>*@
 
-                                    @*<li id="GramDropdownLabel">
+                                    @*
+                                    <li id="GramDropdownLabel">
 
-                                            <select class="form-control" id="gram" onchange="Gram_change()" style="border-radius:5px;">
-                                            </select>
-                                        </li>*@
+                                        <select class="form-control" id="gram" onchange="Gram_change()" style="border-radius:5px;">
+                                        </select>
+                                    </li>*@
                                     <li>
                                         <label>Year:</label>
-                                        <select class="form-control" id="year"  style="border-radius:5px;">
+                                        <select class="form-control" id="year" style="border-radius:5px;">
                                             <option value="0">Select  Year</option>
                                             <option value="All">All</option>
                                             <option value="2020-21">2020-21</option>
@@ -811,44 +823,44 @@
         $('#excel_c').hide();
         $('#excel_d').hide();
 
-        if (StateOfficer == 'State Level Nodal Officer') {
-            var opgram = '';
-            opgram = '<option value="State Level Nodal Officer">State Level Data</option>';
-            opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
-            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       // if (StateOfficer == 'State Level Nodal Officer') {
+       //     var opgram = '';
+       //     opgram = '<option value="State Level Nodal Officer">State Level Data</option>';
+       //     opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
+       //     opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-            levelchange();
-        }
-       else if (StateOfficer == 'District Level Nodal Officer') {
-            var opgram = '';
-            opgram = '<option value="District Level Nodal Officer">District Level Data</option>';
-            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       //     $("#ddllevel").append(opgram);
+       //     levelchange();
+       // }
+       //else if (StateOfficer == 'District Level Nodal Officer') {
+       //     var opgram = '';
+       //     opgram = '<option value="District Level Nodal Officer">District Level Data</option>';
+       //     opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-            levelchange();
-        }
-       else if (StateOfficer == 'GramPanchayat Level Nodal Officer') {
-            var opgram = '';
-            opgram = '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       //     $("#ddllevel").append(opgram);
+       //     levelchange();
+       // }
+       //else if (StateOfficer == 'GramPanchayat Level Nodal Officer') {
+       //     var opgram = '';
+       //     opgram = '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-            levelchange();
-        }
-        else {
-            var opgram = '';
-            opgram += '<option value="0">Select Level Data</option>';
-            opgram += '<option value="State Level Nodal Officer">State Level Data</option>';
-            opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
-            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+       //     $("#ddllevel").append(opgram);
+       //     levelchange();
+       // }
+       // else {
+       //     var opgram = '';
+       //     opgram += '<option value="0">Select Level Data</option>';
+       //     opgram += '<option value="State Level Nodal Officer">State Level Data</option>';
+       //     opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
+       //     opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
 
-            $("#ddllevel").append(opgram);
-        }
-
+       //     $("#ddllevel").append(opgram);
+       // }
 
 
 
         DropDownInfo();
+        levelchange();
     });
 
     function pagechange() {
@@ -859,97 +871,100 @@
 <script type="text/javascript">
     var check_table = "";
 
-    //function levelchange() {
-    //    var level = $("#ddllevel").val();
-    //    if (level == "State Level Nodal Officer") {
-    //        check_table = 1;
-    //        $('#dist11').hide();
-    //        $('#block1').hide();
-    //        $('#gram').hide();
-    //        $('#state_tt').show();
-    //        $('#district_tt').hide();
-    //        $('#block_tt').hide();
-    //        $('#gp_tt').hide();
-    //        $('#state_tt tbody').html("");
-    //        $('#district_tt tbody').html("");
-    //        $('#block_tt tbody').html("");
-    //        $('#gp_tt tbody').html("");
-    //        $('#excel_a').show();
-    //        $('#excel_b').hide();
-    //        $('#excel_c').hide();
-    //        $('#excel_d').hide();
-    //    }
-    //    else if (level == "District Level Nodal Officer") {
-    //        check_table = 2;
-    //        $('#dist11').show();
-    //        $('#block1').hide();
-    //        $('#gram').hide();
-    //        var dist1 = $("#dist11").val();
-    //        if (dist1 == "0") {
-    //            $('#state_tt').hide();
-    //            $('#district_tt').show();
-    //            $('#block_tt').hide();
-    //            $('#gp_tt').hide();
-    //            $('#state_tt tbody').html("");
-    //            $('#district_tt tbody').html("");
-    //            $('#block_tt tbody').html("");
-    //            $('#gp_tt tbody').html("");
-    //            $('#excel_a').hide();
-    //            $('#excel_b').show();
-    //            $('#excel_c').hide();
-    //            $('#excel_d').hide();
-    //        }
-    //        else {
-    //            $('#state_tt').hide();
-    //            $('#district_tt').show();
-    //            $('#block_tt').hide();
-    //            $('#gp_tt').hide();
-    //            $('#state_tt tbody').html("");
-    //            $('#district_tt tbody').html("");
-    //            $('#block_tt tbody').html("");
-    //            $('#gp_tt tbody').html("");
-    //            $('#excel_a').hide();
-    //            $('#excel_b').show();
-    //            $('#excel_c').hide();
-    //            $('#excel_d').hide();
-    //        }
-    //    }
-    //    else if (level == "GramPanchayat Level Nodal Officer") {
-    //        check_table = 3;
-    //        $('#dist11').show();
-    //        $('#block1').show();
-    //        $('#gram').show();
-    //        $('#gp_tt').show();
-    //        $('#excel_d').show();
-    //        $('#state_tt').hide();
-    //        $('#district_tt').hide();
-    //        $('#block_tt').hide();
-    //        $('#state_tt tbody').html("");
-    //        $('#district_tt tbody').html("");
-    //        $('#block_tt tbody').html("");
-    //        $('#gp_tt tbody').html("");
-    //        $('#excel_a').hide();
-    //        $('#excel_b').hide();
-    //        $('#excel_c').hide();
-    //    }
-    //    else {
-    //        $('#dist11').show();
-    //        $('#block1').show();
-    //        $('#gram').show();
-    //        $('#state_tt').show();
-    //        $('#district_tt').hide();
-    //        $('#block_tt').hide();
-    //        $('#gp_tt').hide();
-    //        $('#state_tt tbody').html("");
-    //        $('#district_tt tbody').html("");
-    //        $('#block_tt tbody').html("");
-    //        $('#gp_tt tbody').html("");
-    //        $('#excel_a').hide();
-    //        $('#excel_b').hide();
-    //        $('#excel_c').hide();
-    //        $('#excel_d').hide();
-    //    }
-    //}
+    function levelchange() {
+        //var level = $("#ddllevel").val('State Level Nodal Officer');
+        if (StateOfficer == "State Level Nodal Officer") {
+            check_table = 1;
+            $('#dist11').hide();
+            $('#block1').hide();
+            $('#gram').hide();
+            $('#state_tt').show();
+            $('#district_tt').hide();
+            $('#block_tt').hide();
+            $('#gp_tt').hide();
+            $('#state_tt tbody').html("");
+            $('#district_tt tbody').html("");
+            $('#block_tt tbody').html("");
+            $('#gp_tt tbody').html("");
+            $('#excel_a').show();
+            $('#excel_b').hide();
+            $('#excel_c').hide();
+            $('#excel_d').hide();
+        }
+        //else if (level == "District Level Nodal Officer") {
+        //    check_table = 2;
+        //    $('#dist11').show();
+        //    $('#block1').hide();
+        //    $('#gram').hide();
+        //    var dist1 = $("#dist11").val();
+        //    if (dist1 == "0") {
+        //        $('#state_tt').hide();
+        //        $('#district_tt').show();
+        //        $('#block_tt').hide();
+        //        $('#gp_tt').hide();
+        //        $('#state_tt tbody').html("");
+        //        $('#district_tt tbody').html("");
+        //        $('#block_tt tbody').html("");
+        //        $('#gp_tt tbody').html("");
+        //        $('#excel_a').hide();
+        //        $('#excel_b').show();
+        //        $('#excel_c').hide();
+        //        $('#excel_d').hide();
+        //    }
+        //    else {
+        //        $('#state_tt').hide();
+        //        $('#district_tt').show();
+        //        $('#block_tt').hide();
+        //        $('#gp_tt').hide();
+        //        $('#state_tt tbody').html("");
+        //        $('#district_tt tbody').html("");
+        //        $('#block_tt tbody').html("");
+        //        $('#gp_tt tbody').html("");
+        //        $('#excel_a').hide();
+        //        $('#excel_b').show();
+        //        $('#excel_c').hide();
+        //        $('#excel_d').hide();
+        //    }
+        //}
+        //else if (level == "GramPanchayat Level Nodal Officer") {
+        //    check_table = 3;
+        //    $('#dist11').show();
+        //    $('#block1').show();
+        //    $('#gram').show();
+        //    $('#gp_tt').show();
+        //    $('#excel_d').show();
+        //    $('#state_tt').hide();
+        //    $('#district_tt').hide();
+        //    $('#block_tt').hide();
+        //    $('#state_tt tbody').html("");
+        //    $('#district_tt tbody').html("");
+        //    $('#block_tt tbody').html("");
+        //    $('#gp_tt tbody').html("");
+        //    $('#excel_a').hide();
+        //    $('#excel_b').hide();
+        //    $('#excel_c').hide();
+        //}
+        else {
+            $('#dist11').hide();
+            $('#block1').hide();
+            $('#gram').hide();
+            $('#state_tt').hide();
+            $('#spnstate1').hide();
+            $('#district_tt').hide();
+            $('#block_tt').hide();
+            $('#gp_tt').hide();
+            $('#state_tt tbody').html("");
+            $('#district_tt tbody').html("");
+            $('#block_tt tbody').html("");
+            $('#gp_tt tbody').html("");
+            $('#excel_a').hide();
+            $('#excel_b').hide();
+            $('#excel_c').hide();
+            $('#excel_d').hide();
+        }
+    }
+
+
     function SessionInfo() {
 
         var obj = {};
@@ -1606,21 +1621,13 @@
                 var Tbodyhtml = '';
                 if (data.length != 0) {
 
-                    var a_Pamphlets = 0;
-                    var a_Magazine = 0;
-                    var a_Leaflets = 0;
-                    var a_Brochures = 0;
-                    var a_Others = 0;
+                  
                     var b_Pamphlets = 0;
                     var b_Magazine = 0;
                     var b_Leaflets = 0;
                     var b_Brochures = 0;
                     var b_Others = 0;
-                    var c_Facebook = 0;
-                    var c_Twitter = 0;
-                    var c_YouTube = 0;
-                    var c_Instagram = 0;
-                    var c_Others = 0;
+                   
                     var d_Others = 0;
                     var d_Audio = 0;
                     var d_Video = 0;
@@ -1632,11 +1639,7 @@
                     var h_Fair = 0;
                     var h_Seminars = 0;
 
-                    var ba_Pamphlets = 0;
-                    var ba_Magazine = 0;
-                    var ba_Leaflets = 0;
-                    var ba_Brochures = 0;
-                    var ba_Others = 0;
+                  
                     var bb_Pamphlets = 0;
                     var bb_Magazine = 0;
                     var bb_Leaflets = 0;
@@ -1658,11 +1661,10 @@
                     var bh_Fair = 0;
                     var bh_Seminars = 0;
 
-                    var totachivements_ieca = 0;
-                    var totcummulative_ieca = 0;
+                  
                     var totachivements_audiovideo = 0;
                     var totcummulative_audiovideo = 0;
-                    var totachivements_social = 0;
+                   
                     var totcummulative_social = 0;
                     var totachivements_road = 0;
                     var totcummulative_street = 0;
@@ -1687,11 +1689,30 @@
 
                     for (var i = 0; i < data.length; i++) {
 
-                        a_Pamphlets += data[i].a_Pamphlets;
-                        a_Magazine += data[i].a_Magazine;
-                        a_Leaflets += data[i].a_Leaflets;
-                        a_Brochures += data[i].a_Brochures;
-                        a_Others += data[i].a_Others;
+                        var a_Pamphlets = 0;
+                        var a_Magazine = 0;
+                        var a_Leaflets = 0;
+                        var a_Brochures = 0;
+                        var a_Others = 0;
+                        var ba_Pamphlets = 0;
+                        var ba_Magazine = 0;
+                        var ba_Leaflets = 0;
+                        var ba_Brochures = 0;
+                        var ba_Others = 0;
+
+                        var c_Facebook = 0;
+                        var c_Twitter = 0;
+                        var c_YouTube = 0;
+                        var c_Instagram = 0;
+                        var c_Others = 0;
+                        var totachivements_social = 0;
+                        var totachivements_ieca = 0;
+                        var totcummulative_ieca = 0;
+                        a_Pamphlets = data[i].a_Pamphlets;
+                        a_Magazine = data[i].a_Magazine;
+                        a_Leaflets = data[i].a_Leaflets;
+                        a_Brochures = data[i].a_Brochures;
+                        a_Others = data[i].a_Others;
                         b_Pamphlets += data[i].b_Pamphlets;
                         b_Magazine += data[i].b_Magazine;
                         b_Leaflets += data[i].b_Leaflets;
@@ -1703,56 +1724,56 @@
                         c_Instagram += data[i].c_Instagram;
                         c_Others += data[i].c_Others;
                         d_Others += data[i].d_Others;
-                        d_Audio += data[i].d_Audio;
-                        d_Video += data[i].d_Video;
+                        d_Audio = data[i].d_Audio;
+                        d_Video = data[i].d_Video;
                         e_Publicity += data[i].e_Publicity;
-                        f_Road += data[i].f_Road;
-                        f_Street += data[i].f_Street;
+                        f_Road = data[i].f_Road;
+                        f_Street = data[i].f_Street;
                         g_HHS += data[i].g_HHS;
-                        h_Exhibitions += data[i].h_Exhibitions;
-                        h_Fair += data[i].h_Fair;
-                        h_Seminars += data[i].h_Seminars;
-                        ba_Pamphlets += data[i].ba_Pamphlets;
-                        ba_Magazine += data[i].ba_Magazine;
-                        ba_Leaflets += data[i].ba_Leaflets;
-                        ba_Brochures += data[i].ba_Brochures;
-                        ba_Others += data[i].ba_Others;
+                        h_Exhibitions = data[i].h_Exhibitions;
+                        h_Fair = data[i].h_Fair;
+                        h_Seminars = data[i].h_Seminars;
+                        ba_Pamphlets = data[i].ba_Pamphlets;
+                        ba_Magazine = data[i].ba_Magazine;
+                        ba_Leaflets = data[i].ba_Leaflets;
+                        ba_Brochures = data[i].ba_Brochures;
+                        ba_Others = data[i].ba_Others;
                         bb_Pamphlets += data[i].bb_Pamphlets;
                         bb_Magazine += data[i].bb_Magazine;
                         bb_Leaflets += data[i].bb_Leaflets;
                         bb_Brochures += data[i].bb_Brochures;
                         bb_Others += data[i].bb_Others;
-                        bc_Facebook += data[i].bc_Facebook;
-                        bc_Twitter += data[i].bc_Twitter;
-                        bc_YouTube += data[i].bc_YouTube;
-                        bc_Instagram += data[i].bc_Instagram;
-                        bc_Others += data[i].bc_Others;
+                        bc_Facebook = data[i].bc_Facebook;
+                        bc_Twitter = data[i].bc_Twitter;
+                        bc_YouTube = data[i].bc_YouTube;
+                        bc_Instagram = data[i].bc_Instagram;
+                        bc_Others = data[i].bc_Others;
                         bd_Others += data[i].bd_Others;
-                        bd_Audio += data[i].bd_Audio;
-                        bd_Video += data[i].bd_Video;
+                        bd_Audio = data[i].bd_Audio;
+                        bd_Video = data[i].bd_Video;
                         be_Publicity += data[i].be_Publicity;
-                        bf_Road += data[i].bf_Road;
-                        bf_Street += data[i].bf_Street;
+                        bf_Road = data[i].bf_Road;
+                        bf_Street = data[i].bf_Street;
                         bg_HHS += data[i].bg_HHS;
-                        bh_Exhibitions += data[i].bh_Exhibitions;
-                        bh_Fair += data[i].bh_Fair;
-                        bh_Seminars += data[i].bh_Seminars;
+                        bh_Exhibitions = data[i].bh_Exhibitions;
+                        bh_Fair = data[i].bh_Fair;
+                        bh_Seminars = data[i].bh_Seminars;
 
-                        totachivements_ieca += a_Pamphlets + a_Leaflets + a_Magazine + a_Brochures + a_Others;
-                        totcummulative_ieca += ba_Pamphlets + ba_Leaflets + ba_Magazine + ba_Brochures + ba_Others;
+                        totachivements_ieca = a_Pamphlets + a_Leaflets + a_Magazine + a_Brochures + a_Others;
+                        totcummulative_ieca = ba_Pamphlets + ba_Leaflets + ba_Magazine + ba_Brochures + ba_Others;
 
 
-                        totachivements_audiovideo += d_Audio + d_Video;
-                        totcummulative_audiovideo += bd_Audio + bd_Video;
+                        totachivements_audiovideo = d_Audio + d_Video;
+                        totcummulative_audiovideo = bd_Audio + bd_Video;
 
-                        totachivements_social += c_Twitter + c_Facebook + c_Instagram + c_YouTube + c_Others;
-                        totcummulative_social += bc_Twitter + bc_Facebook + bc_Instagram + bc_YouTube + bc_Others;
+                        totachivements_social = c_Twitter + c_Facebook + c_Instagram + c_YouTube + c_Others;
+                        totcummulative_social = bc_Twitter + bc_Facebook + bc_Instagram + bc_YouTube + bc_Others;
 
-                        totachivements_road += f_Road + f_Street;
-                        totcummulative_street += bf_Road + bf_Street;
+                        totachivements_road = f_Road + f_Street;
+                        totcummulative_street = bf_Road + bf_Street;
 
-                        totachivements_esf += h_Exhibitions + h_Fair + h_Seminars;
-                        totcummulative_esf += bh_Exhibitions + bh_Fair + bh_Seminars;
+                        totachivements_esf = h_Exhibitions + h_Fair + h_Seminars;
+                        totcummulative_esf = bh_Exhibitions + bh_Fair + bh_Seminars;
 
 
                         sumtotachivements_ieca += totachivements_ieca;
@@ -1763,8 +1784,8 @@
                         sumtotcummulative_social += totcummulative_social;
                         sumtotachivements_road += totachivements_road;
                         sumtotcummulative_street += totcummulative_street;
-                        sumtotachivements_esf = totachivements_esf;
-                        sumtotcummulative_esf = totcummulative_esf;
+                        sumtotachivements_esf += totachivements_esf;
+                        sumtotcummulative_esf += totcummulative_esf;
 
 
 
@@ -1811,29 +1832,29 @@
 
                         Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].statename + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13"  ? "NA" : data[i].e_Publicity)  + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13")  ? "NA" : data[i].e_Publicity)  + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].be_Publicity + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_ieca) + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : totachivements_ieca) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall totcummulative_ieca"><label>' + totcummulative_ieca + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Magazine + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Leaflets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Pamphlets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Brochures + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_audiovideo) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : totachivements_audiovideo) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_audiovideo + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_road) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : totachivements_road) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_street + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : data[i].g_HHS) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : data[i].g_HHS) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bg_HHS + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_social) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : totachivements_social) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_social + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : totachivements_esf) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : totachivements_esf) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_esf + '</label></td>';
                         //Tbodyhtml += '<td id="rainfall"><label>' + data[i].activity_other + '</label></td>';
 
                         Tbodyhtml += '<td id="rainfall"><label>' + (data[i].activity_other ? data[i].activity_other : 'No activity') + '</label></td>';
 
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : data[i].d_Others) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : data[i].d_Others) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Others + '</label></td></tr>';
 
 
@@ -1881,26 +1902,26 @@
 
 
                         Tbodyhtml += '<tr><td colspan="2" id="srNo"><label>' + "Total" + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : e_Publicity) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : e_Publicity) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + be_Publicity + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_ieca) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : sumtotachivements_ieca) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_ieca + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Magazine + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Leaflets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Pamphlets + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bb_Brochures + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_audiovideo) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : sumtotachivements_audiovideo) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_audiovideo + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_road) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : sumtotachivements_road) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_street + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : g_HHS) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : g_HHS) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bg_HHS + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_social) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : sumtotachivements_social) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_social + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : sumtotachivements_esf) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : sumtotachivements_esf) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_esf + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label></label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + (state_ == "All" && year_ == "All" && month_ == "13" || state_ == "All" && year_ == "All" && month_ != "13" ? "NA" : d_Others) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ((state_ == "All" && year_ == "All" && month_ == "13") || (state_ == "All" && year_ != "All" && month_ == "13") || (state_ == "All" && year_ == "All" && month_ != "13") ? "NA" : d_Others) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + bd_Others + '</label></td></tr>';
 
 

@@ -409,15 +409,15 @@
                         </ul>
                         @*<ul class="clearfix">
 
-                                <li class="ml-2">
-                                    <a href="#" class="d-flex align-items-center">
-                                        <img src="~/DashboardStyles/images/atal-jal-logo.png" class="img-fluid atal-icon-sec" alt="logo">
-                                        <img src="~/DashboardStyles/images/logosec1.png" class="img-fluid atal-logo-sec" alt="logo">
+                            <li class="ml-2">
+                                <a href="#" class="d-flex align-items-center">
+                                    <img src="~/DashboardStyles/images/atal-jal-logo.png" class="img-fluid atal-icon-sec" alt="logo">
+                                    <img src="~/DashboardStyles/images/logosec1.png" class="img-fluid atal-logo-sec" alt="logo">
 
-                                    </a>
-                                </li>
+                                </a>
+                            </li>
 
-                            </ul>*@
+                        </ul>*@
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-left:200px">
@@ -431,6 +431,11 @@
                             }
 
                         </li>
+                        @{
+                            // Retrieve the DateTime session value
+                            var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+                            var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+                        }
                         <li>
                             <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
                         </li>
@@ -461,6 +466,7 @@
                 </div>
             </div>
         </div>
+       
 
     </header>
     <div class="container-fluid notice-ribbon">
@@ -3379,6 +3385,7 @@
                 GetCunCurrentUser();
                 setInterval(GetCunCurrentUser, 30000);
             }
+            GetPagelog();
         });
 
     function GetCunCurrentUser() {
@@ -3392,5 +3399,30 @@
                     }
                 }
             });
-        }
+    }
+
+      function GetPagelog() {
+      var dateTime = "@dateTime";
+      var pageName = "@lastAccessedPage"
+    
+      $.ajax({
+          url: '/WspNew/UpdatePageLog',
+          type: 'POST',
+          data: {
+              dateTime: dateTime,
+              pageName: pageName
+          },
+          success: function (response) {
+              if (response.success) {
+                  console.log(response.message);
+              } else {
+                  alert("Error: " + response.message);
+              }
+          },
+          error: function () {
+              alert("Failed to update the log.");
+          }
+      });
+  }
+
 </script>

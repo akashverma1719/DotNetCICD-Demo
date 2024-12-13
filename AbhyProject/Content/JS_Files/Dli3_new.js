@@ -7673,7 +7673,7 @@ function data_show_supplyside1phase(id) {
                             }
 
                             if (approve == "Approved") {
-                                if (email == 'akanshakushwah-cgwb@gov.in' ||  email == 'vivekvivektiwari80@gmail.com') {
+                                if (email == 'akanshakushwah-cgwb@gov.in' || email == 'vivekvivektiwari80@gmail.com' || email == 'dpbcse@gmail.com') {
                                     if (entry_phase == "phase1") {
 
                                         Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';

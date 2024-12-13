@@ -866,6 +866,7 @@
                         debugger;
                         var selectedDate = new Date(data.to_date);
                         var selectedDate_10days = new Date(data.to_date);
+                        var selectedDate_06dec = new Date("2024-12-06");
                        selectedDate_10days.setDate(selectedDate_10days.getDate() + 10);
                         var currentDate = new Date();
                         debugger;
@@ -888,24 +889,30 @@
                             $(".loader").hide();
                             return;
                         }
-                        else if (selectedDate_10days <= currentDate) {
-                            alert("You cannot access the submitted feedback because the registration date has passed.");
-                            $("#registration_no").val("");
-                            $('#todaydate').val("");
-                            $('#p_training_name').val("");
-                            $('#participant_name').val("");
-                            $('#level_event').val("");
-                            $('#level_event_dist').val("");
-                            $('#level_event_block').val("");
-                            $('#event_platform').val("");
-                            $('#gender').val("");
-                            $('#unic_key').val("");
-                            $('#from_date').val("");
-                            $('#to_date').val("");
-                            $('#total_days').val("");
-                            $("#btnSubmit").hide();
-                            $(".loader").hide();
-                            return;
+                        else {
+                            if (selectedDate_06dec > currentDate) {
+                            }
+                            else {
+                                if (selectedDate_10days <= currentDate) {
+                                    alert("You cannot access the submitted feedback because the registration date has passed.");
+                                    $("#registration_no").val("");
+                                    $('#todaydate').val("");
+                                    $('#p_training_name').val("");
+                                    $('#participant_name').val("");
+                                    $('#level_event').val("");
+                                    $('#level_event_dist').val("");
+                                    $('#level_event_block').val("");
+                                    $('#event_platform').val("");
+                                    $('#gender').val("");
+                                    $('#unic_key').val("");
+                                    $('#from_date').val("");
+                                    $('#to_date').val("");
+                                    $('#total_days').val("");
+                                    $("#btnSubmit").hide();
+                                    $(".loader").hide();
+                                    return;
+                                }
+                            }
                         }
 
                         $(".loader").hide();

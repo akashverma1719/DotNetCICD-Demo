@@ -3911,109 +3911,6 @@ namespace AbhyProject.Controllers
 
         //
 
-        //// GET: Water Level Form
-
-        //[HttpGet]
-        //public JsonResult GetWaterLevelForm()
-        //{
-        //    try
-        //    {
-        //        // Create a list of years from 2021 to 2024
-        //        var distinctYears = Enumerable.Range(2021, 4).ToList(); // 2021, 2022, 2023, 2024
-
-        //        // Prepare the response data
-        //        var response = new
-        //        {
-        //            Years = distinctYears
-        //        };
-
-        //        return Json(response, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
-
-        //[HttpGet]
-        //public JsonResult FetchMonthsByYear(int selectedYear)
-        //{
-        //    using (MAPEntity context = new MAPEntity())
-        //    {
-        //        try
-        //        {
-        //            var months = context.obj_vw_bs_gwl_meta_data
-        //                .Where(w => w.fyyear == selectedYear)
-        //                .Select(w => w.fymonth)
-        //                .Distinct()
-        //                .OrderBy(m => m)
-        //                .ToList();
-
-        //            return Json(months, JsonRequestBehavior.AllowGet);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return Json(new { error = "An error occurred while fetching months.", details = ex.Message }, JsonRequestBehavior.AllowGet);
-        //        }
-        //    }
-        //}
-        //[HttpGet]
-        //public JsonResult GetWellCountByDepthRange(int selectedYear, int selectedMonth)
-        //{
-        //    using (MAPEntity context = new MAPEntity())
-        //    {
-        //        try
-        //        {
-        //            // Fetch current year data for the selected month
-        //            var currentYearData = context.obj_vw_bs_gwl_meta_data
-        //                .Where(w => w.fyyear == selectedYear && w.fymonth == selectedMonth)
-        //                .ToList();
-
-        //            // Fetch previous years' data for the same month
-        //            var previousYearsData = context.obj_vw_bs_gwl_meta_data
-        //                .Where(w => w.fyyear < selectedYear && w.fymonth == selectedMonth)
-        //                .GroupBy(w => w.gwl_meta_id) // Group by well_id to calculate average per well
-        //                .Select(g => new
-        //                {
-        //                    WellId = g.Key,
-        //                    AvgWaterLevel = g.Average(w => w.welldepth)
-        //                })
-        //                .ToList();
-
-        //            // Initialize counters for rise and fall
-        //            int riseCount = 0;
-        //            int fallCount = 0;
-
-        //            // Compare the current year water level with the average of previous years for each well
-        //            foreach (var currentWell in currentYearData)
-        //            {
-        //                var previousWell = previousYearsData.FirstOrDefault(p => p.WellId == currentWell.gwl_meta_id);
-
-        //                if (previousWell != null)
-        //                {
-        //                    // Calculate difference
-        //                    var difference = currentWell.welldepth - previousWell.AvgWaterLevel;
-
-        //                    if (difference > 0)
-        //                    {
-        //                        riseCount++; // Well has shown rise
-        //                    }
-        //                    else if (difference < 0)
-        //                    {
-        //                        fallCount++; // Well has shown fall
-        //                    }
-        //                }
-        //            }
-
-        //            // Return both rise and fall counts
-        //            return Json(new { riseCount = riseCount, fallCount = fallCount });
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message });
-        //        }
-        //    }
-        //}
         // for water quality ph and other permissible limits
         public ActionResult GetWaterQualityAnalysis(string selectedState, string selectedDistrict, string selectedBlock, string selectedGP, string fyyear_str)
         {
@@ -4151,48 +4048,67 @@ namespace AbhyProject.Controllers
         }
 
 
-        // Method to fetch well counts based on selected values
-        //[HttpGet]
-        //public JsonResult FetchWellCountsWL(string state, string district, string block, string grampanchayat, string fyyear_str, string sourceOwnershipType)
-        //{
-        //    try
-        //    {
-        //        var query = AJE.obj_vw_bs_waterlevel_pv_meta_data.AsQueryable();
+        [HttpGet]
+        public JsonResult FetchWellCountsWL(
+      string state = "All",
+      string district = "All",
+      string block = "All",
+      string grampanchayat = "All",
+      string sourceOwnershipType = "All",
+      string fyyear_str = "All") 
+        {
+            try
+            {
+                var query = AJE.obj_vw_bs_count_waterlevel_pv_meta_data.AsQueryable();
+                if (!string.IsNullOrEmpty(state) && state != "All")
+                    query = query.Where(w => w.state == state);
+                if (!string.IsNullOrEmpty(district) && district != "All")
+                    query = query.Where(w => w.district == district);
+                if (!string.IsNullOrEmpty(block) && block != "All")
+                    query = query.Where(w => w.block == block);
+                if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
+                    query = query.Where(w => w.grampanchayat == grampanchayat);
+                if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
+                    query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
+                query = query.Where(w => w.typeofwell != null);
+                var wellCounts = query
+                    .GroupBy(w => w.typeofwell)
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
 
-        //        if (!string.IsNullOrEmpty(state) && state != "All")
-        //            query = query.Where(w => w.state == state);
-        //        if (!string.IsNullOrEmpty(district) && district != "All")
-        //            query = query.Where(w => w.district == district);
-        //        if (!string.IsNullOrEmpty(block) && block != "All")
-        //            query = query.Where(w => w.block == block);
-        //        if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
-        //            query = query.Where(w => w.grampanchayat == grampanchayat);
+                        // Use Count_All column directly
+                        Count_All = g.Sum(w => w.dist_total ?? 0),
 
-        //        // Only filter fyyear_str if it’s not "All"
-        //        if (!string.IsNullOrEmpty(fyyear_str) && fyyear_str != "All")
-        //            query = query.Where(w => w.fyyear_str == fyyear_str);
+                        // Calculate CountYear based on fyyear_str using if-else conditions
+                        CountYear = fyyear_str == "2015" ? g.Sum(w => w.Count_2015 ?? 0) :
+                                    fyyear_str == "2016" ? g.Sum(w => w.Count_2016 ?? 0) :
+                                    fyyear_str == "2017" ? g.Sum(w => w.Count_2017 ?? 0) :
+                                    fyyear_str == "2018" ? g.Sum(w => w.Count_2018 ?? 0) :
+                                    fyyear_str == "2019" ? g.Sum(w => w.Count_2019 ?? 0) :
+                                    fyyear_str == "2020" ? g.Sum(w => w.Count_2020 ?? 0) :
+                                    fyyear_str == "2021" ? g.Sum(w => w.Count_2021 ?? 0) :
+                                    fyyear_str == "2022" ? g.Sum(w => w.Count_2022 ?? 0) :
+                                    fyyear_str == "2023" ? g.Sum(w => w.Count_2023 ?? 0) :
+                                    fyyear_str == "2024" ? g.Sum(w => w.Count_2024 ?? 0) : 0
+                    })
+                    .ToList();
 
-        //        if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
-        //            query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
+                // Log output to verify counts if needed
+                Console.WriteLine("Fetched wellCounts:");
+                wellCounts.ForEach(wc => Console.WriteLine($"TypeOfWell: {wc.TypeOfWell}, Count_All: {wc.Count_All}, CountYear: {wc.CountYear}"));
 
-        //        var wellCounts = query
-        //            .GroupBy(w => w.typeofwell)
-        //            .Select(g => new
-        //            {
-        //                TypeOfWell = g.Key,
-        //                Count = g.Count(),
-        //                DistinctGwlMetaIdCount = g.Select(w => w.gwl_meta_id).Distinct().Count()
-        //            })
-        //            .ToList();
+                return Json(wellCounts, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching well counts: " + ex.Message);
+                Console.WriteLine("Stack Trace: " + ex.StackTrace);
 
-        //        return Json(wellCounts, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Error fetching well counts: " + ex.Message);
-        //        return Json(new { error = "An error occurred while fetching well counts." }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+                return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
 
         // For water quality query
@@ -4333,68 +4249,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-        [HttpGet]
-        public JsonResult FetchWellCountsWL(
-      string state = "All",
-      string district = "All",
-      string block = "All",
-      string grampanchayat = "All",
-      string sourceOwnershipType = "All",
-      string fyyear_str = "All") // Accept fiscal year as parameter
-        {
-            try
-            {
-                var query = AJE.obj_vw_bs_count_waterlevel_pv_meta_data.AsQueryable();
-                if (!string.IsNullOrEmpty(state) && state != "All")
-                    query = query.Where(w => w.state == state);
-                if (!string.IsNullOrEmpty(district) && district != "All")
-                    query = query.Where(w => w.district == district);
-                if (!string.IsNullOrEmpty(block) && block != "All")
-                    query = query.Where(w => w.block == block);
-                if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
-                    query = query.Where(w => w.grampanchayat == grampanchayat);
-                if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
-                    query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
-                query = query.Where(w => w.typeofwell != null);              
-                var wellCounts = query
-                    .GroupBy(w => w.typeofwell)
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
-
-                        // Use Count_All column directly
-                        Count_All = g.Sum(w => w.dist_total ?? 0),
-
-                        // Calculate CountYear based on fyyear_str using if-else conditions
-                        CountYear = fyyear_str == "2015" ? g.Sum(w => w.Count_2015 ?? 0) :
-                                    fyyear_str == "2016" ? g.Sum(w => w.Count_2016 ?? 0) :
-                                    fyyear_str == "2017" ? g.Sum(w => w.Count_2017 ?? 0) :
-                                    fyyear_str == "2018" ? g.Sum(w => w.Count_2018 ?? 0) :
-                                    fyyear_str == "2019" ? g.Sum(w => w.Count_2019 ?? 0) :
-                                    fyyear_str == "2020" ? g.Sum(w => w.Count_2020 ?? 0) :
-                                    fyyear_str == "2021" ? g.Sum(w => w.Count_2021 ?? 0) :
-                                    fyyear_str == "2022" ? g.Sum(w => w.Count_2022 ?? 0) :
-                                    fyyear_str == "2023" ? g.Sum(w => w.Count_2023 ?? 0) :
-                                    fyyear_str == "2024" ? g.Sum(w => w.Count_2024 ?? 0) : 0
-                    })
-                    .ToList();
-
-                // Log output to verify counts if needed
-                Console.WriteLine("Fetched wellCounts:");
-                wellCounts.ForEach(wc => Console.WriteLine($"TypeOfWell: {wc.TypeOfWell}, Count_All: {wc.Count_All}, CountYear: {wc.CountYear}"));
-
-                return Json(wellCounts, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error fetching well counts: " + ex.Message);
-                Console.WriteLine("Stack Trace: " + ex.StackTrace);
-
-                return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
 
 
     }

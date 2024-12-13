@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AbhyProject.Models.abhy_villages>
 @{
     ViewBag.Title = "mis_login_after";
-    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+    Layout = "~/Views/Shared/WebsiteLayout_MIS.cshtml";
 }
 
 <script src="~/Scripts/jquery.min.js"></script>
@@ -29,43 +29,47 @@
         <div class="col-sm-10 mx-auto mb-4">
             <div class="row justify-content-around my-4">
                 <div class="col">
-                    <a href="~/Home/LogOut" class="btn btn-link text-dark p-0" id="backto_login"><img src="/DashboardStyles/images/left-arrows.png" class="mx-2"> Back to Login</a>
+                    @*<a href="~/Home/LogOut" class="btn btn-link text-dark p-0" id="backto_login"><img src="/DashboardStyles/images/left-arrows.png" class="mx-2"> Back to Login</a>*@
 
                 </div>
                 <div class="col-md-5">
                     <ul class="imgHome clearfix">
 
-                        <li style="display: flex;">
+                        <li style="display: flex;justify-content:flex-start;align-items:flex-start;">
                             <img src="~/Content/WspImages/user-silhouette.png" title="User" class="MisUser_icon" style="width: 20px;" />
                             @if (Session["UserName"] != null)
                             {
-                                <span style="color:#000;">: @Session["UserName"].ToString()</span>
+                                <span style="color:#000;word-break:break-all">: @Session["UserName"].ToString()</span>
                             }
                             <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" class="MisLogout_icon" /></a>
                         </li>
-
+                        @{
+                            // Retrieve the DateTime session value
+                            var dateTime = Session["DateTime"] != null ? ((DateTime)Session["DateTime"]).ToString("MM/dd/yyyy HH:mm:ss") : "Date not available";
+                            var lastAccessedPage = Session["LastAccessedPage"] != null ? Session["LastAccessedPage"].ToString() : "No previous page accessed.";
+                        }
 
                     </ul>
                 </div>
 
                 @*<div class="col-md-4" style="margin-left:200px">
-                    <ul class="imgHome clearfix">
+                        <ul class="imgHome clearfix">
 
-                        <li>
-                            <img src="~/Content/WspImages/user-silhouette.png" title="User" style="width: 20px;" />
-                            @if (Session["UserName"] != null)
-                            {
-                                <span style="color:#000;">:@Session["UserName"].ToString()</span>
-                            }
-                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
-                        </li>
-                    
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" style="width: 20px;" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#000;">:@Session["UserName"].ToString()</span>
+                                }
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
 
-                    </ul>
-                </div>*@
+
+                        </ul>
+                    </div>*@
                 @*<div class="col-auto">
-            <a type="button" href="#" class="btn btn-success btn-sm" id="Changepass"> Change Password</a>
-        </div>*@
+                        <a type="button" href="#" class="btn btn-success btn-sm" id="Changepass"> Change Password</a>
+                    </div>*@
 
             </div>
 
@@ -94,7 +98,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 mb-3" id="training_module_tab">
-                    <a href="#" onclick="test()">  
+                    <a href="#" onclick="test()">
                         <div class="card blockBoxWhite">
                             <div class="card-body text-center iconImg">
                                 <img src="~/DashboardStyles/images/training.png" />
@@ -192,17 +196,46 @@
     }
 </script>
 <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
             var currentUrl = window.location.href;
             const myArray = currentUrl.split("/");
             let coun = myArray.length - 1;
             //alert(myArray[coun].toString());
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
-            }
+        }
+        GetPagelog();
         });
 
-    function GetCunCurrentUser() {
+
+
+    function GetPagelog() {
+        var dateTime = "@dateTime";
+        var pageName = "@lastAccessedPage"
+        
+        $.ajax({
+            url: '/WspNew/UpdatePageLog',
+            type: 'POST',
+            data: {
+                dateTime: dateTime,
+                pageName: pageName
+            },
+            success: function (response) {
+                if (response.success) {
+                    console.log(response.message);
+                } else {
+                    alert("Error: " + response.message);
+                }
+            },
+            error: function () {
+                alert("Failed to update the log.");
+            }
+        });
+    }
+
+
+
+        function GetCunCurrentUser() {
             $.ajax({
                 type: 'get',
                 url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
@@ -214,4 +247,11 @@
                 }
             });
         }
+
+
+    //const urlParams = new URLSearchParams(window.location.search);
+    //const message = urlParams.get('message');
+    //if (message) {
+    //    alert(message);
+    //}
 </script>

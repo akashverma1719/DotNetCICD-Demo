@@ -2290,7 +2290,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
                             $('#addrow_d_part').prop('disabled', true);
-                           // $("#btn_submit_dpmu").prop("disabled", true);
+                            // $("#btn_submit_dpmu").prop("disabled", true);
                             commitee_vals.push({
                                 Committee: data[i].comm_name,
                                 Designation: data[i].designation,
@@ -2328,7 +2328,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
                             $('#addrow_d_part').prop('disabled', true);
-                           // $('#btn_submit_dpmu').prop('disabled', true);
+                            // $('#btn_submit_dpmu').prop('disabled', true);
 
 
                             commitee_vals.push({
@@ -2338,7 +2338,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                         }
                         else if (approve == "Sreject") {
                             $('#addrow_d_part').prop('disabled', false);
-                           // $('#btn_submit_dpmu').prop('disabled', true);
+                            // $('#btn_submit_dpmu').prop('disabled', true);
                         }
                     }
                 }
@@ -5527,7 +5527,7 @@ function abhy_socialmgt_farmers_Info() {
                     }
                     if (approve == "Approve") {
 
-                       // $('#btn_submit_dpmu').prop('disabled', true);
+                        // $('#btn_submit_dpmu').prop('disabled', true);
                         $('#btnFinalSave2').prop('disabled', true);
                         $('#large_pop_23_24').prop('disabled', true);
                         $('#medium_pop_23_24').prop('disabled', true);
@@ -5662,7 +5662,7 @@ function abhy_socialmgt_farmers_Info() {
                         return;
                     }
                     if (approve == "District") {
-                      //  $('#btn_submit_dpmu').prop('disabled', true);
+                        //  $('#btn_submit_dpmu').prop('disabled', true);
                         $('#btnFinalSave2').prop('disabled', true);
                         $('#large_pop_23_24').prop('disabled', true);
                         $('#medium_pop_23_24').prop('disabled', true);

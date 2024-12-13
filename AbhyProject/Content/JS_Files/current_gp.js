@@ -18,7 +18,7 @@ function isWithinRange(date) {
     var currentdate = currentDate.getDate();
 
     var currentdatea = new Date(currentYear, currentMonth, currentdate);
-
+    debugger;
     var todate = date;
     var year = date.getFullYear();
     var month = date.getMonth();
@@ -27,6 +27,14 @@ function isWithinRange(date) {
         return true;
     }
     else {
+        if (year == "2024") {
+            if ("2024-12-06" > todaydate) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
         return false;
     }
 }
@@ -5351,10 +5359,15 @@ function editrowcomp_A_Good2(i) {
     var lastMonthMonth = String(mm - 1).padStart(2, '0');
     var lastMonthDay = "06";
     var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
-
+    var only10days = String(mm - 10).padStart(2, '0');
     var finmm = "";
     if (today >= startDate) {
-        finmm = mm;
+        if ("2024-12-06" > today) {
+            finmm = only10days;
+        }
+        else {
+            finmm = mm;
+        }
     }
     else {
         finmm = lastMonthMonth;

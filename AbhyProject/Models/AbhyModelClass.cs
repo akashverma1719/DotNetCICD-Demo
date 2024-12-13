@@ -4516,7 +4516,8 @@ namespace AbhyProject.Models
         public string date { get; set; }
         public string datetime { get; set; }
         public string checkloginlogout { get; set; }
-
+        public DateTime ? ActionTime { get; set; }
+        public string PageUrl { get; set; }
 
     }
 
@@ -4569,6 +4570,8 @@ namespace AbhyProject.Models
         public string year { get; set; }
         public string month { get; set; }
         public string day { get; set; }
+        public DateTime ?  ActionTime { get; set; }
+        public string  PageUrl { get; set; }
 
     }
 
@@ -4592,6 +4595,10 @@ namespace AbhyProject.Models
         public string year { get; set; }
         public string month { get; set; }
         public string day { get; set; }
+
+        public DateTime? ActionTime { get; set; }
+
+        public string PageUrl { get; set; }
 
     }
 
@@ -5326,6 +5333,43 @@ namespace AbhyProject.Models
         public string mail_send { get; set; }
         public string mailsend_date { get; set; }
         public string feedback_yesno { get; set; }
+        public Int32 mail_count { get; set; }
+    }
+
+    [Table("vw_abhy_training_newregs_approved", Schema = "public")]
+    public class vw_abhy_training_newregs_approved
+    {
+        [Key]
+        public int? id { get; set; }
+        public string p_name { get; set; }
+        public string p_gender { get; set; }
+        public string p_age { get; set; }
+        public string p_occupation { get; set; }
+        public string p_qual { get; set; }
+        public string p_phoneno { get; set; }
+        public string p_emailid { get; set; }
+        public string p_address { get; set; }
+        public string p_training_name { get; set; }
+        public string p_state_name { get; set; }
+        public string p_district_name { get; set; }
+        public string p_block_name { get; set; }
+        public string p_other_state_name { get; set; }
+        public string registration_no { get; set; }
+        public string clientcaptcha { get; set; }
+        public string parti_state { get; set; }
+        public string to_date { get; set; }
+        public string from_date { get; set; }
+        public string year { get; set; }
+        public string month { get; set; }
+        public string currentdate { get; set; }
+        public string entry_date { get; set; }
+        public string nodal { get; set; }
+        public string unic_key { get; set; }
+        public string typeofevent { get; set; }
+        public string mail_send { get; set; }
+        public string mailsend_date { get; set; }
+        public string feedback_yesno { get; set; }
+        public string approve_status { get; set; }
         public Int32 mail_count { get; set; }
     }
 
@@ -18091,6 +18135,7 @@ namespace AbhyProject.Models
         public string month { get; set; }
         public string gender { get; set; }
         public string unic_key { get; set; }
+        public string approve_status { get; set; }
     }
     [Table("mstr_states", Schema = "public")]        //chetan mstr 
     public class mstr_states
@@ -20525,6 +20570,7 @@ namespace AbhyProject.Models
         public string datatypecode { get; set; }
         public string date { get; set; }
         public string datavalue { get; set; }
+        public DateTime datetime { get; set; }
         public string fyyear { get; set; }
         public string fymonth { get; set; }
 

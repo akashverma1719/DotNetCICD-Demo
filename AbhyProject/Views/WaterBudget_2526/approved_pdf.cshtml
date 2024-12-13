@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "wsp_approved";
     Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
@@ -217,10 +217,10 @@
 
                 <li id="GramDropdownLabel">
 
-                    <select class="form-control" id="gram" ></select>
+                    <select class="form-control" id="gram"></select>
                 </li>
                 <li id="YearDropdownLabel">
-                    <select class="form-control" id="year" >
+                    <select class="form-control" id="year">
                         <option value="0">Select Financial Year</option>
                         <option value="2025-26" selected>2025-26</option>
                     </select>
@@ -252,7 +252,7 @@
                     </label>
                 </div>
             </div>
-        
+
         </div>
         @*<div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:400px; font-size:12px;">*@
         <div class="table-responsive" id="old_wsp_data" style="overflow-x:scroll;overflow-y:scroll;height:600px;">
@@ -328,7 +328,7 @@
         $("#update_wsp").hide();
         $("#old_wsp_data").hide();
         $("#old_count").hide();
-
+        GetApprovedGpCount();
         StateOfficer = '@Session["Officer"]';
         //if (StateOfficer != "National Level Nodal Officer" && StateOfficer != "Admin") {
         //    document.getElementById("report_2021").disabled = true;
@@ -353,8 +353,8 @@
 
         //if (Email == "vivekvivektiwari80@gmail.com" || Email == "dpbcse@gmail.com") {
         //    $("#update_wsp").show();
-            
-            
+
+
         //    document.getElementById("btn_2022").disabled = false;
         //    document.getElementById("report_2023").disabled = false;
         //    document.getElementById("btn_2023").disabled = false;
@@ -365,8 +365,8 @@
         //}
         //else {
         //    $("#update_wsp").hide();
-           
-            
+
+
         //    document.getElementById("btn_2022").disabled = true;
         //    //document.getElementById("report_2023").disabled = true;
         //    //document.getElementById("btn_2023").disabled = true;
@@ -395,7 +395,7 @@
             GetApprovedGpCount();
         });
         DropDownInfo();
-        GetApprovedGpCount();
+
         $('#gram').on('change', function () {
             Dropdown_Search();
         });
@@ -477,7 +477,7 @@
 
 
     function GetApprovedGpCount() {
-
+        debugger;
         var Year = $("#year").val();
         //if (Year == "0") {
         //    alert("Please select year");
@@ -509,32 +509,31 @@
         });
     }
     function Dist_fun() {
-
         $("#block1").empty();
         var opblock = '<option value="0">Select Block</option>';
         $("#block1").append(opblock);
-        Block = "0";
         $("#gram").empty();
         var opgram = '<option value="0">Select GramPanchayat</option>';
         $("#gram").append(opgram);
-        Gram = "0";
-        //var dist = $("#dist11").val();
-        var distName = $("#dist11 option:selected").text();
-        var State = $("#spnstate option:selected").text();
+
+        var dist = $("#dist11").val();
+        //var distName = $("#spndistrict option:selected").text();
+        //var State = $("#spnstate1 option:selected").text();
         if (off_1 == "dist") {
-            distName = dist;
+            dist = Dist;
         } else {
-            Dist = $("#dist11").val();
+            Dist = dist;
         }
         console.log(Dist)
         if (Dist != "0" && Jsondata.length != 0) {
+            GetApprovedGpCount();
             var ddlst = {};
             var all_blocks = [];
             var optionDist = '';
+
             for (var i = 0; i < Jsondata.length; i++) {
 
-                if (distName == Jsondata[i].district_name && State == Jsondata[i].state_name) {
-
+                if (dist == Jsondata[i].lg_dist && State == Jsondata[i].lg_state) {
                     if (!ddlst[Jsondata[i].block_name]) {
                         all_blocks.push({ lg_block: Jsondata[i].lg_block, block_name: Jsondata[i].block_name });
                         ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
@@ -558,31 +557,34 @@
             $("#block1").append(optionDist);
 
         }
-        GetApprovedGpCount();
     }
+
+
+
     function Block_fun() {
+        debugger;
         $("#gram").empty();
         var opgram = '<option value="0">Select GramPanchayat</option>';
         $("#gram").append(opgram);
-        Gram = "0";
-        //var block = $("#block1").val();
-        var blockName = $("#block1 option:selected").text();
-        var StateName = $("#spnstate option:selected").text();
-        var DistName = $("#dist11 option:selected").text();
+        var block = $("#block1").val();
+
+        //var blockName = $("#block1 option:selected").text();
+        //var StateName = $("#spnstate option:selected").text();
+        //var DistName = $("#dist11 option:selected").text();
 
         if (off_1 == "block") {
-            StateName = Block;
+            block = Block;
         } else {
-            Block = $("#block1").val();
+            Block = block;
         }
 
-
-        if (Block != "0" && Jsondata.length != 0) {
+        if (block != "0" && Jsondata.length != 0) {
+            GetApprovedGpCount();
             var ddlst = {};
             var all_grams = [];
             var optionDist = '';
             for (var i = 0; i < Jsondata.length; i++) {
-                if (StateName == Jsondata[i].state_name && DistName == Jsondata[i].district_name && blockName == Jsondata[i].block_name) {
+                if (State == Jsondata[i].lg_state && Dist == Jsondata[i].lg_dist && block == Jsondata[i].lg_block) {
 
                     if (!ddlst[Jsondata[i].gram_panchayat_name]) {
                         ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
@@ -607,8 +609,9 @@
             }
             $("#gram").append(optionDist);
         }
-        GetApprovedGpCount();
     }
+
+
     function SessionInfo() {
 
         var obj = {};
@@ -656,7 +659,7 @@
                         $(".loader").hide();
                         //$('#MonthLabel').show();
                         //$('#MonthDropdownLabel').show();
-
+                        GetApprovedGpCount();
                     }
                     else if (Str[0] == "State Level Nodal Officer") {
                         State = Str[1];
@@ -676,7 +679,7 @@
                         $('#DropdownSearch_btn').show();
                         $(".loader").hide();
                         State_Dropdown_Function();
-                       
+                        GetApprovedGpCount();
 
                     }
                     else if (Str[0] == "District Level Nodal Officer") {
@@ -700,6 +703,7 @@
                         //$('#MonthLabel').hide();
                         //$('#MonthDropdownLabel').show();
                         Dist_fun();
+                        GetApprovedGpCount();
                         // Dist_fun();
                     }
                     else if (Str[0] == "Block Level Nodal Officer") {
@@ -724,7 +728,7 @@
                         //$('#MonthLabel').hide();
                         //$('#MonthDropdownLabel').show();
                         Block_fun();
-                        Block_fun();
+                        GetApprovedGpCount();
 
                     }
                     else if (Str[0] == "Gram Panchyat Nodal Officer") {
@@ -790,6 +794,7 @@
         }
         console.log("StateName", StateName)
         if (StateName != "0" && Jsondata.length != 0) {
+            State_Dropdown_Function();
             var ddlst = {};
             var all_dists = [];
             var optionDist = '';

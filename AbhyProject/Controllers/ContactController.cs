@@ -1855,7 +1855,8 @@ namespace AbhyProject.Controllers
             try
             {
                 List<abhy_training_newregs> details = ABE.obj_abhy_training_newregs.Where(x => x.registration_no == REG).ToList();
-                var feedback = ABE.obj_abhy_feedback_latest.Where(x => x.registration_no == REG).ToList().Count();
+                var feedback = ABE.obj_vw_abhy_feedback_latest.Where(x => x.registration_no == REG).ToList().Count();
+
                 if (feedback == 0) {
                     List<current_events> data = ABE.obj_current_events.ToList();
 

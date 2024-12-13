@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 @{
     Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
 }
@@ -259,7 +259,7 @@
                     <a href="~/WSPHome/Gp_information" class="btn btn-danger">
                         Back To GP Modules
                     </a>
-                   
+
                     <select class="form-control" id="goto_page" onchange="Goto_page()" style="float:right;width:140px;margin-left:2px">
                         <option value="0">Select Page</option>
                         <option value="/SocialMointoring_new/Social_management_new">Social Mangement</option>
@@ -332,7 +332,7 @@
 
                     <select class="form-control" id="year" onchange="Year_change()">
                         <option value="0">Select Financial Year</option>
-                        <option selected value="2025-26" >2025-2026</option>
+                        <option selected value="2025-26">2025-2026</option>
                     </select>
                 </li>
 
@@ -401,10 +401,10 @@
         </div>
 
         @*<div class="col-md-12  col-sm-12 ">
-            <div class="text-center Wsp_home_page_under_text">
-                <p>Water Security plan is a plan that specifies investments and actions to meet water demands of a community in a specific GP, tailored to meet the particular challenges in the GP, and includes any water-related investments/actions to ensure optimum utilization of surface and groundwater available in the GP to serve their needs and needs to be finally approved by the Gram Sabha.</p>
-            </div>
-        </div>*@
+                <div class="text-center Wsp_home_page_under_text">
+                    <p>Water Security plan is a plan that specifies investments and actions to meet water demands of a community in a specific GP, tailored to meet the particular challenges in the GP, and includes any water-related investments/actions to ensure optimum utilization of surface and groundwater available in the GP to serve their needs and needs to be finally approved by the Gram Sabha.</p>
+                </div>
+            </div>*@
     </div>
 
     <div id="progress">
@@ -517,9 +517,9 @@
         return (fiscalYr);
     }
 
-  
 
-    
+
+
 
     //function Water_Utilization_Info() {
     //    $.ajax({
@@ -708,7 +708,7 @@
             data: "{'Data': '" + JSON.stringify(obj) + "'}",
             dataType: 'JSON',
             success: function (data) {
-
+                debugger;
                 if (data == "Logout") {
                     window.location = "/Home/LogOut";
                 }
@@ -791,7 +791,7 @@
                         //$('#MonthLabel').hide();
                         //$('#MonthDropdownLabel').show();
                         Dist_fun();
-                       // Dist_fun();
+                        // Dist_fun();
                     }
                     else if (Str[0] == "Block Level Nodal Officer") {
                         off_1 = "block";
@@ -884,7 +884,7 @@
                     $("#gram").empty();
                     var opgram = '<option value="0">Select GramPanchayat</option>';
                     $("#gram").append(opgram);
-                   
+
                     if (Jsondata.length != 0) {
                         var ddlst = {};
                         var all_dists = [];
@@ -926,7 +926,7 @@
     }
 
     function State_Dropdown_Function() {
-        
+        debugger;
         $("#dist11").empty();
         var opdist = '<option value="0">Select District</option>';
         $("#dist11").append(opdist);
@@ -938,7 +938,7 @@
         $("#gram").append(opgram);
         var StateName = $("#spnstate option:selected").text();
         if (off_1 == "state") {
-           
+
             StateName = State;
         } else {
             State = $("#spnstate").val();
@@ -980,7 +980,7 @@
 
 
     function Dist_fun() {
-        
+        debugger;
         $("#block1").empty();
         var opblock = '<option value="0">Select Block</option>';
         $("#block1").append(opblock);
@@ -988,13 +988,13 @@
         var opgram = '<option value="0">Select GramPanchayat</option>';
         $("#gram").append(opgram);
 
-        //var dist = $("#dist11").val();
-        var distName = $("#dist11 option:selected").text();
-        var State = $("#spnstate option:selected").text();
+        var dist = $("#dist11").val();
+        //var distName = $("#spndistrict option:selected").text();
+        //var State = $("#spnstate1 option:selected").text();
         if (off_1 == "dist") {
-            distName = dist;
+            dist = Dist;
         } else {
-            Dist = $("#dist11").val();
+            Dist = dist;
         }
         console.log(Dist)
         if (Dist != "0" && Jsondata.length != 0) {
@@ -1002,9 +1002,8 @@
             var all_blocks = [];
             var optionDist = '';
             for (var i = 0; i < Jsondata.length; i++) {
-                
-                if (distName == Jsondata[i].district_name && State == Jsondata[i].state_name) {
-                    
+
+                if (dist == Jsondata[i].lg_dist && State == Jsondata[i].lg_state) {
                     if (!ddlst[Jsondata[i].block_name]) {
                         all_blocks.push({ lg_block: Jsondata[i].lg_block, block_name: Jsondata[i].block_name });
                         ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
@@ -1033,27 +1032,28 @@
 
 
     function Block_fun() {
+        debugger;
         $("#gram").empty();
         var opgram = '<option value="0">Select GramPanchayat</option>';
         $("#gram").append(opgram);
-        //var block = $("#block1").val();
-        var blockName = $("#block1 option:selected").text(); 
-        var StateName = $("#spnstate option:selected").text(); 
-        var DistName = $("#dist11 option:selected").text(); 
+        var block = $("#block1").val();
+
+        //var blockName = $("#block1 option:selected").text();
+        //var StateName = $("#spnstate option:selected").text();
+        //var DistName = $("#dist11 option:selected").text();
 
         if (off_1 == "block") {
-            StateName = Block;
+            block = Block;
         } else {
-            Block = $("#block1").val();
+            Block = block;
         }
 
-
-        if (Block != "0" && Jsondata.length != 0) {
+        if (block != "0" && Jsondata.length != 0) {
             var ddlst = {};
             var all_grams = [];
             var optionDist = '';
             for (var i = 0; i < Jsondata.length; i++) {
-                if (StateName == Jsondata[i].state_name && DistName == Jsondata[i].district_name && blockName == Jsondata[i].block_name) {
+                if (State == Jsondata[i].lg_state && Dist == Jsondata[i].lg_dist && block == Jsondata[i].lg_block) {
 
                     if (!ddlst[Jsondata[i].gram_panchayat_name]) {
                         ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
@@ -1143,7 +1143,7 @@
             xx = 1;
             alert("Please Select Year");
         }
-      
+
 
         if (xx == 0) {
 
@@ -1162,14 +1162,14 @@
 
     var status_check = 0;
     //function get_approved_reject_status() {
-    //    
+    //
     //    $.ajax({
     //        type: 'POST',
     //        contentType: 'application/json; chatset=utf-8',
     //        url: "/WSP_2024_25_update/get_approved_reject_status",
     //        dataType: 'JSON',
     //        success: function (data) {
-    //            
+    //
     //            status_check = data.status_id;
     //            var status = '';
     //            if (data == "null") {
@@ -1209,23 +1209,23 @@
 
 
     function get_approved_reject_status() {
-        
+
         $.ajax({
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
             url: "/WaterBudget_2526/get_approved_reject_status",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 status_check = data.status_id;
                 var status = '';
                 if (data == "null") {
                     status = 'Pending';
                     $('#status_wsp').text(status).css({ 'color': 'blue' });
                 }
-                
+
                 if (data.status_id == 1) {
-                    status = 'Submitted to NPMU';
+                    status = 'Submitted to DPMU';
                     $('#status_wsp').text(status).css({ 'color': 'green' });
                 }
 
@@ -1238,7 +1238,7 @@
                     status = 'Approved';
                     $('#status_wsp').text(status).css({ 'color': 'blue' });
                 }
-               
+
 
             }
         });
@@ -1396,7 +1396,7 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
         }
     }
 
- 
+
 
     function Goto_page() {
 
