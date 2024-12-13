@@ -38,21 +38,52 @@ namespace AbhyProject
             //HttpContext.Current.Response.Headers.Remove("X-Powered-By");
             //HttpContext.Current.Response.Headers.Remove("X-AspNetMvc-Version");
         }
-        
+
+        //protected void Application_PostAcquireRequestState(object sender, EventArgs e)
+        //{
+        //    // Ensure the session is available and the user is logged in
+        //    if (HttpContext.Current.Session["UserName"] != null &&
+        //HttpContext.Current.Session["DateTime"] == null || HttpContext.Current.Session["UserName"] != null &&
+        //HttpContext.Current.Session["DateTime"] != null)
+        //    {
+        //        HttpContext.Current.Session["DateTime"] = DateTime.Now; // Set the current DateTime
+        //        string currentPage = HttpContext.Current.Request.Url.AbsolutePath;
+
+        //        // Store the last accessed page in session
+        //        HttpContext.Current.Session["LastAccessedPage"] = currentPage;
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
+
         protected void Application_PostAcquireRequestState(object sender, EventArgs e)
         {
-            // Ensure the session is available and the user is logged in
-            if (HttpContext.Current.Session["UserName"] != null &&
-        HttpContext.Current.Session["DateTime"] == null || HttpContext.Current.Session["UserName"] != null &&
-        HttpContext.Current.Session["DateTime"] != null)
+            // Ensure HttpContext and Session are not null
+            if (HttpContext.Current?.Session != null)
             {
-                HttpContext.Current.Session["DateTime"] = DateTime.Now; // Set the current DateTime
-                string currentPage = HttpContext.Current.Request.Url.AbsolutePath;
+                // Check if the user is logged in
+                if (HttpContext.Current.Session["UserName"] != null)
+                {
+                    // Set DateTime if it is null
+                    if (HttpContext.Current.Session["DateTime"] == null || HttpContext.Current.Session["DateTime"] != null)
+                    {
+                        HttpContext.Current.Session["DateTime"] = DateTime.Now;
+                    }
 
-                // Store the last accessed page in session
-                HttpContext.Current.Session["LastAccessedPage"] = currentPage;
+                    // Store the last accessed page in session
+                    string currentPage = HttpContext.Current.Request.Url.AbsolutePath;
+                    HttpContext.Current.Session["LastAccessedPage"] = currentPage;
+                }
+            }
+            else
+            {
+                // Optionally, you can log or handle the case where Session is null
+                // Log information or take any fallback action if required
             }
         }
+
 
 
     }
