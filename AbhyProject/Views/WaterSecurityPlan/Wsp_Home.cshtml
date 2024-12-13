@@ -53,6 +53,7 @@
         height: 150px;
         width: 150px;
     }
+
     .totaldivwsphome > .totaldiv {
         display: inline-block;
         vertical-align: middle;
@@ -160,6 +161,7 @@
             bottom: 0;
         }
     }
+
     .notice-ribbon {
         font-size: 14px;
         background: #3585dc;
@@ -466,7 +468,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/demand-side.png" onclick="Image_onchange('Demand')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
                         </ul>
 
                     </li>
@@ -480,7 +482,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/supply-side.png" onclick="Image_onchange('Supply')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
                         </ul>
 
                     </li>
@@ -494,7 +496,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/committte.png" onclick="Image_onchange('PGWM')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
                         </ul>
 
                     </li>
@@ -508,7 +510,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/declaration.png" onclick="Image_onchange('DPMU')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
                         </ul>
 
                     </li>
@@ -537,7 +539,7 @@
                     <li>
                         <ul class="arrow_ul_css">
                             <li><img src="~/Content/Agriculture_icons/wsp_report.png" onclick="Image_onchange('wsp_report')" /></li>
-                            <li><i class="fa fa-angle-double-"></i></li>
+                            <li>@*<i class="fa fa-angle-double-right"></i>*@</li>
                         </ul>
 
                     </li>
@@ -572,9 +574,9 @@
 
             </div>
             @*<div class="modal-body">
-                <img src="~/Ataljalimages/Water%20Security%20Plan%20Under%20MAintenance.png" />
+                    <img src="~/Ataljalimages/Water%20Security%20Plan%20Under%20MAintenance.png" />
 
-            </div>*@
+                </div>*@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -683,13 +685,13 @@
             data: '',
             dataType: 'JSON',
             success: function (response) {
-                
+
                 if (response == "Error") {
                     window.location = "/WaterSecurityPlan/waterAval_report";
                 }
                 $('#WaterAvailabilty').text("0");
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -724,7 +726,7 @@
 
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 Domestic_Total = 0;
@@ -765,7 +767,7 @@
 
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 Irrigated_Total = 0;
@@ -808,7 +810,7 @@
             success: function (response) {
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 Industry_Total = 0, industry_demand_surface_water = 0, industry_demand_ground_water = 0;
                 if (response.length != 0) {
@@ -834,7 +836,7 @@
 
 
     function Other_Usage_Info() {
-        
+
         $.ajax({
             type: 'GET',
             contentType: 'application/json; chatset=utf-8',
@@ -843,14 +845,14 @@
             dataType: 'JSON',
             success: function (response) {
 
-                
+
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 Other_Total = 0, other_demand_ground_water = 0, other_demand_surface_water = 0;
                 var tr = '';
 
-                
+
                 if (response.length != 0) {
                     for (var i = 0; i < response.length; i++) {
 
@@ -865,7 +867,7 @@
                 }
 
 
-                
+
 
                 Industry_Total = industry_demand_surface_water + industry_demand_ground_water;
 
@@ -892,7 +894,7 @@
                     window.location = "/WaterSecurityPlan/Balancereport";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -922,7 +924,7 @@
 
                 $('#WaterBudget').text("0");
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response.length != 0) {
 
@@ -949,9 +951,9 @@
             data: "{'Data': '" + JSON.stringify(obj) + "'}",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else {
                     $('#Error_').text("");
@@ -1102,7 +1104,7 @@
 
 
     function DropDownInfo() {
-        
+
         $.ajax({
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
@@ -1164,7 +1166,7 @@
     }
 
     function State_Dropdown_Function() {
-        
+
         $("#dist11").empty();
         var opdist = '<option value="0">Select District</option>';
         $("#dist11").append(opdist);
@@ -1219,7 +1221,7 @@
 
 
     function Dist_fun() {
-        
+
         $("#block1").empty();
         var opblock = '<option value="0">Select Block</option>';
         $("#block1").append(opblock);
@@ -1331,7 +1333,7 @@
     }
 
     function Year_change() {
-        
+
         var Year1 = $("#year").val();
         if (Year1 == "0") {
             alert("Please Select Year");
@@ -1352,8 +1354,8 @@
 
 
     function Dropdown_Search() {
-        
-        
+
+
         if (Gram != "0") {
 
         } else {
@@ -1415,7 +1417,7 @@
 
 
     //function Session_month_year() {
-    //    
+    //
 
     //        $.ajax({
     //            type: "POST",
@@ -1445,17 +1447,17 @@
 
 
     function get_approved_reject_status() {
-        
+
         $.ajax({
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
             url: "/WaterSecurityPlan/get_approved_reject_status",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 var status = '';
                 console.log(data);
-                
+
                 if (data == "null") {
 
                     status = 'In Progress';
@@ -1521,7 +1523,7 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
             data: "{'Data': '" + JSON.stringify(obj) + "'}",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 console.log(data);
                 if (data.length != 0) {
                     approved = 1;
@@ -1549,7 +1551,7 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
             data: "{'Data': '" + JSON.stringify(obj) + "'}",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 if (data == null) {
                     data = ''
                 }
@@ -1566,7 +1568,7 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
         //    alert("Please apprved GPDCI Data");
         //    return;
         //}
-        
+
         if (State == "0") {
             alert("Please Select StateName");
         } else if (Dist == "0") {
@@ -1633,7 +1635,7 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
 
 
     }
-    
+
 
     function Goto_page() {
 

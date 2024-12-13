@@ -36,6 +36,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     padding: 0px 20px;
+    overflow: hidden;
 }
 
 .sub_total_div:hover {

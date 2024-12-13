@@ -122,27 +122,60 @@
 
     .feedback_table tbody tr td {
         padding: 10px 0px;
-        padding: 3px 10px;
+        padding: 3px;
         font-size: 14px;
     }
 
     th {
         border: unset;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         padding-bottom: 3px;
     }
 
     .check-font {
         font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     .btn {
         padding: 0.270rem 0.75rem .375rem;
+    }
+
+    @@media only screen and (max-width:1200px) {
+        .feedback_table {
+            width: 100%;
+        }
+
+            .feedback_table tbody {
+                width: 100%;
+            }
+
+        .flex-break {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 100%
+        }
+
+        .width-17 {
+            width: 100%;
+            margin: 0 !important;
+        }
+    }
+
+    @@media only screen and (max-width:500px) {
+        .custom-flex {
+            flex-direction: column;
+            row-gap: 8px;
+        }
+
+            .custom-flex button {
+                margin: auto !important;
+            }
+    }
+
+    @@media only screen and (max-width:360px) {
+        .feedback_table tbody tr td {
+            width: 200px;
+        }
     }
 </style>
 <div class="loading-container">
@@ -185,14 +218,14 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 ">
-                                    <div class="table-responsive">
+                                    <div class="">
                                         <table class="feedback_table">
                                             <tbody>
 
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td class="text_span">  Registration No: <span class="requrid_star">*</span></td>
                                                     <td colspan="3">
-                                                        <div class="d-flex">
+                                                        <div class="d-flex custom-flex">
                                                             <input type="text" onpaste="" id="registration_no" class="form-control alphanum" />
                                                             <button type="button" class="btn btn-success btn-sm" id="btnSearch" style="margin-left:40px" onclick="Search_Info()">Search</button>
                                                         </div>
@@ -203,43 +236,43 @@
                                                 </tr>
 
 
-                                                <tr>
-                                                    <td class="text_span" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Topic Of Training : </td>
+                                                <tr class="flex-break">
+                                                    <td class="text_span" style="">Topic Of Training : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="p_training_name" name="p_training_name" class="form-control alpha" readonly /></td>
-                                                    <td class="text_span" style=" white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Name of the Participant : </td>
+                                                    <td class="text_span" style="  ">Name of the Participant : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="participant_name" name="participant_name" class="form-control alpha" readonly /></td>
 
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td class="text_span">  State (Training) : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="level_event" class="form-control alphanum" readonly /></td>
-                                                    <td class="text_span" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">District (Training) : </td>
+                                                    <td class="text_span" style=" ">District (Training) : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="level_event_dist" name="participant_name" class="form-control alpha" readonly /></td>
 
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td class="text_span">  Block (Training): </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="level_event_block" class="form-control alphanum" readonly /></td>
-                                                    <td class="text_span" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Event Platform : </td>
+                                                    <td class="text_span" style=" ">Event Platform : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="event_platform" name="event_platform" class="form-control alpha" readonly /></td>
 
                                                 </tr>
-                                                <tr>
-                                                    <td class="text_span" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> Feedback Submission Date: </td>
+                                                <tr class="flex-break">
+                                                    <td class="text_span" style=" "> Feedback Submission Date: </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="todaydate" class="form-control alphanum" readonly /></td>
-                                                    <td class="text_span" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Gender : </td>
+                                                    <td class="text_span" style=" ">Gender : </td>
                                                     <td colspan="2"><input type="text" onpaste="return false;" id="gender" name="" class="form-control alpha" readonly /></td>
 
                                                 </tr>
 
-                                                <tr>
-                                                    <td class="text_span" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 15px;">From Date: </td>
-                                                    <td><input type="text" onpaste="return false;" id="from_date" name="from_date" class="form-control alpha" style="margin-top: 15px;" readonly placeholder="MM/DD/YYYY" /></td>
+                                                <tr class="flex-break">
+                                                    <td class="text_span" style="  padding-top: 15px;">From Date: </td>
+                                                    <td><input type="text" onpaste="return false;" id="from_date" name="from_date" class="form-control alpha" style="margin-top: 15px;min-width:150px;" readonly placeholder="MM/DD/YYYY" /></td>
 
-                                                    <td class="text_span" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 15px;">To Date:</td>
+                                                    <td class="text_span" style="  padding-top: 15px;">To Date:</td>
                                                     <td><input type="text" onpaste="return false;" id="to_date" name="to_date" class="form-control" style=" margin-top: 15px; padding-left: 6px;" readonly placeholder="MM/DD/YYYY" /></td>
-                                                    <td class="text_span" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 15px; ">Total No. Of Days:</td>
-                                                    <td><input type="text" onpaste="return false;" id="total_days" name="total_days" class="form-control alphanum" readonly style="margin-top: 15px;" /></td>
+                                                    <td class="text_span" style="  padding-top: 15px; ">Total No. Of Days:</td>
+                                                    <td><input type="text" onpaste="return false;" id="total_days" name="total_days" class="form-control alphanum" readonly style="margin-top: 15px; min-width: 150px;" /></td>
                                                     <td><input type="text" onpaste="return false;" id="unic_key" name="" class="form-control alphanum" hidden readonly /></td>
 
                                                 </tr>
@@ -250,28 +283,28 @@
                                         <table class="feedback_table">
                                             <tbody>
 
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td colspan="22" class="text-center text_span" style=" padding-top: 35px;"><span class="red_band"><<‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐ Tick mark in relevant boxes ‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐>></span></td>
                                                 </tr>
 
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td colspan="22" class="text_span">
                                                         <span class="red_band">
                                                             The users will check the box from Sr. No. 1 to 8, and as per the numbers mentioned with check boxes, the total should be calculated automatically, and based on that total, the below-mentioned category will be seen automatically in Sr. No. 10.
                                                         </span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td colspan="22" class="text_span" style=" padding-bottom: 35px;">
                                                         <span class="red_band">
                                                             Very Beneficial (26-34), Beneficial (18-26), Less Beneficial (9-17), Not Beneficial (1-8)
                                                         </span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">1.Structure Of Training Program:<span class="requrid_star">*</span></th>
                                                 </tr>
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @*<td class="font-16">1.Structure Of Training Program:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Very Well Planned_4" name="structure_of_training" value="" class="chk" /><span class="check-font">Very Well Planned(<label style="color:red">4</label>)</span>
@@ -288,11 +321,11 @@
                                                         <input type="checkbox" onclick="calculatesum()" id="No Planning_1" name="structure_of_training" value="" class="chk" /><span class="check-font"> No Planning(<label style="color:red">1</label>)</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">2.Course Material:<span class="requrid_star">*</span> </th>
                                                 </tr>
 
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @*  <td class="font-16">2.Course Material:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Very Relevant_4" name="course_material" value="" class="chk1" /><span class="check-font"> Very Relevant(<label style="color:red">4</label>)</span>
@@ -308,10 +341,10 @@
                                                         <input type="checkbox" onclick="calculatesum()" id="Not Relevant_1" name="course_material" value="" class="chk1" /><span class="check-font"> Not Relevant(<label style="color:red">1</label>)</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">3.Interaction With Trainer:<span class="requrid_star">*</span> </th>
                                                 </tr>
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
 
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Excellent_4" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Excellent(<label style="color:red">4</label>)</span>
@@ -326,10 +359,10 @@
                                                         <input type="checkbox" onclick="calculatesum()" id="Poor_1" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Poor(<label style="color:red">1</label>)</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">4.Hands on Practice/practical Session:<span class="requrid_star">*</span> </th>
                                                 </tr>
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @*<td class="font-16">4.Hands on Practice/practical Session:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Very Useful_4" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Very Useful(<label style="color:red">4</label>)</span>
@@ -345,10 +378,10 @@
                                                         <input type="checkbox" onclick="calculatesum()" id="Not Useful_1" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Not Useful(<label style="color:red">1</label>)</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">5.Usefullness Of Contents:<span class="requrid_star">*</span> </th>
                                                 </tr>
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @*  <td class="font-16">5.Usefullness Of Contents:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Very Useful_4" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font">Very Useful(<label style="color:red">4</label>)</span>
@@ -364,10 +397,10 @@
                                                         <input type="checkbox" onclick="calculatesum()" id="Not Useful_1" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font"> Not Useful(<label style="color:red">1</label>)</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">6.Information presented was clearly explained:<span class="requrid_star">*</span></th>
                                                 </tr>
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @* <td class="font-16">6.Information presented was clearly explained:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Strongly Agree_5" name="information_presented" value="" class="chk5" /><span class="check-font">Strongly Agree(<label style="color:red">5</label>)</span>
@@ -387,10 +420,10 @@
                                                     </td>
                                                 </tr>
 
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">7.Participant questions were clearly answered:<span class="requrid_star">*</span> </th>
                                                 </tr>
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @* <td class="font-16">7.Participant questions were clearly answered:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Strongly Agree_5" name="participant_questions" value="" class="chk6" /><span class="check-font"> Strongly Agree(<label style="color:red">5</label>)</span>
@@ -409,11 +442,11 @@
                                                         <input type="checkbox" onclick="calculatesum()" id="Strongly Disagree_1" name="participant_questions" value="" class="chk6" /><span class="check-font"> Strongly Disagree(<label style="color:red">1</label>)</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">8.Food Quality/Lodging Facilities (If Applicable): </th>
                                                 </tr>
 
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @*<td class="font-16">8.Food Quality/Lodging Facilities (If Applicable): </td>*@
                                                     <td>
                                                         <input type="checkbox" onclick="calculatesum()" id="Excellent_4" name="food_quality" value="" class="chk7" /><span class="check-font"> Excellent(<label style="color:red">4</label>)</span>
@@ -431,18 +464,18 @@
                                                 </tr>
 
 
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th colspan="5" class="text_span font-16">9. What was the most interesting thing you learned?</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td colspan="5">
                                                         <textarea class="form-control alphanum" id="most_interesting_thing" name="most_interesting_thing" placeholder="Enter your Comments" rows="2"></textarea>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th class="font-16" colspan="5">10.Overall Impression:<span class="requrid_star">*</span> </th>
                                                 </tr>
-                                                <tr class="text_span chkAll">
+                                                <tr class="flex-break text_span chkAll">
                                                     @* <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>*@
                                                     <td>
                                                         <input type="checkbox" disabled id="Very Beneficial_27-34" name="overall_impression" value="" class="chk8" /><span class="check-font"> Very Beneficial(<label style="color:red">27-34</label>)</span>
@@ -460,16 +493,16 @@
                                                 </tr>
 
 
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <th colspan="5" class="text_span font-16">Your suggestions /Comments for further improvements</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td colspan="5">
                                                         <textarea class="form-control alphanum" id="your_suggestions" name="your_suggestions" placeholder="Enter your Comments" rows="2"></textarea>
                                                     </td>
                                                 </tr>
 
-                                                <tr>
+                                                <tr class="flex-break">
 
                                                     <td></td>
                                                     <td>
@@ -484,9 +517,9 @@
                                                         <input type="text" onpaste="return false;" class="form-control width-17" style="margin-left: 50px; margin-top: -6px; " name="clientCaptcha" id="clientCaptcha" placeholder="Enter the code here" required />
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="flex-break">
                                                     <td colspan="15" class="text-center">
-                                                        <p id="status" class="error_captch" style="font-weight: bold; color: red; margin-left: -80px; margin-top: -40px;"></p>
+                                                        <p id="status" class="error_captch" style="font-weight: bold; color: red; margin-left: -80px; margin-top: -20px;"></p>
                                                     </td>
 
                                                 </tr>

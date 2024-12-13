@@ -460,7 +460,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-4 text-right" style="padding: 0px 0px 0px 0px; margin-top:10px;">
+                <div class="col-md-4 text-right" style="padding: 0px 10px 0px 0px; margin-top:10px;">
                     <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/videos/Atal_Jal_GPDCI.mp4" target="_blank">VIDEO TUTORIAL</a>
                     <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/UserManual/GPDCI User Manual.pdf" target="_blank">USER MANUAL</a>
                 </div>
@@ -578,7 +578,7 @@
         </div>
         <div class="col-md-12 text-center ">
             @*<button class="btn btn-success" id="btn_pdf" onclick="Goto_page()" style="float:right">Go To Page</button>*@
-            <select class="form-control" id="goto_page" onchange="Goto_page()" style="float:right;width:150px">
+            <select class="form-control" id="goto_page" onchange="Goto_page()" style="float:right;width:150px;margin-bottom:10px;">
                 <option value="0">Navigate to</option>
                 <option value="/project/wsp_page">WSP Modules</option>
                 <option value="/SocialMointoring_new/Social_management_new">Social Mangement</option>
@@ -599,9 +599,9 @@
                 </label>*@
 
 
-            <a class="btn btn-success" id="btn_pdf" onclick="Report_PDF()" style="float:right">Export (Pdf)</a>
+            <a class="btn btn-success" id="btn_pdf" onclick="Report_PDF()" style="float:right; margin-bottom:10px; margin-right:8px;">Export (Pdf)</a>
             @*<button class="btn btn-success" id="btn_Excel" onclick="baselinedata_download()" style="float:right">Export Part-B (Excel)</button>*@
-            <a class="btn btn-success btn_export" onclick="Create_Excel()" id="btnsubmit" style="float:right">Export (Excel)</a>
+            <a class="btn btn-success btn_export" onclick="Create_Excel()" id="btnsubmit" style="float:right;margin-bottom:10px; margin-right:8px;">Export (Excel)</a>
             <h5><b><label id="State_txt" style="float:left; font-size:17px">Status : <label id="gp_status"></label></label></b></h5>
             @*<a href="" class="btn btn-success btn_export" style="float:right">Export Part-A (Excel)</a>*@
             @*@using (Html.BeginForm("Create_Excel", "GPlevel", FormMethod.Post))  //chetan
