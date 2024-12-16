@@ -2851,12 +2851,12 @@ function Service_Tr_function() {
     //else {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}
-    if (StateOfficer == 'State Level Nodal Officer') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
-    else if (Email == 'pranavman11@gmail.com') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
+    //if (StateOfficer == 'State Level Nodal Officer') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
+    //else if (Email == 'pranavman11@gmail.com') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2895,12 +2895,12 @@ function Goods_Tr_function() {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}
 
-    if (StateOfficer == 'State Level Nodal Officer') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
-    else if (Email == 'pranavman11@gmail.com') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
+    //if (StateOfficer == 'State Level Nodal Officer') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
+    //else if (Email == 'pranavman11@gmail.com') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2939,12 +2939,12 @@ function Work_Tr_function() {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}
 
-    if (StateOfficer == 'State Level Nodal Officer') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
-    else if (Email == 'pranavman11@gmail.com') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
+    //if (StateOfficer == 'State Level Nodal Officer') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
+    //else if (Email == 'pranavman11@gmail.com') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2984,12 +2984,12 @@ function Training_Tr_Function() {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}   
   
-    if (StateOfficer == 'State Level Nodal Officer') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
-    else if (Email == 'pranavman11@gmail.com') {
-        $('.disable_prm_btn').prop('disabled', false);
-    }
+    //if (StateOfficer == 'State Level Nodal Officer') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
+    //else if (Email == 'pranavman11@gmail.com') {
+    //    $('.disable_prm_btn').prop('disabled', false);
+    //}
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -3238,7 +3238,7 @@ function file_delete(id, path) {
 
 
 function Save_incentive_fund() {
-    
+
 
     var i = 0;
     var state_name = Main_Statename;
