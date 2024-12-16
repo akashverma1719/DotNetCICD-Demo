@@ -5563,10 +5563,10 @@ namespace AbhyProject.Controllers
             dt.Columns.Add("Location Details", typeof(string));
             dt.Columns.Add("Latitude", typeof(string));
             dt.Columns.Add("Longitude", typeof(string));
-            dt.Columns.Add("Date", typeof(string));
+            dt.Columns.Add("Date", typeof(DateTime));
             dt.Columns.Add("Type of Rain Gauge", typeof(string));
             dt.Columns.Add("Rainfall(in mm)", typeof(string));
-            dt.Columns.Add("Rainfall Date", typeof(string));
+            dt.Columns.Add("Rainfall Date", typeof(DateTime));
             dt.Columns.Add("Image Upload", typeof(string));
             dt.Columns.Add("Status", typeof(string));
             dt.Columns.Add("Status_dymanic", typeof(string));
@@ -5614,13 +5614,13 @@ namespace AbhyProject.Controllers
                         string parsedDatepp2 = "";
                         if (dateInputpp2 != null)
                         {
-                            parsedDatepp2 = dateInputpp2.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
+                            parsedDatepp2 = dateInputpp2.ToString("yyyy-MMMM-dd", CultureInfo.InvariantCulture);
                         }
                         DateTime dateInputpp = item.rf_date;
                         string parsedDatepp = "";
                         if (dateInputpp != null)
                         {
-                            parsedDatepp = dateInputpp.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
+                            parsedDatepp = dateInputpp.ToString("yyyy-MMMM-dd", CultureInfo.InvariantCulture);
                         }
                         var approve = item.status;
                         if (approve == null || approve == "")
@@ -5715,7 +5715,7 @@ namespace AbhyProject.Controllers
                         if (dateInputpp2 != null)
                         {
                             DateTime dd = Convert.ToDateTime(dateInputpp2);
-                            parsedDatepp2 = dd.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
+                            parsedDatepp2 = dd.ToString("yyyy-MMMM-dd", CultureInfo.InvariantCulture);
                         }
 
                         var approve = item_new.status;
