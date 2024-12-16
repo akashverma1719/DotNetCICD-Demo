@@ -561,13 +561,14 @@ function get_data_new() {
             //}
 
            
-            if (StateOfficer == 'State Level Nodal Officer') {
-                $('.disable_prm_btn').prop('disabled', false);
-            }
-            else {
-                $('.disable_prm_btn').prop('disabled', true);
-            }
+            //if (StateOfficer == 'State Level Nodal Officer') {
+            //    $('.disable_prm_btn').prop('disabled', false);
+            //}
+            //else {
+            //    $('.disable_prm_btn').prop('disabled', true);
+            //}
 
+            $('.disable_prm_btn').prop('disabled', true);
 
             if (Access_Auth == 'readonly') {
                 $('.disable_prm_btn').prop('disabled', true);
@@ -632,7 +633,7 @@ function get_data() {
                             Training = Training + Ss;
                         }
                     }
-                    debugger;
+                    
                     if (Service == "Support Service") {
                         tr += '<tr id="AWP1_TR' + i + '"><td>' + (++a) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].work_sel + '</td><td>' + data[i].Component_Id + '</td><td>' + data[i].Component_Budget_Head_EAP + '</td><td>' + data[i].Expenditure_Code + '</td><td>' + data[i].proc_sel + '</td><td>' + data[i].Category_of_Procurement + '</td><td>' + data[i].ofd_sel + '</td><td>' + data[i].Name_of_Consultant + '</td><td>' + data[i].Contract_Price + '</td><td>' + data[i].Date_of_singning + '</td><td>' + data[i].Date_of_Completion + '</td><td>' + data[i].contact_ref_id + '</td><td>' + data[i].Total_Payment + '</td><td>' + data[i].Complaints + '</td><td>' + data[i].Remarks + '</td><td><button class="btn btn-primary disable_prm_btn" onclick="editrowcomp_A_Good4(' + i + ')"> <i class="fa fa-edit"></i></button ></td >  <td><button class="btn btn-danger disable_prm_btn" onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr> ';
 
@@ -679,15 +680,14 @@ function get_data() {
             if (tr == '') {
                 tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
                 $('#tbl_details').html(tr);
-                $('#tbl_details_excel').html(tr);
+                $('#tbl_details_excel').html(tr);    
                 
             }
 
             else {
                 $('#tbl_details').html(tr);
                 $('#tbl_details_excel').html(tr_excel);
-                
-                
+                   
             }
 
             //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'abhy.maharashtra@gmail.com') {
@@ -705,18 +705,18 @@ function get_data() {
             //}
 
           
-            if (StateOfficer == 'State Level Nodal Officer') {
-                $('.disable_prm_btn').prop('disabled', false);
-            }
-            else {
-                $('.disable_prm_btn').prop('disabled', true);
-            }
+            //if (StateOfficer == 'State Level Nodal Officer') {
+            //    $('.disable_prm_btn').prop('disabled', false);
+            //}
+            //else {
+            //    $('.disable_prm_btn').prop('disabled', true);
+            //}
 
             if (Access_Auth == 'readonly') {
                 $('.disable_prm_btn').prop('disabled', true);
             }
 
-           
+            $('.disable_prm_btn').prop('disabled', true);
         }
     });
 }
@@ -740,7 +740,7 @@ function isNumberKey(txt, evt) {
 }
 
 
-function Update(id, i) {
+function Update(id, i) {   
     
     $('.loader').show();
     var xx = 0;
