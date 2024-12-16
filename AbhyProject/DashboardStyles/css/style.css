@@ -62,7 +62,7 @@ ol {
 }
 
 .logoimg {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
 }
 
@@ -727,7 +727,8 @@ body {
 
 /* By MOHIT start*/
 #blink {
-    animation: blinker 10s linear infinite;
+    animation: 3s infinite alternate fadeIn;
+    /*animation: blinker 5s linear infinite;*/
     color: #1c87c9;
     font-size: 30px;
     font-weight: bold;
@@ -1381,6 +1382,7 @@ footer p a:hover {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
+    padding: 12px 0px;
 }
 
 .link-col {
@@ -1398,8 +1400,8 @@ footer p a:hover {
 .external-link-icon {
     background-color: #d5d942;
     border-radius: 50%;
-    width: 43px;
-    height: 43px;
+    width: 53px;
+    height: 53px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1415,11 +1417,11 @@ footer p a:hover {
 }
 
 .atal-icon-sec {
-    height: 73px;
+    height: 100px;
 }
 
 .atal-logo-sec {
-    height: 60px;
+/*    height: 60px;*/
     margin-left: 9px;
 }
 
