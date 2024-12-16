@@ -12394,7 +12394,7 @@ namespace AbhyProject.Controllers
                         {
                             if (Data1.filename == null || Data1.filename == "")
                             {
-                                return Json("Reject this training and asked the Concerned Person to Upload the training Material ");
+                                return Json("Upload Training Material");
                             }
                             else if (reg.Count == 0)
                             {
