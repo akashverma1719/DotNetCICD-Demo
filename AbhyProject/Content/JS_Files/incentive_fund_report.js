@@ -15,7 +15,7 @@ function SessionInfo1() {
 
             /*Main_Statename = "ALL";*/
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else if (data == "Admin") {
                 $('#Agency_AWP_DropDown').show();
@@ -64,7 +64,7 @@ function PHP_Agency_Info() {
         dataType: 'JSON',
         success: function (data) {
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             slection_options_b = '<option value="0">Select State</option>';
             slection_options_b_report = '<option value="0">Select State</option>';
@@ -95,7 +95,7 @@ function PHP_Agency_Info() {
 }
 
 function PHP_Agency_StateInfo_B() {
-    
+
     var awp_agency_state_name = $('#awp_agency_state_name_1').val();
     $('#B_component_id').val('');
     $('#B_component_budget_head').val('');
@@ -126,7 +126,7 @@ function PHP_Agency_StateInfo_B() {
 
     }
     else if (awp_agency_state_name != "0") {
-        
+
         Main_Statename = awp_agency_state_name;
         PHP_FN_Info_B_Form();
         PHP_Agency_Name();
@@ -145,7 +145,7 @@ function PHP_Agency_StateInfo_B() {
 }
 
 function PHP_FN_Info_B_Form() {
-    
+
     $.ajax({
         type: 'GET',
         contentType: 'application/json; chatset=utf-8',
@@ -324,7 +324,7 @@ function PHP_Agency_Name() {
 
 
 function Save_incentive_fund() {
-    
+
 
 
     var i = 0;
@@ -434,7 +434,7 @@ function Save_incentive_fund() {
             dataType: 'JSON',
             success: function (response) {
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response == "Successfully Saved")
                     alert(response);
@@ -482,10 +482,10 @@ function get_data_new() {
         success: function (data) {
             debugger;
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
-           
+
             var Support_Service = 0;
             var Goods = 0;
             var Works = 0;
@@ -517,35 +517,35 @@ function get_data_new() {
 
             }
 
-                $('#Support_Count').text(Support_Service.toFixed(2));
-                $('#Goods_Count').text(Goods.toFixed(2));
-                $('#work_Count').text(Works.toFixed(2));
-                $('#training_Count').text(Training.toFixed(2));
-                if (Support_Service != '0') {
-                    $('#Support_l').text("(in Lakhs)");
-                }
-                else {
-                    $('#Support_l').text("");
-                }
-                if (Goods != '0') {
-                    $('#Goods_l').text("(in Lakhs)");
-                }
-                else {
-                    $('#Goods_l').text("");
-                }
-                if (Works != '0') {
-                    $('#work_l').text("(in Lakhs)");
-                }
-                else {
-                    $('#work_l').text("");
-                }
-                if (Training != '0') {
-                    $('#training_l').text("(in Lakhs)");
-                }
-                else {
-                    $('#training_l').text("");
+            $('#Support_Count').text(Support_Service.toFixed(2));
+            $('#Goods_Count').text(Goods.toFixed(2));
+            $('#work_Count').text(Works.toFixed(2));
+            $('#training_Count').text(Training.toFixed(2));
+            if (Support_Service != '0') {
+                $('#Support_l').text("(in Lakhs)");
+            }
+            else {
+                $('#Support_l').text("");
+            }
+            if (Goods != '0') {
+                $('#Goods_l').text("(in Lakhs)");
+            }
+            else {
+                $('#Goods_l').text("");
+            }
+            if (Works != '0') {
+                $('#work_l').text("(in Lakhs)");
+            }
+            else {
+                $('#work_l').text("");
+            }
+            if (Training != '0') {
+                $('#training_l').text("(in Lakhs)");
+            }
+            else {
+                $('#training_l').text("");
 
-                 }
+            }
 
             //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'abhy.maharashtra@gmail.com') {
             //    $('.disable_prm_btn').prop('disabled', false);
@@ -560,15 +560,14 @@ function get_data_new() {
             //    $('.disable_prm_btn').prop('disabled', true);
             //}
 
-           
-            //if (StateOfficer == 'State Level Nodal Officer') {
-            //    $('.disable_prm_btn').prop('disabled', false);
-            //}
-            //else {
-            //    $('.disable_prm_btn').prop('disabled', true);
-            //}
 
-            $('.disable_prm_btn').prop('disabled', true);
+            if (StateOfficer == 'State Level Nodal Officer') {
+                $('.disable_prm_btn').prop('disabled', false);
+            }
+            else {
+                $('.disable_prm_btn').prop('disabled', true);
+            }
+
 
             if (Access_Auth == 'readonly') {
                 $('.disable_prm_btn').prop('disabled', true);
@@ -591,7 +590,7 @@ function get_data_new() {
 }
 
 function get_data() {
-    
+
     $.ajax({
         type: 'POST',
         contentType: 'application/json; chatset=utf-8',
@@ -601,7 +600,7 @@ function get_data() {
         success: function (data) {
             debugger;
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             var tr = '';
@@ -613,7 +612,7 @@ function get_data() {
             var Training = 0;
             if (data.length != 0) {
                 for (var i = 0; i < data.length; i++) {
-                    
+
                     var procurement = data[i].Category_of_Procurement;
                     if (data[i].Contract_Price != null && data[i].Contract_Price != "") {
                         if (procurement == "Support Service") {
@@ -633,7 +632,7 @@ function get_data() {
                             Training = Training + Ss;
                         }
                     }
-                    
+                    debugger;
                     if (Service == "Support Service") {
                         tr += '<tr id="AWP1_TR' + i + '"><td>' + (++a) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].work_sel + '</td><td>' + data[i].Component_Id + '</td><td>' + data[i].Component_Budget_Head_EAP + '</td><td>' + data[i].Expenditure_Code + '</td><td>' + data[i].proc_sel + '</td><td>' + data[i].Category_of_Procurement + '</td><td>' + data[i].ofd_sel + '</td><td>' + data[i].Name_of_Consultant + '</td><td>' + data[i].Contract_Price + '</td><td>' + data[i].Date_of_singning + '</td><td>' + data[i].Date_of_Completion + '</td><td>' + data[i].contact_ref_id + '</td><td>' + data[i].Total_Payment + '</td><td>' + data[i].Complaints + '</td><td>' + data[i].Remarks + '</td><td><button class="btn btn-primary disable_prm_btn" onclick="editrowcomp_A_Good4(' + i + ')"> <i class="fa fa-edit"></i></button ></td >  <td><button class="btn btn-danger disable_prm_btn" onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr> ';
 
@@ -680,14 +679,15 @@ function get_data() {
             if (tr == '') {
                 tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
                 $('#tbl_details').html(tr);
-                $('#tbl_details_excel').html(tr);    
-                
+                $('#tbl_details_excel').html(tr);
+
             }
 
             else {
                 $('#tbl_details').html(tr);
                 $('#tbl_details_excel').html(tr_excel);
-                   
+
+
             }
 
             //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'abhy.maharashtra@gmail.com') {
@@ -704,19 +704,19 @@ function get_data() {
             //    $('.disable_prm_btn').prop('disabled', true);
             //}
 
-          
-            //if (StateOfficer == 'State Level Nodal Officer') {
-            //    $('.disable_prm_btn').prop('disabled', false);
-            //}
-            //else {
-            //    $('.disable_prm_btn').prop('disabled', true);
-            //}
+
+            if (StateOfficer == 'State Level Nodal Officer') {
+                $('.disable_prm_btn').prop('disabled', false);
+            }
+            else {
+                $('.disable_prm_btn').prop('disabled', true);
+            }
 
             if (Access_Auth == 'readonly') {
                 $('.disable_prm_btn').prop('disabled', true);
             }
 
-            $('.disable_prm_btn').prop('disabled', true);
+
         }
     });
 }
@@ -740,8 +740,8 @@ function isNumberKey(txt, evt) {
 }
 
 
-function Update(id, i) {   
-    
+function Update(id, i) {
+
     $('.loader').show();
     var xx = 0;
     var id = id;
@@ -811,7 +811,7 @@ function Update(id, i) {
             success: function (response) {
                 alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response == "Successfully Update") {
                     get_data_new();
@@ -828,7 +828,7 @@ function Update(id, i) {
 var Service = "";
 function Service_Tr_function() {
     Service = "Support Service";
-    
+
     get_data();
 }
 function Goods_Tr_function() {
@@ -845,7 +845,7 @@ function Training_Tr_Function() {
 }
 
 function editrowcomp_A_Good4(i) {
-    
+
 
     $('#AWP1_TR' + i).hide();
     $('#Hide_AWP1_TR' + i).show();
@@ -858,7 +858,7 @@ function cancelcomp_A_Support_NEW(i) {
 }
 
 function Delete_data(ss) {
-    
+
     var obj = {};
     obj.id = ss;
     $.ajax({
@@ -869,9 +869,9 @@ function Delete_data(ss) {
         dataType: 'JSON',
         success: function (response) {
             alert(response);
-            
+
             if (response == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
                 window.location = "/Error/DefaultError";
