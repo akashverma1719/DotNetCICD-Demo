@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     $("#evaluation_report_date").datepicker({ dateFormat: 'dd/mm/yy', });
     $("#bid_evalution_date").datepicker({ dateFormat: 'dd/mm/yy', });
-    
+
 });
 
 var Update_Count = 0;
@@ -68,7 +68,7 @@ function SessionInfo1() {
 
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else {
                 PHP_Agency_Info();
@@ -179,7 +179,7 @@ function SessionInfo1() {
                                     $('#tender_amt').val(data[0].tender_amt);
 
                                     $("#WorkActivity_Proc_Form").attr("disabled", "true").css('background-color', '#F6F6F6');
-                                    
+
                                     $('#WorkActivity_Proc_Form').val(data[0].activity_name);
                                     $('#nomination_ref_no').val(data[0].nomination_ref_no);
                                     $('#nomination_rec_date').val(data[0].nomination_rec_date);
@@ -236,7 +236,7 @@ function PHP_Agency_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             var slection_options = '<option value="0">Select State</option>';
             var slection_options_b = '<option value="0">Select State</option>';
@@ -337,7 +337,7 @@ function PHP_Agency_StateInfo_B_Report() {
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (data.length != 0) {
                     $('#producrment_selection').val('0');
@@ -474,7 +474,7 @@ function PHP_Agency_StateInfo_B() {
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (data.length != 0) {
                     $('#producrment_selection').val('0');
@@ -645,7 +645,7 @@ function Proc_DropDown_Info() {
         data: {},
         dataType: 'JSON',
         success: function (data) {
-            
+
             var slection_options = ' <option value="0"> Select Work and Activity </option>';
 
             if (data.length != 0) {
@@ -673,7 +673,7 @@ function Proc_DropDown_Info_set(set_value) {
         data: {},
         dataType: 'JSON',
         success: function (data) {
-            
+
             var slection_options = ' <option value="0"> Select Work and Activity </option>';
 
             if (data.length != 0) {
@@ -687,7 +687,7 @@ function Proc_DropDown_Info_set(set_value) {
 
             $('#WorkActivity_Proc_Form').html(slection_options);
             $('#WorkActivity_Proc_Form').val(set_value);
-            
+
             select_producrment_selection();
         }
     });
@@ -695,7 +695,7 @@ function Proc_DropDown_Info_set(set_value) {
 
 function WorkActivity_Proc_Form_Dropdown() {
     var WorkActivity = $('#WorkActivity_Proc_Form').val();
-    
+
     if (WorkActivity == "Other") {
 
         $('#WorkActivity_Proc_Form').hide();
@@ -753,7 +753,7 @@ function WorkActivity_Proc_Form_Dropdown() {
     }
 }
 function Save_A_Form_Info() {
-    
+
     if (Update_Count != 0) {
 
         var i = 0;
@@ -764,7 +764,7 @@ function Save_A_Form_Info() {
         } else {
             proc_sel = $('#producrment_selection').val();
         }
-        
+
         var nomination_ref_no = $('#nomination_ref_no').val();
         var nomination_rec_date = $('#nomination_rec_date').val();
         var category_proc = $('#category_of_procurement').val();
@@ -786,7 +786,7 @@ function Save_A_Form_Info() {
         var bid_open_date = $('#bid_open_date').val();
         var website_url = $('#website_url').val();
         var accepted_nomination_amt = $('#accepted_nomination_amt').val();
-        
+
         if (selected == 'Nomination Based') {
             if (noof_envelopes == "0") {
                 noof_envelopes = "";
@@ -798,7 +798,7 @@ function Save_A_Form_Info() {
                     alert("Please Enter Tender Ref. No");
                     return;
                 }
-                
+
             } else if (bid_date == "") {
                 i = 1;
                 alert("Please Enter Date of publication of Tender Notice");
@@ -966,7 +966,7 @@ function Save_A_Form_Info() {
                     var files = $("#filename").get(0).files;
 
                     if (files.length != 0) {
-                       
+
                         proc_milestone_upload_image_update(Update_Count);
                         $('#filename').val("");
 
@@ -1185,7 +1185,7 @@ function Save_A_Form_Info() {
                     $('#WorkActivity_Proc_Form').show();
                     $('#workActivity_Other').hide();
                     if (response == "SessionTimeOut") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     $('#nodal_agency_name1').text('');
                     $('#nodal_agency_name').text('');
@@ -1762,57 +1762,57 @@ function Proc_report_getdetails() {
                         else if (Officer == "State") {
                             if (Main_Statename == "ALL") {
                                 $('#Count_Rows_SGWT').show();
-                               
-                                    if (data[i].tender_amt != null && data[i].tender_amt != "") {
-                                        if (data[i].category_of_procurement == "Support Service") {
-                                            if (data[i].producrment_selection == "Nomination Based") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                Support_Count = Support_Count + Ss;
-                                            }
-                                            else {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                Support_Count = Support_Count + Ss;
-                                            }
-                                            
-                                        }
 
-                                        if (data[i].category_of_procurement == "Goods") {
-                                            if (data[i].producrment_selection == "Nomination Based") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                Goods_Count = Goods_Count + Ss;
-                                            }
-                                            else {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                Goods_Count = Goods_Count + Ss;
-                                            }
-                                           
+                                if (data[i].tender_amt != null && data[i].tender_amt != "") {
+                                    if (data[i].category_of_procurement == "Support Service") {
+                                        if (data[i].producrment_selection == "Nomination Based") {
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            Support_Count = Support_Count + Ss;
                                         }
-
-                                        if (data[i].category_of_procurement == "Works") {
-                                            if (data[i].producrment_selection == "Nomination Based") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                work_Count = work_Count + Ss;
-                                            }
-                                            else {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                work_Count = work_Count + Ss;
-                                            }
-                                          
-                                        }
-
-                                        if (data[i].category_of_procurement == "Training/ IEC/OE") {
-                                            if (data[i].producrment_selection == "Nomination Based") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                training_Count = training_Count + Ss;
-                                            }
-                                            else {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                training_Count = training_Count + Ss;
-                                            }
-                                           
+                                        else {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            Support_Count = Support_Count + Ss;
                                         }
 
                                     }
+
+                                    if (data[i].category_of_procurement == "Goods") {
+                                        if (data[i].producrment_selection == "Nomination Based") {
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            Goods_Count = Goods_Count + Ss;
+                                        }
+                                        else {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            Goods_Count = Goods_Count + Ss;
+                                        }
+
+                                    }
+
+                                    if (data[i].category_of_procurement == "Works") {
+                                        if (data[i].producrment_selection == "Nomination Based") {
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            work_Count = work_Count + Ss;
+                                        }
+                                        else {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            work_Count = work_Count + Ss;
+                                        }
+
+                                    }
+
+                                    if (data[i].category_of_procurement == "Training/ IEC/OE") {
+                                        if (data[i].producrment_selection == "Nomination Based") {
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            training_Count = training_Count + Ss;
+                                        }
+                                        else {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            training_Count = training_Count + Ss;
+                                        }
+
+                                    }
+
+                                }
 
 
                                 if (data[i].category_of_procurement == "Support Service") {
@@ -2065,71 +2065,71 @@ function Proc_report_getdetails() {
                     }
                     else {
 
-                        
+
                         if (Officer == "Admin") {
                             if (Main_Statename != "ALL") {
                                 $('#Count_Rows_SGWT').show();
-                               
-                                    if (data[i].category_of_procurement == "Support Service") {
-                                        if (data[i].producrment_selection == "Nomination Based") {
-                                            if (data[i].accepted_nomination_amt != null && data[i].accepted_nomination_amt != "") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                Support_Count = Support_Count + Ss;
-                                            }
-                                        }
-                                        else {
-                                            if (data[i].tender_amt != null && data[i].tender_amt != "") {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                Support_Count = Support_Count + Ss;
-                                            }
-                                        }
 
-                                    }
-                                    if (data[i].category_of_procurement == "Goods") {
+                                if (data[i].category_of_procurement == "Support Service") {
+                                    if (data[i].producrment_selection == "Nomination Based") {
                                         if (data[i].accepted_nomination_amt != null && data[i].accepted_nomination_amt != "") {
-                                            if (data[i].producrment_selection == "Nomination Based") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                Goods_Count = Goods_Count + Ss;
-                                            }
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            Support_Count = Support_Count + Ss;
                                         }
-                                        else {
-                                            if (data[i].tender_amt != null && data[i].tender_amt != "") {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                Goods_Count = Goods_Count + Ss;
-                                            }
-                                        }
-
                                     }
-                                    if (data[i].category_of_procurement == "Works") {
+                                    else {
+                                        if (data[i].tender_amt != null && data[i].tender_amt != "") {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            Support_Count = Support_Count + Ss;
+                                        }
+                                    }
+
+                                }
+                                if (data[i].category_of_procurement == "Goods") {
+                                    if (data[i].accepted_nomination_amt != null && data[i].accepted_nomination_amt != "") {
                                         if (data[i].producrment_selection == "Nomination Based") {
-                                            if (data[i].accepted_nomination_amt != null && data[i].accepted_nomination_amt != "") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                work_Count = work_Count + Ss;
-                                            }
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            Goods_Count = Goods_Count + Ss;
                                         }
-                                        else {
-                                            if (data[i].tender_amt != null && data[i].tender_amt != "") {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                work_Count = work_Count + Ss;
-                                            }
-                                        }
-
                                     }
-                                    if (data[i].category_of_procurement == "Training/ IEC/OE") {
+                                    else {
+                                        if (data[i].tender_amt != null && data[i].tender_amt != "") {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            Goods_Count = Goods_Count + Ss;
+                                        }
+                                    }
+
+                                }
+                                if (data[i].category_of_procurement == "Works") {
+                                    if (data[i].producrment_selection == "Nomination Based") {
                                         if (data[i].accepted_nomination_amt != null && data[i].accepted_nomination_amt != "") {
-                                            if (data[i].producrment_selection == "Nomination Based") {
-                                                var Ss = parseFloat(data[i].accepted_nomination_amt);
-                                                training_Count = training_Count + Ss;
-                                            }
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            work_Count = work_Count + Ss;
                                         }
-                                        else {
-                                            if (data[i].tender_amt != null && data[i].tender_amt != "") {
-                                                var Ss = parseFloat(data[i].tender_amt);
-                                                training_Count = training_Count + Ss;
-                                            }
-                                        }
-
                                     }
+                                    else {
+                                        if (data[i].tender_amt != null && data[i].tender_amt != "") {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            work_Count = work_Count + Ss;
+                                        }
+                                    }
+
+                                }
+                                if (data[i].category_of_procurement == "Training/ IEC/OE") {
+                                    if (data[i].accepted_nomination_amt != null && data[i].accepted_nomination_amt != "") {
+                                        if (data[i].producrment_selection == "Nomination Based") {
+                                            var Ss = parseFloat(data[i].accepted_nomination_amt);
+                                            training_Count = training_Count + Ss;
+                                        }
+                                    }
+                                    else {
+                                        if (data[i].tender_amt != null && data[i].tender_amt != "") {
+                                            var Ss = parseFloat(data[i].tender_amt);
+                                            training_Count = training_Count + Ss;
+                                        }
+                                    }
+
+                                }
 
 
 
@@ -2692,7 +2692,7 @@ function cancelcomp_A_Support(i) {
     $('#Support_TR' + i).show();
 }
 function editrowcomp_A_Support(i) {
-    
+
     var url = "/mis_new/Procurement_milestone?name=" + encodeURIComponent(i);
     window.location.href = url;
     //$('#Support_TR' + i).hide();
@@ -2705,7 +2705,7 @@ function cancelcomp_A_Good(i) {
     $('#Good_TR' + i).show();
 }
 function editrowcomp_A_Good(i) {
-    
+
     var url = "/mis_new/Procurement_milestone?name=" + encodeURIComponent(i);
     window.location.href = url;
 
@@ -2720,7 +2720,7 @@ function cancelcomp_A_Work(i) {
     $('#Work_TR' + i).show();
 }
 function editrowcomp_A_Work(i) {
-    
+
     var url = "/mis_new/Procurement_milestone?name=" + encodeURIComponent(i);
     window.location.href = url;
     //$('#Work_TR' + i).hide();
@@ -2732,7 +2732,7 @@ function cancelcomp_A_Training(i) {
     $('#Training_TR' + i).show();
 }
 function editrowcomp_A_Training(i) {
-    
+
     var url = "/mis_new/Procurement_milestone?name=" + encodeURIComponent(i);
     window.location.href = url;
     //$('#Training_TR' + i).hide();
@@ -2851,12 +2851,12 @@ function Service_Tr_function() {
     //else {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}
-    //if (StateOfficer == 'State Level Nodal Officer') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
-    //else if (Email == 'pranavman11@gmail.com') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
+    if (StateOfficer == 'State Level Nodal Officer') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
+    else if (Email == 'pranavman11@gmail.com') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2895,12 +2895,12 @@ function Goods_Tr_function() {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}
 
-    //if (StateOfficer == 'State Level Nodal Officer') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
-    //else if (Email == 'pranavman11@gmail.com') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
+    if (StateOfficer == 'State Level Nodal Officer') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
+    else if (Email == 'pranavman11@gmail.com') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2939,12 +2939,12 @@ function Work_Tr_function() {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}
 
-    //if (StateOfficer == 'State Level Nodal Officer') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
-    //else if (Email == 'pranavman11@gmail.com') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
+    if (StateOfficer == 'State Level Nodal Officer') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
+    else if (Email == 'pranavman11@gmail.com') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -2969,7 +2969,7 @@ function Training_Tr_Function() {
     if (Email == 'wbataljal@gmail.com' || Email == 'ataljalmisreadonly@gmail.com') {
         $('.disable_prm_btn').prop('disabled', true);
     }
-    
+
     //if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in' || Email == 'abhy.maharashtra@gmail.com') {
     //    $('.disable_prm_btn').prop('disabled', false);
     //}
@@ -2983,13 +2983,13 @@ function Training_Tr_Function() {
     //else {
     //    $('.disable_prm_btn').prop('disabled', true);
     //}   
-  
-    //if (StateOfficer == 'State Level Nodal Officer') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
-    //else if (Email == 'pranavman11@gmail.com') {
-    //    $('.disable_prm_btn').prop('disabled', false);
-    //}
+
+    if (StateOfficer == 'State Level Nodal Officer') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
+    else if (Email == 'pranavman11@gmail.com') {
+        $('.disable_prm_btn').prop('disabled', false);
+    }
     else {
         $('.disable_prm_btn').prop('disabled', true);
     }
@@ -3025,12 +3025,12 @@ function Multiple_Images_Upload() {
 }
 
 function proc_milestone_upload_image() {
-   
+
     var i = 0;
     if (Main_Statename != "") {
 
         if (i == 0) {
-            
+
 
             formdata.append('State', Main_Statename);
 
@@ -3049,7 +3049,7 @@ function proc_milestone_upload_image() {
                     alert(result);
                     upload_count = "";
                     if (result == "SessionTimeOut") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else {
                         //  formdata = new FormData();
@@ -3076,7 +3076,7 @@ function proc_milestone_upload_image_update(idddd) {
     if (Main_Statename != "") {
 
         if (i == 0) {
-            
+
 
             formdata.append('id', idddd);
 
@@ -3095,7 +3095,7 @@ function proc_milestone_upload_image_update(idddd) {
                     alert(result);
                     upload_count = "";
                     if (result == "SessionTimeOut") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else {
                         //  formdata = new FormData();
@@ -3319,7 +3319,7 @@ function Save_incentive_fund() {
             dataType: 'JSON',
             success: function (response) {
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response == "Successfully Saved")
                     alert(response);
