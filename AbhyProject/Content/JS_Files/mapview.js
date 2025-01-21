@@ -4364,6 +4364,17 @@ require([
         Art.classList.remove("toggled");
     });
     // Create the Hover OFF button
+    var usermanual = document.createElement("a");
+    usermanual.className = "btn btn-sm btn-info";
+    usermanual.id = "usermanual";
+    usermanual.type = "submit";
+    usermanual.title = "User Manual";
+    usermanual.setAttribute("href", "/Ataljalimages/UserManual/Public view User Manual_compressed.pdf");
+    usermanual.setAttribute("target", "_blank");
+    //usermanual.target = "_blank";
+    //usermanual.href = "/Ataljalimages/UserManual/Public view User Manual_compressed.pdf";
+    usermanual.innerHTML = "User Manual";
+
     var hoverOffButton = document.createElement("button");
     hoverOffButton.className = "btn btn-sm btn-info";
     hoverOffButton.id = "map_data_off";
@@ -4378,8 +4389,10 @@ require([
         Art.classList.remove("toggled");
     });
     // Append buttons to the container
+    container.appendChild(usermanual);
     container.appendChild(hoverOffButton);
     container.appendChild(hoverOnButton);
+    
     //
     //hoverOffButton.addEventListener('click', function (event) {
     //    event.preventDefault();

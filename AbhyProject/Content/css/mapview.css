@@ -5174,7 +5174,19 @@ table .rainguage_icon1 {
             background-color: #b3e0ff;
             cursor: pointer;
         }
-
+#usermanual {
+    width: 105px;
+    background-color: #e0f0ff !important;
+    color: #000;
+    position: absolute;
+    right: 46px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}
 /*.openPopupBtn {
     display: none;
 }*/

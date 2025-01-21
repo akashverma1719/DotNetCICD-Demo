@@ -28,7 +28,27 @@
     <link rel="stylesheet" href="path/to/material-design-iconic-font/css/material-design-iconic-font.min.css">
     <link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
     <script src="~/Content/JS_Files/IdealState.js"></script>
-
+    <style>
+        .usermanual {
+            width: 96px !important;
+            background-color: #e3f3f8 !important;
+            color: #000 !important;
+            height: 24px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            font-size: 11px !important;
+            font-weight: 600;
+        }
+    
+        .justify-content-center {
+            justify-content: center !important;
+        }
+        .align-items-center {
+            align-items: center !important;
+        }
+        
+    </style>
 </head>
 <body class="menubar-left menubar-unfold menubar-light theme-primary">
     <nav id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary">
@@ -47,7 +67,11 @@
                         <h5 class="page-title hidden-menubar-top hidden-float">Atal Bhujal Yojana</h5>
                     </li>
                 </ul>
-                <ul class="nav navbar-toolbar navbar-toolbar-right navbar-right">
+                <ul class="nav navbar-toolbar navbar-toolbar-right navbar-right d-flex justify-content-center align-items-center" style="display:flex;">
+                    <li class="dropdown">
+                        <a class="font-extra-bold bg-primary text-white btn btn-sm usermanual" type="button" href="/Ataljalimages/UserManual/Physical and financial manual.pdf" target="_blank">USER MANUAL</a>
+
+                    </li>
                     <li class="dropdown">
                         <a href="~/WSPHome/Monitoring_evaluation" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-hc-lg  fa fa-angle-double-left"> Back To Modules</i> </a>
 
@@ -117,7 +141,7 @@
                             <a href="javascript:void(0)"><img class="img-responsive" src="~/Content/Website/images/banner/emblem-dark.png" style="width:42px;" alt="avatar"></a>
                         </div>*@
                 </div>
-                <div class="media-body">
+                <div class="media-body" style="word-break:break-word;">
                     <div class="foldable">
                         @if (Session["Officer"].ToString() == "State Level Nodal Officer")
                         {
