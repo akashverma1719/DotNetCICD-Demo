@@ -5825,7 +5825,7 @@ namespace AbhyProject.Controllers
                     using (var workbook = new XLWorkbook())
                     {
                         // Ensure the DataTable is not null or empty
-                        int maxRowsPerSheet = 100000;
+                        int maxRowsPerSheet = 999998;
                         int sheetCount = (int)Math.Ceiling(dt.Rows.Count / (double)maxRowsPerSheet);
 
                         for (int i = 0; i < sheetCount; i++)
