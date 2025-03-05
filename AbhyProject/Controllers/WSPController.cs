@@ -27,6 +27,10 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
+        public ActionResult wspvideo()
+        {
+            return View();
+        }
         [HttpGet]
         public JsonResult WaterQuantity()
         {

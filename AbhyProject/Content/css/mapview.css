@@ -5190,3 +5190,16 @@ table .rainguage_icon1 {
 /*.openPopupBtn {
     display: none;
 }*/
+#VIDEO_TUTORIAL {
+    width: 105px;
+    background-color: #e0f0ff !important;
+    color: #000;
+    position: absolute;
+    right: 158px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}

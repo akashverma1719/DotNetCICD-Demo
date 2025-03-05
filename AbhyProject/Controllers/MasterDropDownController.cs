@@ -25,8 +25,10 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
-
-
+        public ActionResult trainingvideo()
+        {
+            return View();
+        }
         public ActionResult Index2()
         {
             return View();

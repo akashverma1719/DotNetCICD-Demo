@@ -4364,6 +4364,15 @@ require([
         Art.classList.remove("toggled");
     });
     // Create the Hover OFF button
+    var video = document.createElement("a");
+    video.className = "btn btn-sm btn-info";
+    video.id = "VIDEO_TUTORIAL";
+    video.type = "submit";
+    video.title = "VIDEO TUTORIAL";
+    video.setAttribute("href", "/Content/VideosRecording/21_public_view.mp4");
+    video.setAttribute("target", "_blank");
+    video.innerHTML = "VIDEO TUTORIAL";
+
     var usermanual = document.createElement("a");
     usermanual.className = "btn btn-sm btn-info";
     usermanual.id = "usermanual";
@@ -4374,6 +4383,8 @@ require([
     //usermanual.target = "_blank";
     //usermanual.href = "/Ataljalimages/UserManual/Public view User Manual_compressed.pdf";
     usermanual.innerHTML = "User Manual";
+
+    
 
     var hoverOffButton = document.createElement("button");
     hoverOffButton.className = "btn btn-sm btn-info";
@@ -4389,6 +4400,7 @@ require([
         Art.classList.remove("toggled");
     });
     // Append buttons to the container
+    container.appendChild(video);
     container.appendChild(usermanual);
     container.appendChild(hoverOffButton);
     container.appendChild(hoverOnButton);
