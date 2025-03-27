@@ -1253,8 +1253,12 @@ function validate_month(Email) {
         }
     }
     if (select_Year == "2024-25" && select_month_num == "3") {
-
-        $('#physical_savebtn').prop('disabled', true);
+        if ("20250406" <= formattedDateaa) {
+            $('#physical_savebtn').prop('disabled', true);
+        }
+        else {
+            $('#physical_savebtn').prop('disabled', false);
+        }
     }
 }
 /*abhi1204*/

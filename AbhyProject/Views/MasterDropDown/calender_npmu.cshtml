@@ -94,8 +94,7 @@
                                                 <option value="2022-23">2022-23</option>
                                                 <option value="2023-24">2023-24</option>
                                                 <option value="2024-25">2024-25</option>
-
-                                                @*<option value="2025">2025-2026</option>*@
+                                                <option value="2025-26"> 2025-26 </option>
                                             </select>
                                         </li>
                                         <li id="MonthDropdownLabel">
@@ -221,9 +220,7 @@
                                             <option value="2022-23">2022-23</option>
                                             <option value="2023-24">2023-24</option>
                                             <option value="2024-25">2024-25</option>
-                                            @*<option value="2024">2024-2025</option>
-                                                <option value="2025">2025-2026</option>*@
-
+                                            <option value="2025-26">2025-26 </option>
                                         </select>
                                     </li>
                                     <li id="MonthDropdownLabel">
@@ -400,9 +397,7 @@
                                                                 <option value="2022-23">2022-23</option>
                                                                 <option value="2023-24">2023-24</option>
                                                                 <option value="2024-25">2024-25</option>
-                                                                @*<option value="2024-25">2024-25</option>
-                                                                    <option value="2025-26">2025-26</option>*@
-
+                                                                <option value="2025-26">2025-26 </option>
                                                             </select>
                                                         </li>
                                                         <li id="MonthDropdownLabel">
@@ -693,6 +688,8 @@
         }
         else if (fin_year == "2024-25") {
             year = "2024-25"
+        }else if (fin_year == "2025-26") {
+            year = "2025-26"
         }
 
         $("#year").val(year);
@@ -792,6 +789,8 @@
             fincalyear = 2023;
         } else if (fiscalyear == "2024-2025") {
             fincalyear = 2024;
+        }else if (fiscalyear == "2025-2026") {
+            fincalyear = 2025;
         }
 
         if (fiscalyear == "2020-2021") {
@@ -804,6 +803,8 @@
             fiscalyear = "2023-24";
         } else if (fiscalyear == "2024-2025") {
             fiscalyear = "2024-25";
+        }else if (fiscalyear == "2025-2026") {
+            fiscalyear = "2025-26";
         }
 
         return (fiscalyear);
@@ -1794,7 +1795,7 @@
                             //'<td> <input type="text" class="form-control" id="district1' + i + '" value="' + district + '" readonly /></td>' +
                             //'<td> <input type="text" class="form-control" id="block1' + i + '" value="' + block + '" readonly /></td>' +
 
-                            '<td><select readonly class="form-control" id="Current1' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option> </select></td>' +
+                            '<td><select readonly class="form-control" id="Current1' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option><option value="2025-26">2025-26 </option> </select></td>' +
                             '<td><select readonly class="form-control" id="month1' + i + '"> <option value="0">' + data[i].month + '</option> <option value="January"> January </option> <option value="February"> February </option> <option value="March"> March </option> <option value="April"> April </option> <option value="May"> May </option> <option value="June"> June </option> <option value="July"> July </option> <option value="August"> August </option> <option value="September"> September </option> <option value="October"> October </option> <option value="November"> November </option> <option value="December"> December </option></select></td>' +
 
                             /*'<td> <input type="text" class="form-control" id="event1' + i + '" value="' + data[i].event_calendar + '" /></td>' +*/
@@ -1879,7 +1880,7 @@
                                 //'<td> <input type="text" class="form-control" id="district1' + i + '" value="' + district + '" readonly /></td>' +
                                 //'<td> <input type="text" class="form-control" id="block1' + i + '" value="' + block + '" readonly /></td>' +
 
-                                '<td><select readonly class="form-control" id="Current1_S' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option></select></td>' +
+                                '<td><select readonly class="form-control" id="Current1_S' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option><option value="2025-26">2025-26 </option></select></td>' +
                                 '<td><select readonly class="form-control" id="month1_S' + i + '"> <option value="0">' + data[i].month + '</option> <option value="January"> January </option> <option value="February"> February </option> <option value="March"> March </option> <option value="April"> April </option> <option value="May"> May </option> <option value="June"> June </option> <option value="July"> July </option> <option value="August"> August </option> <option value="September"> September </option> <option value="October"> October </option> <option value="November"> November </option> <option value="December"> December </option></select></td>' +
 
                                 /*'<td> <input type="text" class="form-control" id="event1_S' + i + '" value="' + data[i].event_calendar + '" /></td>' +*/
@@ -2572,7 +2573,7 @@
                             //'<td> <input type="text" class="form-control" id="district1' + i + '" value="' + district + '" readonly /></td>' +
                             //'<td> <input type="text" class="form-control" id="block1' + i + '" value="' + block + '" readonly /></td>' +
 
-                            '<td><select readonly class="form-control" id="Current1' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option> </select></td>' +
+                            '<td><select readonly class="form-control" id="Current1' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option><option value="2025-26">2025-26 </option> </select></td>' +
                             '<td><select readonly class="form-control" id="month1' + i + '"> <option value="0">' + data[i].month + '</option> <option value="January"> January </option> <option value="February"> February </option> <option value="March"> March </option> <option value="April"> April </option> <option value="May"> May </option> <option value="June"> June </option> <option value="July"> July </option> <option value="August"> August </option> <option value="September"> September </option> <option value="October"> October </option> <option value="November"> November </option> <option value="December"> December </option></select></td>' +
 
                             /*'<td> <input type="text" class="form-control" id="event1' + i + '" value="' + data[i].event_calendar + '" /></td>' +*/
@@ -2656,7 +2657,7 @@
                                 //'<td> <input type="text" class="form-control" id="district1' + i + '" value="' + district + '" readonly /></td>' +
                                 //'<td> <input type="text" class="form-control" id="block1' + i + '" value="' + block + '" readonly /></td>' +
 
-                                '<td><select readonly class="form-control" id="Current1_S' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option> </select></td>' +
+                                '<td><select readonly class="form-control" id="Current1_S' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option><option value="2025-26">2025-26 </option> </select></td>' +
                                 '<td><select readonly class="form-control" id="month1_S' + i + '"> <option value="0">' + data[i].month + '</option> <option value="January"> January </option> <option value="February"> February </option> <option value="March"> March </option> <option value="April"> April </option> <option value="May"> May </option> <option value="June"> June </option> <option value="July"> July </option> <option value="August"> August </option> <option value="September"> September </option> <option value="October"> October </option> <option value="November"> November </option> <option value="December"> December </option></select></td>' +
 
 
@@ -2927,7 +2928,7 @@
                             //'<td> <input type="text" class="form-control" id="district1' + i + '" value="' + district + '" readonly /></td>' +
                             //'<td> <input type="text" class="form-control" id="block1' + i + '" value="' + block + '" readonly /></td>' +
 
-                            '<td><select readonly class="form-control" id="Current1' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option> </select></td>' +
+                            '<td><select readonly class="form-control" id="Current1' + i + '"> <option value="0">' + data[i].current_event_year + '</option> <option value="2021-22"> 2021-22 </option> <option value="2022-23"> 2022-23 </option> <option value="2023-24"> 2023-24 </option><option value="2024-25"> 2024-25 </option><option value="2025-26">2025-26 </option> </select></td>' +
                             '<td><select readonly class="form-control" id="month1' + i + '"> <option value="0">' + data[i].month + '</option> <option value="January"> January </option> <option value="February"> February </option> <option value="March"> March </option> <option value="April"> April </option> <option value="May"> May </option> <option value="June"> June </option> <option value="July"> July </option> <option value="August"> August </option> <option value="September"> September </option> <option value="October"> October </option> <option value="November"> November </option> <option value="December"> December </option></select></td>' +
 
                            /* '<td> <input type="text" class="form-control" id="event1' + i + '" value="' + data[i].event_calendar + '" /></td>' +*/

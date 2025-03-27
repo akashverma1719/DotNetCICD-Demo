@@ -523,11 +523,9 @@
                     <li>
                         <select class="form-control" id="year" onchange="Year_change()">
                             <option value="0">Select Financial Year</option>
-                            @*<option value="2019">2019-20</option>
-                                <option value="2020">2020-21</option>
-                                <option value="2021">2021-22</option>*@
                             <option value="2023-24">2023-24</option>
-                            <option value="2024-25" selected>2024-25</option>
+                            <option value="2024-25">2024-25</option>
+                            <option value="2025-26" selected>2025-26</option>
 
                         </select>
                     </li>
@@ -745,9 +743,7 @@
                                                             <td>
                                                                 <span id="">
                                                                     <select class="form-control hide_btn" id="source_year">
-                                                                        @*<option value="">Select Year</option>*@
-                                                                        @*<option value="2022-23">2022-23(Data Source Year)</option>*@
-                                                                        <option value="2024-25" selected>2024-25(Data Source Year)</option>
+                                                                        <option value="2025-26">2025-26(Data Source Year)</option>
                                                                     </select>
                                                                 </span>
                                                             </td>
@@ -893,12 +889,7 @@
                                                             <td>
                                                                 <span id="">
                                                                     <select class="form-control hide_btn" id="source_year_liv">
-                                                                        @*<option value="">Select Year</option>*@
-                                                                        @*<option value="2022-23">2022-23(Data Source Year)</option>*@
-                                                                        <option value="2024-25" selected>2024-25(Data Source Year)</option>
-                                                                        @*<option value="2024">2024</option>
-                                                                            <option value="2025">2025</option>*@
-
+                                                                        <option value="2025-26">2025-26(Data Source Year)</option>
                                                                     </select>
                                                                 </span>
                                                             </td>
@@ -2048,11 +2039,14 @@
             year = "2023-24";
         } else if (fin_year == "2024-25") {
             year = "2024-25"
+        } else if (fin_year == "2025-26") {
+            year = "2025-26"
         }
 
         //$("#year").val("2024-25");
-        document.getElementById("source_year").value = "2024-25";
-        document.getElementById("source_year_liv").value = "2024-25";
+        document.getElementById("source_year").value = "2025-26";
+        document.getElementById("source_year_liv").value = "2025-26";
+
 
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const m = new Date();
@@ -2064,11 +2058,13 @@
     function Year_change() {
         var year = $('#year').val();
         if (year == "2024-25") {
-            location.reload();
+            Dropdown_Search();
         }
         if (year == "2023-24") {
             Dropdown_Search();
-
+        }
+        if (year == "2025-26") {
+            location.reload();
         }
 
     }
@@ -2104,6 +2100,8 @@
             fincalyear = 2023;
         } else if (fiscalyear == "2024-2025") {
             fincalyear = 2024;
+        }else if (fiscalyear == "2025-2026") {
+            fincalyear = 2025;
         }
 
         if (fiscalyear == "2020-2021") {
@@ -2116,6 +2114,8 @@
             fiscalyear = "2023-24";
         } else if (fiscalyear == "2024-2025") {
             fiscalyear = "2024-25";
+        }else if (fiscalyear == "2025-2026") {
+            fiscalyear = "2025-26";
         }
         return (fiscalyear);
     }

@@ -3946,6 +3946,12 @@ function abhy_socialmgt_farmers_Info() {
             $('#small_pop_23_24').val("");
             $('#marginal_pop_23_24').val("");
 
+            $('#large_pop_24_25').val("");
+            $('#medium_pop_24_25').val("");
+            $('#medium_semi_pop_24_25').val("");
+            $('#small_pop_24_25').val("");
+            $('#marginal_pop_24_25').val("");
+
             $('#large_pop_22_23').val("");
             $('#medium_pop_22_23').val("");
             $('#medium_semi_pop_22_23').val("");
@@ -3967,6 +3973,12 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
+
 
                         if (year == '2020-21') {
 
@@ -4105,6 +4117,12 @@ function abhy_socialmgt_farmers_Info() {
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
 
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
+
                         if (year == '2020-21') {
 
                             if (data[0].large_pop_20_21 != null && data[0].large_pop_20_21 != "") {
@@ -4242,6 +4260,13 @@ function abhy_socialmgt_farmers_Info() {
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
 
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
+
+
                         if (year == '2020-21') {
 
                             if (data[0].large_pop_20_21 != null && data[0].large_pop_20_21 != "") {
@@ -4378,6 +4403,12 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
+
 
                         if (year == '2020-21') {
 
@@ -4516,6 +4547,12 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
+
 
                         $('#pop_23_24').val("");
                         $('#male_pop_23_24').val("");
@@ -4532,6 +4569,12 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_pop_23_24').val("");
                         $('#medium_semi_pop_23_24').val("");
                         $('#landless_pop_23_24').val("");
+                        $('#large_pop_24_25').val("");
+                        $('#medium_pop_24_25').val("");
+                        $('#medium_semi_pop_24_25').val("");
+                        $('#small_pop_24_25').val("");
+                        $('#marginal_pop_24_25').val("");
+
 
 
                     }
@@ -4546,7 +4589,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
-
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
                         if (year == '2020-21') {
 
                             if (data[0].large_pop_20_21 != null && data[0].large_pop_20_21 != "") {
@@ -4684,7 +4731,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
-
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
                         if (year == '2020-21') {
 
                             if (data[0].large_pop_20_21 != null && data[0].large_pop_20_21 != "") {
@@ -4821,7 +4872,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
-
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
                         if (year == '2020-21') {
 
                             if (data[0].large_pop_20_21 != null && data[0].large_pop_20_21 != "") {
@@ -4958,7 +5013,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
-
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
                         if (year == '2020-21') {
 
                             if (data[0].large_pop_20_21 != null && data[0].large_pop_20_21 != "") {
@@ -5095,7 +5154,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
-
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
                         if (year == '2020-21') {
 
                             if (data[0].large_pop_20_21 != null && data[0].large_pop_20_21 != "") {
@@ -5232,7 +5295,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
-
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
                         $('#pop_23_24').val("");
                         $('#male_pop_23_24').val("");
                         $('#female_pop_23_24').val("");
@@ -5258,11 +5325,16 @@ function abhy_socialmgt_farmers_Info() {
                     if (approve == "") {
 
                         $('#btnFinalSave2').prop('disabled', false);
-                        $('#large_pop_23_24').prop('disabled', false);
-                        $('#medium_pop_23_24').prop('disabled', false);
-                        $('#medium_semi_pop_23_24').prop('disabled', false);
-                        $('#small_pop_23_24').prop('disabled', false);
-                        $('#marginal_pop_23_24').prop('disabled', false);
+                        $('#large_pop_23_24').prop('disabled', true);
+                        $('#medium_pop_23_24').prop('disabled', true);
+                        $('#medium_semi_pop_23_24').prop('disabled', true);
+                        $('#small_pop_23_24').prop('disabled', true);
+                        $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', false);
+                        $('#medium_pop_24_25').prop('disabled', false);
+                        $('#medium_semi_pop_24_25').prop('disabled', false);
+                        $('#small_pop_24_25').prop('disabled', false);
+                        $('#marginal_pop_24_25').prop('disabled', false);
 
                         if (year == '2020-21') {
 
@@ -5392,12 +5464,17 @@ function abhy_socialmgt_farmers_Info() {
                     }
                     if (approve == "Reject") {
 
-                        $('#btnFinalSave2').prop('disabled', false);
-                        $('#large_pop_23_24').prop('disabled', false);
-                        $('#medium_pop_23_24').prop('disabled', false);
-                        $('#medium_semi_pop_23_24').prop('disabled', false);
-                        $('#small_pop_23_24').prop('disabled', false);
-                        $('#marginal_pop_23_24').prop('disabled', false);
+                        $('#btnFinalSave2').prop('disabled', true);
+                        $('#large_pop_23_24').prop('disabled', true);
+                        $('#medium_pop_23_24').prop('disabled', true);
+                        $('#medium_semi_pop_23_24').prop('disabled', true);
+                        $('#small_pop_23_24').prop('disabled', true);
+                        $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', false);
+                        $('#medium_pop_24_25').prop('disabled', false);
+                        $('#medium_semi_pop_24_25').prop('disabled', false);
+                        $('#small_pop_24_25').prop('disabled', false);
+                        $('#marginal_pop_24_25').prop('disabled', false);
 
                         if (year == '2020-21') {
 
@@ -5534,6 +5611,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
                         if (year == '2020-21') {
 
@@ -5669,6 +5751,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
 
                         if (year == '2023-24') {
@@ -5763,6 +5850,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
                         $('#pop_23_24').val("");
                         $('#male_pop_23_24').val("");
@@ -5793,6 +5885,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
                         if (year == '2020-21') {
 
@@ -5930,6 +6027,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
                         if (year == '2020-21') {
 
@@ -6067,6 +6169,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
                         if (year == '2020-21') {
 
@@ -6204,6 +6311,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
                         if (year == '2020-21') {
 
@@ -6339,6 +6451,11 @@ function abhy_socialmgt_farmers_Info() {
                         $('#medium_semi_pop_23_24').prop('disabled', true);
                         $('#small_pop_23_24').prop('disabled', true);
                         $('#marginal_pop_23_24').prop('disabled', true);
+                        $('#large_pop_24_25').prop('disabled', true);
+                        $('#medium_pop_24_25').prop('disabled', true);
+                        $('#medium_semi_pop_24_25').prop('disabled', true);
+                        $('#small_pop_24_25').prop('disabled', true);
+                        $('#marginal_pop_24_25').prop('disabled', true);
 
                         $('#pop_23_24').val("");
                         $('#male_pop_23_24').val("");
@@ -6368,6 +6485,12 @@ function abhy_socialmgt_farmers_Info() {
                 $('#medium_semi_pop_23_24').val("");
                 $('#small_pop_23_24').val("");
                 $('#marginal_pop_23_24').val("");
+
+                $('#large_pop_24_25').val("");
+                $('#medium_pop_24_25').val("");
+                $('#medium_semi_pop_24_25').val("");
+                $('#small_pop_24_25').val("");
+                $('#marginal_pop_24_25').val("");
 
                 $('#large_pop_22_23').val("");
                 $('#medium_pop_22_23').val("");

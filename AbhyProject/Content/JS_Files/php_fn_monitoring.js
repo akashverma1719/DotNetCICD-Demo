@@ -1374,7 +1374,7 @@ function FinYear_Awp(Email) {
 }
 
 function validate_month(Email) {
-  
+    debugger;
     var select_month = $('#fin_month').val();
     var select_month_num = Get_Month_Number(select_month)
     var select_Year = $("#fin_year").val();
@@ -1394,16 +1394,9 @@ function validate_month(Email) {
              
             }
             else {
-                $('#a_form_save').prop('disabled', false);
-                
+                $('#a_form_save').prop('disabled', false);   
             }
-
         }
-        
-        
-
-        
-
     }
     if (mm == 1) {
         mn = 13;
@@ -1449,8 +1442,13 @@ function validate_month(Email) {
         $('#a_form_save').prop('disabled', false);
     }
     if (select_Year == "2024-25" && select_month_num == "3") {
+        if ("20250406" <= formattedDateaa) {
+            $('#a_form_save').prop('disabled', true);
+        }
+        else {
+            $('#a_form_save').prop('disabled', false);
 
-        $('#a_form_save').prop('disabled', true);
+        }
     }
 }
 

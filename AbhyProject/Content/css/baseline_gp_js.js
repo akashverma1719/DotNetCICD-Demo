@@ -45,6 +45,7 @@ function baseline_gp_data(villageCount) {
         data: "{'Data': '" + JSON.stringify(obj) + "'}",
         dataType: 'JSON',
         success: function (data) {
+            debugger;
             $('#sarpanch_save_btn').hide();
             $('#btnFinalSave').hide();
             $('#btn_rejectNDO').hide();
@@ -53,6 +54,7 @@ function baseline_gp_data(villageCount) {
             $('#btn_submitNDO').hide();
             $(".hide_btn").prop("disabled", true);
             $(".hide_btn_tr").hide();
+            $("#state_remarks").hide();
             if (data == "Logout") {
                 window.location = "/Home/LogOut";
             }
@@ -116,6 +118,14 @@ function baseline_gp_data(villageCount) {
                 $("#total_electric_pumps").val("");
                 $("#total_water_efficient").val("");
                 $("#livestock_population").val("");
+                $('#btnFinalSave').hide();
+                $('#btn_rejectNDO').hide();
+                $("#approved").hide();
+                $("input[type='text']").prop("disabled", false);
+                $('#btn_submitNDO').hide();
+                $(".hide_btn").prop("disabled", false);
+                $(".hide_btn_tr").hide();
+                $(".loader").hide();
                 aa_table_part_data_geting();
             }
             else if (data[0].length != 0) {
@@ -144,7 +154,6 @@ function baseline_gp_data(villageCount) {
                     $('#source_year').val(data[0].objgpdata[0].source_year);
                 }
 
-
                 if (data[0].objgpdata[0].no_of_sc != null && data[0].objgpdata[0].no_of_sc != "") {
 
                     $('#no_of_sc').val(parseInt(data[0].objgpdata[0].no_of_sc));
@@ -172,9 +181,6 @@ function baseline_gp_data(villageCount) {
 
                     $('#no_of_households').val(parseInt(data[0].objgpdata[0].no_of_households));
                 }
-
-
-
 
                 // Gp area in Ha
 
@@ -510,7 +516,7 @@ function baseline_gp_data(villageCount) {
                         $('#livestock_download').html(tr1);
 
                     }
-                    
+
                     if (data[0].objupload[i].netsown_area_file != null && data[0].objupload[i].netsown_area_file != "") {
                         var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].netsown_area_path + '" download="" target="_blank" >' + data[0].objupload[i].netsown_area_file + '</a></label>&nbsp<a type ="button" onclick="DeleteImage(\'netsown_area_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#sownarea_download').html(tr1);
@@ -548,7 +554,7 @@ function baseline_gp_data(villageCount) {
 
                     }
                 }
-               
+
                 if (data[0].objgpdata[0].approved == "true") {
                     $("#gp_status").text("Approved").css({ 'color': 'Green' });
                     $('#btnFinalSave').hide();
@@ -596,7 +602,8 @@ function baseline_gp_data(villageCount) {
                     $(".hide_btn_tr").hide();
                     $(".loader").hide();
                     return;
-                } else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == true) {
+                }
+                else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == true) {
                     $("#gp_status").text("Verification is pending with the State-level nodal officer.").css({ 'color': 'Blue' });
                     $('#btnFinalSave').hide();
                     $('#btn_rejectNDO').hide();
@@ -607,7 +614,8 @@ function baseline_gp_data(villageCount) {
                     $(".hide_btn_tr").hide();
                     $(".loader").hide();
                     return;
-                } else if (data[0].approved == "true") {
+                }
+                else if (data[0].approved == "true") {
                     $("#gp_status").text("Approved").css({ 'color': 'Green' });
                     $('#btnFinalSave').hide();
                     $('#btn_rejectNDO').hide();
@@ -622,6 +630,7 @@ function baseline_gp_data(villageCount) {
                 }
 
                 else {
+                    debugger;
                     $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
                     $('#btnFinalSave').hide();
                     $('#btn_rejectNDO').hide();
@@ -741,6 +750,7 @@ function baseline_gp_data(villageCount) {
                     }
 
                     if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                        debugger;
                         $('#btn_submitNDO').hide();
                         $("#btnFinalSave").hide();
                         $('#btn_submitspmu').hide();
@@ -751,7 +761,8 @@ function baseline_gp_data(villageCount) {
 
                     }
 
-                } else if (data[0].objgpdata[0].e_sent == false && data[0].objgpdata[0].reject == true) {
+                }
+                else if (data[0].objgpdata[0].e_sent == false && data[0].objgpdata[0].reject == true) {
                     if (StateOfficer == "District Level Nodal Officer") {
                         alert("This gp not submitted the data yet");
                         $("#btnFinalSave").hide();
@@ -769,7 +780,8 @@ function baseline_gp_data(villageCount) {
                         $("#total_no_of_village").prop("disabled", true);
                         $("#VillageName").prop("disabled", true);
                     }
-                } else if (data[0].objgpdata[0].e_sent != true && data[0].objgpdata[0].reject != true) {
+                }
+                else if (data[0].objgpdata[0].e_sent != true && data[0].objgpdata[0].reject != true) {
                     if (StateOfficer == "District Level Nodal Officer") {
                         alert("This gp not submitted the data yet");
                         $("input[type='text']").prop("disabled", true);
@@ -793,15 +805,46 @@ function baseline_gp_data(villageCount) {
                 }
 
             }
-            $('#sarpanch_save_btn').hide();
-            $('#btnFinalSave').hide();
-            $('#btn_rejectNDO').hide();
-            $("#approved").hide();
-            $("input[type='text']").prop("disabled", true);
-            $('#btn_submitNDO').hide();
-            $(".hide_btn").prop("disabled", true);
-            $(".hide_btn_tr").hide();
-            $(".loader").hide();
+            debugger;
+            var aa = $("#gp_status").text();
+            if (year == "2025-26") {
+                if (StateOfficer == "Gram Panchyat Nodal Officer") {
+
+                    if (aa == "The module is ready to fill out the gathered information at GP level.") {
+                        $('#sarpanch_save_btn').show();
+                        $('#btnFinalSave').show();
+                        $('#btn_rejectNDO').hide();
+                        $("#approved").hide();
+                        $("input[type='text']").prop("disabled", false);
+                        $('#btn_submitNDO').show();
+                        $(".hide_btn").prop("disabled", false);
+                        $(".hide_btn_tr").show();
+                        $(".loader").hide();
+                    }
+                    else {
+                        $('#sarpanch_save_btn').hide();
+                        $('#btnFinalSave').hide();
+                        $('#btn_rejectNDO').hide();
+                        $("#approved").hide();
+                        $("input[type='text']").prop("disabled", true);
+                        $('#btn_submitNDO').hide();
+                        $(".hide_btn").prop("disabled", true);
+                        $(".hide_btn_tr").hide();
+                        $(".loader").hide();
+                    }
+                }
+            }
+            else {
+                $('#sarpanch_save_btn').hide();
+                $('#btnFinalSave').hide();
+                $('#btn_rejectNDO').hide();
+                $("#approved").hide();
+                $("input[type='text']").prop("disabled", true);
+                $('#btn_submitNDO').hide();
+                $(".hide_btn").prop("disabled", true);
+                $(".hide_btn_tr").hide();
+                $(".loader").hide();
+            }
         }
     });
 }
@@ -3028,8 +3071,14 @@ function aa_table_part_data_geting() {
                     }
 
                     a += 1
-                    tr += '<tr><td><button type="button" class="btn btn-danger sarpanch_dlt_btn" id="sarpanch_dlt_btn" onclick="Delete_aa_table_part_data(' + data[i].id + ')">Delete</button></td><td>' + (a) + '</td><td>' + designation_name + '</td><td>' + name + '</td><td>' + gender + '</td><td> ' + contact_details + '</td></tr>';
-
+                    if (year == "2025-26") {
+                        if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                            tr += '<tr><td><button type="button" class="btn btn-danger sarpanch_dlt_btn" id="sarpanch_dlt_btn" onclick="Delete_aa_table_part_data(' + data[i].id + ')">Delete</button></td><td>' + (a) + '</td><td>' + designation_name + '</td><td>' + name + '</td><td>' + gender + '</td><td> ' + contact_details + '</td></tr>';
+                        }
+                    }
+                    else {
+                        tr += '<tr><td></td><td>' + (a) + '</td><td>' + designation_name + '</td><td>' + name + '</td><td>' + gender + '</td><td> ' + contact_details + '</td></tr>';
+                    }
                 }
 
             }
@@ -3040,7 +3089,7 @@ function aa_table_part_data_geting() {
                 tr += '<tr><td colspan="7" style="text-align:center;">No Data</td></tr>';
                 /*alert("No Data for this Gram Panychayat (Section-B)");*/
             }
-
+            debugger;
             $("#TblData_abc_part").html(tr);
             $('.loader').hide();
             if (StateOfficer == "District Level Nodal Officer" || StateOfficer == "State Level Nodal Officer" || StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin") {
@@ -3051,7 +3100,8 @@ function aa_table_part_data_geting() {
                 $(".hide_btn").prop("disabled", true);
                 //prop("disabled", true);
                 //$('#btn_rejectNDO').prop("disabled", false);
-            } else if (e_sentsts == true) {
+            }
+            else if (e_sentsts == true) {
                 $(".sarpanch_dlt_btn").prop("disabled", true);
                 $(".hide_btn").prop("disabled", true);
             }

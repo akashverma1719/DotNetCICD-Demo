@@ -575,6 +575,7 @@
                                                 <option value="2022-23">2022-23</option>
                                                 <option value="2023-24">2023-24</option>
                                                 <option value="2024-25">2024-25</option>
+                                                <option value="2025-26">2025-26</option>
                                             </select>
                                         </li>
                                         <li id="MonthDropdownLabel">
@@ -793,6 +794,7 @@
                                             <option value="2022-23">2022-23</option>
                                             <option value="2023-24">2023-24</option>
                                             <option value="2024-25">2024-25</option>
+                                            <option value="2025-26">2025-26</option>
                                         </select>
                                     </li>
                                     <li id="MonthDropdownLabel">
@@ -1008,8 +1010,7 @@
                                                                 <option value="2022-23">2022-23</option>
                                                                 <option value="2023-24">2023-24</option>
                                                                 <option value="2024-25">2024-25</option>
-                                                                @*<option value="2024">2024-2025</option>
-                                                                    <option value="2025">2025-2026</option>*@
+                                                                <option value="2025-26">2025-26</option>
 
                                                             </select>
                                                         </li>
@@ -1325,6 +1326,8 @@
             year = "2023-24"
         }else if (fin_year == "2024-25") {
             year = "2024-25"
+        }else if (fin_year == "2025-26") {
+            year = "2025-26"
         }
 
         $("#year").val(year);
@@ -1363,6 +1366,8 @@
             fincalyear = 2023;
         } else if (fiscalyear == "2024-2025") {
             fincalyear = 2024;
+        }else if (fiscalyear == "2025-2026") {
+            fincalyear = 2025;
         }
 
         if (fiscalyear == "2020-2021") {
@@ -1375,6 +1380,8 @@
             fiscalyear = "2023-24";
         } else if (fiscalyear == "2024-2025") {
             fiscalyear = "2024-25";
+        } else if (fiscalyear == "2025-2026") {
+            fiscalyear = "2025-26";
         }
 
         return (fiscalyear);
