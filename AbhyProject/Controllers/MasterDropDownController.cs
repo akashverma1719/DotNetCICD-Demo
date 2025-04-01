@@ -8659,7 +8659,7 @@ namespace AbhyProject.Controllers
                         current_event3 = "";
                     }
                     Data.userid = Convert.ToInt32(Session["UserId"]);
-                    Data.year = year;
+                   
                     Data.month = month;
 
                     Data.event_platform = event_platform;
@@ -8672,6 +8672,14 @@ namespace AbhyProject.Controllers
                     if (fromDate.Month != monthNumber)
                     {
                         return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                    }
+                    if (monthName == "March")
+                    {
+                        Data.year = "2024-25";
+                    }
+                    else
+                    {
+                        Data.year = year;
                     }
 
                     Data.to_date = to_date;
@@ -8834,7 +8842,7 @@ namespace AbhyProject.Controllers
                     string Code = DateTime.Now.Ticks.ToString();
                     Data.unic_key = "CE" + Code;
                     Data.userid = Convert.ToInt32(Session["UserId"]);
-                    Data.year = year;
+                    //Data.year = year;
                     Data.month = month;
                     Data.event_platform = event_platform;
                     Data.from_date = from_date;
@@ -8846,6 +8854,14 @@ namespace AbhyProject.Controllers
                     if (fromDate.Month != monthNumber)
                     {
                         return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                    }
+                    if (monthName == "March")
+                    {
+                        Data.year = "2024-25";
+                    }
+                    else
+                    {
+                        Data.year = year;
                     }
 
                     Data.to_date = to_date;
@@ -9012,7 +9028,15 @@ namespace AbhyProject.Controllers
                     string Code = DateTime.Now.Ticks.ToString();
                     Data.unic_key = "CE" + Code;
                     Data.userid = Convert.ToInt32(Session["UserId"]);
-                    Data.year = year;
+                    //Data.year = year;
+                    if (month == "March")
+                    {
+                        Data.year = "2024-25";
+                    }
+                    else
+                    {
+                        Data.year = year;
+                    }
                     Data.month = month;
                     Data.event_platform = event_platform;
                     Data.from_date = from_date;
@@ -9187,7 +9211,15 @@ namespace AbhyProject.Controllers
                     string Code = DateTime.Now.Ticks.ToString();
                     Data.unic_key = "CE" + Code;
                     Data.userid = Convert.ToInt32(Session["UserId"]);
-                    Data.year = year;
+                    //Data.year = year;
+                    if (month == "March")
+                    {
+                        Data.year = "2024-25";
+                    }
+                    else
+                    {
+                        Data.year = year;
+                    }
                     Data.month = month;
                     Data.event_platform = event_platform;
                     Data.from_date = from_date;
@@ -9377,7 +9409,15 @@ namespace AbhyProject.Controllers
 
 
                     Data.userid = Convert.ToInt32(Session["UserId"]);
-                    Data.year = year;
+                    //Data.year = year;
+                    if (month == "March")
+                    {
+                        Data.year = "2024-25";
+                    }
+                    else
+                    {
+                        Data.year = year;
+                    }
                     Data.month = month;
                     Data.event_platform = event_platform;
                     Data.from_date = from_date;
@@ -9552,7 +9592,15 @@ namespace AbhyProject.Controllers
                     Data.location_expo = location_expo;
                     Data.particular_expo = particular_expo;
                     Data.userid = Convert.ToInt32(Session["UserId"]);
-                    Data.year = year;
+                    //Data.year = year;
+                    if (month == "March")
+                    {
+                        Data.year = "2024-25";
+                    }
+                    else
+                    {
+                        Data.year = year;
+                    }
                     Data.month = month;
                     Data.event_platform = event_platform;
                     Data.from_date = from_date;

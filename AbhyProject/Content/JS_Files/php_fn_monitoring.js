@@ -47,6 +47,8 @@ function getCurrentFinancialYear() {
         fincalyear = 2023;
     } else if (fiscalyear == "2024-2025") {
         fincalyear = 2024;
+    }else if (fiscalyear == "2025-2026") {
+        fincalyear = 2025;
     }
 
 
@@ -60,6 +62,8 @@ function getCurrentFinancialYear() {
         fiscalyear = "2023-24";
     } else if (fiscalyear == "2024-2025") {
         fiscalyear = "2024-25";
+    }else if (fiscalyear == "2025-2026") {
+        fiscalyear = "2025-26";
     }
 }
 

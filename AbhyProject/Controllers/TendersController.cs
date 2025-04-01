@@ -352,7 +352,6 @@ namespace AbhyProject.Controllers
             List<abhy_procurement_milestone_insertdata> model = ABE.obj_abhy_procurement_milestone_insertdata.ToList();
 
             foreach (var item in model)
-
             {
 
                 if (item.contract_award_date != null && item.contract_award_date != "")

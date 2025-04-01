@@ -51,6 +51,8 @@ function getCurrentFinancialYear() {
         fincalyear = 2023;
     } else if (fiscalyear == "2024-2025") {
         fincalyear = 2024;
+    }else if (fiscalyear == "2025-2026") {
+        fincalyear = 2025;
     }
 
     if (fiscalyear == "2020-2021") {
@@ -63,6 +65,8 @@ function getCurrentFinancialYear() {
         fiscalyear = "2023-24";
     } else if (fiscalyear == "2024-2025") {
         fiscalyear = "2024-25";
+    }else if (fiscalyear == "2025-2026") {
+        fiscalyear = "2025-26";
     }
     
 
@@ -1207,7 +1211,7 @@ function validate_month(Email) {
     var select_month_num = Get_Month_Number(select_month)
     var select_Year = $("#Support_Year").val();
 
-    
+    debugger;
     if (select_month_num == mm && select_Year == fiscalyear) {
         $('#physical_savebtn').prop('disabled', false);
     } else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {

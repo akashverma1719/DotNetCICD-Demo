@@ -4090,7 +4090,8 @@ namespace AbhyProject.Controllers
                                     fyyear_str == "2021" ? g.Sum(w => w.Count_2021 ?? 0) :
                                     fyyear_str == "2022" ? g.Sum(w => w.Count_2022 ?? 0) :
                                     fyyear_str == "2023" ? g.Sum(w => w.Count_2023 ?? 0) :
-                                    fyyear_str == "2024" ? g.Sum(w => w.Count_2024 ?? 0) : 0
+                                    fyyear_str == "2024" ? g.Sum(w => w.Count_2024 ?? 0) : 
+                                    fyyear_str == "2025" ? g.Sum(w => w.Count_2025 ?? 0) : 0
                     })
                     .ToList();
 

@@ -779,7 +779,15 @@ namespace AbhyProject.Controllers
 					{
 						Details.gpname = Gram;
 					}
-					Details.year = year;
+					//Details.year = year;
+					if (month == "March")
+                    {
+						Details.year = "2024-25";
+                    }
+                    else
+                    {
+						Details.year = year;
+					}
 					Details.month = month;
 					Details.order_by_month = month_num;
 					Details.entry_by = Email;
