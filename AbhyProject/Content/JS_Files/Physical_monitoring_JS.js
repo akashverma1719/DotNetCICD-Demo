@@ -1199,24 +1199,16 @@ function Get_Month_Number(month) {
 
 
 function validate_month(Email) {
-    //var yyy = '';
-    //if (fincalyear == "2022") {
-    //    yyy = "2022-23";
-    //} else if (fincalyear == "2023") {
-    //    yyy = "2023-24";
-    //} else if (fincalyear == "2024") {
-    //    yyy = "2024-25";
-    //}
     var select_month = $('#Support_Month').val();
     var select_month_num = Get_Month_Number(select_month)
     var select_Year = $("#Support_Year").val();
-
-    debugger;
     if (select_month_num == mm && select_Year == fiscalyear) {
         $('#physical_savebtn').prop('disabled', false);
-    } else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
+    }
+    else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
         $('#physical_savebtn').prop('disabled', false);
-    } else {
+    }
+    else {
         $('#physical_savebtn').prop('disabled', true);
         if (select_Year == "2023-24" && select_month_num == "3") {
             if ("20240416" <= formattedDateaa) {
@@ -1239,7 +1231,8 @@ function validate_month(Email) {
     }
     if (Email == 'vinodk02@gmail.com') {
         $('#physical_savebtn').prop('disabled', false);
-    } else if (Access_Auth == 'readonly') {
+    }
+    else if (Access_Auth == 'readonly') {
         $('#physical_savebtn').prop('disabled', true);
     }
     if (Email == 'no-access' && select_Year == '2023-24' && (select_month == 'September' || select_month == 'October')){
@@ -1263,6 +1256,9 @@ function validate_month(Email) {
         else {
             $('#physical_savebtn').prop('disabled', false);
         }
+    }
+    if (select_Year == "2025-26" && select_month_num == "3") {
+            $('#physical_savebtn').prop('disabled', true);
     }
 }
 /*abhi1204*/

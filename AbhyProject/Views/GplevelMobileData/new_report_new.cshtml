@@ -2562,7 +2562,7 @@
 
             var ws = XLSX.utils.table_to_sheet(tableSelect);
             var wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Ground Water Quality");
+            XLSX.utils.book_append_sheet(wb, ws, "Summary Ground Water Quality");
 
             var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
 

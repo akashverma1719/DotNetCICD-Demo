@@ -3833,7 +3833,7 @@ namespace AbhyProject.Controllers
                     worksheet.Cell(currentRow + 1, 35).Value = "Remark, if any(Left Over Phase 1)";
 
                     worksheet.Range(currentRow, 36, currentRow, 47).Merge();
-                    worksheet.Cell(currentRow, 36).Value = "Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 2 [October 2024 - March 2025])";
+                    worksheet.Cell(currentRow, 36).Value = "Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 2 [October 2024 - December 2024])";
 
                     worksheet.Cell(currentRow + 1, 36).Value = "Year Of Subsidy Disbursement(Phase 2)";
                     worksheet.Cell(currentRow + 1, 37).Value = "Department Name(Phase 2)";

@@ -1454,6 +1454,10 @@ function validate_month(Email) {
 
         }
     }
+
+    if (select_Year == "2025-26" && select_month_num == "3") {
+        $('#a_form_save').prop('disabled', true);
+    }
 }
 
 function Save_A_Form_Info(State, StateOfficer) {
@@ -1730,7 +1734,7 @@ function PHP_FN_B_Table_Info() {
                             }
 
                         }
-                      
+                        debugger;
                         if ("20241126" == formattedDateaa) {
                             if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in') {
                                 if (data[i].fin_b_year == "2024-25") {

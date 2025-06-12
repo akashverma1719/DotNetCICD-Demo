@@ -438,38 +438,44 @@ namespace AbhyProject.Controllers
 
             return RedirectToAction("Tender_Awarded");
         }
+        [HttpGet]
+        public ActionResult Tender_Awarded_new()
+        {
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult Tender_Awarded()
         {
+            return RedirectToAction("Tender_Awarded_new");
+            ////Session["Tender_Awarded"] = "Tender";
+            ////ViewBag.Data= ABE.objTenderAwards.Where(x => x.accept == "False").ToList();
+            //////ViewBag.agency = new SelectList(ABE.objTenderAwards, "taid", "agency");
+            //Session["Tender_Agency_Name"] = "0";
+            //List<TenderAwards> model = ABE.objTenderAwards.Where(x => x.accept == "True").ToList();
+            //ViewBag.DD = new SelectList(model.Select(m => m.agency).Distinct());
+            //List<abhy_procurement_milestone_insertdata> Info_1 = new List<Models.abhy_procurement_milestone_insertdata>();
 
-            //Session["Tender_Awarded"] = "Tender";
-            //ViewBag.Data= ABE.objTenderAwards.Where(x => x.accept == "False").ToList();
-            ////ViewBag.agency = new SelectList(ABE.objTenderAwards, "taid", "agency");
-            Session["Tender_Agency_Name"] = "0";
-            List<TenderAwards> model = ABE.objTenderAwards.Where(x => x.accept == "True").ToList();
-            ViewBag.DD = new SelectList(model.Select(m => m.agency).Distinct());
-            List<abhy_procurement_milestone_insertdata> Info_1 = new List<Models.abhy_procurement_milestone_insertdata>();
+            //List<abhy_procurement_milestone_insertdata> model1 = ABE.obj_abhy_procurement_milestone_insertdata.ToList();
 
-            List<abhy_procurement_milestone_insertdata> model1 = ABE.obj_abhy_procurement_milestone_insertdata.ToList();
+            //foreach (var item in model1)
+            //{
+            //    if (item.contract_award_date != null && item.contract_award_date != "")
+            //    {
 
-            foreach (var item in model1)
-            {
-                if (item.contract_award_date != null && item.contract_award_date != "")
-                {
+            //        var contract_award_date = Set_Date(item.contract_award_date);
 
-                    var contract_award_date = Set_Date(item.contract_award_date);
+            //        DateTime publisheddate = ParseDate(contract_award_date);
 
-                    DateTime publisheddate = ParseDate(contract_award_date);
-
-                    if (publisheddate <= DateTime.Today)
-                    {
-                        Info_1.Add(item);
-                    }
-                    //Info_1.Add(item);
-                }
-            }
-            return View(Info_1);
+            //        if (publisheddate <= DateTime.Today)
+            //        {
+            //            Info_1.Add(item);
+            //        }
+            //        //Info_1.Add(item);
+            //    }
+            //}
+            //return View(Info_1);
 
 
         }

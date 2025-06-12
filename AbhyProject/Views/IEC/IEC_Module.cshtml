@@ -663,7 +663,8 @@
 
                                                 <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
                                             </li>*@
-                                        <li id="lblyear">
+                                        @*<li id="lblyear">*@
+                                        <li id="lblyears">
                                             <select class="form-control" id="year" onchange="yearchange()">
                                                 <option value="0">Select Financial Year</option>
                                                 <option value="2021-22">2021-22</option>
@@ -673,7 +674,8 @@
                                                 <option value="2025-26">2025-26</option>
                                             </select>
                                         </li>
-                                        <li id="lblmonth">
+                                        @*<li id="lblmonth">*@
+                                        <li id="lblmonths">
 
                                             <select class="form-control" id="month" onchange="validate_month()" style="width:150px;">
                                                 <option value="0">Select Month</option>
@@ -1072,16 +1074,16 @@
                                                 </li>
                                                 <li>
                                                     <select class="form-control" id="year_gram" onchange="all_excel_gram()" style="width:103%;padding-left:14px">
-                                                        <option value="0">Select Financial Year</option>
-                                                        <option value="All">All</option>
-                                                        <option value="2021-22">2021-22</option>
-                                                        <option value="2022-23">2022-23</option>
-                                                        <option value="2023-24">2023-24</option>
-                                                        <option value="2024-25">2024-25</option>
-                                                        <option value="2025-26">2025-26</option>
+                                                            <option value="0">Select Financial Year</option>
+                                                            <option value="All">All</option>
+                                                            <option value="2021-22">2021-22</option>
+                                                            <option value="2022-23">2022-23</option>
+                                                            <option value="2023-24">2023-24</option>
+                                                            <option value="2024-25">2024-25</option>
+                                                            <option value="2025-26">2025-26</option>
 
-                                                    </select>
-                                                </li>
+                                                        </select>
+</li>
                                                 <li id="MonthDropdownLabel">
 
                                                     <select class="form-control" id="month_gram" onchange="Month_change_gram()">
@@ -1586,13 +1588,13 @@
             $('#btn1').prop('disabled', true);
             if (select_Year == "2023-24" && select_month_num == "3") {
                 if ("20240406" <= formattedDateaa) {
-                    $('#year').prop('disabled', true);
-                    $('#btn1').prop('disabled', true);
-                    $('#btn1').hide();
+                    //$('#year').prop('disabled', true);
+                    //$('#btn1').prop('disabled', true);
+                    //$('#btn1').hide();
                 }
                 else {
-                    $('#year').prop('disabled', false);
-                    $('#btn1').prop('disabled', false);
+                    //$('#year').prop('disabled', false);
+                    //$('#btn1').prop('disabled', false);
                 }
 
             }
@@ -1600,33 +1602,33 @@
             else if (select_Year == "2024-25") {
                 $('#btn1').prop('disabled', false);
                 if ("20240406" <= formattedDateaa) {
-                    $('#year').prop('disabled', true);
-                    $('#btn1').prop('disabled', true);
-                    $('#btn1').hide();
+                    //$('#year').prop('disabled', true);
+                    //$('#btn1').prop('disabled', true);
+                    //$('#btn1').hide();
                 }
                 else {
-                    $('#year').prop('disabled', false);
-                    $('#btn1').prop('disabled', true);
-                    $('#btn1').hide();
+                    //$('#year').prop('disabled', false);
+                    //$('#btn1').prop('disabled', true);
+                    //$('#btn1').hide();
                 }
             }
             else if (select_Year == "2025-26") {
                 $('#btn1').prop('disabled', false);
                 if ("20240406" <= formattedDateaa) {
-                    $('#year').prop('disabled', true);
-                    $('#btn1').prop('disabled', true);
-                    $('#btn1').hide();
+                    //$('#year').prop('disabled', true);
+                    //$('#btn1').prop('disabled', true);
+                    //$('#btn1').hide();
                 }
                 else {
-                    $('#year').prop('disabled', false);
-                    $('#btn1').prop('disabled', true);
-                    $('#btn1').hide();
+                    //$('#year').prop('disabled', false);
+                    //$('#btn1').prop('disabled', true);
+                    //$('#btn1').hide();
                 }
             }
             else {
-                $('#year').prop('disabled', false);
-                $('#btn1').prop('disabled', true);
-                $('#btn1').hide();
+                //$('#year').prop('disabled', false);
+                //$('#btn1').prop('disabled', true);
+                //$('#btn1').hide();
             }
         }
 
@@ -1634,7 +1636,7 @@
         if (mm == 1) {
             mn = 13;
             if (dd <= fix_Date && select_month_num == mn - 1 && select_Year == fiscalyear) {
-                $('#btn1').prop('disabled', false);
+                /*$('#btn1').prop('disabled', false);*/
             }
         }
 

@@ -24,6 +24,7 @@
         top: 15px;
         cursor: pointer;
     }
+
     .notice-ribbon {
         font-size: 14px;
         background: #fff;
@@ -31,25 +32,27 @@
         text-align: center;
         padding: 10px;
     }
+
         .notice-ribbon p {
             font-size: 14px;
             color: #f30606;
             /*animation: blinker 10s linear infinite;*/
         }
- @@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
+
+    @@keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
 </style>
 
 @*<div class="container-fluid notice-ribbon">
-    <div class="row">
-        <div class="col-lg-12">
-            <p class="mb-0">Due to ongoing maintenance activity on the server, every day from 11:00 p.m. to 1:00 a.m. MIS users will not be able to login to the MIS portal.</p>
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mb-0">Due to ongoing maintenance activity on the server, every day from 11:00 p.m. to 1:00 a.m. MIS users will not be able to login to the MIS portal.</p>
+            </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 <div class="allcontent">
     <div class="row">
 
@@ -401,9 +404,9 @@
             </div>
             <div id="logout_session" style="display:none">
                 @*<div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Aready Login</h4>
-                </div>*@
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Aready Login</h4>
+                    </div>*@
 
                 <div class="modal-body">
                     @*<input type="text" class="form-control" name="old_password" id="old_password" placeholder="Enter old password" required />
@@ -1404,7 +1407,8 @@
         var DepartmentName = $("#department").val();
         var str = document.getElementById("usercreatepassword").value;
 
-
+        var emailPattern = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+        var mobilePattern = /^[6-9][0-9]{9}$/;
         if (Pass != CPass && Pass != "" && CPass != "") {
             document.getElementById('AlertInfo').innerHTML = "Password's Doesn't Matched";
         }
@@ -1421,10 +1425,17 @@
             document.getElementById('AlertInfo').innerHTML = "Please Enter Email";
             j = 1;
         }
-
+        else if (!emailPattern.test(Email)) {
+            document.getElementById('AlertInfo').innerHTML = "Please enter a valid email address";
+            j = 1;
+        }
         else if (Mobile == "") {
 
             document.getElementById('AlertInfo').innerHTML = "Please Enter Mobile Number";
+            j = 1;
+        }
+        else if (!mobilePattern.test(Mobile)) {
+            document.getElementById('AlertInfo').innerHTML = "Please enter a valid 10-digit mobile number starting with 6-9";
             j = 1;
         }
         else if (DepartmentName == "") {
@@ -1436,13 +1447,6 @@
             document.getElementById('AlertInfo').innerHTML = "Please Enter Password";
             j = 1;
         }
-        //else if (Email != "") {
-        //    if (Email.match(validRegex)) {
-
-        //    } else {
-        //        alert("Your Email Id is Invalid")
-        //    }
-        //}
         else if (Pass != "") {
 
             if (str.match(/[a-z]/g) && str.match(/[A-Z]/g) && str.match(/[0-9]/g) && str.match(/[^a-zA-Z\d]/g) && str.length >= 8) {
@@ -1461,7 +1465,6 @@
             document.getElementById('AlertInfo').innerHTML = "Please Enter Confirm Password";
             j = 1;
         }
-
         if (NodalOfficer == "State Level Nodal Officer") {
 
             if (State != "0" && State != null) {
@@ -1550,7 +1553,6 @@
     });
 
     function Login() {
-        debugger
         var obj = {};
         var XX = 0;
         var Email = $('#useremail').val();
@@ -1648,10 +1650,10 @@
             dataType: 'JSON',
             success: function (data) {
                 if (data == "Error") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (data.length != 0) {
                     var ss = "";

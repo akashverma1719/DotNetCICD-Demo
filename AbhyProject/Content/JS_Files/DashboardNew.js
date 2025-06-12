@@ -1177,7 +1177,7 @@ function PHP_FN_B_Table_Info() {
         dataType: 'JSON',
         async: true,
         success: function (data) {
-             
+            debugger;
             var states = PipStateArr;
             second_val_ten_chart_B = 0;
             var chckYear_arr = AWP_Financial_Year;
@@ -1202,6 +1202,7 @@ function PHP_FN_B_Table_Info() {
                             }
                         }
                     }
+                    debugger;
                     var myString = states[j];
                     var parts = myString.split("_");
                     var value = parts[0];
@@ -1254,7 +1255,7 @@ function ReleaseMonitoring() {
         data: { 'StateName': Agency_State },
         dataType: 'JSON',
         success: function (data) {
-            
+            debugger;
             
             var states = PipStateArr;
             third_val_nine_chart = 0;
@@ -1413,6 +1414,7 @@ function ReleaseMonitoring() {
                         }
                     }
                 }
+                debugger;
                 var myString = Agency_State;
                 var parts = myString.split("_");
                 var value = parts[0];

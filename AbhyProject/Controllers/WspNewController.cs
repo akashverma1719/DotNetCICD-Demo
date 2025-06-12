@@ -3240,33 +3240,6 @@ namespace AbhyProject.Controllers
 
             }
 
-            if (Session["REGCaptcha"] != null)
-            {
-                //if (Session["REGCaptcha"].ToString() != user.clientcaptcha)
-                //{
-                //    var Error_data = new abhy_tbl_error();
-                //    Error_data.block_name = user.BlockName;
-                //    Error_data.date_time = DateTime.Now.ToString();
-                //    Error_data.department = user.DepartmentName;
-                //    Error_data.district_name = user.DistrictName;
-                //    Error_data.error_test = "Captcha is not Matched";
-                //    Error_data.gpname = user.GramPanchayatName;
-                //    Error_data.ipaddress = ipAddress1;
-                //    Error_data.mobile = user.ContactNumber;
-                //    Error_data.nodal_officer = user.NodalOfficer;
-                //    Error_data.state_name = user.StateName;
-                //    Error_data.user_email = user.Email;
-                //    Error_data.user_name = user.UserName;
-                //    Error_data.user_password = user.Password;
-                //    Error_data.error_count = "1";
-                //    Error_data.user_type = "MisSignup";
-                //    ABE.obj_abhy_tbl_error.Add(Error_data);
-                //    ABE.SaveChanges();
-
-                //    return RedirectToAction("WSP_GWM_HOME", "WspNew");
-                //}
-            }
-
             string random = RandomString(6);
             var PassWord = user.Password;
             var Confirm_password = user.Verifiedornot;

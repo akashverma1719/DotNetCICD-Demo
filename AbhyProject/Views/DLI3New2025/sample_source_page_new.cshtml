@@ -528,7 +528,7 @@
                                                     <select class="form-control" id="dist11" onchange="Dist_fun()">
                                                     </select>
                                                 </li>
-                                                <li class=""style="display:none">
+                                                <li class="" style="">
                                                     <select name="" id="phase" class="form-control" onchange="divhideshow()">
                                                         <option value="phase1">phase1</option>
                                                         <option value="Left Over phase 1">Left Over phase 1</option>
@@ -585,7 +585,7 @@
                         </td>
 
                         <td>
-                            <input type="file" class="form-control disable_btn hidebutton" id="upload_module" accept=".pdf,.xls,.xlsx" style="width:300px"  />
+                            <input type="file" class="form-control disable_btn hidebutton" id="upload_module" accept=".pdf,.xls,.xlsx" style="width:300px" />
                         </td>
                     </tr>
 
@@ -661,7 +661,7 @@
     var state = '';
     $(document).ready(function () {
 
-        $(".hide_div").hide();
+      /*  $(".hide_div").hide();*/
         StateOfficer = '@Session["Officer"]';
         state = '@Session["gstate"]';
          if (StateOfficer == "Gram Panchyat Nodal Officer") {
@@ -685,12 +685,12 @@
 
         }
 
-        if (state == "Haryana_6") {
-            $('.hidebutton').hide();
-        }
-        else {
-            $('.hidebutton').hide();
-        }
+        //if (state == "Haryana_6") {
+        //    $('.hidebutton').hide();
+        //}
+        //else {
+        //    $('.hidebutton').hide();
+        //}
         DropDownInfo();
         divhideshow();
 
@@ -712,12 +712,12 @@
                     Data_get();
                 }
             }
-            if (phase == "phase2") {
+           else if (phase == "phase2") {
                 $("#uploadtext").text("Upload Document " + phase)
                 $(".entryfoam").show();
                 Data_get();
             }
-            if (phase == "Left Over phase 1") {
+           else if (phase == "Left Over phase 1") {
                 $("#uploadtext").text("Upload Document " + phase)
                 $(".entryfoam").show();
                 Data_get();
@@ -1214,12 +1214,12 @@
                                     tr += '<tr id="Hide_AWP1_TR_addnew' + i + '" style="display:none;"><td></td><td></td><td><input type="text" class="form-control" id="state' + i + '" value="' + data[i].state + '" readonly /></td><td><input type="text" class="form-control" id="district' + i + '" value="' + data[i].district + '" readonly /></td><td><input type="text" class="form-control" id="description' + i + '" value="' + data[i].description + '" /></td><td><input type="file" class="form-control" accept=".pdf,.xls,.xlsx" style="width:300px" id="image' + i + '" value="' + data[i].image_name + '" /></td><td><button type="button" class="btn btn-primary hidebutton" onclick="Update(' + data[i].id + ' , ' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_multiple_row(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
                                     //}
                                 }
-                                if (State == "Haryana_6") {
-                                    $('.hidebutton').hide();
-                                }
-                                else {
-                                    $('.hidebutton').hide();
-                                }
+                                //if (State == "Haryana_6") {
+                                //    $('.hidebutton').hide();
+                                //}
+                                //else {
+                                //    $('.hidebutton').hide();
+                                //}
                             }
                             if (StateOfficer == "State Level Nodal Officer") {
                                 var reject = data[i].reject;
@@ -1260,12 +1260,12 @@
 
                                 }
                                 debugger;
-                                if (State == "Haryana_6") {
-                                    $('.hidebutton').hide();
-                                }
-                                else {
-                                    $('.hidebutton').hide();
-                                }
+                                //if (State == "Haryana_6") {
+                                //    $('.hidebutton').hide();
+                                //}
+                                //else {
+                                //    $('.hidebutton').hide();
+                                //}
 
                             }
                             if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
@@ -1296,13 +1296,13 @@
 
                     }
                     $('#tbl_details').html(tr);
-                    if (State == "Haryana_6") {
-                        $('.hidebutton').hide();
-                    }
-                    else {
-                        $('.hidebutton').hide();
-                    }
-                    
+                    //if (State == "Haryana_6") {
+                    //    $('.hidebutton').hide();
+                    //}
+                    //else {
+                    //    $('.hidebutton').hide();
+                    //}
+
 
 
                 }

@@ -949,7 +949,7 @@ function Dropdown_Search() {
                     //$('#district_p1').hide();
                     //$('#state_p2').hide();
                     //$('#district_p2').hide();
-                    $('#txtyear').text("Phase2[October 2024 - March 2025]");
+                    $('#txtyear').text("Phase2[October 2024 - December 2024]");
                     /*$('#demanddistrictblock_p1').hide();*/
                     $('#demanddistrictblock_p1').attr("disabled", "disabled");
                     //$('#demanddistrictblock_p2').hide();
@@ -7147,7 +7147,7 @@ function Dropdown_Search_supply() {
                     $('#district_p1').hide();
                     $('#state_p2').hide();
                     $('#district_p2').hide();
-                    $('#txtyear').text("Phase2[October 2024 - March 2025]");
+                    $('#txtyear').text("Phase2[October 2024 - December 2024]");
                     $('#demanddistrictblock_p1').hide();
                     $('#demanddistrictblock_p1').attr("disabled", "disabled");
                     $('#demanddistrictblock_p2').hide();

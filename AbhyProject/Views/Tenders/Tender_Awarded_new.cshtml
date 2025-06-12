@@ -1,0 +1,513 @@
+﻿
+@{
+    ViewBag.Title = "Tender_Awarded";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+    var i = 1;
+}
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+<title>Tender Awarded</title>
+<script>
+    //$(document).ready(function () {
+    //    $.noConflict();
+    //});
+
+</script>
+<style>
+    .Training2 {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        border: 2px solid #81dd81;
+    }
+
+    table.tenderawd > thead > tr > th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .upload2 {
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .table.dataTable thead th,
+    table.dataTable thead td {
+        padding: 10px 18px 10px 9px;
+    }
+
+    select {
+        width: 180px;
+    }
+
+    #example_wrapper .row:nth-child(2n+1) {
+        width: 100%;
+    }
+    /*thead {
+        background-color: #499BC9;
+        color:#fff;
+    }*/
+
+    .tableDataResp thead tr th {
+        position: sticky !important;
+        top: 0px !important;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Tender Awarded </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-top:20px;margin-bottom:20px;">
+
+    <!--Start drop down row-->
+    <div class="row" style="margin-bottom:20px;">
+        <div class="col-md-12">
+            <div class="row Training2 upload2 ">
+                <div class="col-md-2" style="padding:8px;">
+                    <label>Agency Name :</label>
+                </div>
+                @*@using (Html.BeginForm("Tender_Awarded", "Tenders", new { @class = "form-horizontal" }))
+                    {*@
+                <div class="col-md-6" style="padding:0px;">
+                    <select name="Agency" id="Agency" class="form-control" onchange="" style="width:180px">
+                        <option value="0">--Select Agency--</option>
+                        <option value="NPMU">NPMU</option>
+                        <option value="Gujarat_24">Gujarat</option>
+                        <option value="Haryana_6">Haryana</option>
+                        <option value="Karnataka_29">Karnataka</option>
+                        <option value="Madhya Pradesh_23">Madhya Pradesh</option>
+                        <option value="Maharashtra_27">Maharashtra</option>
+                        <option value="Rajasthan_8">Rajasthan</option>
+                        <option value="Uttar Pradesh_9">Uttar Pradesh</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+                    @*<input type="submit" value="search" class="btn btn-primary" style="width:100px;" />*@
+                    <button type="submit" value="search" id="Btn_1" class="btn btn-primary" hidden>search</button>
+                </div>
+                @*}*@
+                <div class="" style="margin-left: 2%;">
+
+                    <select name="" id="production" class="form-control" onchange="proc()" style="width:100%">
+                        <option value="0">--Select Under Procurement--</option>
+                        <option value="ISCB">IS & CB</option>
+                        <option value="Incentive_Fund">Incentive Fund</option>
+
+                    </select>
+
+                </div>
+                <div class="" style="margin-left:2%;">
+
+                    <select name="" id="category" class="form-control" onchange="proc()" style="width:100%">
+                        <option value="0">--Select Procurement For--</option>
+                        <option value="Support Service">Services</option>
+                        <option value="Goods">Goods</option>
+                        <option value="Works">Works</option>
+                        <option value="Training/ IEC/OE">Training</option>
+
+                    </select>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="example_filter" class="dataTables_filter" style="margin-bottom: 0px; margin-left:100px;">
+
+        <div class="row">
+            <label class="col-md-2" style=" margin-top: 18px; position: relative; right:72px; font-size:16px;">
+                Search Data in Table:
+            </label>
+            <div class="col-md-2">
+                <input type="search" id="myInput" class="form-control input-sm" placeholder="Search" style=" border-radius:25px; position: absolute; right: 95px; margin-top: 10px; padding-bottom:8px;" />
+            </div>
+        </div>
+
+    </div>
+    <!--End drop down row-->
+    <!--Start datatable row-->
+
+    <div class="row">
+        <div class="col-md-12" style="margin-top:20px">
+            <div class="table-responsive" style="height: 600px">
+                <table id="example" style="width: 100%;" class="tableDataResp display  tenderawd table stripe row-border order-column  table-striped table-bordered dataTable no-footer">
+                    <thead id="proc">
+                        <tr class="info text-center">
+                            <th colspan="43" class="text-center"><span class="text-uppercase">Procurement Milestone</span></th>
+
+                        </tr>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>State Name</th>
+                            <th>District Agency</th>
+                            <th>Implementing Agency</th>
+                            <th>Work/ Activities </th>
+                            <th>Component  ID</th>
+                            <th>Sub-Component ID</th>
+                            <th>Activity ID</th>
+                            <th>Item Code</th>
+                            <th>Method of Selection/Procurement (PP)</th>
+                            <th>Category of Procurement (As categorised in PP)</th>
+                            <th>Description of Service/Goods/Work</th>
+                            <th>Office doing Procurement</th>
+                            <th>Email address of concerned Office</th>
+                            <th>Tender Ref. No.</th>
+                            <th>Estimated Cost (in INR)</th>
+                            <th>Date of publication of Tender Notice</th>
+                            <th>Tender Id</th>
+                            <th>Date of start of sale/download of Bid document</th>
+                            <th>Date of end of sale/download of Bid document</th>
+                            <th>Number of envelopes</th>
+                            <th>Last date of submission of bid</th>
+                            <th>Bid opening date</th>
+                            <th>e-procurement Website URL</th>
+                            <th>Uploaded documents</th>
+                            <th>Bids valid upto</th>
+                            <th>No. of Bids Received:</th>
+                            <th>Date of submission of Technical Evaluation Report, if applicable</th>
+                            <th>Date of submission of Final Evaluation Report</th>
+                            <th>Date of Award of Contract / LOA</th>
+                            <th>Accepted Tender Amount (Contract Price) (INR)</th>
+                            <th>Name of Consultant/Service Provider/Supplier/Contractor</th>
+                            <th>Date of signing of contract agreement</th>
+                            <th>Stipulated date of completion</th>
+                            <th>Completion date extension number</th>
+                            <th>Latest extended date of completion+G164:G199</th>
+                            <th>Revised Contract Price (INR)</th>
+                            <th>Expenditure incurred under the contract (INR)</th>
+                            <th>If terminated, date of termination of contract</th>
+                            <th>Reference No. of Nomination Received</th>
+                            <th>Date of Receiving Nomination</th>
+                            <th>Accepted Nomination Amount (Contract Price) (INR)</th>
+                            <th>Remarks</th>
+
+                        </tr>
+                    </thead>
+
+                    <thead id="incentive">
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>State</th>
+                            <th>Work and Activity</th>
+                            <th>Component Id</th>
+                            <th>Component Budget Head(EAP)</th>
+                            <th>Expenditure Code</th>
+                            <th>Method of Procurement (PP)</th>
+                            <th>Category of Procurement (As categorised in PP)</th>
+                            <th>Office doing Procurement</th>
+                            <th>Name of Consultant/Service Provide/Supplier/Contractor</th>
+                            <th>Contract Price(In Lakhs)</th>
+                            <th>Date of signing of contract agreement</th>
+                            <th>Date of Completion</th>
+                            <th>Contact Ref. ID</th>
+                            <th>Total Payment (In Lakhs)</th>
+                            <th>Complaints (If any)</th>
+                            <th>Description of Work and Activity</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_data"> </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+
+    var State = "";
+     $(document).ready(function () {
+
+         State = '@Session["Tender_Agency_Name"]';
+
+         if (State != "") {
+             $('#Agency').val(State);
+         } else {
+             $('#Agency').val('0');
+         }
+    });
+
+    //Btn_1
+    $(document).ready(function () {
+        //Proc_report_getdetails();
+        $('#Btn_1').hide();
+        $('#incentive').hide();
+    });
+
+
+    function Agency_Dropdown() {
+
+        $('#Btn_1').click();
+
+    }
+
+    function proc() {
+        var proc = $('#production').val();
+        var tr = '<tr colspan="10"><td colspan="43" style="text-align: center;"></td></tr>';
+        $('#tbl_data').html(tr);
+        if (proc == "ISCB") {
+            $('#proc').show();
+            $('#incentive').hide();
+            Proc_report_getdetails();
+        }
+        else if (proc == "Incentive_Fund") {
+            $('#proc').hide();
+            $('#incentive').show();
+            inc_report_getdetails();
+        }
+        else {
+            $('#proc').show();
+                $('#incentive').hide();
+            }
+    }
+
+    function Proc_report_getdetails() {
+        debugger;
+        var Main_Statename = $('#Agency').val();
+        var category = $('#category').val();
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/mis_new/Proc_report_getdetails_Info_homepage',
+            data: { 'StateName': Main_Statename, 'category': category },
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var tr = "";
+                var sr = 0;
+                if (data.length != '0') {
+                    for (var i = 0; i < data.length; i++) {
+
+                        var workactivity_other = data[i].workactivity_other;
+
+                        var district_agency = "";
+
+                        if (data[i].district_agency != null) {
+                            district_agency = data[i].district_agency;
+                        }
+
+                        var activity_name = data[i].activity_name;
+                        var Work_Activity_name = "";
+                        if (activity_name == "Other") {
+                            Work_Activity_name = workactivity_other;
+                        }
+                        else {
+                            Work_Activity_name = activity_name;
+                        }
+
+
+                        var evaluation_report_date = "";
+                        if (data[i].evaluation_report_date != null) {
+                            evaluation_report_date = data[i].evaluation_report_date;
+                        }
+                        var final_evaluation_report_date = "";
+                        if (data[i].final_evaluation_report_date != null) {
+                            final_evaluation_report_date = data[i].final_evaluation_report_date;
+                        }
+
+
+                        var contract_award_date = "";
+                        if (data[i].contract_award_date != null) {
+                            contract_award_date = data[i].contract_award_date;
+                        }
+
+                        var tender_amt = "";
+                        if (data[i].tender_amt != null) {
+                            tender_amt = data[i].tender_amt;
+                        }
+                        var accepted_nomination_amt = "";
+                        if (data[i].accepted_nomination_amt != null) {
+                            accepted_nomination_amt = data[i].accepted_nomination_amt;
+                        }
+
+                        var name_of_consultant = "";
+                        if (data[i].name_of_consultant != null) {
+                            name_of_consultant = data[i].name_of_consultant;
+                        }
+                        var aggreement_sign_date = "";
+                        if (data[i].aggreement_sign_date != null) {
+                            aggreement_sign_date = data[i].aggreement_sign_date;
+                        }
+
+                        var stipulated_date = "";
+                        if (data[i].stipulated_date != null) {
+                            stipulated_date = data[i].stipulated_date;
+                        }
+                        var extension_number = "";
+                        if (data[i].extension_number != null) {
+                            extension_number = data[i].extension_number;
+                        }
+
+                        var latest_ext_date = "";
+                        if (data[i].latest_ext_date != null) {
+                            latest_ext_date = data[i].latest_ext_date;
+                        }
+                        var contract_price = "";
+                        if (data[i].contract_price != null) {
+                            contract_price = data[i].contract_price;
+                        }
+                        var expenditure_contract = "";
+                        if (data[i].expenditure_contract != null) {
+                            expenditure_contract = data[i].expenditure_contract;
+                        }
+
+                        var terminated_date = "";
+                        if (data[i].terminated_date != null) {
+                            terminated_date = data[i].terminated_date;
+                        }
+                        var proc_remarks = "";
+                        if (data[i].proc_remarks != null) {
+                            proc_remarks = data[i].proc_remarks;
+                        }
+
+                        var bids_received = "";
+                        if (data[i].bids_received != null) {
+                            bids_received = data[i].bids_received;
+                        }
+                        var nomination_ref_no = "";
+                        if (data[i].nomination_ref_no != null) {
+                            nomination_ref_no = data[i].nomination_ref_no;
+                        }
+                        var nomination_rec_date = "";
+                        if (data[i].nomination_rec_date != null) {
+                            nomination_rec_date = data[i].nomination_rec_date;
+                        }
+
+                        var Office_doing_Procurement = "";
+                        var Office_doing_Procurement_column = "";
+                        if (data[i].rfp_date != null) {
+
+                            if (data[i].rfp_date != null && data[i].rfp_date != '') {
+
+                                Office_doing_Procurement = data[i].rfp_date;
+                            }
+                            var District_Agency = "";
+                            if (data[i].district_agency != null && data[i].district_agency != '') {
+
+                                District_Agency = data[i].district_agency;
+                            }
+                            if (Office_doing_Procurement == "DPMU") {
+                                Office_doing_Procurement_column = Office_doing_Procurement + '(' + District_Agency + ')';
+                            }
+                            else {
+                                Office_doing_Procurement_column = Office_doing_Procurement;
+                            }
+                        }
+                        var Li = '';
+                        var filename = data[i].filename;
+                        var filepath = data[i].filepath;
+                        if (filename == null) {
+                            filename = "";
+                        }
+                        else {
+                            var fs = filename.split(',');
+                            var fs_path = filepath.split(',');
+                            if (fs.length != 0) {
+                                var Z11 = 0;
+                                for (var j = 0; j < fs.length; j++) {
+
+                                    if (fs[j] != "") {
+                                        Z11 = Z11 + 1;
+                                        var del = data[i].id + "," + j;
+                                        Li += '<li><a href="' + fs_path[j] + '"target="_blank" download="">' + Z11 + '.' + fs[j] + '</a></li>';
+                                    }
+                                }
+                            }
+                        }
+
+                            sr++;
+                            tr += '<tr id="Support_TR1' + i + '"><td> ' + sr + '</td><td>' + data[i].state_name + '</td><td>' + district_agency + '</td><td>' + data[i].agency_name + '</td><td>' + Work_Activity_name + '</td><td>' + data[i].component_id + '</td><td>' + data[i].sub_component_id + '</td>' +
+                                '<td>' + data[i].activity_id + '</td><td>' + data[i].item_code + '</td><td>' + data[i].producrment_selection + '</td>' +
+                                '<td>' + data[i].category_of_procurement + '</td><td>' + data[i].description_service + '</td><td>' + Office_doing_Procurement_column + '</td><td>' + data[i].email_office + '</td><td>' + data[i].tender_no + '</td>' +
+                                '<td>' + data[i].estimated_cost + '</td ><td>' + data[i].bid_date + '</td><td>' + data[i].tender_id + '</td><td>' + data[i].bid_evalution_date + '</td><td>' + data[i].award_date + '</td>' +
+                                '<td>' + data[i].noof_envelopes + '</td><td>' + data[i].deadline_date + '</td><td>' + data[i].bid_open_date + '</td><td><a href="http://' + data[i].website_url + '" target="_blank">' + data[i].website_url + '</a></td><td><ul id="Support_UL">' + Li + '</ul></td><td>' + data[i].valid_bids + '</td><td>' + bids_received + '</td><td>' + evaluation_report_date + '</td><td>' + final_evaluation_report_date + '</td>' +
+                                '<td>' + contract_award_date + '</td ><td>' + tender_amt + '</td><td>' + name_of_consultant + '</td><td>' + aggreement_sign_date + '</td><td>' + stipulated_date + '</td>' +
+                                '<td>' + extension_number + '</td ><td>' + latest_ext_date + '</td><td>' + contract_price + '</td><td>' + expenditure_contract + '</td><td>' + terminated_date + '</td>' +
+                                '<td>' + nomination_ref_no + '</td><td>' + nomination_rec_date + '</td><td>' + accepted_nomination_amt + '</td><td>' + proc_remarks + '</td></tr> ';
+
+                     }
+
+
+                }
+                else {
+                    tr = '<tr colspan="43"><td colspan="43" style="text-align: center;">No Data</td></tr>';
+                }
+
+                $('#tbl_data').html(tr);
+
+
+
+            }
+        });
+    }
+
+
+    function inc_report_getdetails() {
+        debugger;
+        var Main_Statename = $('#Agency').val();
+        var category = $('#category').val();
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/mis_new/Incentive_data_home',
+            data: { 'StateName': Main_Statename, 'category': category },
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var tr = "";
+                var sr = 0;
+                if (data.length != '0') {
+                    for (var i = 0; i < data.length; i++) {
+                        tr += '<tr id="AWP1_TR' + i + '"><td>' + (++sr) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].work_sel + '</td><td>' + data[i].Component_Id + '</td><td>' + data[i].Component_Budget_Head_EAP + '</td><td>' + data[i].Expenditure_Code + '</td><td>' + data[i].proc_sel + '</td><td>' + data[i].Category_of_Procurement + '</td><td>' + data[i].ofd_sel + '</td><td>' + data[i].Name_of_Consultant + '</td><td>' + data[i].Contract_Price + '</td><td>' + data[i].Date_of_singning + '</td><td>' + data[i].Date_of_Completion + '</td><td>' + data[i].contact_ref_id + '</td><td>' + data[i].Total_Payment + '</td><td>' + data[i].Complaints + '</td><td>' + data[i].Remarks + '</td></tr> ';
+
+                    }
+
+
+                }
+                else {
+                    tr = '<tr colspan="15"><td colspan="43" style="text-align: center;">No Data</td></tr>';
+                }
+
+                $('#tbl_data').html(tr);
+
+
+
+            }
+        });
+    }
+
+    //$(document).ready(function () {
+    //    var uri = window.location.toString();
+    //    if (uri.indexOf("?") > 0) {
+    //        var clean_uri = uri.substring(0, uri.indexOf("?"));
+    //        window.history.replaceState({}, document.title, clean_uri);
+    //    }
+
+    //});
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#tbl_data tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+</script>

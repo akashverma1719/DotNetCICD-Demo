@@ -523,7 +523,6 @@ function sixth_pie_chart(sixth_pie_chart, B1, B2, B3, B4, B5, total_b) {
 }
 
 function first_bar_chart(first_bar_chart, FInalData_achive, FInalData) {
-    debugger;
     var max = 0;
     for (i = 0; i < FInalData.length; i++) {
         var ValCheck = parseFloat(FInalData[i].DigitalWater_Target)
@@ -3774,6 +3773,7 @@ function nine_bar_chart(nine_bar_chart, FInalData1, FInalData2, FInalData3) {
 }
 // Ten bar Chart
 function ten_bar_chart(ten_bar_chart, FInalData1, FInalData2, FInalData3) {
+    debugger;
     var max = 0;
     for (i = 0; i < FInalData1.length; i++) {
         ValCheck = parseFloat(FInalData1[i].first);

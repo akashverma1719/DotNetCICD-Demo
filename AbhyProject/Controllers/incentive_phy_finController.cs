@@ -1468,7 +1468,15 @@ namespace AbhyProject.Controllers
 					Details.otherdepartment = result.otherdepartment;
 					Details.activity = result.activity;
 					Details.cost = result.cost;
-					Details.area_under = result.area_under;
+					if(result.area_under != "")
+                    {
+						Details.area_under = result.area_under;
+					}
+                    else
+                    {
+						return Json("Please Enter Area under Full Subsidy ( Ha)", JsonRequestBehavior.AllowGet);
+					}
+					
 					Details.msc = result.msc;
 					Details.mst = result.mst;
 					Details.mobc = result.mobc;
