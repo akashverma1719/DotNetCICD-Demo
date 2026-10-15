@@ -6970,6 +6970,25 @@ namespace AbhyProject.Models
 
     }
 
+    [Table("dli4_upload_document_npmu", Schema = "public")]
+    public class dli4_upload_document_npmu
+    {
+        [Key]
+        public Int32 id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string year { get; set; }
+        public string fy_phase { get; set; }
+        public string description { get; set; }
+        public string image_name { get; set; }
+        public string image_path { get; set; }
+        public DateTime entry_date { get; set; }
+        public string user_id { get; set; }
+        public string approval { get; set; }
+        public string reject { get; set; }
+
+
+    }
 
 
     [Table("abhy_agencies1", Schema = "public")]
@@ -15419,6 +15438,22 @@ namespace AbhyProject.Models
         public string statewise_i_cumulative { get; set; }
         public string statewise_i_disbursible { get; set; }
 
+
+        public string waterlevel_i_25_26 { get; set; }
+        public string waterlevel_ii_25_26 { get; set; }
+        public string waterlevel_iv_25_26 { get; set; }
+        public string waterlevel_v_25_26 { get; set; }
+        public string waterlevel_vii_25_26 { get; set; }
+        public string waterlevel_viii_25_26 { get; set; }
+        public string waterquality_i_25_26 { get; set; }
+        public string waterquality_ii_25_26 { get; set; }
+        public string waterquality_iv_25_26 { get; set; }
+        public string waterquality_v_25_26 { get; set; }
+        public string blockwise_i_25_26 { get; set; }
+        public string statewise_i_25_26 { get; set; }
+        public string blockwise_ii_25_26 { get; set; }
+
+
     }
 
     [Table("abhy_dli_two", Schema = "public")]
@@ -15667,6 +15702,10 @@ namespace AbhyProject.Models
         public string waterlevel_iii_cumulative { get; set; }
         public string waterlevel_iii_disbursible { get; set; }
 
+        public string waterlevel_iii_25_26_filename { get; set; }
+        public string waterlevel_iii_25_26_filepath { get; set; }
+
+
     }
     [Table("abhy_dli_one_upload_row2", Schema = "public")]
     public class abhy_dli_one_upload_row2
@@ -15688,6 +15727,10 @@ namespace AbhyProject.Models
         public string waterlevel_vi_24_25_filepath { get; set; }
         public string waterlevel_vi_cumulative { get; set; }
         public string waterlevel_vi_disbursible { get; set; }
+
+        public string waterlevel_vi_25_26_filename { get; set; }
+        public string waterlevel_vi_25_26_filepath { get; set; }
+
 
     }
 
@@ -15712,6 +15755,10 @@ namespace AbhyProject.Models
         public string waterquality_iii_cumulative { get; set; }
         public string waterquality_iii_disbursible { get; set; }
 
+        public string waterquality_iii_25_26_filename { get; set; }
+        public string waterquality_iii_25_26_filepath { get; set; }
+
+
     }
     [Table("abhy_dli_one_upload_row4", Schema = "public")]
     public class abhy_dli_one_upload_row4
@@ -15733,6 +15780,10 @@ namespace AbhyProject.Models
         public string waterquality_vi_24_25_filepath { get; set; }
         public string waterquality_vi_cumulative { get; set; }
         public string waterquality_vi_disbursible { get; set; }
+
+        public string waterquality_vi_25_26_filename { get; set; }
+        public string waterquality_vi_25_26_filepath { get; set; }
+
 
     }
     [Table("abhy_dli_one_upload_row5", Schema = "public")]
@@ -15756,6 +15807,11 @@ namespace AbhyProject.Models
         public string blockwise_ii_cumulative { get; set; }
         public string blockwise_ii_disbursible { get; set; }
 
+
+        public string blockwise_ii_25_26_filename { get; set; }
+        public string blockwise_ii_25_26_filepath { get; set; }
+
+
     }
     [Table("abhy_dli_one_upload_row6", Schema = "public")]
     public class abhy_dli_one_upload_row6
@@ -15777,6 +15833,11 @@ namespace AbhyProject.Models
         public string statewise_ii_24_25_filepath { get; set; }
         public string statewise_ii_cumulative { get; set; }
         public string statewise_ii_disbursible { get; set; }
+
+
+        public string statewise_ii_25_26_filename { get; set; }
+        public string statewise_ii_25_26_filepath { get; set; }
+
 
     }
 
@@ -15800,6 +15861,10 @@ namespace AbhyProject.Models
         public string mow_v_cumulative { get; set; }
         public string mow_v_disbursible { get; set; }
 
+        public string mow_v_25_26_filename { get; set; }
+        public string mow_v_25_26_filepath { get; set; }
+
+
     }
     [Table("abhy_dli_one_upload_row8", Schema = "public")]
     public class abhy_dli_one_upload_row8
@@ -15820,6 +15885,10 @@ namespace AbhyProject.Models
         public string mow_vi_24_25_filepath { get; set; }
         public string mow_vi_cumulative { get; set; }
         public string mow_vi_disbursible { get; set; }
+
+        public string mow_vi_25_26_filename { get; set; }
+        public string mow_vi_25_26_filepath { get; set; }
+
 
     }
 
@@ -20380,6 +20449,65 @@ namespace AbhyProject.Models
 
 
     }
+    //   new abhymodelclass.cs
+    [Table("atal_piezo", Schema = "public")]
+    public class atal_piezo
+    {
+        [Key]
+
+
+        public int id { get; set; }
+        public int pid { get; set; }
+        public string statename { get; set; }
+        public string districtname { get; set; }
+        public string blockname { get; set; }
+        public string gpname { get; set; }
+        public string village { get; set; }
+
+        public string sitename { get; set; }
+        public string type { get; set; }
+        public string source { get; set; }
+        public string wellid { get; set; }
+        public int latitude { get; set; }
+        public int longitude { get; set; }
+        public string well_depth { get; set; }
+
+        public string aquifer { get; set; }
+        public string pre_2015 { get; set; }
+        public string post_2015 { get; set; }
+        public string pre_2016 { get; set; }
+        public string post_2016 { get; set; }
+        public string pre_2017 { get; set; }
+        public string post_2017 { get; set; }
+
+        public string pre_2018 { get; set; }
+        public string post_2018 { get; set; }
+        public string pre_2019 { get; set; }
+        public string post_2019 { get; set; }
+        public string pre_2020 { get; set; }
+        public string post_2020 { get; set; }
+        public string pre_2021 { get; set; }
+
+        public string post_2021 { get; set; }
+        public string pre_2022 { get; set; }
+        public string post_2022 { get; set; }
+        public string pre_2023 { get; set; }
+        public string post_2023 { get; set; }
+        public string pre_2024 { get; set; }
+        public string post_2024 { get; set; }
+        public string pre_2025 { get; set; }
+
+        public string statename_clean { get; set; }
+        public string districtname_clean { get; set; }
+        public string blockname_clean { get; set; }
+        public string gpname_clean { get; set; }
+
+
+
+
+
+    }
+
     [Table("vw_dli3_supply_phase1_report_24_25", Schema = "public")]
     public class vw_dli3_supply_phase1_report_24_25
     {
@@ -20582,7 +20710,265 @@ namespace AbhyProject.Models
 
     //Map Export Water Quality Stastics Ends     
 
+    [Table("demandside_dli3_new_2026", Schema = "public")]
+    public class demandside_dli3_new_2026
+    {
+        [Key]
 
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public int? meta_id { get; set; }
+        public string financial_year { get; set; }
+        public string department_name { get; set; }
+        public string scheme_name { get; set; }
+        public string total_crop_area { get; set; }
+        public string total_area_proposed { get; set; }
+        public string area_proposed { get; set; }
+        public string fund_for { get; set; }
+        public string approx_est_cost { get; set; }
+        public string other_scheme { get; set; }
+        public string innovative_measures { get; set; }
+        public string area_selected_innovative { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+        public string total_water_demand { get; set; }
+        public string total_reduction_gw { get; set; }
+        public string year_subsidey_phase1 { get; set; }
+        public string departmentname_phase1 { get; set; }
+        public string schemename_phase1 { get; set; }
+        public string otherschemename_phase1 { get; set; }
+        public string total_beneficery_phase1 { get; set; }
+        public string area_covered_phase1 { get; set; }
+        public string expenditure_phase1 { get; set; }
+        public string remark_phase1 { get; set; }
+        public string addnew_phase1 { get; set; }
+        public string approve_phase1 { get; set; }
+        public string rejectremark_phase1 { get; set; }
+        public string year_subsidey_phase2 { get; set; }
+        public string departmentname_phase2 { get; set; }
+        public string schemename_phase2 { get; set; }
+        public string otherschemename_phase2 { get; set; }
+        public string area_covered_phase2 { get; set; }
+        public string expenditure_phase2 { get; set; }
+        public string total_beneficery_phase2 { get; set; }
+        public string remark_phase2 { get; set; }
+
+        public string approve_phase2 { get; set; }
+        public string rejectremark_phase2 { get; set; }
+
+        public string entry_phase1 { get; set; }
+        public string entry_phase2 { get; set; }
+        public string entry_time_phase1 { get; set; }
+        public string entry_time_phase2 { get; set; }
+        public string phase1_id { get; set; }
+        public string phase2_id { get; set; }
+        public string lop1year_subsidey_phase2 { get; set; }
+        public string lop1departmentname_phase2 { get; set; }
+        public string lop1schemename_phase2 { get; set; }
+        public string lop1otherschemename_phase2 { get; set; }
+        public string lop1area_covered_phase2 { get; set; }
+        public string lop1expenditure_phase2 { get; set; }
+        public string lop1total_beneficery_phase2 { get; set; }
+        public string lop1remark_phase2 { get; set; }
+        public string from_table { get; set; }
+
+        public string year_subsidey_phase3 { get; set; }
+        public string departmentname_phase3 { get; set; }
+        public string schemename_phase3 { get; set; }
+        public string otherschemename_phase3 { get; set; }
+        public string area_covered_phase3 { get; set; }
+        public string expenditure_phase3 { get; set; }
+        public string total_beneficery_phase3 { get; set; }
+        public string remark_phase3 { get; set; }
+
+        public string approve_phase3 { get; set; }
+        public string rejectremark_phase3 { get; set; }
+
+        public string year_subsidey_phase4 { get; set; }
+        public string departmentname_phase4 { get; set; }
+        public string schemename_phase4 { get; set; }
+        public string otherschemename_phase4 { get; set; }
+        public string area_covered_phase4 { get; set; }
+        public string expenditure_phase4 { get; set; }
+        public string total_beneficery_phase4 { get; set; }
+        public string remark_phase4 { get; set; }
+
+        public string entry_phase3_4 { get; set; }
+        public string entry_time_phase3_4 { get; set; }
+        public string phase3_4_id { get; set; }
+
+    }
+
+    [Table("demandside_dli3_phase2addnew_2026", Schema = "public")]
+    public class demandside_dli3_phase2addnew_2026
+    {
+        [Key]
+        public int phaseid2 { get; set; }
+        public int id { get; set; }
+        public string year_subsidey_phase2 { get; set; }
+        public string departmentname_phase2 { get; set; }
+        public string schemename_phase2 { get; set; }
+        public string area_covered_phase2 { get; set; }
+        public string expenditure_phase2 { get; set; }
+        public string remark_phase2 { get; set; }
+        public string addnew_phase2 { get; set; }
+        public string approve_phase2 { get; set; }
+        public string rejectremark_phase2 { get; set; }
+        public string update_month_phase2 { get; set; }
+        public string entry_phase2 { get; set; }
+        public string entry_time_phase2 { get; set; }
+        public string otherschemename_phase2 { get; set; }
+        public string total_beneficery_phase2 { get; set; }
+    }
+    [Table("supplyside_dli3_new2026", Schema = "public")]
+    public class supplyside_dli3_new2026
+    {
+        [Key]
+
+        public int id { get; set; }
+        public string state { get; set; }
+        public string from_table { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string gp_center_point_latitude { get; set; }
+        public string gp_center_point_longitude { get; set; }
+        public string village_name { get; set; }
+        public string financial_year { get; set; }
+        public string type_of_supply_side_structure { get; set; }
+        public string gw_recharge_or_effective_storage { get; set; }
+        public string department_name { get; set; }
+        public string scheme_name_possible_funding_source { get; set; }
+        public string other_scheme { get; set; }
+        public string name_of_structure { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+        public string total_approximate_estimated_cost { get; set; }
+
+        public string year_subsidey_phase1 { get; set; }
+        public string work_start_date_phase1 { get; set; }
+        public string work_end_date_phase1 { get; set; }
+        public string type_of_work_phase1 { get; set; }
+        public string status_of_work_phase1 { get; set; }
+        public string latitude_phase1 { get; set; }
+        public string longitude_phase1 { get; set; }
+        public string department_name_phase1 { get; set; }
+        public string schema_name_phase1 { get; set; }
+        public string other_schema_name_phase1 { get; set; }
+        public string expenditure_phase1 { get; set; }
+        public string remark_phase1 { get; set; }
+        public string approve_phase1 { get; set; }
+        public string reject_phase1 { get; set; }
+        public string entry_phase1 { get; set; }
+        public string entry_time_phase1 { get; set; }
+
+        public string year_subsidey_phase2 { get; set; }
+        public string work_start_date_phase2 { get; set; }
+        public string work_end_date_phase2 { get; set; }
+        public string type_of_work_phase2 { get; set; }
+        public string status_of_work_phase2 { get; set; }
+        public string latitude_phase2 { get; set; }
+        public string longitude_phase2 { get; set; }
+        public string department_name_phase2 { get; set; }
+        public string schema_name_phase2 { get; set; }
+        public string other_schema_name_phase2 { get; set; }
+        public string expenditure_phase2 { get; set; }
+        public string remark_phase2 { get; set; }
+        public string approve_phase2 { get; set; }
+        public string reject_phase2 { get; set; }
+        public string entry_phase2 { get; set; }
+        public string entry_time_phase2 { get; set; }
+        //public string old_lat { get; set; }
+        //public string old_lon { get; set; }
+        public string lop1_year_subsidey_phase2 { get; set; }
+        public string lop1_work_start_date_phase2 { get; set; }
+        public string lop1_work_end_date_phase2 { get; set; }
+        public string lop1_type_of_work_phase2 { get; set; }
+        public string lop1_status_of_work_phase2 { get; set; }
+        public string lop1_latitude_phase2 { get; set; }
+        public string lop1_longitude_phase2 { get; set; }
+        public string lop1_department_name_phase2 { get; set; }
+        public string lop1_schema_name_phase2 { get; set; }
+        public string lop1_expenditure_phase2 { get; set; }
+        public string lop1_remark_phase2 { get; set; }
+        public string lop1_other_schema_name_phase2 { get; set; }
+
+        public string year_subsidey_phase3 { get; set; }
+        public string work_start_date_phase3 { get; set; }
+        public string work_end_date_phase3 { get; set; }
+        public string type_of_work_phase3 { get; set; }
+        public string status_of_work_phase3 { get; set; }
+        public string latitude_phase3 { get; set; }
+        public string longitude_phase3 { get; set; }
+        public string department_name_phase3 { get; set; }
+        public string schema_name_phase3 { get; set; }
+        public string other_schema_name_phase3 { get; set; }
+        public string expenditure_phase3 { get; set; }
+        public string remark_phase3 { get; set; }
+        public string approve_phase3 { get; set; }
+        public string reject_phase3 { get; set; }
+        public string entry_phase3 { get; set; }
+        public string entry_time_phase3 { get; set; }
+
+        public string year_subsidey_phase4 { get; set; }
+        public string work_start_date_phase4 { get; set; }
+        public string work_end_date_phase4 { get; set; }
+        public string type_of_work_phase4 { get; set; }
+        public string status_of_work_phase4 { get; set; }
+        public string latitude_phase4 { get; set; }
+        public string longitude_phase4 { get; set; }
+        public string department_name_phase4 { get; set; }
+        public string schema_name_phase4 { get; set; }
+        public string other_schema_name_phase4 { get; set; }
+        public string expenditure_phase4 { get; set; }
+        public string remark_phase4 { get; set; }
+
+
+    }
+    [Table("abhy_DLI3_upload_document_new2026", Schema = "public")]
+    public class DLI3_upload_document_new_2026
+    {
+        [Key]
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string description { get; set; }
+        public string image_name { get; set; }
+        public string image_path { get; set; }
+        public DateTime entry_date { get; set; }
+        public string user_id { get; set; }
+        public string approval { get; set; }
+        public string reject { get; set; }
+        public string phase { get; set; }
+
+
+    }
+    [Table("vw_dli3_p3_phase4_supply_report_25", Schema = "public")]
+    public class vw_dli3_lop_phase4_supply_report_25
+    {
+        [Key]
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string year { get; set; }
+        public int ataljal_gp { get; set; }
+        public int gp_wsp_submitted { get; set; }
+        public int lop_struct_claimed { get; set; }
+        public double lop_conv_claim { get; set; }
+        public int phase4_struct_claimed { get; set; }
+        public double phase4_conv_claim { get; set; }
+        public int gp_claim_lop_phase4 { get; set; }
+        public int total_struct_claim { get; set; }
+        public double total_conv_claim { get; set; }
+        public double dpmu_conv_claim { get; set; }
+        public double spmu_submit_claim { get; set; }
+        public double approved_claim { get; set; }
+        public double rejected_claim { get; set; }
+    }
 
 
 }

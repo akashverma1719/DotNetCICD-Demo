@@ -1,21 +1,24 @@
+using AbhyProject.Classes;
+using AbhyProject.Excel;
 using AbhyProject.Models;
+using AbhyProject.Utility;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Wordprocessing;
+using OpenXmlPowerTools;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using System.Text;
-using AbhyProject.Excel;
-using System.Globalization;
-using AbhyProject.Classes;
-using AbhyProject.Utility;
-using System.Text.RegularExpressions;
-using System.Data;
-using OpenXmlPowerTools;
-using System.Data.Entity.Core.Metadata.Edm;
-using System.IO;
+using System.Web.Services.Description;
 
 namespace AbhyProject.Controllers
 {
@@ -2000,7 +2003,6 @@ namespace AbhyProject.Controllers
 
         }
 
-
         [HttpPost]
         public ActionResult updatecomp_B_php_fn(string comp_B_php_fn_string)
         {
@@ -2682,7 +2684,7 @@ namespace AbhyProject.Controllers
                 }
             }
 
-            DataTable dt = new DataTable();
+            System.Data.DataTable dt = new System.Data.DataTable();
             dt.Columns.Add("State Name", typeof(string));
             dt.Columns.Add("Month", typeof(string));
             dt.Columns.Add("Year", typeof(string));
@@ -3085,9 +3087,6 @@ namespace AbhyProject.Controllers
         //        return Json("SessionTimeOut", JsonRequestBehavior.AllowGet);
         //    }
         //}
-
-
-
         //B Form
 
         [HttpGet]

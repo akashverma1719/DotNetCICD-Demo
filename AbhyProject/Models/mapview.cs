@@ -16,6 +16,7 @@ namespace AbhyProject.Models
         public virtual DbSet<waterflow_data> obj_waterflow_data { get; set; }
         public virtual DbSet<rainfall_data> obj_rainfall_data { get; set; }
         public virtual DbSet<vw_bs_pv_quality_meta_data> obj_vw_bs_pv_quality_meta_data { get; set; }
+        public virtual DbSet<atal_piezo> obj_atal_piezo { get; set; } 
         public virtual DbSet<vw_bs_water_wq_meta_data> obj_vw_bs_water_wq_meta_data { get; set; }
         public virtual DbSet<vw_bs_gwl_meta_data> obj_vw_bs_gwl_meta_data { get; set; }
         public virtual DbSet<vw_bs_geo_new> obj_vw_bs_geo_new { get; set; }

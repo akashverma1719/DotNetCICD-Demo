@@ -1022,8 +1022,6 @@ function deletecomp_A_php_fn(id) {
     });
 }
 
-
-
 function PHP_FN_Info() {        //prateek
 
     var State = "";
@@ -1378,7 +1376,6 @@ function FinYear_Awp(Email) {
 }
 
 function validate_month(Email) {
-    debugger;
     var select_month = $('#fin_month').val();
     var select_month_num = Get_Month_Number(select_month)
     var select_Year = $("#fin_year").val();
@@ -1455,8 +1452,8 @@ function validate_month(Email) {
         }
     }
 
-    if (select_Year == "2025-26" && select_month_num == "3") {
-        $('#a_form_save').prop('disabled', true);
+    if (select_Year == "2025-26") {
+        $('#a_form_save').prop('disabled', false);
     }
 }
 
@@ -1734,7 +1731,6 @@ function PHP_FN_B_Table_Info() {
                             }
 
                         }
-                        debugger;
                         if ("20241126" == formattedDateaa) {
                             if (Email == 'shiknt.dhanoriya.wrd@mp.gov.in') {
                                 if (data[i].fin_b_year == "2024-25") {
@@ -3449,7 +3445,7 @@ function Financial_Progress_Monitoring_Component_B_Report_Month() {
 
 
 function updatecomp_B(DID, i) {
-
+    debugger;
     var obj = {};
     obj.component_id = $('#component_idb' + i).val();
     obj.activity_name = $('#activity_nameb' + i).val();

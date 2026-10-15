@@ -1,0 +1,2339 @@
+﻿
+@{
+    ViewBag.Title = "WSPgram";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<title>Demand New</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+@*akash_dev_dli3*@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<style>
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .body12 {
+        overflow: auto !important
+    }
+
+    .showdiv {
+        margin: 0px !important;
+    }
+
+    ul.Select_option > li {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+
+                        <li>
+                            <span>
+                                <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                   style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                        <span style="color:#fff;">:@Session["UserName"]</span>
+                    </li>
+                    <li>
+
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/WspNew/WSP_GWM_HOME">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                            </span>
+                            <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    @*<li>
+                            <a href="~/Wsp_new/WSPHOME">
+                                <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                <label>WSP Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>*@
+
+                    <li>
+                        <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                        <label>DLI 3 Convergence Claim</label>
+                    </li>
+                    @*<li style="width: 1080px; text-align: right;">
+                            <a href="~/Demand_new/Main_page" class="btn btn-danger">
+                                Back To Home
+                            </a>
+                        </li>*@
+                </ul>
+            </div>
+            <div class="col-md-2 pull-right">
+
+                <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/UserManual/DLI3_User Manual 3.0_2024-25_Phase 1.pdf" target="_blank">USER MANUAL</a>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demand_New</title>
+    <style>
+        [name="push_title"] {
+            height: 70px;
+            width: 200px;
+        }
+
+        .database_trainer_row > h3 {
+            background-color: #72a230;
+            color: #fff;
+            padding: 7px 15px;
+            font-size: 18px;
+            margin: 6px 0px;
+        }
+        /*table fix code*/
+        .d-flex {
+            display: flex;
+        }
+
+            .d-flex .c {
+                margin-right: 5px;
+            }
+
+        .select_width_set {
+            width: 166px !important;
+        }
+
+        table {
+            text-align: left;
+            position: relative;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+
+
+        /*ends here*/
+        .second_heading {
+            background-color: #72a230;
+            color: #fff;
+            list-style: none;
+            padding: 3px 40px;
+            font-size: 15px;
+            font-weight: bold
+        }
+
+        .main_div {
+            padding-bottom: 0px;
+        }
+
+        .btn-success_1 {
+            color: #000;
+            background: #e7e7e7;
+        }
+
+
+        table#TblData_b_part tr.info > th,
+        table#TblData_c_part tr.info > th,
+        table#TblData_d_part tr.info > th,
+        table#TblData_e_part tr.info > th,
+        table#TblData_abc_part1 tr.info > th,
+        table#TblData_jj_part1 tr.info > th,
+        table.GWL_deviation_table tr.info > th,
+        table#TblData_g_part tr.info > th {
+            background-color: #337ab7;
+            color: #fff;
+            vertical-align: middle;
+        }
+
+            table#TblData_abc_part1 tr.info > th.background_color {
+                background-color: #fff !important;
+                color: #000;
+            }
+
+        .E_table_header > h4 {
+            color: #337ab7;
+            padding: 10px 0px;
+        }
+
+        .text-center {
+            background-color: #337ab7 !important;
+        }
+
+        .alertshowingdiv {
+            height: 25px;
+        }
+
+            .alertshowingdiv > label {
+                color: red;
+                font-size: 16px;
+            }
+
+        #breadcrumb {
+            color: #0000ff;
+            font-size: 15px;
+            margin: 0;
+            height: 15px;
+            margin-bottom: 10px;
+        }
+
+            #breadcrumb a {
+                color: #0000ff;
+                text-decoration: underline;
+            }
+
+        ul#myTabs > li > a > span > img {
+            height: 26px;
+            width: 26px;
+        }
+
+        ul.ReRecharge_list > li > span {
+            width: 70%;
+        }
+
+        ul#submenu1 > li > span {
+            font-size: 17px;
+        }
+
+        ul.imgHome > li > a > span {
+            font-size: 17px;
+            text-decoration: none;
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+        }
+
+            ul.imgHome > li > a > span :hover {
+                text-decoration: none;
+            }
+
+        ul.imgHome > li > a > label {
+            font-size: 13px;
+            text-decoration: underline;
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+            margin: 0;
+            height: 15px;
+        }
+
+        ul.imgHome > li > label {
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+        }
+
+        ul.imgHome > li > a > span > img,
+        ul.imgHome > li > span > img {
+            width: 25px;
+        }
+
+        ul.imgHome > li > a > label {
+            padding: 5px 0px 0px 0px;
+        }
+
+        .nav-justified {
+            padding-bottom: 0em;
+        }
+
+        ul.imgHome > li > img,
+        ul.imgHome > li > a > img {
+            width: 25px !important;
+        }
+
+        .highcharts-background {
+            /*width: 100% !important;*/
+        }
+
+        .highcharts-title {
+            display: none;
+        }
+
+        span.marqueegwr {
+            font-weight: 700;
+            margin-top: 10px;
+            /*font-family: raleway;*/
+            color: #333;
+            font-size: 1vw;
+        }
+
+        .modal-backdrop.in {
+            z-index: -1;
+            opacity: 0 !important;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.95;
+            visibility: visible;
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+
+        .loading-inactive {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+
+        ul.btnall > li {
+            display: inline-block;
+        }
+
+        .backgroundtr {
+            background-color: lightgray !important;
+        }
+
+            .backgroundtr:hover {
+                background-color: #fff !important;
+            }
+
+        .backgroundtr1 {
+            background-color: lightgoldenrodyellow !important;
+        }
+
+            .backgroundtr1:hover {
+                background-color: #fff !important;
+            }
+
+        table .input {
+            width: 150px !important;
+        }
+
+        .c1_count_displ {
+            display: flex;
+            gap: 5px;
+        }
+    </style>
+    <style>
+        .under_list > li {
+            list-style: none;
+            padding: 5px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+            .under_list > li > span > input {
+                width: 500px;
+                height: 30px;
+                padding: 3px 10px;
+                display: inline;
+            }
+
+            .under_list > li > span > select {
+                width: 500px;
+                height: 30px;
+                padding: 3px 10px;
+                display: inline;
+            }
+
+        @@media (max-width:1200px) and (min-width: 360px) {
+            .panelbodyheading {
+                background: none !important;
+                color: #fff !important;
+            }
+        }
+
+        #border {
+            border-spacing: 2px;
+            /* border: 2px solid green;*/
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 15px;
+            background: #f2f2f2;
+        }
+
+        .selectdistshowoption .Select_option li {
+            width: fit-content;
+        }
+
+        #border select {
+            width: 175px !important;
+            border-radius: 4px !important;
+        }
+
+        .Select_option.selectbackhome li select {
+            border-radius: 25px;
+            width: 200px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            font-size: 13px;
+            padding-left: 0;
+        }
+
+        .selectdistshowoption {
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-bottom: 20px !important;
+            margin-top: 30px !important;
+        }
+
+        #style-4::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-4::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        #style-5::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-5::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        #style-6::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-6::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        #style-7::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-7::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        .box-shadow {
+            box-shadow: 0px 3px 46px rgb(0 0 0 / 7%);
+            padding: 15px 15px;
+            background: #f2f2f2;
+        }
+
+        .card {
+            margin-top: 25px;
+        }
+
+        .card-body {
+            border: 1px solid#ccc;
+            padding: 5px;
+        }
+
+        .headings_border {
+            position: relative;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            font-family: raleway;
+            font-weight: 900;
+            display: inline-block;
+            padding-left: 15px;
+        }
+
+            .headings_border::after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                left: 13%;
+                width: 168px;
+                height: 2px;
+                /*background: #5cb85c;*/
+            }
+
+        .headings_border_gram {
+            position: relative;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            font-family: raleway;
+            font-weight: 900;
+            display: inline-block;
+            padding-left: 15px;
+        }
+
+            .headings_border_gram::after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                left: 33%;
+                width: 168px;
+                height: 2px;
+                /*background: #5cb85c;*/
+            }
+
+        .w-100 {
+            width: 100% !important
+        }
+
+        #demandside::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #demandside::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        .Select_option_div {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 17px 0px;
+            padding: 20px;
+            border: 1px solid #dfdbdb;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+        }
+
+        .tbl-responsive {
+            box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px !important;
+            background: #f2f2f2 !important;
+            overflow: auto;
+            height: 500px;
+        }
+
+        .comn_table {
+            background: #f2f2f2;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="~/Content/JS_Files/Dli3_new2026.js"></script>
+    <script src="~/Scripts/validations.js"></script>
+
+</head>
+
+<body>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+            DLI 3 Convergence Claim (Demand Side)
+        </div>
+
+    </center>
+    <div style="margin:0 60px">
+        <ul style="color:white;">
+            <li style=" text-align: right; margin-top:10px;">
+                <select name="" id="state_p1" class="form-control" onchange="allsummary()" style="float:right;width:160px;margin-top:0px;margin-left:5px">
+                    <option value="0">Select Summary</option>
+                    <option value="State">Summary (State Phase 1)</option>
+                </select>
+                <select name="" id="district_p1" class="form-control" onchange="districtsummary()" style="float: right; width: 160px; margin-top: 0px; margin-left: 5px">
+                    <option value="0">Select Summary</option>
+                    <option value="District">Summary (District Phase 1)</option>
+                    <option value="Block">Summary (Block Phase 1)</option>
+                </select>
+                <select name="" id="demanddistrictblock_p1" class="form-control" onchange="p1districtblocksummary()" style="float: right; width: 160px; margin-top: 0px; margin-left: 5px">
+                    <option value="0">Select Summary</option>
+                    <option value="Block">Summary (Block Phase 1)</option>
+                </select>
+                <select name="" id="state_p2" class="form-control" onchange="p2allsummary()" style="display:none; float:right;width:160px;margin-top:0px;margin-left:5px">
+                    <option value="0">Select Summary</option>
+                    <option value="State">Summary (State Phase 2)</option>
+                </select>
+                <select name="" id="district_p2" class="form-control" onchange="p2districtsummary()" style="display: none; float: right; width: 160px; margin-top: 0px; margin-left: 5px">
+                    <option value="0">Select Summary</option>
+                    <option value="District">Summary (District Phase 2)</option>
+                    <option value="Block">Summary (Block Phase 2)</option>
+                </select>
+                <select name="" id="demanddistrictblock_p2" class="form-control" onchange="p2districtblocksummary()" style="display: none; float: right; width: 160px; margin-top: 0px; margin-left: 5px">
+                    <option value="0">Select Summary</option>
+                    <option value="Block">Summary (Block Phase 2)</option>
+                </select>
+
+                <button class="btn btn-success download1" id="btnexcelphase1" onclick="Exceldemandside_phase1()">Export To Excel (Phase1)</button>
+                <button class="btn btn-success download1" id="btnexcelphase2" onclick="Exceldemandside_phase2()">Export To Excel (Phase 3 & Phase 4)</button>
+                @*<button type="button" id="pdf" onclick="Report_PDF()" class="btn btn-success btn-sm"> Export To PDF</button>*@
+
+                <a href="~/DLI3New2026/viewdemandsidesupplyside_new" class="btn btn-danger">
+                    Back To Module
+                </a>
+                <a href="~/DLI3New2026/suppyside_new" class="btn btn-primary">
+                    Go To Supply Side
+                </a>
+
+                @*<button type="button" style="float: right; width: 150px; margin-right: 30px; margin-left: 10px;" id="next_page" onclick="Goto_page()" class="btn btn-primary btn-sm">Go To Supply Side</button>*@
+
+
+                @*<select style="float: right; width: 150px; margin-right: 30px; margin-left: 10px;" class="form-control" id="ddlpage" onchange="Goto_page()">
+                        <option value="0">--Select Page--</option>
+                        <option value="Supply Side">Supply Side</option>
+                    </select>*@
+            </li>
+        </ul>
+    </div>
+
+
+
+
+    <div class="row showdiv">
+        <div class="container-fluid">
+            <div class="content">
+                <div class="col-lg-12" style="background-color:#fff;">
+                    <div id="border">
+                        <div class="row container-fluid main_div">
+                            <div class="col-md-12 col-sm-12">
+                                <div>
+                                    <div class="">
+                                        <div class="selectdistshowoption">
+                                            <ul class="Select_option col-md-12 col-sm-12  text-left">
+                                                <li id="StateLabel">
+                                                    <label id="lblstate">State:</label>
+                                                    <span id="spnstate1">@Session["gstate"]</span>
+                                                </li>
+                                                <li id="StateDropdownLabel">
+
+                                                    <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
+                                                    </select>
+                                                </li>
+
+                                                <li id="DistLabel">
+                                                    <i class="fas fa fa-angle-double-right"></i>
+                                                    <label id="lbldistrict">District:</label>
+                                                    <span id="spndistrict">@Session["gdist"]</span>
+                                                </li>
+
+                                                <li id="DistDropdownLabel">
+
+                                                    <select class="form-control" id="dist11" onchange="Dist_fun()">
+                                                    </select>
+                                                </li>
+
+                                                <li id="BlockLabel">
+                                                    <i class="fas fa fa-angle-double-right"></i>
+                                                    <label>Block:</label>
+                                                    <span>@Session["gblock"] </span>
+                                                </li>
+
+                                                <li id="BlockDropdownLabel">
+
+                                                    <select class="form-control" id="block1" onchange="Block_fun()">
+                                                    </select>
+                                                </li>
+                                                <li id="GramLabel">
+                                                    <i class="fas fa fa-angle-double-right"></i>
+                                                    <label>Gram panchayat:</label>
+                                                    <span>@Session["ggram"]</span>
+                                                </li>
+
+                                                <li id="GramDropdownLabel">
+                                                    <select class="form-control" id="gram" onchange="Gram_change()">
+                                                    </select>
+                                                </li>
+                                                <li>
+                                                    <select class="form-control" id="Demand_side">
+                                                        <option value="0">Select Demand Side </option>
+                                                        <option value="All">All Intervention</option>
+                                                        <option value="Sprinkler">Micro-Irrigation through Sprinkler</option>
+                                                        <option value="Drip">Micro-Irrigation through Drip</option>
+                                                        <option value="UG Pipelines">Irrigation through underground pipelines</option>
+                                                        <option value="Crop Diversification">Crop diversification</option>
+                                                        <option value="Other Measures">Any other measure for saving of water in agriculture/Innovative measures ( Pl. specify)</option>
+                                                    </select>
+                                                </li>
+                                                <li class="">
+                                                    <select name="" id="year" class="form-control" onchange="">
+                                                        <option value="0">Select Year</option>
+                                                        <option value="2023-24">2023-24</option>
+                                                        <option value="2024-25">2024-25</option>
+
+
+
+                                                    </select>
+                                                </li>
+                                                <li class="" style="display:none">
+                                                    <select name="" id="phase" class="form-control" onchange="summerybuttonon()">
+                                                        <option value="phase1">Phase1 [April 2024-September 2024]</option>
+                                                        <option selected value="phase2">Phase2 [October 2024 - December 2024]</option>
+
+
+
+
+                                                    </select>
+                                                </li>
+
+                                                <li id="DropdownSearch_btn">
+                                                    <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                    <div>
+                                        <h3>
+                                            <label class="bg-light text-left display_flex">
+                                                Phase   :  <label id="txtyear"></label>
+                                            </label>
+                                            <br />
+                                            <label class="bg-light text-left display_flex">
+                                                Total Rows   :  <label id="existing_well_total"></label>
+                                            </label>
+
+                                        </h3>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="tbl-responsive" id="demandside" style="overflow-x:scroll;overflow-y:scroll; height:600px;">
+                                        <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                                            <thead style="color: #fff;">
+                                                <tr class="tableheader1"></tr>
+                                                <tr class="success">
+                                                    <th rowspan="3" class="text-center">Sr.No</th>
+                                                    <th rowspan="3" class="text-center" style="padding:0 20px;">Data From WSP</th>
+
+
+                                                    <th colspan="6" class="text-center"><label>GP Information</label></th>
+                                                    <th colspan="9" class="text-center"><label>Demand Side Proposed Under WSP</label></th>
+                                                    <th rowspan="3" class="text-center" style="background: #32973a !important;">Convergence Claim Entry</th>
+                                                    <th rowspan="3" class="text-center" style="background: #32973a !important;padding:8px 70px;">Status</th>
+                                                    <th rowspan="3" class="text-center" style="background: #32973a !important;padding:8px 70px;">Remark</th>
+
+
+                                                </tr>
+                                                <tr class="success">
+                                                    <th rowspan="1" class="text-center">State Name</th>
+                                                    <th rowspan="1" class="text-center">District Name</th>
+                                                    <th rowspan="1" class="text-center">Block Name</th>
+                                                    <th rowspan="1" class="text-center">Gram Panchayat Name </th>
+                                                    <th rowspan="1" class="text-center">GP Center Point (Latitude)</th>
+                                                    <th rowspan="1" class="text-center">GP Center Point (Longitude)</th>
+
+                                                    <th rowspan="1" class="text-center">Financial Year </th>
+                                                    <th rowspan="1" class="text-center">Demand Side Interventions</th>
+                                                    <th rowspan="1" class="text-center">Department Name</th>
+                                                    <th rowspan="1" class="text-center">Scheme Name / Possible Funding Source</th>
+                                                    <th rowspan="1" class="text-center">Total Area Under Conventional Irrigation (ha)</th>
+                                                    <th rowspan="1" class="text-center">Area Proposed Under Intervention (ha)</th>
+                                                    <th rowspan="1" class="text-center">Approximate Estimated Cost (in lakh)</th>
+                                                    <th rowspan="1" class="text-center">Total water demand (ha m)</th>
+                                                    <th rowspan="1" class="text-center">Reduction in water demand (ha m) </th>
+
+                                                </tr>
+
+                                            </thead>
+                                            <tbody id="tbl_details"></tbody>
+                                        </table>
+
+                                    </div>
+
+
+                                    <div style=" text-align: right; margin-top:10px;">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <button class="page-link" id="btnpreexe" onclick="buttonpreexe()">Previous</button>
+                                                </li>
+                                                <li>
+                                                    <button class="page-link" id="btnnextexe" onclick="buttonnextexe()">Next</button>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="modal fade" id="exampleModal_waterflow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">*@
+    @*phase1 start*@
+    <div class="modal fade" id="exampleModal_waterflow" data-backdrop="static">
+        <div class="modal-dialog modal-lg d-flex justify-content-center" role="document" style="width:96%;">
+            <div class="modal-content" style="width: 150%;">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <h3 style="text-align:center">
+                                <label for="recipient-name" class="col-form-label">
+                                    Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 1 [April 2024-September 2024])
+                                </label>
+                            </h3>
+                            <br />
+                            <div class="tbl-responsive" id="style-1">
+                                <div class="row">
+                                    <br />
+                                    <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                        <label for="recipient-name" class="col-form-label">
+                                            Demand Side Proposed Under WSP
+                                        </label>
+                                    </h4>
+                                    <br />
+
+                                    <div id="" class="form-group col-md-4">
+                                        <label>State Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="a" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>District Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="b" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Block Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="c" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Gram Panchayat Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="d" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>GP Center Point (Latitude) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="e" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>GP Center Point (Longitude) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="f" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Financial Year :</label>
+                                        <input type="text" class="form-control decimal" disabled id="g" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Demand Side Interventions :</label>
+                                        <input type="text" class="form-control decimal" disabled id="h" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Department Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="i" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Scheme Name / Possible Funding Source :</label>
+                                        <input type="text" class="form-control decimal" disabled id="j" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Area Proposed Under Intervention (ha) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="k" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Approximate Estimated Cost (in lakh) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="l" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Total Area Under Conventional Irrigation (ha) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="v" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Total water demand (ha m):</label>
+                                        <input type="text" class="form-control decimal" disabled id="m" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Reduction in water demand (ha m) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="n" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-12">
+                                        <br />
+                                        <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                            <label for="recipient-name" class="col-form-label">
+                                                Convergence Expenditure Claim (Phase 1 [April 2024-September 2024])
+                                            </label>
+                                        </h4>
+                                        <br />
+                                    </div>
+
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Year Of Subsidy Disbursement<span style="color: red;"> <label>*</label></span> :</label>
+                                        <input type="text" class="form-control decimal" disabled id="o" maxlength="100" placeholder="Enter Other Name of Department" required />
+
+                                    </div>
+
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Department Name <span style="color: red;"> <label>*</label></span>:</label>
+                                        <select class="form-control" id="txtdepartment" onchange="Other()" required>
+                                            <option value="0">--Select Department  Name --</option>
+                                            <option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option>
+                                            <option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option>
+                                            <option value="Department of Agriculture">Department of Agriculture</option>
+                                            <option value="Department of Forest">Department of Forest</option>
+                                            <option value="Department of Sericulture ">Department of Sericulture </option>
+                                            <option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option>
+                                            <option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option>
+                                            <option value="MICADA">MICADA</option>
+                                            <option value="NGO">NGO</option>
+                                            <option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option>
+                                            <option value="Social Forestry Department">Social Forestry Department</option>
+                                            <option value="Water Resources Department">Water Resources Department</option>
+                                            <option value="Department of Horticulture">Department of Horticulture</option>
+                                            <option value="Ground Water Department">Ground Water Department</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div id="div_other" class="form-group col-md-4">
+                                        <label>Other Department Name<span style="color: red;"> <label>*</label></span> :</label>
+                                        <input type="text" class="form-control decimal" id="txtotherdepartment" maxlength="100" placeholder="Enter Other Name of Department" required />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Scheme Name <span style="color: red;"> <label>*</label></span>:</label>
+                                        <select class="form-control" id="txtschema" onchange="Other_schema()" required>
+                                            <option value="0">--Select Scheme  Name --</option>
+                                            <option value="Amrit Sarovar">Amrit Sarovar</option>
+                                            <option value="Bundelkhand Package">Bundelkhand Package</option>
+                                            <option value="BVPY Pulse">BVPY Pulse</option>
+                                            <option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option>
+                                            <option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option>
+                                            <option value="CSR">CSR</option>
+                                            <option value="Departmental Scheme">Departmental Scheme</option>
+                                            <option value="District Annual Plan">District Annual Plan</option>
+                                            <option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option>
+                                            <option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option>
+                                            <option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option>
+                                            <option value="IHD Scheme">IHD Scheme</option>
+                                            <option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option>
+                                            <option value="IWDMP">IWDMP</option>
+                                            <option value="Jal Jeevan Mission">Jal Jeevan Mission</option>
+                                            <option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option>
+                                            <option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option>
+                                            <option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option>
+                                            <option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option>
+                                            <option value="NABRD RIDF">NABRD RIDF</option>
+                                            <option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option>
+                                            <option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option>
+                                            <option value="PMKSY">PMKSY</option>
+                                            <option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option>
+                                            <option value="PMKSY-WDC-2">PMKSY-WDC-2</option>
+                                            <option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option>
+                                            <option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option>
+                                            <option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option>
+                                            <option value="Siksha Abhiyan">Siksha Abhiyan</option>
+                                            <option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option>
+                                            <option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option>
+                                            <option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option>
+                                            <option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option>
+                                            <option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option>
+                                            <option value="Zila Yojana">Zila Yojana</option>
+                                            <option value="ZP Cess">ZP Cess</option>
+                                            <option value="MGNREGA">MGNREGA</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+
+                                    </div>
+                                    <div id="div_other_2" class="form-group col-md-4">
+                                        <label>Other Scheme Name <span style="color: red;"> <label>*</label></span>:</label>
+                                        <input type="text" class="form-control" id="txtotherScheme" maxlength="100" placeholder="Enter Other Name of Scheme" required />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Area Covered (ha) <span style="color: red;"> <label>*</label></span>:</label>
+                                        <input type="text" name="numonlydecimal" onkeypress="validate(event)" onpaste="return false;" class="form-control decimal" id="r" maxlength="6" placeholder="Enter Area Covered (in ha)" required />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label> Total Number of Beneficiary <span style="color: red;"> <label>*</label></span>:</label>
+                                        <input type="text" name="numonly" onpaste="return false;" class="form-control decimal" id="u" maxlength="6" placeholder="Enter Number of Beneficiary" required />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Expenditure incurred other than Atal Jal (in lakh) <span style="color: red;"> <label>*</label></span>:</label>
+                                        <input type="text" name="numonlydecimal" onkeypress="validate(event)" onpaste="return false;" class="form-control decimal" id="s" maxlength="6" placeholder="Enter Expenditure incurred other than Atal Jal (in lakh)" required />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Remark, if any :</label>
+                                        <input type="text" class="form-control" id="t" maxlength="100" placeholder="Enter Remark" required />
+
+                                    </div>
+
+
+
+                                </div>
+                                <center>
+
+                                </center>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-target="modal" id="btn1" name="btnsave" style=" width:100px" onclick="insert_data_phase1()" class="btn btn-success btn-md ">Save</a>
+                    <button type="button" class="btn btn-danger" onclick="close_btn()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="modal fade" id="exampleModal_add_new" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">*@
+    <div class="modal fade" id="exampleModal_add_new" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document" style="width:95%;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <h3 style="text-align:center">
+                                <label for="recipient-name" class="col-form-label">
+                                    Convergence Expenditure Claim Other than Atal Bhujal Yojana Share  (Phase 1)
+                                </label>
+                            </h3>
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:scroll; height:60%;">
+                                <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="3" class="text-center">Sr.No</th>
+
+
+                                            <th colspan="6" class="text-center"><label>GP Information</label></th>
+                                            <th colspan="9" class="text-center"><label>Demand Side Proposed Under WSP</label></th>
+
+                                        </tr>
+                                        <tr class="success">
+                                            <th rowspan="1" class="text-center">State Name</th>
+                                            <th rowspan="1" class="text-center">District Name</th>
+                                            <th rowspan="1" class="text-center">Block Name</th>
+                                            <th rowspan="1" class="text-center">Gram Panchayat Name </th>
+                                            <th rowspan="1" class="text-center">GP Center Point (Latitude)</th>
+                                            <th rowspan="1" class="text-center">GP Center Point (Longitude)</th>
+
+                                            <th rowspan="1" class="text-center">Financial Year </th>
+
+                                            <th rowspan="1" class="text-center">Demand Side Interventions</th>
+                                            <th rowspan="1" class="text-center">Department Name</th>
+                                            <th rowspan="1" class="text-center">Scheme Name / Possible Funding Source</th>
+                                            <th rowspan="1" class="text-center">Total Area Under Conventional Irrigation (ha)</th>
+                                            <th rowspan="1" class="text-center">Area Proposed Under Intervention (ha)</th>
+                                            <th rowspan="1" class="text-center">Approximate Estimated Cost (in lakh)</th>
+                                            <th rowspan="1" class="text-center">Total water demand (ha m)</th>
+                                            <th rowspan="1" class="text-center">Reduction in water demand (ha m) </th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="tbl_details_add"></tbody>
+                                </table>
+
+                            </div>
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:auto; height:70%;">
+                                <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Sr.No</th>
+                                            <th colspan="8" class="text-center" style="background: #32973a !important;">Convergence Expenditure Claim Other than Atal Bhujal Yojana Share  (Phase 1)   </th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Edit</th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Delete</th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Add New</th>
+
+                                        </tr>
+                                        <tr class="success">
+
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important;">Year Of Subsidy Disbursement</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Department Name</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Other Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 25px;">Area Covered (ha) </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 25px;">Total Number of Beneficiary</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 25px;">Expenditure incurred other than Atal Jal (in lakh)</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 30px;">Remark, if any</th>
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="phase1_data"></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <h3><b><label id="State_txt" style="float:left; font-size:20px">Status : <label id="gp_status"></label></label></b></h3>
+                    <br />
+                    <br />
+                    <input type="text" class="form-control" style="width:20%" id="txtrejectremark" maxlength="100" placeholder="Enter Reject Remark" required />
+                    <button type="button" id="phase1submittospmu" class="btn btn-primary" onclick="submit_to_spmu()" data-dismiss="modal">Submit To SPMU</button>
+                    <button type="button" id="phase1submittoapprove" class="btn btn-primary" onclick="approve()" data-dismiss="modal">Approve</button>
+                    <a role="button" data-target="modal" id="phase1reject" name="btn1" style=" width:100px" onclick="reject()" class="btn btn-danger btn-md">Reject</a>
+                    <button type="button" class="btn btn-danger" onclick="close_btn()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*phase1 end*@
+    @*phase2 start*@
+    <div class="modal fade" id="exampleModal_phasetwo" data-backdrop="static">
+        <div class="modal-dialog modal-lg d-flex justify-content-center" role="document" style="width:96%;">
+            <div class="modal-content" style="width: 150%;">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <h3 style="text-align:center">
+                                <label for="recipient-name" class="col-form-label">
+                                    Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 3 [Jan 2025 - March 2025])(Phase 4 [April 2025 - June 2025])
+                                </label>
+                            </h3>
+                            <br />
+                            <div class="tbl-responsive" id="style-1">
+                                <div class="row">
+                                    <br />
+                                    <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                        <label for="recipient-name" class="col-form-label">
+                                            Demand Side Proposed Under WSP
+                                        </label>
+                                    </h4>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>State Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="aa" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>District Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ba" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Block Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ca" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Gram Panchayat Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="da" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>GP Center Point (Latitude) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ea" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>GP Center Point (Longitude) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="fa" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Financial Year :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ga" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Demand Side Interventions :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ha" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Department Name :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ia" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Scheme Name / Possible Funding Source :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ja" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <br />
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Area Proposed Under Intervention (ha) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ka" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Approximate Estimated Cost (in lakh) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="la" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Total Area Under Conventional Irrigation (ha) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="va" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Total water demand (ha m) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="ma" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <label>Reduction in water demand (ha m) :</label>
+                                        <input type="text" class="form-control decimal" disabled id="na" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div id="" class="form-group col-md-4">
+                                        <br />
+                                        <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                            <label for="recipient-name" class="col-form-label">
+                                                Convergence Expenditure Claim (Phase 1 [April 2024-September 2024])
+                                            </label>
+                                        </h4>
+                                        <br />
+                                        <div style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                                        </div>
+                                        <div id="">
+                                            <label>Year Of Subsidy Disbursement :</label>
+                                            <input type="text" class="form-control decimal" id="oa" maxlength="100" placeholder="Enter Year Of Subsidy Disbursement" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Department Name :</label>
+                                            <input type="text" class="form-control decimal" id="phasea" maxlength="100" placeholder="Select Department Name" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Scheme Name :</label>
+                                            <input type="text" class="form-control decimal" id="phaseb" maxlength="100" placeholder="Select Scheme Name" disabled />
+
+                                        </div>
+                                        <div id="otherphase1">
+                                            <label>Other Scheme Name :</label>
+                                            <input type="text" class="form-control" id="phasec" maxlength="100" placeholder="Enter Other Scheme Name" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Area Covered (ha) :</label>
+                                            <input type="text" class="form-control decimal" id="phased" maxlength="100" placeholder="Enter Area Covered (in ha)" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label> Total Number of Beneficiary :</label>
+                                            <input type="text" class="form-control decimal" id="phasee" maxlength="100" placeholder="Enter Total Number of Beneficiary" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Expenditure incurred other than Atal Jal (in lakh) :</label>
+                                            <input type="text" class="form-control decimal" id="phasef" maxlength="100" placeholder="Enter Expenditure incurred other than Atal Jal (in lakh)" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Remark, if any :</label>
+                                            <input type="text" class="form-control" id="phaseg" maxlength="100" placeholder="Enter Remark, if any" disabled />
+
+                                        </div>
+                                    </div>
+                                    <div id="" class="form-group col-md-4">
+                                        <br />
+                                        <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                            <label for="recipient-name" class="col-form-label">
+                                                Convergence Expenditure Claim (Left Over Phase 1 [April 2024-September 2024])
+                                            </label>
+                                        </h4>
+                                        <br />
+                                        <div style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                                        </div>
+                                        <div id="">
+                                            <label>Year Of Subsidy Disbursement :</label>
+                                            <input type="text" class="form-control decimal" id="lop1oaphase2" maxlength="100" placeholder="Left Over Phase-1(April-September 2024-25)" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Department Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <select onchange="demandsidetextfileundisable()" class="form-control" id="lop1txtdepartmentphase2" required>
+                                                <option value="0">--Select Department  Name --</option>
+                                                <option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option>
+                                                <option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option>
+                                                <option value="Department of Agriculture">Department of Agriculture</option>
+                                                <option value="Department of Forest">Department of Forest</option>
+                                                <option value="Department of Sericulture ">Department of Sericulture </option>
+                                                <option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option>
+                                                <option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option>
+                                                <option value="MICADA">MICADA</option>
+                                                <option value="NGO">NGO</option>
+                                                <option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option>
+                                                <option value="Social Forestry Department">Social Forestry Department</option>
+                                                <option value="Water Resources Department">Water Resources Department</option>
+                                                <option value="Department of Horticulture">Department of Horticulture</option>
+                                                <option value="Ground Water Department">Ground Water Department</option>
+
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Scheme Name<span style="color: red;"> <label>*</label></span>:</label>
+                                            <select onchange="demandsidetextfileundisable()" class="form-control" id="lop1txtschemaphase2" @*onchange="lop1Other_schema_phase2()"*@ required>
+                                                <option value="0">--Select Scheme  Name --</option>
+                                                <option value="Amrit Sarovar">Amrit Sarovar</option>
+                                                <option value="Bundelkhand Package">Bundelkhand Package</option>
+                                                <option value="BVPY Pulse">BVPY Pulse</option>
+                                                <option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option>
+                                                <option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option>
+                                                <option value="CSR">CSR</option>
+                                                <option value="Departmental Scheme">Departmental Scheme</option>
+                                                <option value="District Annual Plan">District Annual Plan</option>
+                                                <option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option>
+                                                <option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option>
+                                                <option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option>
+                                                <option value="IHD Scheme">IHD Scheme</option>
+                                                <option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option>
+                                                <option value="IWDMP">IWDMP</option>
+                                                <option value="Jal Jeevan Mission">Jal Jeevan Mission</option>
+                                                <option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option>
+                                                <option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option>
+                                                <option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option>
+                                                <option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option>
+                                                <option value="NABRD RIDF">NABRD RIDF</option>
+                                                <option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option>
+                                                <option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option>
+                                                <option value="PMKSY">PMKSY</option>
+                                                <option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option>
+                                                <option value="PMKSY-WDC-2">PMKSY-WDC-2</option>
+                                                <option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option>
+                                                <option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option>
+                                                <option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option>
+                                                <option value="Siksha Abhiyan">Siksha Abhiyan</option>
+                                                <option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option>
+                                                <option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option>
+                                                <option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option>
+                                                <option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option>
+                                                <option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option>
+                                                <option value="Zila Yojana">Zila Yojana</option>
+                                                <option value="ZP Cess">ZP Cess</option>
+                                                <option value="MGNREGA">MGNREGA</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="lop1div_other_phase2">
+                                            <label>Other Scheme Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" onkeypress="demandsidetextfileundisable()" onpaste="return false;" class="form-control" id="lop1txtotherSchemephase2" maxlength="100" placeholder="Enter Other Name of Scheme" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Area Covered (ha) <span style="color: red;"> <label>*</label></span>:</label>
+                                            <input type="text" oninput="demandsidetextfileundisable()" onpaste="return false;" name="numonlydecimal" onkeypress="validateaa(event)" class="form-control decimal" id="lop1rphase2" maxlength="6" placeholder="Enter Area Covered (in ha)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label> Total Number of Beneficiary<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfileundisable()" onpaste="return false;" name="numonly" class="form-control decimal" id="lop1uphase2" maxlength="6" placeholder="Enter Number of Beneficiary" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Expenditure incurred other than Atal Jal (in lakh)<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfileundisable()" onpaste="return false;" name="numonlydecimal" onkeypress="validate(event)" class="form-control decimal" id="lop1sphase2" maxlength="6" placeholder="Enter Expenditure incurred other than Atal Jal (in lakh)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Remark, if any :</label>
+                                            <input type="text" oninput="demandsidetextfileundisable()" class="form-control" id="lop1tphase2" maxlength="100" placeholder="Enter Remark" required />
+
+                                        </div>
+                                    </div>
+
+
+                                    <div id="" class="form-group col-md-4">
+                                        <br />
+                                        <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                            <label for="recipient-name" class="col-form-label">
+                                                Convergence Expenditure Claim (Phase 2 [October 2024 - December 2024])
+
+                                            </label>
+                                        </h4>
+                                        <br />
+
+                                        <div id="">
+                                            <label>Year Of Subsidy Disbursement :</label>
+                                            <input type="text" class="form-control decimal" id="oaphase2" maxlength="100" placeholder="Phase-2(October-March 2024-25)" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Department Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <select onchange="demandsidetextfilealertcheckphase2()" class="form-control" id="txtdepartmentphase2" required>
+                                                <option value="0">--Select Department  Name --</option>
+                                                <option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option>
+                                                <option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option>
+                                                <option value="Department of Agriculture">Department of Agriculture</option>
+                                                <option value="Department of Forest">Department of Forest</option>
+                                                <option value="Department of Sericulture ">Department of Sericulture </option>
+                                                <option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option>
+                                                <option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option>
+                                                <option value="MICADA">MICADA</option>
+                                                <option value="NGO">NGO</option>
+                                                <option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option>
+                                                <option value="Social Forestry Department">Social Forestry Department</option>
+                                                <option value="Water Resources Department">Water Resources Department</option>
+                                                <option value="Department of Horticulture">Department of Horticulture</option>
+                                                <option value="Ground Water Department">Ground Water Department</option>
+
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Scheme Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <select onchange="demandsidetextfilealertcheckphase2()" class="form-control" id="txtschemaphase2" required>
+                                                <option value="0">--Select Scheme  Name --</option>
+                                                <option value="Amrit Sarovar">Amrit Sarovar</option>
+                                                <option value="Bundelkhand Package">Bundelkhand Package</option>
+                                                <option value="BVPY Pulse">BVPY Pulse</option>
+                                                <option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option>
+                                                <option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option>
+                                                <option value="CSR">CSR</option>
+                                                <option value="Departmental Scheme">Departmental Scheme</option>
+                                                <option value="District Annual Plan">District Annual Plan</option>
+                                                <option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option>
+                                                <option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option>
+                                                <option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option>
+                                                <option value="IHD Scheme">IHD Scheme</option>
+                                                <option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option>
+                                                <option value="IWDMP">IWDMP</option>
+                                                <option value="Jal Jeevan Mission">Jal Jeevan Mission</option>
+                                                <option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option>
+                                                <option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option>
+                                                <option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option>
+                                                <option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option>
+                                                <option value="NABRD RIDF">NABRD RIDF</option>
+                                                <option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option>
+                                                <option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option>
+                                                <option value="PMKSY">PMKSY</option>
+                                                <option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option>
+                                                <option value="PMKSY-WDC-2">PMKSY-WDC-2</option>
+                                                <option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option>
+                                                <option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option>
+                                                <option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option>
+                                                <option value="Siksha Abhiyan">Siksha Abhiyan</option>
+                                                <option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option>
+                                                <option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option>
+                                                <option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option>
+                                                <option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option>
+                                                <option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option>
+                                                <option value="Zila Yojana">Zila Yojana</option>
+                                                <option value="ZP Cess">ZP Cess</option>
+                                                <option value="MGNREGA">MGNREGA</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="div_other_phase2">
+                                            <label>Other Scheme Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" onkeypress="demandsidetextfilealertcheckphase2()" onpaste="return false;" class="form-control" id="txtotherSchemephase2" maxlength="100" placeholder="Enter Other Name of Scheme" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Area Covered (ha)<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase2()" onpaste="return false;" name="numonlydecimal" onkeypress="validateaa(event)" class="form-control decimal" id="rphase2" maxlength="6" placeholder="Enter Area Covered (in ha)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label> Total Number of Beneficiary<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase2()" onpaste="return false;" name="numonly" class="form-control decimal" id="uphase2" maxlength="6" placeholder="Enter Number of Beneficiary" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Expenditure incurred other than Atal Jal (in lakh)<span style="color: red;"> <label>*</label></span>:</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase2()" onpaste="return false;" name="numonlydecimal" onkeypress="validate(event)" class="form-control decimal" id="sphase2" maxlength="6" placeholder="Enter Expenditure incurred other than Atal Jal (in lakh)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Remark, if any :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase2()" class="form-control" id="tphase2" maxlength="100" placeholder="Enter Remark" required />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                @*Phase 3-4*@
+                                <div class="row">
+                                    <div id="" class="form-group col-md-4">
+                                        <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                            <label for="recipient-name" class="col-form-label">
+                                                Convergence Expenditure Claim (Phase 3 [Jan 2025 - March 2025])
+                                            </label>
+                                        </h4>
+                                        <br />
+                                        <div style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                                            <p style=" margin: 0; width: fit-content; ">Note: - To enter claim data for different department/ scheme click on save button and go to edit/view button and then Click on add new button</p>
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Year Of Subsidy Disbursement :</label>
+                                            <input type="text" class="form-control decimal" id="oaphase3" maxlength="100" placeholder="Phase-3(Jan-March 2025)" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Department Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <select onchange="demandsidetextfilealertcheckphase3()" class="form-control" id="txtdepartmentphase3" required>
+                                                <option value="0">--Select Department  Name --</option>
+                                                <option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option>
+                                                <option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option>
+                                                <option value="Department of Agriculture">Department of Agriculture</option>
+                                                <option value="Department of Forest">Department of Forest</option>
+                                                <option value="Department of Sericulture ">Department of Sericulture </option>
+                                                <option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option>
+                                                <option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option>
+                                                <option value="MICADA">MICADA</option>
+                                                <option value="NGO">NGO</option>
+                                                <option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option>
+                                                <option value="Social Forestry Department">Social Forestry Department</option>
+                                                <option value="Water Resources Department">Water Resources Department</option>
+                                                <option value="Department of Horticulture">Department of Horticulture</option>
+                                                <option value="Ground Water Department">Ground Water Department</option>
+
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Scheme Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <select onchange="demandsidetextfilealertcheckphase3()" class="form-control" id="txtschemaphase3" required>
+                                                <option value="0">--Select Scheme  Name --</option>
+                                                <option value="Amrit Sarovar">Amrit Sarovar</option>
+                                                <option value="Bundelkhand Package">Bundelkhand Package</option>
+                                                <option value="BVPY Pulse">BVPY Pulse</option>
+                                                <option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option>
+                                                <option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option>
+                                                <option value="CSR">CSR</option>
+                                                <option value="Departmental Scheme">Departmental Scheme</option>
+                                                <option value="District Annual Plan">District Annual Plan</option>
+                                                <option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option>
+                                                <option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option>
+                                                <option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option>
+                                                <option value="IHD Scheme">IHD Scheme</option>
+                                                <option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option>
+                                                <option value="IWDMP">IWDMP</option>
+                                                <option value="Jal Jeevan Mission">Jal Jeevan Mission</option>
+                                                <option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option>
+                                                <option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option>
+                                                <option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option>
+                                                <option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option>
+                                                <option value="NABRD RIDF">NABRD RIDF</option>
+                                                <option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option>
+                                                <option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option>
+                                                <option value="PMKSY">PMKSY</option>
+                                                <option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option>
+                                                <option value="PMKSY-WDC-2">PMKSY-WDC-2</option>
+                                                <option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option>
+                                                <option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option>
+                                                <option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option>
+                                                <option value="Siksha Abhiyan">Siksha Abhiyan</option>
+                                                <option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option>
+                                                <option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option>
+                                                <option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option>
+                                                <option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option>
+                                                <option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option>
+                                                <option value="Zila Yojana">Zila Yojana</option>
+                                                <option value="ZP Cess">ZP Cess</option>
+                                                <option value="MGNREGA">MGNREGA</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="div_other_phase3">
+                                            <label>Other Scheme Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" onkeypress="demandsidetextfilealertcheckphase3()" onpaste="return false;" class="form-control" id="txtotherSchemephase3" maxlength="100" placeholder="Enter Other Name of Scheme" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Area Covered (ha)<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase3()" onpaste="return false;" name="numonlydecimal" onkeypress="validateaa(event)" class="form-control decimal" id="rphase3" maxlength="6" placeholder="Enter Area Covered (in ha)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label> Total Number of Beneficiary<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase3()" onpaste="return false;" name="numonly" class="form-control decimal" id="uphase3" maxlength="6" placeholder="Enter Number of Beneficiary" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Expenditure incurred other than Atal Jal (in lakh)<span style="color: red;"> <label>*</label></span>:</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase3()" onpaste="return false;" name="numonlydecimal" onkeypress="validate(event)" class="form-control decimal" id="sphase3" maxlength="6" placeholder="Enter Expenditure incurred other than Atal Jal (in lakh)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Remark, if any :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase3()" class="form-control" id="tphase3" maxlength="100" placeholder="Enter Remark" required />
+
+                                        </div>
+                                    </div>
+
+                                    <div id="" class="form-group col-md-4">
+                                        <h4 style="text-align:center" font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230>
+                                            <label for="recipient-name" class="col-form-label">
+                                                Convergence Expenditure Claim (Phase 4 [April 2025 - June 2025])
+                                            </label>
+                                        </h4>
+                                        <br />
+                                        <div style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                                            <p style=" margin: 0; width: fit-content; ">Note: - To enter claim data for different department/ scheme click on save button and go to edit/view button and then Click on add new button</p>
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Year Of Subsidy Disbursement :</label>
+                                            <input type="text" class="form-control decimal" id="oaphase4" maxlength="100" placeholder="Phase-4(April-June 2025)" disabled />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Department Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <select onchange="demandsidetextfilealertcheckphase4()" class="form-control" id="txtdepartmentphase4" required>
+                                                <option value="0">--Select Department  Name --</option>
+                                                <option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option>
+                                                <option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option>
+                                                <option value="Department of Agriculture">Department of Agriculture</option>
+                                                <option value="Department of Forest">Department of Forest</option>
+                                                <option value="Department of Sericulture ">Department of Sericulture </option>
+                                                <option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option>
+                                                <option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option>
+                                                <option value="MICADA">MICADA</option>
+                                                <option value="NGO">NGO</option>
+                                                <option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option>
+                                                <option value="Social Forestry Department">Social Forestry Department</option>
+                                                <option value="Water Resources Department">Water Resources Department</option>
+                                                <option value="Department of Horticulture">Department of Horticulture</option>
+                                                <option value="Ground Water Department">Ground Water Department</option>
+
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Scheme Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <select onchange="demandsidetextfilealertcheckphase4()" class="form-control" id="txtschemaphase4" required>
+                                                <option value="0">--Select Scheme  Name --</option>
+                                                <option value="Amrit Sarovar">Amrit Sarovar</option>
+                                                <option value="Bundelkhand Package">Bundelkhand Package</option>
+                                                <option value="BVPY Pulse">BVPY Pulse</option>
+                                                <option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option>
+                                                <option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option>
+                                                <option value="CSR">CSR</option>
+                                                <option value="Departmental Scheme">Departmental Scheme</option>
+                                                <option value="District Annual Plan">District Annual Plan</option>
+                                                <option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option>
+                                                <option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option>
+                                                <option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option>
+                                                <option value="IHD Scheme">IHD Scheme</option>
+                                                <option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option>
+                                                <option value="IWDMP">IWDMP</option>
+                                                <option value="Jal Jeevan Mission">Jal Jeevan Mission</option>
+                                                <option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option>
+                                                <option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option>
+                                                <option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option>
+                                                <option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option>
+                                                <option value="NABRD RIDF">NABRD RIDF</option>
+                                                <option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option>
+                                                <option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option>
+                                                <option value="PMKSY">PMKSY</option>
+                                                <option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option>
+                                                <option value="PMKSY-WDC-2">PMKSY-WDC-2</option>
+                                                <option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option>
+                                                <option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option>
+                                                <option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option>
+                                                <option value="Siksha Abhiyan">Siksha Abhiyan</option>
+                                                <option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option>
+                                                <option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option>
+                                                <option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option>
+                                                <option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option>
+                                                <option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option>
+                                                <option value="Zila Yojana">Zila Yojana</option>
+                                                <option value="ZP Cess">ZP Cess</option>
+                                                <option value="MGNREGA">MGNREGA</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+
+                                        </div>
+                                        <br />
+                                        <div id="div_other_phase4">
+                                            <label>Other Scheme Name<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" onkeypress="demandsidetextfilealertcheckphase4()" onpaste="return false;" class="form-control" id="txtotherSchemephase4" maxlength="100" placeholder="Enter Other Name of Scheme" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Area Covered (ha)<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase4()" onpaste="return false;" name="numonlydecimal" onkeypress="validateaa(event)" class="form-control decimal" id="rphase4" maxlength="6" placeholder="Enter Area Covered (in ha)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label> Total Number of Beneficiary<span style="color: red;"> <label>*</label></span> :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase4()" onpaste="return false;" name="numonly" class="form-control decimal" id="uphase4" maxlength="6" placeholder="Enter Number of Beneficiary" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Expenditure incurred other than Atal Jal (in lakh)<span style="color: red;"> <label>*</label></span>:</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase4()" onpaste="return false;" name="numonlydecimal" onkeypress="validate(event)" class="form-control decimal" id="sphase4" maxlength="6" placeholder="Enter Expenditure incurred other than Atal Jal (in lakh)" required />
+
+                                        </div>
+                                        <br />
+                                        <div id="">
+                                            <label>Remark, if any :</label>
+                                            <input type="text" oninput="demandsidetextfilealertcheckphase4()" class="form-control" id="tphase4" maxlength="100" placeholder="Enter Remark" required />
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a role="button" data-target="modal" id="btn1phase2" name="btn1" value="Save" style=" width:100px" onclick="insert_data_phase2()" class="btn btn-success btn-md ">Save</a>
+                    <button type="button" class="btn btn-danger" onclick="closephase2_btn()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="modal fade" id="exampleModal__phase_two" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">*@
+    <div class="modal fade" id="exampleModal__ddphase_two" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document" style="width:95%;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <h3 style="text-align:center">
+                                <label for="recipient-name" class="col-form-label">
+                                    Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 3 [Jan 2025 - March 2025])(Phase 4 [April 2025 - June 2025])
+                                </label>
+                            </h3>
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:scroll; height:60%;">
+                                <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="3" class="text-center">Sr.No</th>
+
+
+                                            <th colspan="6" class="text-center"><label>GP Information</label></th>
+                                            <th colspan="9" class="text-center"><label>Demand Side Proposed Under WSP</label></th>
+
+                                        </tr>
+                                        <tr class="success">
+                                            <th rowspan="1" class="text-center">State Name</th>
+                                            <th rowspan="1" class="text-center">District Name</th>
+                                            <th rowspan="1" class="text-center">Block Name</th>
+                                            <th rowspan="1" class="text-center">Gram Panchayat Name </th>
+                                            <th rowspan="1" class="text-center">GP Center Point (Latitude)</th>
+                                            <th rowspan="1" class="text-center">GP Center Point (Longitude)</th>
+
+                                            <th rowspan="1" class="text-center">Financial Year </th>
+
+                                            <th rowspan="1" class="text-center">Demand Side Interventions</th>
+                                            <th rowspan="1" class="text-center">Department Name</th>
+                                            <th rowspan="1" class="text-center">Scheme Name / Possible Funding Source</th>
+                                            <th rowspan="1" class="text-center">Total Area Under Conventional Irrigation (ha)</th>
+                                            <th rowspan="1" class="text-center">Area Proposed Under Intervention (ha)</th>
+                                            <th rowspan="1" class="text-center">Approximate Estimated Cost (in lakh)</th>
+                                            <th rowspan="1" class="text-center">Total water demand (ha m)</th>
+                                            <th rowspan="1" class="text-center">Reduction in water demand (ha m) </th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="tbl_details_add_phase2"></tbody>
+                                </table>
+
+                            </div>
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:auto; height:50%;">
+                                <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="2" class="text-center" style="">Sr.No</th>
+                                            <th colspan="8" class="text-center" style="">Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 1 [April 2024-September 2024])   </th>
+
+
+                                        </tr>
+                                        <tr class="success">
+
+                                            <th rowspan="1" class="text-center" style="">Year Of Subsidy Disbursement</th>
+                                            <th rowspan="1" class="text-center" style=" padding:8px 50px;">Department Name</th>
+                                            <th rowspan="1" class="text-center" style=" padding:8px 50px;">Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style=" padding:8px 50px;">Other Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style=" padding:8px 25px;">Area Covered (ha) </th>
+                                            <th rowspan="1" class="text-center" style=" padding: 2px 25px;">Total Number of Beneficiary</th>
+                                            <th rowspan="1" class="text-center" style=" padding: 2px 25px;">Expenditure incurred other than Atal Jal (in lakh)</th>
+                                            <th rowspan="1" class="text-center" style=" padding: 2px 30px;">Remark, if any</th>
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="phase2_data"></tbody>
+                                </table>
+                            </div>
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:auto; height:50%;">
+                                <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="2" class="text-center">Sr.No</th>
+                                            <th colspan="8" class="text-center">Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Left Over Phase 1[April 2024-September 2024])   </th>
+                                            <th rowspan="2" class="text-center">Edit</th>
+                                            <th rowspan="2" class="text-center">Delete</th>
+                                            <th rowspan="2" class="text-center">Add New</th>
+
+                                        </tr>
+                                        <tr class="success">
+
+                                            <th rowspan="1" class="text-center" >Year Of Subsidy Disbursement</th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 50px;">Department Name</th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 50px;">Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 50px;">Other Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 25px;">Area Covered (ha) </th>
+                                            <th rowspan="1" class="text-center" style="padding: 2px 25px;">Total Number of Beneficiary</th>
+                                            <th rowspan="1" class="text-center" style="padding: 2px 25px;">Expenditure incurred other than Atal Jal (in lakh)</th>
+                                            <th rowspan="1" class="text-center" style="padding: 2px 30px;">Remark, if any</th>
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="leftoverphase1_data_old"></tbody>
+                                </table>
+                            </div>
+
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:auto; height:50%;">
+                                <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="2" class="text-center">Sr.No</th>
+                                            <th colspan="8" class="text-center">Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 2 [October 2024 - December 2024])   </th>
+                                            <th rowspan="2" class="text-center">Edit</th>
+                                            <th rowspan="2" class="text-center">Delete</th>
+                                            <th rowspan="2" class="text-center">Add New</th>
+
+                                        </tr>
+                                        <tr class="success">
+
+                                            <th rowspan="1" class="text-center">Year Of Subsidy Disbursement</th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 50px;">Department Name</th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 50px;">Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 50px;">Other Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="padding:8px 25px;">Area Covered (ha) </th>
+                                            <th rowspan="1" class="text-center" style="padding: 2px 25px;">Total Number of Beneficiary</th>
+                                            <th rowspan="1" class="text-center" style="padding: 2px 25px;">Expenditure incurred other than Atal Jal (in lakh)</th>
+                                            <th rowspan="1" class="text-center" style="padding: 2px 30px;">Remark, if any</th>
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="phase2_data_old"></tbody>
+                                </table>
+                            </div>
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:auto; height:50%;">
+                                <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Sr.No</th>
+                                            <th colspan="8" class="text-center" style="background: #32973a !important;">Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 3 [Jan 2025 - March 2025])   </th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Edit</th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Delete</th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Add New</th>
+
+                                        </tr>
+                                        <tr class="success">
+
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important;">Year Of Subsidy Disbursement</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Department Name</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Other Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 25px;">Area Covered (ha) </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 25px;">Total Number of Beneficiary</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 25px;">Expenditure incurred other than Atal Jal (in lakh)</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 30px;">Remark, if any</th>
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="phase3_data_old"></tbody>
+                                </table>
+                            </div>
+                            <br />
+                            <div class="tbl-responsive" id="demandside" style="overflow:auto; height:50%;">
+                                <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                    <thead style="color: #fff;">
+                                        <tr class="tableheader1"></tr>
+                                        <tr class="success">
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Sr.No</th>
+                                            <th colspan="8" class="text-center" style="background: #32973a !important;">Convergence Expenditure Claim Other than Atal Bhujal Yojana Share (Phase 4 [April 2025 - June 2025])   </th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Edit</th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Delete</th>
+                                            <th rowspan="2" class="text-center" style="background: #32973a !important;">Add New</th>
+
+                                        </tr>
+                                        <tr class="success">
+
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important;">Year Of Subsidy Disbursement</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Department Name</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 50px;">Other Scheme Name </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding:8px 25px;">Area Covered (ha) </th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 25px;">Total Number of Beneficiary</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 25px;">Expenditure incurred other than Atal Jal (in lakh)</th>
+                                            <th rowspan="1" class="text-center" style="background: #32973a !important; padding: 2px 30px;">Remark, if any</th>
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="phase4_data_old"></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <h3><b><label id="State_txt" style="float:left; font-size:20px">Status : <label id="gp_status2phase"></label></label></b></h3>
+                    <br />
+                    <br />
+                    <input type="text" class="form-control" style="width:20%" id="txtreject2remark" maxlength="100" placeholder="Enter Reject Remark" required />
+                    <button type="button" id="phase2submittospmu" class="btn btn-primary" onclick="phase2submit_to_spmu()" data-dismiss="modal">Submit To SPMU</button>
+                    <button type="button" id="phase2submittoapprove" class="btn btn-primary" onclick="phase2approve()" data-dismiss="modal">Approve</button>
+                    <a role="button" data-target="modal" id="phase2reject" name="btn1" style=" width:100px" onclick="phase2reject()" class="btn btn-danger btn-md">Reject</a>
+                    <button type="button" class="btn btn-danger" onclick="closephase2_btn()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*phase2 end*@
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script>
+        $(window).on("load", function () {
+            $("body").addClass("body12");
+        });
+    </script>
+    <style>
+        form {
+            margin: 0px;
+        }
+    </style>
+
+    <script>
+
+   var Jsondata = "";
+
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+            var Block = "0";
+
+    /*var Gram = "0";*/
+        var off_1 = "";
+        var Gram = "0";
+        var StateOfficer = '';
+            $(document).ready(function () {
+         StateOfficer = '@Session["Officer"]';
+            if (StateOfficer == "") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (StateOfficer == "Gram Panchayat Nodal Officer") {
+                  window.location = "/Home/LogOut";
+            }
+
+                Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $('#supply_side').hide();
+            $('#btnpreexe').hide();
+            $('#btnnextexe').hide();
+            $('#pdf').prop('disabled', true);
+            $('#excel').prop('disabled', true);
+            $('#Excel').hide();
+            $('#div_other').hide();
+            $('#div_other_2').hide();
+            $('#txtrejectremark').hide();
+            $('#phase1reject').hide();
+                $('#btnexcelphase1').hide();
+                $('#btnexcelphase2').hide();
+                $('#state_p1').hide();
+                $('#state_p1').attr("disabled", "disabled");
+                $('#district_p1').hide();
+                $('#district_p1').attr("disabled", "disabled");
+                $('#state_p2').hide();
+                $('#state_p2').attr("disabled", "disabled");
+                $('#district_p2').hide();
+                $('#district_p2').attr("disabled", "disabled");
+                $('#demanddistrictblock_p1').hide();
+                $('#demanddistrictblock_p1').attr("disabled", "disabled");
+                $('#demanddistrictblock_p2').hide();
+                $('#demanddistrictblock_p2').attr("disabled", "disabled");
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+
+
+                var phase = $('#phase').val();
+                if (phase == "phase1") {
+                    $('#btnexcelphase1').show();
+                    $('#btnexcelphase2').hide();
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#state_p2').hide();
+                    $('#state_p2').attr("disabled", "disabled");
+                    $('#district_p2').hide();
+                    $('#district_p2').attr("disabled", "disabled");
+                    $('#demanddistrictblock_p1').hide();
+                    $('#demanddistrictblock_p1').attr("disabled", "disabled");
+                    $('#demanddistrictblock_p2').hide();
+                    $('#demanddistrictblock_p2').attr("disabled", "disabled");
+                    $('#txtyear').text("Phase1[April 2024 - September 2024]");
+                }
+                else if (phase == "phase2") {
+                    $('#btnexcelphase1').hide();
+                    $('#btnexcelphase2').show();
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#state_p2').hide();
+                    $('#district_p2').hide();
+                    $('#txtyear').text("(Phase 3 [Jan 2025 - March 2025])(Phase 4 [April 2025 - June 2025])");
+                    $('#demanddistrictblock_p1').hide();
+                    $('#demanddistrictblock_p1').attr("disabled", "disabled");
+                    $('#demanddistrictblock_p2').hide();
+                    $('#demanddistrictblock_p2').attr("disabled", "disabled");
+                }
+
+                DropDownInfo();
+
+            });
+
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+        }
+
+        function allsummary() {
+            var all = $('#state_p1').val();
+            if (all == "State") {
+                window.location = "/DLI3New2026/demand_state_report";
+            }
+            else if (all == "0") {
+                alert("Please Select Summary ");
+            }
+        }
+        function districtsummary() {
+            var dist = $('#district_p1').val();
+            if (dist == "District") {
+                window.location = "/DLI3New2026/demand_district_report";
+            }
+            else if (dist == "Block") {
+                window.location = "/DLI3New2026/demand_block_report";
+            }
+            else if (dist == "0") {
+                alert("Please Select Summary ");
+            }
+        }
+        function p1districtblocksummary() {
+            var all = $('#demanddistrictblock_p1').val();
+            if (all == "Block") {
+                window.location = "/DLI3New2026/demand_districtblock_report";
+            }
+            else if (all == "0") {
+                alert("Please Select Summary ");
+            }
+        }
+        function p2allsummary() {
+            var all = $('#state_p2').val();
+            if (all == "State") {
+                window.location = "/DLI3New2026/p2demand_state_report";
+            }
+            else if (all == "0") {
+                alert("Please Select Summary ");
+            }
+        }
+        function p2districtsummary() {
+            var dist = $('#district_p2').val();
+            if (dist == "District") {
+                window.location = "/DLI3New2026/p2demand_district_report";
+            }
+            else if (dist == "Block") {
+                window.location = "/DLI3New2026/p2demand_block_report";
+            }
+            else if (dist == "0") {
+                alert("Please Select Summary ");
+            }
+        }
+        function p2districtblocksummary() {
+            var all = $('#demanddistrictblock_p2').val();
+            if (all == "Block") {
+                window.location = "/DLI3New2026/demand_districtblock_reportp2";
+            }
+            else if (all == "0") {
+                alert("Please Select Summary ");
+            }
+        }
+
+        function validate(e) {
+            var { value } = event.target;
+            var countBeforeDecimal = 0;
+            var countAfterDecimal = 0;
+            var decimalReached = false;
+
+            for (var i = 0; i < value.length; i++) {
+                if (value[i] == '.') {
+                    decimalReached = true;
+                    continue; // Skip to the next iteration as '.' should not be counted
+                }
+
+                if (decimalReached) {
+                    countAfterDecimal++;
+                    if (countAfterDecimal > 1) {
+                        e.preventDefault();
+                        return; // Stop further validation if condition met
+                    }
+                } else {
+                    countBeforeDecimal++;
+                    if (countBeforeDecimal > 5) {
+                        e.preventDefault();
+                        return; // Stop further validation if condition met
+                    }
+                }
+            }
+
+            // If the loop completes without any issues, the input is valid
+        }
+        function validateaa(e) {
+
+            var c = 0;
+            var { value } = event.target;
+            var count1 = 0;
+
+            for (var i = 0; i < value.length; i++) {
+                count1++;
+                if (value[i] != '.') {
+                    if (count1 == 10 && value[i] != '.') {
+
+                        e.preventDefault();
+                    }
+                } else {
+                    var count = 0, point = false;
+                    for (var i = 0; i < value.length; i++) {
+
+                        if (value[i] == '.' || point) {
+                            count++;
+                            point = true;
+                        }
+                        if (count > 7) {
+                            e.preventDefault();
+                        }
+                    }
+                }
+
+            }
+        }
+
+        function validateInput(input) {
+            // Remove any non-digit characters after the decimal point
+            input.value = input.value.replace(/(\.\d{2})\d+$/, '$1');
+        }
+
+    </script>
+
+    <script type="text/javascript">
+
+    </script>
+    <script src="~/Content/JS_Files/table2excel.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

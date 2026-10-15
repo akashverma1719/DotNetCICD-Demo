@@ -76,6 +76,12 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
+				public ActionResult admitted_claim()
+	   {
+		    return View();
+	   }
+		
+		
         [HttpPost]
         public ActionResult DropdownInfoDli4()
         {
@@ -113,7 +119,7 @@ namespace AbhyProject.Controllers
                     var year = Data[0].year;
                     var fy_phase = Data[0].fy_phase;
                     dli4_efficient_irrigation_system ddetails = new dli4_efficient_irrigation_system();
-                    if (year != "2023-24")
+                    if (year == "2022-23")
                     {
                         ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year).FirstOrDefault();
                     }
@@ -3088,7 +3094,8 @@ namespace AbhyProject.Controllers
                 try
                 {
                     List<dli4_efficient_irrigation_system> ddetails = new List<dli4_efficient_irrigation_system>();
-                    if (year != "2023-24")
+                   
+                    if (year == "2022-23")
                     {
 
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
@@ -3245,7 +3252,7 @@ namespace AbhyProject.Controllers
                 try
                 {
                     List<dli4_area_with_crop_shifting> ddetails = new List<dli4_area_with_crop_shifting>();
-                    if (year != "2023-24")
+                    if (year == "2022-23")
                     {
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                         {
@@ -3426,7 +3433,8 @@ namespace AbhyProject.Controllers
                 try
                 {
                     List<dli4_water_saving_agriculture> ddetails = new List<dli4_water_saving_agriculture>();
-                    if (year != "2023-24")
+                   
+                    if (year == "2022-23")
                     {
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                         {
@@ -3525,7 +3533,7 @@ namespace AbhyProject.Controllers
             {
                 try
                 {
-                    if (year != "2023-24")
+                    if (year == "2022-23")
                     {
                         var ddetails1 = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year).FirstOrDefault();//total list
                         var ddetails2 = ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year).ToList();
@@ -3996,8 +4004,8 @@ namespace AbhyProject.Controllers
         {
             List<dli_4_report> DataList = new List<dli_4_report>();
             string[] areas = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
-            string[] years = { "2021-22", "2022-23", "2023-24", "2024-25" };
-            string[] Phases = { "Phase-1", "Phase-2" };
+            string[] years = { "2021-22", "2022-23", "2023-24", "2024-25","2025-26" };
+            string[] Phases = { "Phase-1", "Phase-2","Phase-3" };
             if (state == "All" && year == "All")
             {
                 foreach (string i in areas)
@@ -4024,7 +4032,7 @@ namespace AbhyProject.Controllers
                                     DataList.Add(Data2);
                                 }
                             }
-                            if (j == "2024-25")
+                            else if (j == "2024-25")
                             {
                                 foreach (var item in Phases)
                                 {
@@ -4041,7 +4049,24 @@ namespace AbhyProject.Controllers
                                     DataList.Add(Data2);
                                 }
                             }
-                            else
+                            else if (j == "2025-26")
+                            {
+                                foreach (var item in Phases)
+                                {
+                                    dli_4_report Data2 = new dli_4_report();
+                                    Data2.state = i;
+                                    Data2.year = j;
+                                    Data2.phase = item;
+                                    Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                                    Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                                    Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                                    Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                                    Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                                    Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                                    DataList.Add(Data2);
+                                }
+                            }
+                            else if (j == "2022-23")
                             {
                                 dli_4_report Data = new dli_4_report();
                                 Data.state = i;
@@ -4103,7 +4128,7 @@ namespace AbhyProject.Controllers
                             DataList.Add(Data2);
                         }
                     }
-                    if (year == "2024-25")
+                    else if (year == "2024-25")
                     {
                         foreach (var item in Phases)
                         {
@@ -4120,7 +4145,24 @@ namespace AbhyProject.Controllers
                             DataList.Add(Data2);
                         }
                     }
-                    else
+                    else if (year == "2025-26")
+                    {
+                        foreach (var item in Phases)
+                        {
+                            dli_4_report Data2 = new dli_4_report();
+                            Data2.state = state;
+                            Data2.year = year;
+                            Data2.phase = item;
+                            Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                            Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                            Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                            Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                            Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                            Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                            DataList.Add(Data2);
+                        }
+                    }
+                    else if (year == "2022-23")
                     {
                         dli_4_report Data = new dli_4_report();
                         Data.state = state;
@@ -4184,7 +4226,7 @@ namespace AbhyProject.Controllers
                                 DataList.Add(Data2);
                             }
                         }
-                        if (j == "2024-25")
+                        else if (j == "2024-25")
                         {
                             foreach (var item in Phases)
                             {
@@ -4201,7 +4243,24 @@ namespace AbhyProject.Controllers
                                 DataList.Add(Data2);
                             }
                         }
-                        else
+                        else if (j == "2025-26")
+                        {
+                            foreach (var item in Phases)
+                            {
+                                dli_4_report Data2 = new dli_4_report();
+                                Data2.state = state;
+                                Data2.year = j;
+                                Data2.phase = item;
+                                Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                                Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                                Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                                Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                                Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                                Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                                DataList.Add(Data2);
+                            }
+                        }
+                        else if(j == "2022-23")
                         {
                             dli_4_report Data = new dli_4_report();
                             Data.state = state;
@@ -4264,7 +4323,7 @@ namespace AbhyProject.Controllers
                                 DataList.Add(Data2);
                             }
                         }
-                        if (year == "2024-25")
+                        else if (year == "2024-25")
                         {
                             foreach (var item in Phases)
                             {
@@ -4281,7 +4340,24 @@ namespace AbhyProject.Controllers
                                 DataList.Add(Data2);
                             }
                         }
-                        else
+                        else if (year == "2025-26")
+                        {
+                            foreach (var item in Phases)
+                            {
+                                dli_4_report Data2 = new dli_4_report();
+                                Data2.state = i;
+                                Data2.year = year;
+                                Data2.phase = item;
+                                Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                                Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                                Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                                Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                                Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                                Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                                DataList.Add(Data2);
+                            }
+                        }
+                        else if (year == "2022-23")
                         {
                             dli_4_report Data = new dli_4_report();
                             Data.state = i;
@@ -4615,5 +4691,319 @@ namespace AbhyProject.Controllers
             }
 
         }
+
+
+
+
+        //   Admitted Claim
+
+
+
+
+        [HttpPost]
+        
+        public JsonResult Delete_data_upload_npmu(int id)
+        {
+            // Check if user is logged in
+            if (Session["UserId"] == null)
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+
+            try
+            {
+                var obj = ABE.obj_dli4_upload_document_npmu.SingleOrDefault(x => x.id == id);
+                if (obj == null)
+                    return Json("Data not found", JsonRequestBehavior.AllowGet);
+
+                ABE.Entry(obj).State = EntityState.Deleted;
+                int rs = ABE.SaveChanges();
+
+                if (rs > 0)
+                    return Json("Deleted Successfully", JsonRequestBehavior.AllowGet);
+                else
+                    return Json("No record deleted", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error: " + ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult Update_upload_DLI4_npmu(string id, string state, string dist, string description, HttpPostedFileBase image)
+        {
+            if (Session["UserId"] == null)
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            try
+            {
+                int recordId = Convert.ToInt32(id);
+                var data = ABE.obj_dli4_upload_document_npmu.SingleOrDefault(x => x.id == recordId);
+                if (data == null)
+                    return Json("Data not found", JsonRequestBehavior.AllowGet);             
+                data.state = state;
+                data.district = dist;
+                data.description = description;             
+                if (image != null)
+                {
+                    string ext = Path.GetExtension(image.FileName).Trim().ToUpper();
+                    if (ext != ".PDF" && ext != ".XLSX" && ext != ".XLS")
+                        return Json("Please choose a valid file (.pdf, .xlsx, .xls).", JsonRequestBehavior.AllowGet);
+                    string name = Path.GetFileNameWithoutExtension(image.FileName);
+                    string fileName = name + "_" + DateTime.Now.Ticks + ext;                  
+                    if (image.FileName.Contains("#") || image.FileName.Contains("$"))
+                        return Json("Please use a proper file name without special characters (#, $).", JsonRequestBehavior.AllowGet);
+                    if (image.FileName.Split('.').Length != 2)
+                        return Json("Your upload file has a double extension, please upload a proper file.", JsonRequestBehavior.AllowGet);               
+                    string basePath = AppDomain.CurrentDomain.BaseDirectory;                
+                    string folderPath = Path.Combine(basePath, "Ataljalimages", "DLI4", "admitted_claim");
+                    if (!string.IsNullOrEmpty(data.year))
+                        folderPath = Path.Combine(folderPath, data.year.ToString());
+                    if (!string.IsNullOrEmpty(data.fy_phase) && data.fy_phase.ToUpper() != "NULL")
+                    {
+                        string phase = data.fy_phase.Replace("-", "_");
+                        folderPath = Path.Combine(folderPath, phase);
+                    }                   
+                    Directory.CreateDirectory(folderPath);                  
+                    string fullPath = Path.Combine(folderPath, fileName);
+                    image.SaveAs(fullPath);                  
+                    data.image_name = fileName;
+                    data.image_path = $"/Ataljalimages/DLI4/admitted_claim/{(string.IsNullOrEmpty(data.year) ? "" : data.year + "/")}{(string.IsNullOrEmpty(data.fy_phase) || data.fy_phase.ToUpper() == "NULL" ? "" : data.fy_phase.Replace("-", "_") + "/")}{fileName}";
+                }            
+                data.entry_date = DateTime.Now;
+                data.user_id = Session["Officer"]?.ToString() ?? "";
+                ABE.Entry(data).State = System.Data.Entity.EntityState.Modified;
+                int result = ABE.SaveChanges();
+                if (result > 0)
+                    return Json("Successfully Updated", JsonRequestBehavior.AllowGet);
+                else
+                    return Json("No changes detected", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error: " + ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult approve_data_upload_npmu(string id)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    var ID = Convert.ToInt32(id);
+                    var Data = ABE.obj_dli4_upload_document.Where(x => x.id == ID).SingleOrDefault();
+                    if (Data != null)
+                    {
+                        Data.id = ID;
+                        Data.approval = "Dist";
+                        Data.reject = "";
+                        ABE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
+                        int A = ABE.SaveChanges();
+                        if (A > 0)
+                        {
+                            return Json("Submit To SPMU");
+                        }
+                        else
+                        {
+                            return Json("Not Approved");
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json("Not Approved");
+
+                }
+                return Json("Invalid");
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult approve_data_state_upload_npmu(string id)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    var ID = Convert.ToInt32(id);
+                    var Data = ABE.obj_dli4_upload_document_npmu.Where(x => x.id == ID).SingleOrDefault();
+                    if (Data != null)
+                    {
+
+                        Data.id = ID;
+                        Data.approval = "State";
+                        Data.reject = "";
+                        ABE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
+                        int A = ABE.SaveChanges();
+                        if (A > 0)
+                        {
+                            return Json("Approved Successfully");
+                        }
+                        else
+                        {
+                            return Json("Not Approved");
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json("Not Approved");
+
+                }
+                return Json("Invalid");
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+
+        public ActionResult get_dli4_upload_document_npmu(string Data)
+        {
+            if (Session["UserId"] == null)
+                return Json(new { status = "Logout" }, JsonRequestBehavior.AllowGet);
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                var result = js.Deserialize<Pagenum>(Data);
+                string state = result?.statename?.Trim();
+                string dist = result?.districtname?.Trim();
+                string year = result?.year?.Trim();
+                string fy_phase = result?.fy_phase?.Trim();
+                if (string.IsNullOrEmpty(state) || state == "0")
+                    return Json(new { status = "Error", message = "Please select a valid state." }, JsonRequestBehavior.AllowGet);              
+                var query = ABE.obj_dli4_upload_document_npmu.AsQueryable()
+                                .Where(x => x.state == state);
+                if (!string.IsNullOrEmpty(dist) && dist != "0" && dist != "undefined")
+                    query = query.Where(x => x.district == dist);
+                if (!string.IsNullOrEmpty(year) && year != "0" && year != "undefined")
+                    query = query.Where(x => x.year == year);
+                if (!string.IsNullOrEmpty(fy_phase) && fy_phase != "0" && fy_phase != "undefined")
+                    query = query.Where(x => x.fy_phase == fy_phase);
+                var details = query.OrderByDescending(x => x.id).ToList();
+                return Json(new { status = "OK", data = details }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = "Error", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult reject_data_upload_npmu(string id, string reject)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    var ID = Convert.ToInt32(id);
+                    var Data = ABE.obj_dli4_upload_document_npmu.Where(x => x.id == ID).SingleOrDefault();
+                    if (Data != null)
+                    {
+
+                        Data.id = ID;
+                        Data.approval = "Reject";
+                        Data.reject = reject;
+                        ABE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
+                        int A = ABE.SaveChanges();
+                        if (A > 0)
+                        {
+                            return Json("Rejected Successfully");
+                        }
+                        else
+                        {
+                            return Json("Not Rejected");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Json("Not Approved");
+
+                }
+                return Json("Invalid");
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult Save_dli4_upload_document_npmu(string state, string dist, string year, string fy_phase, string description, HttpPostedFileBase image)
+        {
+            if (Session["UserId"] == null)
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            try
+            {
+                var data = new dli4_upload_document_npmu();              
+                data.state = state;
+                data.district = string.IsNullOrEmpty(dist) ? null : dist;
+                data.year = string.IsNullOrEmpty(year) ? null : year;
+                data.fy_phase = string.IsNullOrEmpty(fy_phase) ? null : fy_phase;
+                data.description = description;
+                data.entry_date = DateTime.Now;
+                data.user_id = Session["Officer"]?.ToString() ?? "";             
+                if (image != null)
+                {
+                    string ext = Path.GetExtension(image.FileName).Trim().ToUpper();                  
+                    if (ext != ".PDF" && ext != ".XLSX" && ext != ".XLS")
+                        return Json("Please choose a valid file (.pdf, .xlsx, .xls).", JsonRequestBehavior.AllowGet);
+                    string name = Path.GetFileNameWithoutExtension(image.FileName);
+                    string fileName = name + "_" + DateTime.Now.Ticks + ext;              
+                    if (image.FileName.Contains("#") || image.FileName.Contains("$"))
+                        return Json("Please use a proper file name without special characters (#, $).", JsonRequestBehavior.AllowGet);
+                    if (image.FileName.Split('.').Length != 2)
+                        return Json("Your upload file has a double extension, please upload a proper file.", JsonRequestBehavior.AllowGet);                  
+                    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                    string folderPath = Path.Combine(basePath, "Ataljalimages", "DLI4", "admitted_claim");
+                    if (!string.IsNullOrEmpty(year))
+                        folderPath = Path.Combine(folderPath, year);
+                    if (!string.IsNullOrEmpty(fy_phase) && fy_phase.ToUpper() != "NULL")
+                    {
+                        string phase = fy_phase.Replace("-", "_");
+                        folderPath = Path.Combine(folderPath, phase);
+                    }                   
+                    Directory.CreateDirectory(folderPath);                  
+                    string fullPath = Path.Combine(folderPath, fileName);
+                    image.SaveAs(fullPath);             
+                    data.image_name = fileName;
+                    data.image_path = $"/Ataljalimages/DLI4/admitted_claim/{(string.IsNullOrEmpty(year) ? "" : year + "/")}{(string.IsNullOrEmpty(fy_phase) || fy_phase.ToUpper() == "NULL" ? "" : fy_phase.Replace("-", "_") + "/")}{fileName}";
+                }           
+                ABE.obj_dli4_upload_document_npmu.Add(data);
+                ABE.SaveChanges();
+                return Json("Successfully Saved", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error: " + ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

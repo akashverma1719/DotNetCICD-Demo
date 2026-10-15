@@ -28,6 +28,8 @@ using Microsoft.Ajax.Utilities;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Web.Razor.Parser.SyntaxTree;
+using System.Net.Mime;
+
 
 namespace AbhyProject.Controllers
 {
@@ -799,6 +801,157 @@ namespace AbhyProject.Controllers
             }
         }
 
+        // piezomeyter excel
+
+
+
+        public ActionResult atalpiezo_excel(string state1, string district1, string block01, string gp1, string year1, string month1)
+        {
+            var State = state1;
+            var Dist = district1;
+            var Block = block01;
+            var Gram = gp1;
+
+            // Get the initial details without any filtering
+            List<atal_piezo> ddetails = AJE.obj_atal_piezo.ToList();
+
+            // Filter the details based on provided parameters
+            if (!string.IsNullOrEmpty(State) && State != "0")
+            {
+                ddetails = ddetails.Where(x => x.statename == State).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(Dist) && Dist != "0" && Dist != "Select_Districts")
+            {
+                ddetails = ddetails.Where(x => x.districtname == Dist).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(Block) && Block != "0")
+            {
+                ddetails = ddetails.Where(x => x.blockname == Block).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(Gram) && Gram != "0")
+            {
+                ddetails = ddetails.Where(x => x.gpname == Gram).ToList();
+            }
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Geo Tagging");
+                var currentRow = 1;
+
+                // Add headers for columns
+                worksheet.Cell(currentRow, 1).Value = "S.No"; // Serial number column
+                worksheet.Cell(currentRow, 2).Value = "State";
+                worksheet.Cell(currentRow, 3).Value = "District";
+                worksheet.Cell(currentRow, 4).Value = "Block";
+                worksheet.Cell(currentRow, 5).Value = "Grampanchyat";
+                worksheet.Cell(currentRow, 6).Value = "Village Name";
+                worksheet.Cell(currentRow, 7).Value = "Site Name";
+                worksheet.Cell(currentRow, 8).Value = "Type";
+                worksheet.Cell(currentRow, 9).Value = "Source";
+                worksheet.Cell(currentRow, 10).Value = "Latitude";
+                worksheet.Cell(currentRow, 11).Value = "Longitude";
+                worksheet.Cell(currentRow, 12).Value = "Well Depth";
+                worksheet.Cell(currentRow, 13).Value = "Aquifer";
+                worksheet.Cell(currentRow, 14).Value = "Pre 2015";
+                worksheet.Cell(currentRow, 15).Value = "Post 2015";
+                worksheet.Cell(currentRow, 16).Value = "Pre 2016";
+                worksheet.Cell(currentRow, 17).Value = "Post 2016";
+                worksheet.Cell(currentRow, 18).Value = "Pre 2017";
+                worksheet.Cell(currentRow, 19).Value = "Post 2017";
+                worksheet.Cell(currentRow, 20).Value = "Pre 2018";
+                worksheet.Cell(currentRow, 21).Value = "Post 2018";
+                worksheet.Cell(currentRow, 22).Value = "Pre 2019";
+                worksheet.Cell(currentRow, 23).Value = "Post 2019";
+                worksheet.Cell(currentRow, 24).Value = "Pre 2020";
+                worksheet.Cell(currentRow, 25).Value = "Post 2020";
+                worksheet.Cell(currentRow, 26).Value = "Pre 2021";
+                worksheet.Cell(currentRow, 27).Value = "Post 2021";
+                worksheet.Cell(currentRow, 28).Value = "Pre 2022";
+                worksheet.Cell(currentRow, 29).Value = "Post 2022";
+                worksheet.Cell(currentRow, 30).Value = "Pre 2023";
+                worksheet.Cell(currentRow, 31).Value = "Post 2023";
+                worksheet.Cell(currentRow, 32).Value = "Pre 2024";
+                worksheet.Cell(currentRow, 33).Value = "Post 2024";
+                worksheet.Cell(currentRow, 34).Value = "Pre 2025";
+
+
+
+
+                // Incremental serial number
+
+                int serialNumber = 1;
+
+                // Add data rows
+                if (ddetails.Count != 0)
+                {
+                    foreach (var detail in ddetails)
+                    {
+                        currentRow++;
+                        worksheet.Cell(currentRow, 1).Value = serialNumber++;
+                        worksheet.Cell(currentRow, 2).Value = detail.statename_clean;
+                        worksheet.Cell(currentRow, 3).Value = detail.districtname_clean;
+                        worksheet.Cell(currentRow, 4).Value = detail.blockname_clean;
+                        worksheet.Cell(currentRow, 5).Value = detail.gpname_clean;
+                        worksheet.Cell(currentRow, 6).Value = detail.village;
+                        worksheet.Cell(currentRow, 7).Value = detail.sitename;
+                        worksheet.Cell(currentRow, 8).Value = detail.type;
+                        worksheet.Cell(currentRow, 9).Value = detail.source;
+                        worksheet.Cell(currentRow, 10).Value = detail.latitude;
+                        worksheet.Cell(currentRow, 11).Value = detail.longitude;
+                        worksheet.Cell(currentRow, 12).Value = detail.well_depth;
+                        worksheet.Cell(currentRow, 13).Value = detail.aquifer;
+                        worksheet.Cell(currentRow, 14).Value = detail.pre_2015;
+                        worksheet.Cell(currentRow, 15).Value = detail.post_2015;
+                        worksheet.Cell(currentRow, 16).Value = detail.pre_2016;
+                        worksheet.Cell(currentRow, 17).Value = detail.post_2016;
+                        worksheet.Cell(currentRow, 18).Value = detail.pre_2017;
+                        worksheet.Cell(currentRow, 19).Value = detail.post_2017;
+                        worksheet.Cell(currentRow, 20).Value = detail.pre_2018;
+
+                        worksheet.Cell(currentRow, 21).Value = detail.post_2018;
+                        worksheet.Cell(currentRow, 22).Value = detail.pre_2019;
+                        worksheet.Cell(currentRow, 23).Value = detail.post_2019;
+                        worksheet.Cell(currentRow, 24).Value = detail.pre_2020;
+                        worksheet.Cell(currentRow, 25).Value = detail.post_2020;
+
+                        worksheet.Cell(currentRow, 26).Value = detail.pre_2021;
+                        worksheet.Cell(currentRow, 27).Value = detail.post_2021;
+                        worksheet.Cell(currentRow, 28).Value = detail.pre_2022;
+                        worksheet.Cell(currentRow, 29).Value = detail.post_2022;
+                        worksheet.Cell(currentRow, 30).Value = detail.pre_2023;
+
+                        worksheet.Cell(currentRow, 31).Value = detail.post_2023;
+                        worksheet.Cell(currentRow, 32).Value = detail.pre_2024;
+                        worksheet.Cell(currentRow, 33).Value = detail.post_2024;
+                        worksheet.Cell(currentRow, 34).Value = detail.pre_2025;
+                    }
+                }
+                else
+                {
+                    // If no data found, add a row with a message
+                    currentRow++;
+                    worksheet.Cell(currentRow, 1).Value = "No Data";
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Piezometer.xlsx");
+                }
+            }
+        }
+
+
+
+
         public ActionResult Waterquality_excel(string state1, string district1, string block01, string gp1, string year1, string month1)
         {
             var State = state1;
@@ -860,7 +1013,7 @@ namespace AbhyProject.Controllers
 
                 foreach (var item in abc)
                 {
-                    currentRow++; 
+                    currentRow++;
                     worksheet.Cell(currentRow, 1).Value = item.pv_data_well_id;
                     worksheet.Cell(currentRow, 2).Value = item.state_name;
                     worksheet.Cell(currentRow, 3).Value = item.district_name;
@@ -2912,17 +3065,12 @@ namespace AbhyProject.Controllers
 
 
         //
-
         public ActionResult WSP_Excel_combined(string State, string Dist, string Block, string Gram)
         {
-            FileContentResult robj;
             try
             {
-
-                List<abhy_mis_wsp_approved> ddetails = new List<abhy_mis_wsp_approved>();
-                //if (Session["UserId"] != null)
-                //{
                 List<abhy_mis_wsp_approved> Data = new List<abhy_mis_wsp_approved>();
+
                 if (State != null && State != "0" && Dist != null && Dist != "0" && Block != null && Block != "0" && Gram != null && Gram != "0")
                 {
                     Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).ToList();
@@ -2948,87 +3096,61 @@ namespace AbhyProject.Controllers
                 {
                     var worksheet = workbook.Worksheets.Add("GP (Basic Hydrology Info)");
                     var currentRow = 1;
+
                     worksheet.Cell(currentRow, 1).Value = "State";
                     worksheet.Cell(currentRow, 2).Value = "District";
                     worksheet.Cell(currentRow, 3).Value = "Block";
                     worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
                     worksheet.Cell(currentRow, 5).Value = "Attachment";
+                    worksheet.Cell(currentRow, 6).Value = "Attendance Sheet";
+                    worksheet.Cell(currentRow, 7).Value = "Meeting Image";
+                    worksheet.Cell(currentRow, 8).Value = "Meeting Resolution";
+                    worksheet.Cell(currentRow, 9).Value = "MOM";
 
-                    if (Data.Count != 0)
-                    {
-                        for (int i = 0; i < Data.Count; i++)
-                        {
+                    string hostHeader = Request.Headers["host"];
 
-                            //string url = $"/GetFilepath?state={Data[i].state_name}&dist={Data[i].district_name}&block={Data[i].block_name}&gram={Data[i].gpname}";
-                            string url = $"/GetFilepath?id={Data[i].id}";
-
-                            string hostName = $"{Request.Url.Host}/mapview/{url}";
-
-                            string hostHeader = Request.Headers["host"];
-                            currentRow++;
-                            worksheet.Cell(currentRow, 1).Value = Data[i].state_name;
-                            worksheet.Cell(currentRow, 2).Value = Data[i].district_name;
-                            worksheet.Cell(currentRow, 3).Value = Data[i].block_name;
-                            worksheet.Cell(currentRow, 4).Value = Data[i].gpname;
-
-                            var cell = worksheet.Cell(currentRow, 5);
-                            cell.Value = "Download";
-                            var urls = new Uri(string.Format("{0}://{1}/mapview/{2}",
-                               Request.Url.Scheme,
-                               hostHeader,
-                               url));
-
-                            cell.Hyperlink = new XLHyperlink(urls);
-
-
-                        }
-                    }
-                    else
+                    foreach (var item in Data)
                     {
                         currentRow++;
-                        worksheet.Cell(currentRow, 1).Value = "";
-                        worksheet.Cell(currentRow, 2).Value = "";
-                        worksheet.Cell(currentRow, 3).Value = "";
-                        worksheet.Cell(currentRow, 4).Value = "";
-                        worksheet.Cell(currentRow, 5).Value = "";
-                        worksheet.Cell(currentRow, 6).Value = "";
-                        worksheet.Cell(currentRow, 7).Value = "";
-                        worksheet.Cell(currentRow, 8).Value = "No Data";
-                        worksheet.Cell(currentRow, 9).Value = "";
-                        worksheet.Cell(currentRow, 10).Value = "";
-                        worksheet.Cell(currentRow, 11).Value = "";
-                        worksheet.Cell(currentRow, 12).Value = "";
-                        worksheet.Cell(currentRow, 13).Value = "";
-                        worksheet.Cell(currentRow, 14).Value = "";
-                        worksheet.Cell(currentRow, 15).Value = "";
+                        worksheet.Cell(currentRow, 1).Value = item.state_name;
+                        worksheet.Cell(currentRow, 2).Value = item.district_name;
+                        worksheet.Cell(currentRow, 3).Value = item.block_name;
+                        worksheet.Cell(currentRow, 4).Value = item.gpname;
+
+                        string fileUrl = $"/GetFilepath?id={item.id}";
+                        Uri fileLink = new Uri($"{Request.Url.Scheme}://{hostHeader}/mapview{fileUrl}");
+                        worksheet.Cell(currentRow, 5).Value = "Download";
+                        worksheet.Cell(currentRow, 5).Hyperlink = new XLHyperlink(fileLink);
+
+                        string folderPath = $"{item.gpname}";
+                        string basePGWM = $"{Request.Url.Scheme}://{hostHeader}/mapview/PGWMFileDownload?gpname={folderPath}&filetype=";
+                        worksheet.Cell(currentRow, 6).Value = "Attendance Sheet";
+                        worksheet.Cell(currentRow, 6).Hyperlink = new XLHyperlink($"{basePGWM}Attendance Sheet");
+
+                        worksheet.Cell(currentRow, 7).Value = "Meeting Image";
+                        worksheet.Cell(currentRow, 7).Hyperlink = new XLHyperlink($"{basePGWM}Meeting Image");
+
+                        worksheet.Cell(currentRow, 8).Value = "Meeting Resolution";
+                        worksheet.Cell(currentRow, 8).Hyperlink = new XLHyperlink($"{basePGWM}Meeting Resolution");
+
+                        worksheet.Cell(currentRow, 9).Value = "MOM";
+                        worksheet.Cell(currentRow, 9).Hyperlink = new XLHyperlink($"{basePGWM}MOM");
                     }
+
                     using (var stream = new MemoryStream())
                     {
                         workbook.SaveAs(stream);
-                        var content = stream.ToArray();
-                        var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Gram Panchayat (Basic Hydrology Info).xlsx");
-                        robj = bytesdata;
+                        stream.Position = 0;
+
+                        return File(stream.ToArray(),
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            "Gram Panchayat (Basic Hydrology Info).xlsx");
                     }
                 }
-
-
-
-
-                return new JsonResult
-                {
-                    Data = new { robj },
-                    MaxJsonLength = int.MaxValue,
-                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                };
-                //}
-                //else
-                //{
-                //    return Json("Logout", JsonRequestBehavior.AllowGet);
-                //}
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                return Json(Ex, JsonRequestBehavior.AllowGet);
+                return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -3046,8 +3168,8 @@ namespace AbhyProject.Controllers
             var Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.id == id).FirstOrDefault();
             if (Data.wsp_23_update_path != null)
             {
-                baseDirectory = $"~/Ataljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2023-24 Update/";
-                baseDirectory2 = $"~/UpdateAtaljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2023-24 Update/";
+                baseDirectory = $"~/Ataljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2024-25 Update/";
+                baseDirectory2 = $"~/UpdateAtaljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2024-25/";
                 fileName = Data.wsp_23_update_file;
                 Wsp_Pdf = Data.wsp_23_update_path;
                 string sanitizedFileName = Path.GetFileName(fileName);
@@ -3071,8 +3193,8 @@ namespace AbhyProject.Controllers
             }
             else
             {
-                baseDirectory = $"~/Ataljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2023-24/";
-                baseDirectory2 = $"~/UpdateAtaljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2023-24/";
+                baseDirectory = $"~/Ataljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2025-25/";
+                baseDirectory2 = $"~/UpdateAtaljalimages/WspApproved/{Data.state_name}/{Data.district_name}/{Data.block_name}/2024-25/";
                 fileName = Data.wsp_23_finename;
                 Wsp_Pdf = Data.wsp_23_filepath;
                 string sanitizedFileName = Path.GetFileName(fileName);
@@ -3096,6 +3218,49 @@ namespace AbhyProject.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult PGWMFileDownload(string gpname, string filetype)
+        {
+            try
+            {
+                string basePath = $@"H:\ataljal.mowr.gov.in\ataljalimages\PGWM\{gpname}\2024-25\";
+                string fileName = "";
+
+                switch (filetype)
+                {
+                    case "Attendance Sheet":
+                        fileName = "Attendance Sheet.pdf";
+                        break;
+                    case "Meeting Image":
+                        fileName = "Meeting Image.jpg"; // or .png if applicable
+                        break;
+                    case "Meeting Resolution":
+                        fileName = "Meeting Resolution.pdf";
+                        break;
+                    case "MOM":
+                        fileName = "MOM.pdf";
+                        break;
+                    default:
+                        return Content("Invalid file type.");
+                }
+
+                string fullPath = Path.Combine(basePath, fileName);
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(fullPath);
+                    return File(fileBytes, MimeMapping.GetMimeMapping(fileName), fileName);
+                }
+                else
+                {
+                    return Content("File not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Error: " + ex.Message);
+            }
         }
 
         // for zooming to map selected
@@ -3911,6 +4076,109 @@ namespace AbhyProject.Controllers
 
         //
 
+        //// GET: Water Level Form
+
+        //[HttpGet]
+        //public JsonResult GetWaterLevelForm()
+        //{
+        //    try
+        //    {
+        //        // Create a list of years from 2021 to 2024
+        //        var distinctYears = Enumerable.Range(2021, 4).ToList(); // 2021, 2022, 2023, 2024
+
+        //        // Prepare the response data
+        //        var response = new
+        //        {
+        //            Years = distinctYears
+        //        };
+
+        //        return Json(response, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+        //[HttpGet]
+        //public JsonResult FetchMonthsByYear(int selectedYear)
+        //{
+        //    using (MAPEntity context = new MAPEntity())
+        //    {
+        //        try
+        //        {
+        //            var months = context.obj_vw_bs_gwl_meta_data
+        //                .Where(w => w.fyyear == selectedYear)
+        //                .Select(w => w.fymonth)
+        //                .Distinct()
+        //                .OrderBy(m => m)
+        //                .ToList();
+
+        //            return Json(months, JsonRequestBehavior.AllowGet);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return Json(new { error = "An error occurred while fetching months.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //}
+        //[HttpGet]
+        //public JsonResult GetWellCountByDepthRange(int selectedYear, int selectedMonth)
+        //{
+        //    using (MAPEntity context = new MAPEntity())
+        //    {
+        //        try
+        //        {
+        //            // Fetch current year data for the selected month
+        //            var currentYearData = context.obj_vw_bs_gwl_meta_data
+        //                .Where(w => w.fyyear == selectedYear && w.fymonth == selectedMonth)
+        //                .ToList();
+
+        //            // Fetch previous years' data for the same month
+        //            var previousYearsData = context.obj_vw_bs_gwl_meta_data
+        //                .Where(w => w.fyyear < selectedYear && w.fymonth == selectedMonth)
+        //                .GroupBy(w => w.gwl_meta_id) // Group by well_id to calculate average per well
+        //                .Select(g => new
+        //                {
+        //                    WellId = g.Key,
+        //                    AvgWaterLevel = g.Average(w => w.welldepth)
+        //                })
+        //                .ToList();
+
+        //            // Initialize counters for rise and fall
+        //            int riseCount = 0;
+        //            int fallCount = 0;
+
+        //            // Compare the current year water level with the average of previous years for each well
+        //            foreach (var currentWell in currentYearData)
+        //            {
+        //                var previousWell = previousYearsData.FirstOrDefault(p => p.WellId == currentWell.gwl_meta_id);
+
+        //                if (previousWell != null)
+        //                {
+        //                    // Calculate difference
+        //                    var difference = currentWell.welldepth - previousWell.AvgWaterLevel;
+
+        //                    if (difference > 0)
+        //                    {
+        //                        riseCount++; // Well has shown rise
+        //                    }
+        //                    else if (difference < 0)
+        //                    {
+        //                        fallCount++; // Well has shown fall
+        //                    }
+        //                }
+        //            }
+
+        //            // Return both rise and fall counts
+        //            return Json(new { riseCount = riseCount, fallCount = fallCount });
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message });
+        //        }
+        //    }
+        //}
         // for water quality ph and other permissible limits
         public ActionResult GetWaterQualityAnalysis(string selectedState, string selectedDistrict, string selectedBlock, string selectedGP, string fyyear_str)
         {
@@ -4048,68 +4316,48 @@ namespace AbhyProject.Controllers
         }
 
 
-        [HttpGet]
-        public JsonResult FetchWellCountsWL(
-      string state = "All",
-      string district = "All",
-      string block = "All",
-      string grampanchayat = "All",
-      string sourceOwnershipType = "All",
-      string fyyear_str = "All") 
-        {
-            try
-            {
-                var query = AJE.obj_vw_bs_count_waterlevel_pv_meta_data.AsQueryable();
-                if (!string.IsNullOrEmpty(state) && state != "All")
-                    query = query.Where(w => w.state == state);
-                if (!string.IsNullOrEmpty(district) && district != "All")
-                    query = query.Where(w => w.district == district);
-                if (!string.IsNullOrEmpty(block) && block != "All")
-                    query = query.Where(w => w.block == block);
-                if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
-                    query = query.Where(w => w.grampanchayat == grampanchayat);
-                if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
-                    query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
-                query = query.Where(w => w.typeofwell != null);
-                var wellCounts = query
-                    .GroupBy(w => w.typeofwell)
-                    .Select(g => new
-                    {
-                        TypeOfWell = g.Key,
+        // Method to fetch well counts based on selected values
+        //[HttpGet]
+        //public JsonResult FetchWellCountsWL(string state, string district, string block, string grampanchayat, string fyyear_str, string sourceOwnershipType)
+        //{
+        //    try
+        //    {
+        //        var query = AJE.obj_vw_bs_waterlevel_pv_meta_data.AsQueryable();
 
-                        // Use Count_All column directly
-                        Count_All = g.Sum(w => w.dist_total ?? 0),
+        //        if (!string.IsNullOrEmpty(state) && state != "All")
+        //            query = query.Where(w => w.state == state);
+        //        if (!string.IsNullOrEmpty(district) && district != "All")
+        //            query = query.Where(w => w.district == district);
+        //        if (!string.IsNullOrEmpty(block) && block != "All")
+        //            query = query.Where(w => w.block == block);
+        //        if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
+        //            query = query.Where(w => w.grampanchayat == grampanchayat);
 
-                        // Calculate CountYear based on fyyear_str using if-else conditions
-                        CountYear = fyyear_str == "2015" ? g.Sum(w => w.Count_2015 ?? 0) :
-                                    fyyear_str == "2016" ? g.Sum(w => w.Count_2016 ?? 0) :
-                                    fyyear_str == "2017" ? g.Sum(w => w.Count_2017 ?? 0) :
-                                    fyyear_str == "2018" ? g.Sum(w => w.Count_2018 ?? 0) :
-                                    fyyear_str == "2019" ? g.Sum(w => w.Count_2019 ?? 0) :
-                                    fyyear_str == "2020" ? g.Sum(w => w.Count_2020 ?? 0) :
-                                    fyyear_str == "2021" ? g.Sum(w => w.Count_2021 ?? 0) :
-                                    fyyear_str == "2022" ? g.Sum(w => w.Count_2022 ?? 0) :
-                                    fyyear_str == "2023" ? g.Sum(w => w.Count_2023 ?? 0) :
-                                    fyyear_str == "2024" ? g.Sum(w => w.Count_2024 ?? 0) : 
-                                    fyyear_str == "2025" ? g.Sum(w => w.Count_2025 ?? 0) : 0
-                    })
-                    .ToList();
+        //        // Only filter fyyear_str if it’s not "All"
+        //        if (!string.IsNullOrEmpty(fyyear_str) && fyyear_str != "All")
+        //            query = query.Where(w => w.fyyear_str == fyyear_str);
 
-                // Log output to verify counts if needed
-                Console.WriteLine("Fetched wellCounts:");
-                wellCounts.ForEach(wc => Console.WriteLine($"TypeOfWell: {wc.TypeOfWell}, Count_All: {wc.Count_All}, CountYear: {wc.CountYear}"));
+        //        if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
+        //            query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
 
-                return Json(wellCounts, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error fetching well counts: " + ex.Message);
-                Console.WriteLine("Stack Trace: " + ex.StackTrace);
+        //        var wellCounts = query
+        //            .GroupBy(w => w.typeofwell)
+        //            .Select(g => new
+        //            {
+        //                TypeOfWell = g.Key,
+        //                Count = g.Count(),
+        //                DistinctGwlMetaIdCount = g.Select(w => w.gwl_meta_id).Distinct().Count()
+        //            })
+        //            .ToList();
 
-                return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
+        //        return Json(wellCounts, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error fetching well counts: " + ex.Message);
+        //        return Json(new { error = "An error occurred while fetching well counts." }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
 
         // For water quality query
@@ -4250,6 +4498,70 @@ namespace AbhyProject.Controllers
             }
 
         }
+
+        [HttpGet]
+        public JsonResult FetchWellCountsWL(
+      string state = "All",
+      string district = "All",
+      string block = "All",
+      string grampanchayat = "All",
+      string sourceOwnershipType = "All",
+      string fyyear_str = "All") // Accept fiscal year as parameter
+        {
+            try
+            {
+                var query = AJE.obj_vw_bs_count_waterlevel_pv_meta_data.AsQueryable();
+                if (!string.IsNullOrEmpty(state) && state != "All")
+                    query = query.Where(w => w.state == state);
+                if (!string.IsNullOrEmpty(district) && district != "All")
+                    query = query.Where(w => w.district == district);
+                if (!string.IsNullOrEmpty(block) && block != "All")
+                    query = query.Where(w => w.block == block);
+                if (!string.IsNullOrEmpty(grampanchayat) && grampanchayat != "All")
+                    query = query.Where(w => w.grampanchayat == grampanchayat);
+                if (!string.IsNullOrEmpty(sourceOwnershipType) && sourceOwnershipType != "All")
+                    query = query.Where(w => w.source_ownership_type == sourceOwnershipType);
+                query = query.Where(w => w.typeofwell != null);
+                var wellCounts = query
+                    .GroupBy(w => w.typeofwell)
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+
+                        // Use Count_All column directly
+                        Count_All = g.Sum(w => w.dist_total ?? 0),
+
+                        // Calculate CountYear based on fyyear_str using if-else conditions
+                        CountYear = fyyear_str == "2015" ? g.Sum(w => w.Count_2015 ?? 0) :
+                                    fyyear_str == "2016" ? g.Sum(w => w.Count_2016 ?? 0) :
+                                    fyyear_str == "2017" ? g.Sum(w => w.Count_2017 ?? 0) :
+                                    fyyear_str == "2018" ? g.Sum(w => w.Count_2018 ?? 0) :
+                                    fyyear_str == "2019" ? g.Sum(w => w.Count_2019 ?? 0) :
+                                    fyyear_str == "2020" ? g.Sum(w => w.Count_2020 ?? 0) :
+                                    fyyear_str == "2021" ? g.Sum(w => w.Count_2021 ?? 0) :
+                                    fyyear_str == "2022" ? g.Sum(w => w.Count_2022 ?? 0) :
+                                    fyyear_str == "2023" ? g.Sum(w => w.Count_2023 ?? 0) :
+                                    fyyear_str == "2024" ? g.Sum(w => w.Count_2024 ?? 0) : 0
+                    })
+                    .ToList();
+
+                // Log output to verify counts if needed
+                Console.WriteLine("Fetched wellCounts:");
+                wellCounts.ForEach(wc => Console.WriteLine($"TypeOfWell: {wc.TypeOfWell}, Count_All: {wc.Count_All}, CountYear: {wc.CountYear}"));
+
+                return Json(wellCounts, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching well counts: " + ex.Message);
+                Console.WriteLine("Stack Trace: " + ex.StackTrace);
+
+                return Json(new { error = "An error occurred while fetching well counts.", details = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
 
 
     }

@@ -103,6 +103,7 @@ namespace AbhyProject.Controllers
                     Data2.waterlevel_i_22_23 = result.waterlevel_i_22_23;
                     Data2.waterlevel_i_23_24 = result.waterlevel_i_23_24;
                     Data2.waterlevel_i_24_25 = result.waterlevel_i_24_25;
+                    Data2.waterlevel_i_25_26 = result.waterlevel_i_25_26;
                     Data2.waterlevel_i_cumulative = result.waterlevel_i_cumulative;
                     Data2.waterlevel_i_disbursible = result.waterlevel_i_disbursible;
 
@@ -112,6 +113,7 @@ namespace AbhyProject.Controllers
                     Data2.waterlevel_ii_22_23 = result.waterlevel_ii_22_23;
                     Data2.waterlevel_ii_23_24 = result.waterlevel_ii_23_24;
                     Data2.waterlevel_ii_24_25 = result.waterlevel_ii_24_25;
+                    Data2.waterlevel_ii_25_26 = result.waterlevel_ii_25_26;
                     Data2.waterlevel_ii_cumulative = result.waterlevel_ii_cumulative;
                     Data2.waterlevel_ii_disbursible = result.waterlevel_ii_disbursible;
 
@@ -121,6 +123,7 @@ namespace AbhyProject.Controllers
                     Data2.waterlevel_iv_22_23 = result.waterlevel_iv_22_23;
                     Data2.waterlevel_iv_23_24 = result.waterlevel_iv_23_24;
                     Data2.waterlevel_iv_24_25 = result.waterlevel_iv_24_25;
+                    Data2.waterlevel_iv_25_26 = result.waterlevel_iv_25_26;
                     Data2.waterlevel_iv_cumulative = result.waterlevel_iv_cumulative;
                     Data2.waterlevel_iv_disbursible = result.waterlevel_iv_disbursible;
 
@@ -130,6 +133,7 @@ namespace AbhyProject.Controllers
                     Data2.waterlevel_v_22_23 = result.waterlevel_v_22_23;
                     Data2.waterlevel_v_23_24 = result.waterlevel_v_23_24;
                     Data2.waterlevel_v_24_25 = result.waterlevel_v_24_25;
+                    Data2.waterlevel_v_25_26 = result.waterlevel_v_25_26;
                     Data2.waterlevel_v_cumulative = result.waterlevel_v_cumulative;
                     Data2.waterlevel_v_disbursible = result.waterlevel_v_disbursible;
 
@@ -139,6 +143,7 @@ namespace AbhyProject.Controllers
                     Data2.waterlevel_vii_22_23 = result.waterlevel_vii_22_23;
                     Data2.waterlevel_vii_23_24 = result.waterlevel_vii_23_24;
                     Data2.waterlevel_vii_24_25 = result.waterlevel_vii_24_25;
+                    Data2.waterlevel_vii_25_26 = result.waterlevel_vii_25_26;
                     Data2.waterlevel_vii_cumulative = result.waterlevel_vii_cumulative;
                     Data2.waterlevel_vii_disbursible = result.waterlevel_vii_disbursible;
 
@@ -148,6 +153,7 @@ namespace AbhyProject.Controllers
                     Data2.waterlevel_viii_22_23 = result.waterlevel_viii_22_23;
                     Data2.waterlevel_viii_23_24 = result.waterlevel_viii_23_24;
                     Data2.waterlevel_viii_24_25 = result.waterlevel_viii_24_25;
+                    Data2.waterlevel_viii_25_26 = result.waterlevel_viii_25_26;
                     Data2.waterlevel_viii_cumulative = result.waterlevel_viii_cumulative;
                     Data2.waterlevel_viii_disbursible = result.waterlevel_viii_disbursible;
 
@@ -157,6 +163,7 @@ namespace AbhyProject.Controllers
                     Data2.waterquality_i_22_23 = result.waterquality_i_22_23;
                     Data2.waterquality_i_23_24 = result.waterquality_i_23_24;
                     Data2.waterquality_i_24_25 = result.waterquality_i_24_25;
+                    Data2.waterquality_i_25_26 = result.waterquality_i_25_26;
                     Data2.waterquality_i_cumulative = result.waterquality_i_cumulative;
                     Data2.waterquality_i_disbursible = result.waterquality_i_disbursible;
 
@@ -166,6 +173,7 @@ namespace AbhyProject.Controllers
                     Data2.waterquality_ii_22_23 = result.waterquality_ii_22_23;
                     Data2.waterquality_ii_23_24 = result.waterquality_ii_23_24;
                     Data2.waterquality_ii_24_25 = result.waterquality_ii_24_25;
+                    Data2.waterquality_ii_25_26 = result.waterquality_ii_25_26;
                     Data2.waterquality_ii_cumulative = result.waterquality_ii_cumulative;
                     Data2.waterquality_ii_disbursible = result.waterquality_ii_disbursible;
 
@@ -175,6 +183,7 @@ namespace AbhyProject.Controllers
                     Data2.waterquality_iv_22_23 = result.waterquality_iv_22_23;
                     Data2.waterquality_iv_23_24 = result.waterquality_iv_23_24;
                     Data2.waterquality_iv_24_25 = result.waterquality_iv_24_25;
+                    Data2.waterquality_iv_25_26 = result.waterquality_iv_25_26;
                     Data2.waterquality_iv_cumulative = result.waterquality_iv_cumulative;
                     Data2.waterquality_iv_disbursible = result.waterquality_iv_disbursible;
 
@@ -184,6 +193,7 @@ namespace AbhyProject.Controllers
                     Data2.waterquality_v_22_23 = result.waterquality_v_22_23;
                     Data2.waterquality_v_23_24 = result.waterquality_v_23_24;
                     Data2.waterquality_v_24_25 = result.waterquality_v_24_25;
+                    Data2.waterquality_v_25_26 = result.waterquality_v_25_26;
                     Data2.waterquality_v_cumulative = result.waterquality_v_cumulative;
                     Data2.waterquality_v_disbursible = result.waterquality_v_disbursible;
 
@@ -193,6 +203,7 @@ namespace AbhyProject.Controllers
                     Data2.blockwise_i_22_23 = result.blockwise_i_22_23;
                     Data2.blockwise_i_23_24 = result.blockwise_i_23_24;
                     Data2.blockwise_i_24_25 = result.blockwise_i_24_25;
+                    Data2.blockwise_i_25_26 = result.blockwise_i_25_26;
                     Data2.blockwise_i_cumulative = result.blockwise_i_cumulative;
                     Data2.blockwise_i_disbursible = result.blockwise_i_disbursible;
 
@@ -202,6 +213,7 @@ namespace AbhyProject.Controllers
                     Data2.blockwise_ii_22_23 = result.blockwise_ii_22_23;
                     Data2.blockwise_ii_23_24 = result.blockwise_ii_23_24;
                     Data2.blockwise_ii_24_25 = result.blockwise_ii_24_25;
+                    Data2.blockwise_ii_25_26 = result.blockwise_ii_25_26;
                     Data2.blockwise_ii_cumulative = result.blockwise_ii_cumulative;
                     Data2.blockwise_ii_disbursible = result.blockwise_ii_disbursible;
 
@@ -211,6 +223,7 @@ namespace AbhyProject.Controllers
                     Data2.statewise_i_22_23 = result.statewise_i_22_23;
                     Data2.statewise_i_23_24 = result.statewise_i_23_24;
                     Data2.statewise_i_24_25 = result.statewise_i_24_25;
+                    Data2.statewise_i_25_26 = result.statewise_i_25_26;
                     Data2.statewise_i_cumulative = result.statewise_i_cumulative;
                     Data2.statewise_i_disbursible = result.statewise_i_disbursible;
                     ABE.Entry(Data2).State = EntityState.Modified;
@@ -233,6 +246,7 @@ namespace AbhyProject.Controllers
                         obj.waterlevel_i_22_23 = result.waterlevel_i_22_23;
                         obj.waterlevel_i_23_24 = result.waterlevel_i_23_24;
                         obj.waterlevel_i_24_25 = result.waterlevel_i_24_25;
+                        obj.waterlevel_i_25_26 = result.waterlevel_i_25_26;
                         obj.waterlevel_i_cumulative = result.waterlevel_i_cumulative;
                         obj.waterlevel_i_disbursible = result.waterlevel_i_disbursible;
 
@@ -242,6 +256,7 @@ namespace AbhyProject.Controllers
                         obj.waterlevel_ii_22_23 = result.waterlevel_ii_22_23;
                         obj.waterlevel_ii_23_24 = result.waterlevel_ii_23_24;
                         obj.waterlevel_ii_24_25 = result.waterlevel_ii_24_25;
+                        obj.waterlevel_ii_25_26 = result.waterlevel_ii_25_26;
                         obj.waterlevel_ii_cumulative = result.waterlevel_ii_cumulative;
                         obj.waterlevel_ii_disbursible = result.waterlevel_ii_disbursible;
 
@@ -251,6 +266,7 @@ namespace AbhyProject.Controllers
                         obj.waterlevel_iv_22_23 = result.waterlevel_iv_22_23;
                         obj.waterlevel_iv_23_24 = result.waterlevel_iv_23_24;
                         obj.waterlevel_iv_24_25 = result.waterlevel_iv_24_25;
+                        obj.waterlevel_iv_25_26 = result.waterlevel_iv_25_26;
                         obj.waterlevel_iv_cumulative = result.waterlevel_iv_cumulative;
                         obj.waterlevel_iv_disbursible = result.waterlevel_iv_disbursible;
 
@@ -260,6 +276,7 @@ namespace AbhyProject.Controllers
                         obj.waterlevel_v_22_23 = result.waterlevel_v_22_23;
                         obj.waterlevel_v_23_24 = result.waterlevel_v_23_24;
                         obj.waterlevel_v_24_25 = result.waterlevel_v_24_25;
+                        obj.waterlevel_v_25_26 = result.waterlevel_v_25_26;
                         obj.waterlevel_v_cumulative = result.waterlevel_v_cumulative;
                         obj.waterlevel_v_disbursible = result.waterlevel_v_disbursible;
 
@@ -269,6 +286,7 @@ namespace AbhyProject.Controllers
                         obj.waterlevel_vii_22_23 = result.waterlevel_vii_22_23;
                         obj.waterlevel_vii_23_24 = result.waterlevel_vii_23_24;
                         obj.waterlevel_vii_24_25 = result.waterlevel_vii_24_25;
+                        obj.waterlevel_vii_25_26 = result.waterlevel_vii_25_26;
                         obj.waterlevel_vii_cumulative = result.waterlevel_vii_cumulative;
                         obj.waterlevel_vii_disbursible = result.waterlevel_vii_disbursible;
 
@@ -278,6 +296,7 @@ namespace AbhyProject.Controllers
                         obj.waterlevel_viii_22_23 = result.waterlevel_viii_22_23;
                         obj.waterlevel_viii_23_24 = result.waterlevel_viii_23_24;
                         obj.waterlevel_viii_24_25 = result.waterlevel_viii_24_25;
+                        obj.waterlevel_viii_25_26 = result.waterlevel_viii_25_26;
                         obj.waterlevel_viii_cumulative = result.waterlevel_viii_cumulative;
                         obj.waterlevel_viii_disbursible = result.waterlevel_viii_disbursible;
 
@@ -287,6 +306,7 @@ namespace AbhyProject.Controllers
                         obj.waterquality_i_22_23 = result.waterquality_i_22_23;
                         obj.waterquality_i_23_24 = result.waterquality_i_23_24;
                         obj.waterquality_i_24_25 = result.waterquality_i_24_25;
+                        obj.waterquality_i_25_26 = result.waterquality_i_25_26;
                         obj.waterquality_i_cumulative = result.waterquality_i_cumulative;
                         obj.waterquality_i_disbursible = result.waterquality_i_disbursible;
 
@@ -296,6 +316,7 @@ namespace AbhyProject.Controllers
                         obj.waterquality_ii_22_23 = result.waterquality_ii_22_23;
                         obj.waterquality_ii_23_24 = result.waterquality_ii_23_24;
                         obj.waterquality_ii_24_25 = result.waterquality_ii_24_25;
+                        obj.waterquality_ii_25_26 = result.waterquality_ii_25_26;
                         obj.waterquality_ii_cumulative = result.waterquality_ii_cumulative;
                         obj.waterquality_ii_disbursible = result.waterquality_ii_disbursible;
 
@@ -305,6 +326,7 @@ namespace AbhyProject.Controllers
                         obj.waterquality_iv_22_23 = result.waterquality_iv_22_23;
                         obj.waterquality_iv_23_24 = result.waterquality_iv_23_24;
                         obj.waterquality_iv_24_25 = result.waterquality_iv_24_25;
+                        obj.waterquality_iv_25_26 = result.waterquality_iv_25_26;
                         obj.waterquality_iv_cumulative = result.waterquality_iv_cumulative;
                         obj.waterquality_iv_disbursible = result.waterquality_iv_disbursible;
 
@@ -314,6 +336,7 @@ namespace AbhyProject.Controllers
                         obj.waterquality_v_22_23 = result.waterquality_v_22_23;
                         obj.waterquality_v_23_24 = result.waterquality_v_23_24;
                         obj.waterquality_v_24_25 = result.waterquality_v_24_25;
+                        obj.waterquality_v_25_26 = result.waterquality_v_25_26;
                         obj.waterquality_v_cumulative = result.waterquality_v_cumulative;
                         obj.waterquality_v_disbursible = result.waterquality_v_disbursible;
 
@@ -323,6 +346,7 @@ namespace AbhyProject.Controllers
                         obj.blockwise_i_22_23 = result.blockwise_i_22_23;
                         obj.blockwise_i_23_24 = result.blockwise_i_23_24;
                         obj.blockwise_i_24_25 = result.blockwise_i_24_25;
+                        obj.blockwise_i_25_26 = result.blockwise_i_25_26;
                         obj.blockwise_i_cumulative = result.blockwise_i_cumulative;
                         obj.blockwise_i_disbursible = result.blockwise_i_disbursible;
 
@@ -332,6 +356,7 @@ namespace AbhyProject.Controllers
                         obj.blockwise_ii_22_23 = result.blockwise_ii_22_23;
                         obj.blockwise_ii_23_24 = result.blockwise_ii_23_24;
                         obj.blockwise_ii_24_25 = result.blockwise_ii_24_25;
+                        obj.blockwise_ii_25_26 = result.blockwise_ii_25_26;
                         obj.blockwise_ii_cumulative = result.blockwise_ii_cumulative;
                         obj.blockwise_ii_disbursible = result.blockwise_ii_disbursible;
 
@@ -341,6 +366,7 @@ namespace AbhyProject.Controllers
                         obj.statewise_i_22_23 = result.statewise_i_22_23;
                         obj.statewise_i_23_24 = result.statewise_i_23_24;
                         obj.statewise_i_24_25 = result.statewise_i_24_25;
+                        obj.statewise_i_25_26 = result.statewise_i_25_26;
                         obj.statewise_i_cumulative = result.statewise_i_cumulative;
                         obj.statewise_i_disbursible = result.statewise_i_disbursible;
 
@@ -482,7 +508,13 @@ namespace AbhyProject.Controllers
                                 Data1.waterlevel_iii_24_25_filename = Filename + ',' + File_Names;
                                 Data1.waterlevel_iii_24_25_filepath = FilePath1 + ',' + Paths;
                             }
-
+                            if (upload_Count_Value == "6")
+                            {
+                                var Filename = Data1.waterlevel_iii_25_26_filename;
+                                var FilePath1 = Data1.waterlevel_iii_25_26_filepath;
+                                Data1.waterlevel_iii_25_26_filename = Filename + ',' + File_Names;
+                                Data1.waterlevel_iii_25_26_filepath = FilePath1 + ',' + Paths;
+                            }
                             ABE.Entry(Data1).State = EntityState.Modified;
                             ABE.SaveChanges();
                             return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -589,6 +621,11 @@ namespace AbhyProject.Controllers
                                 {
                                     obj.waterlevel_iii_24_25_filename = File_Names;
                                     obj.waterlevel_iii_24_25_filepath = Paths;
+                                }
+                                if (upload_Count_Value == "6")
+                                {
+                                    obj.waterlevel_iii_25_26_filename = File_Names;
+                                    obj.waterlevel_iii_25_26_filepath = Paths;
                                 }
                                 obj.state_name = State;
 
@@ -767,7 +804,32 @@ namespace AbhyProject.Controllers
                             }
                         }
                     }
+                    if (upload_count == "6")
+                    {
+                        string waterlevel_iii_25_26_filepath = Details[0].waterlevel_iii_24_25_filepath;
+                        string waterlevel_iii_25_26_filename = Details[0].waterlevel_iii_24_25_filename;
+                        var Paths1 = waterlevel_iii_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = waterlevel_iii_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = waterlevel_iii_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
 
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
                     //byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\DLI_IMAGES\"+ FileName_Main);
                     //string fileName = FileName_Main;
                     //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
@@ -942,6 +1004,15 @@ namespace AbhyProject.Controllers
                             Data1.waterlevel_vi_24_25_filepath = FilePath1 + ',' + Paths;
                         }
 
+
+                        if (upload_Count_Value == "6")
+                        {
+                            var Filename = Data1.waterlevel_vi_25_26_filename;
+                            var FilePath1 = Data1.waterlevel_vi_25_26_filepath;
+                            Data1.waterlevel_vi_25_26_filename = Filename + ',' + File_Names;
+                            Data1.waterlevel_vi_25_26_filepath = FilePath1 + ',' + Paths;
+                        }
+
                         ABE.Entry(Data1).State = EntityState.Modified;
                         ABE.SaveChanges();
                         return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -1043,6 +1114,11 @@ namespace AbhyProject.Controllers
                             {
                                 obj.waterlevel_vi_24_25_filename = File_Names;
                                 obj.waterlevel_vi_24_25_filepath = Paths;
+                            }
+                            if (upload_Count_Value == "5")
+                            {
+                                obj.waterlevel_vi_25_26_filename = File_Names;
+                                obj.waterlevel_vi_25_26_filepath = Paths;
                             }
 
                             ABE.obj_abhy_dli_one_upload_row2.Add(obj);
@@ -1196,6 +1272,33 @@ namespace AbhyProject.Controllers
                         var Paths1 = waterlevel_vi_24_25_filepath.Split(delimiterChars);
                         string[] Pathss = waterlevel_vi_24_25_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
                         string[] FileNamess = waterlevel_vi_24_25_filename.Split(new string[] { ",," }, StringSplitOptions.None);
+
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (upload_count == "6")
+                    {
+                        string waterlevel_vi_25_26_filepath = Details[0].waterlevel_vi_25_26_filepath;
+                        string waterlevel_vi_25_26_filename = Details[0].waterlevel_vi_25_26_filename;
+                        var Paths1 = waterlevel_vi_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = waterlevel_vi_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = waterlevel_vi_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
 
                         if (Pathss.Length != 0)
                         {
@@ -1387,6 +1490,14 @@ namespace AbhyProject.Controllers
                             Data1.waterquality_iii_24_25_filepath = FilePath1 + ',' + Paths;
                         }
 
+                        if (upload_Count_Value == "6")
+                        {
+                            var Filename = Data1.waterquality_iii_25_26_filename;
+                            var FilePath1 = Data1.waterquality_iii_25_26_filepath;
+                            Data1.waterquality_iii_25_26_filename = Filename + ',' + File_Names;
+                            Data1.waterquality_iii_25_26_filepath = FilePath1 + ',' + Paths;
+                        }
+
                         ABE.Entry(Data1).State = EntityState.Modified;
                         ABE.SaveChanges();
                         return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -1491,6 +1602,11 @@ namespace AbhyProject.Controllers
                             {
                                 obj.waterquality_iii_24_25_filename = File_Names;
                                 obj.waterquality_iii_24_25_filepath = Paths;
+                            }
+                            if (upload_Count_Value == "6")
+                            {
+                                obj.waterquality_iii_25_26_filename = File_Names;
+                                obj.waterquality_iii_25_26_filepath = Paths;
                             }
 
                             ABE.obj_abhy_dli_one_upload_row3.Add(obj);
@@ -1663,6 +1779,32 @@ namespace AbhyProject.Controllers
                         }
                     }
 
+                    if (upload_count == "6")
+                    {
+                        string waterquality_iii_25_26_filepath = Details[0].waterquality_iii_25_26_filepath;
+                        string waterquality_iii_25_26_filename = Details[0].waterquality_iii_25_26_filename;
+                        var Paths1 = waterquality_iii_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = waterquality_iii_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = waterquality_iii_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
+
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
                     //byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\DLI_IMAGES\"+ FileName_Main);
                     //string fileName = FileName_Main;
                     //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
@@ -1835,7 +1977,13 @@ namespace AbhyProject.Controllers
                             Data1.waterquality_vi_24_25_filename = Filename + ',' + File_Names;
                             Data1.waterquality_vi_24_25_filepath = FilePath1 + ',' + Paths;
                         }
-
+                        if (upload_Count_Value == "6")
+                        {
+                            var Filename = Data1.waterquality_vi_25_26_filename;
+                            var FilePath1 = Data1.waterquality_vi_25_26_filepath;
+                            Data1.waterquality_vi_25_26_filename = Filename + ',' + File_Names;
+                            Data1.waterquality_vi_25_26_filepath = FilePath1 + ',' + Paths;
+                        }
                         ABE.Entry(Data1).State = EntityState.Modified;
                         ABE.SaveChanges();
                         return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -1941,7 +2089,11 @@ namespace AbhyProject.Controllers
                                 obj.waterquality_vi_24_25_filename = File_Names;
                                 obj.waterquality_vi_24_25_filepath = Paths;
                             }
-
+                            if (upload_Count_Value == "6")
+                            {
+                                obj.waterquality_vi_25_26_filename = File_Names;
+                                obj.waterquality_vi_25_26_filepath = Paths;
+                            }
                             ABE.obj_abhy_dli_one_upload_row4.Add(obj);
                             ABE.SaveChanges();
                             return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -2091,6 +2243,34 @@ namespace AbhyProject.Controllers
                         var Paths1 = waterquality_vi_24_25_filepath.Split(delimiterChars);
                         string[] Pathss = waterquality_vi_24_25_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
                         string[] FileNamess = waterquality_vi_24_25_filename.Split(new string[] { ",," }, StringSplitOptions.None);
+
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (upload_count == "6")
+                    {
+                        string waterquality_vi_25_26_filepath = Details[0].waterquality_vi_25_26_filepath;
+                        string waterquality_vi_25_26_filename = Details[0].waterquality_vi_25_26_filename;
+                        var Paths1 = waterquality_vi_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = waterquality_vi_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = waterquality_vi_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
 
                         if (Pathss.Length != 0)
                         {
@@ -2284,7 +2464,13 @@ namespace AbhyProject.Controllers
                             Data1.blockwise_ii_24_25_filename = Filename + ',' + File_Names;
                             Data1.blockwise_ii_24_25_filepath = FilePath1 + ',' + Paths;
                         }
-
+                        if (upload_Count_Value == "6")
+                        {
+                            var Filename = Data1.blockwise_ii_25_26_filename;
+                            var FilePath1 = Data1.blockwise_ii_25_26_filepath;
+                            Data1.blockwise_ii_25_26_filename = Filename + ',' + File_Names;
+                            Data1.blockwise_ii_25_26_filepath = FilePath1 + ',' + Paths;
+                        }
                         ABE.Entry(Data1).State = EntityState.Modified;
                         ABE.SaveChanges();
                         return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -2390,7 +2576,11 @@ namespace AbhyProject.Controllers
                                 obj.blockwise_ii_24_25_filename = File_Names;
                                 obj.blockwise_ii_24_25_filepath = Paths;
                             }
-
+                            if (upload_Count_Value == "6")
+                            {
+                                obj.blockwise_ii_25_26_filename = File_Names;
+                                obj.blockwise_ii_25_26_filepath = Paths;
+                            }
                             ABE.obj_abhy_dli_one_upload_row5.Add(obj);
                             ABE.SaveChanges();
                             return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -2560,7 +2750,32 @@ namespace AbhyProject.Controllers
                             }
                         }
                     }
+                    if (upload_count == "6")
+                    {
+                        string blockwise_ii_25_26_filepath = Details[0].blockwise_ii_25_26_filepath;
+                        string blockwise_ii_25_26_filename = Details[0].blockwise_ii_25_26_filename;
+                        var Paths1 = blockwise_ii_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = blockwise_ii_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = blockwise_ii_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
 
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
                     //byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\DLI_IMAGES\"+ FileName_Main);
                     //string fileName = FileName_Main;
                     //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
@@ -2733,6 +2948,14 @@ namespace AbhyProject.Controllers
                             Data1.statewise_ii_24_25_filepath = FilePath1 + ',' + Paths;
                         }
 
+                        if (upload_Count_Value == "6")
+                        {
+                            var Filename = Data1.statewise_ii_25_26_filename;
+                            var FilePath1 = Data1.statewise_ii_25_26_filepath;
+                            Data1.statewise_ii_25_26_filename = Filename + ',' + File_Names;
+                            Data1.statewise_ii_25_26_filepath = FilePath1 + ',' + Paths;
+                        }
+
                         ABE.Entry(Data1).State = EntityState.Modified;
                         ABE.SaveChanges();
                         return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -2837,7 +3060,11 @@ namespace AbhyProject.Controllers
                                 obj.statewise_ii_24_25_filename = File_Names;
                                 obj.statewise_ii_24_25_filepath = Paths;
                             }
-
+                            if (upload_Count_Value == "6")
+                            {
+                                obj.statewise_ii_25_26_filename = File_Names;
+                                obj.statewise_ii_25_26_filepath = Paths;
+                            }
                             ABE.obj_abhy_dli_one_upload_row6.Add(obj);
                             ABE.SaveChanges();
                             return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -3006,7 +3233,32 @@ namespace AbhyProject.Controllers
                             }
                         }
                     }
+                    if (upload_count == "6")
+                    {
+                        string statewise_ii_25_26_filepath = Details[0].statewise_ii_25_26_filepath;
+                        string statewise_ii_25_26_filename = Details[0].statewise_ii_25_26_filename;
+                        var Paths1 = statewise_ii_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = statewise_ii_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = statewise_ii_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
 
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
                     //byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\DLI_IMAGES\"+ FileName_Main);
                     //string fileName = FileName_Main;
                     //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
@@ -3185,7 +3437,13 @@ namespace AbhyProject.Controllers
                                 Data1.mow_v_24_25_filename = Filename + ',' + File_Names;
                                 Data1.mow_v_24_25_filepath = FilePath1 + ',' + Paths;
                             }
-
+                            if (upload_Count_Value == "6")
+                            {
+                                var Filename = Data1.mow_v_25_26_filename;
+                                var FilePath1 = Data1.mow_v_25_26_filepath;
+                                Data1.mow_v_25_26_filename = Filename + ',' + File_Names;
+                                Data1.mow_v_25_26_filepath = FilePath1 + ',' + Paths;
+                            }
                             ABE.Entry(Data1).State = EntityState.Modified;
                             ABE.SaveChanges();
                             return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -3289,6 +3547,12 @@ namespace AbhyProject.Controllers
                                 {
                                     obj.mow_v_24_25_filename = File_Names;
                                     obj.mow_v_24_25_filepath = Paths;
+                                }
+
+                                if (upload_Count_Value == "6")
+                                {
+                                    obj.mow_v_25_26_filename = File_Names;
+                                    obj.mow_v_25_26_filepath = Paths;
                                 }
                                 obj.state_name = State;
 
@@ -3466,7 +3730,32 @@ namespace AbhyProject.Controllers
                             }
                         }
                     }
+                    if (upload_count == "6")
+                    {
+                        string mow_v_25_26_filename = Details[0].mow_v_25_26_filename;
+                        string mow_v_25_26_filepath = Details[0].mow_v_25_26_filepath;
+                        var Paths1 = mow_v_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = mow_v_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = mow_v_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
 
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
                     //byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\DLI_IMAGES\"+ FileName_Main);
                     //string fileName = FileName_Main;
                     //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
@@ -3647,7 +3936,13 @@ namespace AbhyProject.Controllers
                                 Data1.mow_vi_24_25_filename = Filename + ',' + File_Names;
                                 Data1.mow_vi_24_25_filepath = FilePath1 + ',' + Paths;
                             }
-
+                            if (upload_Count_Value == "6")
+                            {
+                                var Filename = Data1.mow_vi_25_26_filename;
+                                var FilePath1 = Data1.mow_vi_25_26_filepath;
+                                Data1.mow_vi_25_26_filename = Filename + ',' + File_Names;
+                                Data1.mow_vi_25_26_filepath = FilePath1 + ',' + Paths;
+                            }
                             ABE.Entry(Data1).State = EntityState.Modified;
                             ABE.SaveChanges();
                             return Json("Your files uploaded successfully", JsonRequestBehavior.AllowGet);
@@ -3753,6 +4048,11 @@ namespace AbhyProject.Controllers
                                 {
                                     obj.mow_vi_24_25_filename = File_Names;
                                     obj.mow_vi_24_25_filepath = Paths;
+                                }
+                                if (upload_Count_Value == "6")
+                                {
+                                    obj.mow_vi_25_26_filename = File_Names;
+                                    obj.mow_vi_25_26_filepath = Paths;
                                 }
                                 obj.state_name = State;
 
@@ -3930,7 +4230,32 @@ namespace AbhyProject.Controllers
                             }
                         }
                     }
+                    if (upload_count == "6")
+                    {
+                        string mow_vi_25_26_filename = Details[0].mow_vi_25_26_filename;
+                        string mow_vi_25_26_filepath = Details[0].mow_vi_25_26_filepath;
+                        var Paths1 = mow_vi_25_26_filepath.Split(delimiterChars);
+                        string[] Pathss = mow_vi_25_26_filepath.Split(new string[] { ",," }, StringSplitOptions.None);
+                        string[] FileNamess = mow_vi_25_26_filename.Split(new string[] { ",," }, StringSplitOptions.None);
 
+                        if (Pathss.Length != 0)
+                        {
+                            var ss = Pathss.Length - 1;
+                            var UrlPath = Pathss[ss].Split(',');
+                            var FileName_ = FileNamess[ss].Split(',');
+                            FileName_Main = FileName_[0];
+                            if (UrlPath.Length != 0)
+                            {
+                                for (var i = 0; i < UrlPath.Length; i++)
+                                {
+                                    if (UrlPath[i] != "")
+                                    {
+                                        Mainpath = UrlPath[i];
+                                    }
+                                }
+                            }
+                        }
+                    }
                     //byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\DLI_IMAGES\"+ FileName_Main);
                     //string fileName = FileName_Main;
                     //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
@@ -9079,6 +9404,30 @@ namespace AbhyProject.Controllers
                 SSS.waterlevel_iii_24_25_filename = FileNames;
             }
 
+            else if (Ss[1] == "waterlevel_iii_25_26_filepath_1")
+            {
+                var Abc = SSS.waterlevel_iii_25_26_filepath.Split(',');
+                var Filepath = SSS.waterlevel_iii_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
+
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.waterlevel_iii_25_26_filepath = a;
+                SSS.waterlevel_iii_25_26_filename = FileNames;
+            }
+
             ABE.Entry(SSS).State = EntityState.Modified;
             ABE.SaveChanges();
             return Json("Ok", JsonRequestBehavior.AllowGet);
@@ -9209,7 +9558,29 @@ namespace AbhyProject.Controllers
                 SSS.waterlevel_vi_24_25_filepath = a;
                 SSS.waterlevel_vi_24_25_filename = FileNames;
             }
+            else if (Ss[1] == "waterlevel_vi_25_26_filepath_1")
+            {
+                var Abc = SSS.waterlevel_vi_25_26_filepath.Split(',');
+                var Filepath = SSS.waterlevel_vi_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
 
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.waterlevel_vi_25_26_filepath = a;
+                SSS.waterlevel_vi_25_26_filename = FileNames;
+            }
             ABE.Entry(SSS).State = EntityState.Modified;
             ABE.SaveChanges();
             return Json("Ok", JsonRequestBehavior.AllowGet);
@@ -9341,6 +9712,30 @@ namespace AbhyProject.Controllers
                 SSS.waterquality_iii_24_25_filename = FileNames;
             }
 
+            else if (Ss[1] == "waterquality_iii_25_26_filepath_1")
+            {
+                var Abc = SSS.waterquality_iii_25_26_filepath.Split(',');
+                var Filepath = SSS.waterquality_iii_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
+
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.waterquality_iii_25_26_filepath = a;
+                SSS.waterquality_iii_25_26_filename = FileNames;
+            }
+
             ABE.Entry(SSS).State = EntityState.Modified;
             ABE.SaveChanges();
             return Json("Ok", JsonRequestBehavior.AllowGet);
@@ -9469,6 +9864,29 @@ namespace AbhyProject.Controllers
 
                 SSS.waterquality_vi_24_25_filepath = a;
                 SSS.waterquality_vi_24_25_filename = FileNames;
+            }
+            else if (Ss[1] == "waterquality_vi_25_26_filepath_1")
+            {
+                var Abc = SSS.waterquality_vi_24_25_filepath.Split(',');
+                var Filepath = SSS.waterquality_vi_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
+
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.waterquality_vi_25_26_filepath = a;
+                SSS.waterquality_vi_25_26_filename = FileNames;
             }
 
             ABE.Entry(SSS).State = EntityState.Modified;
@@ -9599,7 +10017,29 @@ namespace AbhyProject.Controllers
                 SSS.blockwise_ii_24_25_filepath = a;
                 SSS.blockwise_ii_24_25_filename = FileNames;
             }
+            else if (Ss[1] == "blockwise_ii_25_26_filepath_1")
+            {
+                var Abc = SSS.blockwise_ii_25_26_filepath.Split(',');
+                var Filepath = SSS.blockwise_ii_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
 
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.blockwise_ii_25_26_filepath = a;
+                SSS.blockwise_ii_25_26_filename = FileNames;
+            }
             ABE.Entry(SSS).State = EntityState.Modified;
             ABE.SaveChanges();
             return Json("Ok", JsonRequestBehavior.AllowGet);
@@ -9729,7 +10169,29 @@ namespace AbhyProject.Controllers
                 SSS.statewise_ii_24_25_filepath = a;
                 SSS.statewise_ii_24_25_filename = FileNames;
             }
+            else if (Ss[1] == "statewise_ii_25_26_filepath_1")
+            {
+                var Abc = SSS.statewise_ii_25_26_filepath.Split(',');
+                var Filepath = SSS.statewise_ii_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
 
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.statewise_ii_25_26_filepath = a;
+                SSS.statewise_ii_25_26_filename = FileNames;
+            }
             ABE.Entry(SSS).State = EntityState.Modified;
             ABE.SaveChanges();
             return Json("Ok", JsonRequestBehavior.AllowGet);
@@ -9860,7 +10322,29 @@ namespace AbhyProject.Controllers
                 SSS.mow_v_24_25_filepath = a;
                 SSS.mow_v_24_25_filename = FileNames;
             }
+            else if (Ss[1] == "mow_v_25_26_filepath_1")
+            {
+                var Abc = SSS.mow_v_25_26_filepath.Split(',');
+                var Filepath = SSS.mow_v_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
 
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.mow_v_25_26_filepath = a;
+                SSS.mow_v_25_26_filename = FileNames;
+            }
             ABE.Entry(SSS).State = EntityState.Modified;
             ABE.SaveChanges();
             return Json("Ok", JsonRequestBehavior.AllowGet);
@@ -9991,7 +10475,29 @@ namespace AbhyProject.Controllers
                 SSS.mow_vi_24_25_filepath = a;
                 SSS.mow_vi_24_25_filename = FileNames;
             }
+            else if (Ss[1] == "mow_vi_25_26_filepath_1")
+            {
+                var Abc = SSS.mow_vi_25_26_filepath.Split(',');
+                var Filepath = SSS.mow_vi_25_26_filename.Split(',');
+                var a = "";
+                var FileNames = "";
+                for (var i = 0; i < Abc.Length; i++)
+                {
 
+                    if (Ss[0] != Abc[i])
+                    {
+                        if (Abc[i] != "")
+                        {
+                            FileNames += Filepath[i] + ",";
+                            a += Abc[i] + ",";
+                        }
+
+                    }
+                }
+
+                SSS.mow_vi_25_26_filepath = a;
+                SSS.mow_vi_25_26_filename = FileNames;
+            }
             ABE.Entry(SSS).State = EntityState.Modified;
             ABE.SaveChanges();
             return Json("Ok", JsonRequestBehavior.AllowGet);

@@ -1,0 +1,1460 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/Master_DRP.js"></script>
+
+@*akash_dev*@
+
+<title>Upload Sample Source Document</title>
+
+<style>
+    .database_trainer_row > h3 {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+    .font-bold {
+        font-weight: bold;
+    }
+
+    /*ends here*/
+    .second_heading {
+        background-color: #337ab7;
+        color: #fff;
+        list-style: none;
+        padding: 12px 10px;
+        font-size: 18px;
+        font-weight: bold
+    }
+
+    .main_div {
+        padding-bottom: 30px;
+    }
+
+    .btn-success {
+        margin: 5px 0px !important;
+    }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    .selectdistshowoption select {
+        border-radius: 25px;
+        width: 180px;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    .card {
+        margin-top: 25px;
+    }
+
+    .card-body {
+        border: 1px solid#ccc;
+        /*padding: 5px;*/
+    }
+
+    .headings_border {
+        position: relative;
+        color: #fff;
+        font-size: 35px;
+        text-align: center;
+        font-family: raleway;
+        font-weight: 900;
+        display: inline-block;
+    }
+
+    /*.headings_border::after {
+            content: '';
+            position: absolute;
+            top: 45px;
+            left: 13%;
+            width: 168px;
+            height: 2px;
+            background: #5cb85c;
+        }*/
+    .box_shadow {
+        box-shadow: 0px 3px 46px rgb(0 0 0 / 7%);
+        padding: 15px 15px;
+        background: #f2f2f2;
+    }
+
+    ul.Select_option {
+        padding-left: 0;
+        text-align: initial;
+        padding-top: 24px;
+    }
+
+    #border {
+        border-spacing: 2px;
+        /* border: 2px solid green;*/
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 15px;
+        background: #f2f2f2;
+    }
+        /*.selectdistshowoption .Select_option li {
+        width: 14%;
+    }*/
+        #border select {
+            width: 100% !important;
+            border-radius: 4px !important;
+        }
+
+        #border input {
+            width: 100%;
+            border-radius: 5px !important;
+        }
+
+    .ul.Select_option > li {
+        padding: 0 0 0 11px !important;
+    }
+
+    #demandside::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #demandside::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .cust_center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .cust_center h6 {
+            font-size: 15px;
+        }
+
+    .Select_option.col-md-12.text-left {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+        column-gap: 12px;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<main>
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a target="_blank" href="http://ataljal.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="Javascript:;" style="color:#fff;font-size:14px;" role="link">Ministry of Jal Shakti</a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">River Development & Ganga Rejuvenation</a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                            <label>Upload Sample Source Document</label>
+                        </li>
+                    </ul>
+                </div>
+                @*<div class="col-md-2 pull-right">
+
+                        <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/UserManual/User Manual of DLI-3 FY 2023-2024.pdf" target="_blank">USER MANUAL</a>
+                    </div>*@
+            </div>
+        </div>
+    </header>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+            Upload Sample Source Document
+        </div>
+    </center>
+    <div style="margin:0 50px">
+        <ul style="color:white;">
+            <li style=" text-align: right; margin-top: 10px;">
+                <a href="~/DLI3New2026/viewdemandsidesupplyside_new" class="btn btn-danger">
+                    Back To Module
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="container-fluid">
+            <div class="content">
+                <div class="col-lg-12" style="background-color:#fff;padding:0px;">
+                    <div id="border">
+                        <div class="row container-fluid main_div">
+                            <div class="col-md-12 col-sm-12">
+                                <div>
+                                    <div class="">
+                                        <div class="selectdistshowoption">
+                                            <ul class="Select_option col-md-12 col-sm-12  text-left">
+                                                <li id="StateLabel">
+                                                    <label id="lblstate">State:</label>
+                                                    <span id="spnstate1">@Session["gstate"]</span>
+                                                </li>
+                                                <li id="StateDropdownLabel" style="width:15%;">
+
+                                                    <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
+                                                    </select>
+                                                </li>
+
+                                                <li id="DistLabel">
+                                                    <i class="fas fa fa-angle-double-right"></i>
+                                                    <label id="lbldistrict">District:</label>
+                                                    <span id="spndistrict">@Session["gdist"]</span>
+                                                </li>
+                                                <li id="DistDropdownLabel">
+
+                                                    <select class="form-control" id="dist11" onchange="Dist_fun()">
+                                                    </select>
+                                                </li>
+                                                <li class="" style="">
+                                                    <select name="" id="phase" class="form-control" onchange="divhideshow()">
+                                                        <option value="phase3">Phase3</option>
+                                                        <option value="phase4">Phase4</option>
+                                                    </select>
+                                                </li>
+
+                                                <li id="DropdownSearch_btn">
+                                                    <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <main>
+        <div id="border" class="tbl-responsive entryfoam">
+            <center>
+                <div class="ss">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-h g-mb-20" style="padding: 0px; color: #337ab7; font-size: 30px; font-family:raleway;margin-top:10px;font-weight:900">
+                                <label id="uploadtext"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </center>
+            <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                <tbody id="">
+                    <tr>
+                        <td colspan="2" class="font-bold">Description <span style="color: red;"> <label>*</label></span>: </td>
+                        <td>
+                            <input class="form-control hidebutton" type="text" id="to_date" name="name" placeholder="Please Enter Description" style="width: 200px " />
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="font-bold">
+                            Upload Sample Source Document <span style="color: red;"> <label>*<label style="color: black;">(</label>.pdf,.xls,.xlsx<label style="color: black;">)</label></label></span> :
+                            <span style="color: #337ab7" href="javascript:;" data-toggle="tooltip" data-original-title="Upload Sample Source Document is less than 2 MB" title="Upload Sample Source Document is less than 2 MB">
+                                <span class="glyphicon fa fa-info-circle" aria-hidden="true"></span>
+                            </span>
+                        </td>
+
+                        <td>
+                            <input type="file" class="form-control disable_btn hidebutton" id="upload_module" accept=".pdf,.xls,.xlsx" style="width:300px" />
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+
+            <div class="text-center" style="margin-bottom:10px;">
+
+                <ul class="Select_option selectbackhome" style="text-align:center;">
+                    <li>
+                        <a class="btn btn-success disable_btn hidebutton" id="btnSave" onclick="Insert_data()">Save</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div id="border">
+            <div class="row container-fluid main_div">
+                <div class="col-md-12 col-sm-12">
+                    <div class="tbl-responsive" id="demandside" style=" overflow-x:scroll;overflow-y:scroll; height:400px;">
+                        <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                            <thead style="color: #fff;">
+                                <tr class="tableheader1"></tr>
+                                <tr class="success">
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important;"><label>Sr.No</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>Phase</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>State Name</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>District Name</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>Description</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>Documents</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important;"><label>Edit </label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important;"><label>Delete</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important;padding:8px 70px;"><label>Data Validation</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important;padding:8px 70px;"><label>Remark</label></td>
+                                    <td rowspan="1" class="text-center" style="background: #337ab7 !important;padding:8px 70px;"><label>Status</label></td>
+                                </tr>
+
+                            </thead>
+                            <tbody id="tbl_details"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <br />
+
+</main>
+
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/training_workshop.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<script>
+
+    var StateOfficer = "";
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var state = '';
+    $(document).ready(function () {
+
+      /*  $(".hide_div").hide();*/
+        StateOfficer = '@Session["Officer"]';
+        state = '@Session["gstate"]';
+         if (StateOfficer == "Gram Panchyat Nodal Officer") {
+               window.location = "/Home/LogOut";
+             $(".entryfoam").hide();
+
+        }
+         if (StateOfficer == "District Level Nodal Officer") {
+             $(".entryfoam").show();
+             $(".hide_div").hide();
+        }
+         if (StateOfficer == "State Level Nodal Officer") {
+             $(".entryfoam").hide();
+             $(".hide_div").hide();
+
+
+        }
+        if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+            $(".entryfoam").hide();
+            $(".hide_div").hide();
+
+        }
+
+        DropDownInfo();
+        divhideshow();
+
+    });
+
+    function divhideshow() {
+        debugger;
+        var phase = $("#phase").val();
+        if (StateOfficer == "District Level Nodal Officer") {
+            if (phase == "phase1") {
+                if (state == "Haryana_6") {
+                    $("#uploadtext").text("Upload Document " + phase)
+                    $(".entryfoam").hide();
+                    Data_get();
+                } else {
+                    $("#uploadtext").text("Upload Document " + phase)
+                    $(".entryfoam").hide();
+                    Data_get();
+                }
+            }
+           else if (phase == "phase3") {
+                $("#uploadtext").text("Upload Document " + phase)
+                $(".entryfoam").show();
+                Data_get();
+            }
+            else if (phase == "phase4") {
+                $("#uploadtext").text("Upload Document " + phase)
+                $(".entryfoam").show();
+                Data_get();
+            }
+            else {
+                $("#uploadtext").text("Upload Document " + phase)
+                if (state == "Haryana_6") {
+                    $('.entryfoam').hide();
+                    Data_get();
+            }
+            else {
+                    $('.entryfoam').hide();
+                    Data_get();
+            }
+            }
+        }
+        else {
+            $(".entryfoam").hide();
+            Data_get();
+        }
+
+    }
+    function DropDownInfo() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select StateName</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select StateName</option>';
+
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != "Delhi_7") {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function State_Dropdown_Function() {
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                //if (Jsondata[i].district_name == 'Kaithal' ) {
+                //    alert(dist);
+
+                //    return;
+                //}
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Demand_new/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $('.loader').hide();
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        State_Dropdown_Function();
+                        State_Dropdown_Function();
+                        Data_get();
+
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Data_get();
+
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Block_fun();
+                        Block_fun();
+                        Data_get();
+                        $('#pdf').prop('disabled', false);
+                        /* Data_get();*/
+
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+                        Data_get();
+                        $('#pdf').prop('disabled', false);
+                        /*Data_get();*/
+
+
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function Dropdown_Search() {
+
+        $('.loader').show();
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select State Name");
+            $('.loader').hide();
+        }
+        if (xx == 0) {
+
+            $.ajax({
+                type: "Post",
+                url: "/Home/StateLevel_Dropdown",
+                contentType: "application/json;charset=utf-8",
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+                dataType: "json",
+                success: function (results) {
+                    Data_get();
+                }
+            });
+        }
+    }
+    function Insert_data() {
+
+        $('.loader').show();
+        var xx = 0;
+        var state = State;
+        var dist = Dist;
+        var description = $('#to_date').val();
+        var phase = $('#phase').val();
+        var mom_filename = $('#upload_module').get(0);
+        var mom_filename1 = $('#upload_module').val();
+        var mom_filename_files = mom_filename.files;
+
+        if (State == "0") {
+            alert("Please Select State Name");
+            $('.loader').hide();
+            return false;
+        } else if (Dist == "0") {
+            alert("Please Select District Name");
+            $('.loader').hide();
+            return false;
+        } else if (description == "") {
+            alert("Please Enter Description");
+            $('.loader').hide();
+            return false;
+        }
+        else if (mom_filename1 == "") {
+            alert("Please Select Upload Document");
+            $('.loader').hide();
+            return false;
+        }
+        const oFile = document.getElementById("upload_module").files[0];
+        if (oFile != undefined) {
+            if (oFile.size > 2097152) // 10 MiB for bytes.
+            {
+                alert("Upload Document File size must be less than 2 MB");
+                return;
+            }
+        }
+
+        if (xx == 0) {
+            if (confirm("Are you sure you want to save data.")) {
+            $.ajax({
+                url: "/DLI3New2026/Save_data",
+                type: "POST",
+                data: function () {
+
+                    var data = new FormData();
+                    data.append("state", state);
+                    data.append("dist", dist);
+                    data.append("description", description);
+                    data.append("phase", phase);
+                    data.append("image", mom_filename_files[0]);
+                    return data;
+                }(),
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response);
+                    if (response == "Logout") {
+                          window.location = "/Home/LogOut";
+                    }
+                    else if (response == "Successfully Saved") {
+                        Data_get();
+                        $('#to_date').val("");
+                        $('#upload_module').val("");
+                    }
+                    else if (response == "Please select valid file") {
+                        $('.loader').hide();
+                    }
+                    else if (response == "Your Upload file has Double Extention, Please Upload proper file") {
+                        $('.loader').hide();
+                    }
+                    else if (response == "Please use the proper file name without special characters (# , $) .") {
+                        $('.loader').hide();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+            }
+
+            else {
+                $('.loader').hide();
+            }
+        }
+
+
+    }
+    function Data_get() {
+        var phase = $('#phase').val();
+
+
+        var obj = {};
+        obj.statename = State;
+        obj.districtname = Dist;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/DLI3New2026/Data_upload_doc',
+            data: "{'Data': '" + JSON.stringify(obj) + "','phase': '" + phase + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                var tr = '';
+                var sno = 0;
+                if (data == "No Data") {
+                    tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbl_details').html(tr);
+                }
+                else {
+                    if (data.length != 0) {
+
+                        for (var i = 0; i < data.length; i++) {
+                            if (StateOfficer == "District Level Nodal Officer") {
+                                var reject = data[i].reject;
+                                if (reject == null) {
+                                    reject = "";
+                                }
+                                var phase = data[i].phase;
+                                if (phase == null) {
+                                    phase = "";
+                                }
+                                if (data[i].approval == 'State') {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+                                }
+                                else if (data[i].approval == 'Dist') {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td></td><td><label style="color:green;">Submitted To SPMU</label></td></tr>';
+                                }
+                                else if (data[i].approval == 'Reject') {
+                                        sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><button class="btn btn-primary hidebutton" onclick="editrow_new(' + i + ')"> <i class="fa fa-edit"></i></button ></td><td><button class="btn btn-danger hidebutton"  onclick="Delete(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button type="button" class="btn btn-primary hidebutton"  onclick="approve_dist(' + data[i].id + ',' + i + ')">Submit To SPMU</button></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+                                    tr += '<tr id="Hide_AWP1_TR_addnew' + i + '" style="display:none;"><td></td><td></td><td><input type="text" class="form-control" id="state' + i + '" value="' + data[i].state + '" readonly /></td><td><input type="text" class="form-control" id="district' + i + '" value="' + data[i].district + '" readonly /></td><td><input type="text" class="form-control" id="description' + i + '" value="' + data[i].description + '" /></td><td><input type="file" class="form-control" accept=".pdf,.xls,.xlsx" style="width:300px" id="image' + i + '" value="' + data[i].image_name + '" /></td><td><button type="button" class="btn btn-primary hidebutton" onclick="Update(' + data[i].id + ' , ' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_multiple_row(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+                                }
+                                else {
+                                   
+                                        sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><button class="btn btn-primary hidebutton" onclick="editrow_new(' + i + ')"> <i class="fa fa-edit"></i></button ></td><td><button class="btn btn-danger hidebutton"  onclick="Delete(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button type="button" class="btn btn-primary hidebutton"   onclick="approve_dist(' + data[i].id + ',' + i + ')">Submit To SPMU</button></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+                                    tr += '<tr id="Hide_AWP1_TR_addnew' + i + '" style="display:none;"><td></td><td></td><td><input type="text" class="form-control" id="state' + i + '" value="' + data[i].state + '" readonly /></td><td><input type="text" class="form-control" id="district' + i + '" value="' + data[i].district + '" readonly /></td><td><input type="text" class="form-control" id="description' + i + '" value="' + data[i].description + '" /></td><td><input type="file" class="form-control" accept=".pdf,.xls,.xlsx" style="width:300px" id="image' + i + '" value="' + data[i].image_name + '" /></td><td><button type="button" class="btn btn-primary hidebutton" onclick="Update(' + data[i].id + ' , ' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_multiple_row(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+                                   
+                                }
+                            }
+                            if (StateOfficer == "State Level Nodal Officer") {
+                                var reject = data[i].reject;
+                                if (reject == null) {
+                                    reject = "";
+                                }
+                                var phase = data[i].phase;
+                                if (phase == null) {
+                                    phase = "";
+                                }
+                                if (data[i].approval == 'State') {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+                                }
+                                else if (data[i].approval == 'Dist') {
+                                   
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td> <button type="button" class="btn btn-primary hidebutton" onclick="approve_state(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger hidebutton"  onclick="reject_gram(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status' + i + '"  class=" form-control hidebutton" rows="" cols="40" placeholder="Remarks"  name="push_title">' + reject + '</textarea></td> </tr> ';
+                                   
+                                }
+                                else if (data[i].approval == 'Reject') {
+                                   
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+                                    
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+
+                                }
+
+                            }
+                            if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                                var reject = data[i].reject;
+                                if (reject == null) {
+                                    reject = "";
+                                }
+                                if (data[i].approval == 'State') {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+                                }
+                                else if (data[i].approval == 'Dist') {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td></td><td><label style="color: green;">Submitted To SPMU</label></td></tr> ';
+                                }
+                                else if (data[i].approval == 'Reject') {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].phase + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].description + '</td><td><a href="' + data[i].image_path + '" download=""> ' + data[i].image_name + '</a></td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+
+                                }
+                            }
+
+                        }
+
+                    }
+                    $('#tbl_details').html(tr);
+                }
+                $('.loader').hide();
+
+            }
+        });
+    }
+    function editrow_new(i) {
+        $('#AWP1_TR_new' + i).hide();
+        $('#Hide_AWP1_TR_addnew' + i).show();
+    }
+    function cancelcomp_A_Support_multiple_row(i) {
+        $('#AWP1_TR_new' + i).show();
+        $('#Hide_AWP1_TR_addnew' + i).hide();
+    }
+    function Delete(ss) {
+        if (confirm("Do You want to delete?")) {
+            $('.loader').show();
+            var obj = {};
+            obj.id = ss;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                url: "/DLI3New2026/Delete_data_upload",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    if (response == "Logout") {
+                        window.location = "/Home/LogOut";
+                    }
+                    else if (response == "Deleted Successfully") {
+                        Data_get();
+                    }
+                }
+            });
+        }
+    }
+    function Update(id, i) {
+
+        $('.loader').show();
+        var xx = 0;
+        var id = id;
+
+        var state = $('#state' + i).val();
+        var district = $('#district' + i).val();
+        var description = $('#description' + i).val();
+        var mom_filename = $('#image' + i).get(0);
+        var mom_filename_files = mom_filename.files;
+        const oFile = document.getElementById("image" + i).files[0];
+        if (oFile != undefined) {
+            if (oFile.size > 2097152) // 10 MiB for bytes.
+            {
+                alert("Upload Document File size must be less than 2 MB");
+                return;
+            }
+        }
+
+        if (xx == 0) {
+            $.ajax({
+                url: '/DLI3New2026/Update_upload',
+                type: "POST",
+                data: function () {
+
+                    var data = new FormData();
+                    data.append("id", id);
+                    data.append("state", state);
+                    data.append("dist", district);
+                    data.append("description", description);
+                    data.append("image", mom_filename_files[0]);
+                    return data;
+                }(),
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response);
+                    if (response == "Logout") {
+                          window.location = "/Home/LogOut";
+                    }
+                    else if (response == "Successfully Update") {
+                        Data_get();
+                    }
+                    else if (response == "Please select valid file") {
+                        $('.loader').hide();
+                    }
+                     else if (response == "Your Upload file has Double Extention, Please Upload proper file") {
+                        $('.loader').hide();
+                    }
+                    else if (response == "Please use the proper file name without special characters (# , $) .") {
+                        $('.loader').hide();
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+        }
+    }
+    function approve_dist(id, RowNo) {
+        $('.loader').show();
+        var i = 0;
+        var id = id;
+
+        if (i == 0) {
+
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            $.ajax({
+                url: '/DLI3New2026/approve_data_upload',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                          window.location = "/Home/LogOut";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+    function approve_state(id, RowNo) {
+        $('.loader').show();
+        var i = 0;
+        var id = id;
+
+        if (i == 0) {
+
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            $.ajax({
+                url: '/DLI3New2026/approve_data_state_upload',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                          window.location = "/Home/LogOut";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+    function reject_gram(id, RowNo) {
+        $('.loader').show();
+        var i = 0;
+        var id = id;
+        var reject = $('#remarks_status' + RowNo).val();
+        if (reject == "") {
+            alert("Please Enter Reject Remark ");
+            $('.loader').hide();
+            i = 1;
+        }
+        if (i == 0) {
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            formdata.append("reject", reject);
+            $.ajax({
+                url: '/DLI3New2026/reject_data_upload',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                          window.location = "/Home/LogOut";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+
+</script>
+
+

@@ -83,6 +83,8 @@ namespace AbhyProject.Models
         public virtual DbSet<dli4_area_with_crop_shifting> obj_dli4_area_with_crop_shifting { get; set; }
         public virtual DbSet<dli4_water_saving_agriculture> obj_dli4_water_saving_agriculture { get; set; }
         public virtual DbSet<dli4_upload_document> obj_dli4_upload_document { get; set; }
+
+        public virtual DbSet<dli4_upload_document_npmu> obj_dli4_upload_document_npmu { get; set; }
         public virtual DbSet<Users> objUsers { get; set; }
         public virtual DbSet<Users_delete> objUsers_delete { get; set; }
         
@@ -667,7 +669,11 @@ namespace AbhyProject.Models
 
         #endregion
 
-
+        public virtual DbSet<demandside_dli3_new_2026> obj_demandside_dli3_new_2026 { get; set; }
+        public virtual DbSet<demandside_dli3_phase2addnew_2026> obj_demandside_dli3_phase2addnew_2026 { get; set; }
+        public virtual DbSet<supplyside_dli3_new2026> obj_supplyside_dli3_new2026 { get; set; }
+        public virtual DbSet<DLI3_upload_document_new_2026> obj_abhy_DLI3_upload_document_new_2026 { get; set; }
+        public virtual DbSet<vw_dli3_lop_phase4_supply_report_25> obj_vw_dli3_lop_phase4_supply_report_25 { get; set; }
 
     }
 }
